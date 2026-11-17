@@ -132,6 +132,8 @@ export default function App() {
     setGuideText('');
   };
 
+  const activePlaceData = placeDetails.find(place => place.slug === activePlace);
+
   return <div className="site-v2" ref={root}>
     <div className="topline"><span>THE ISLANDS OF TAHITI</span><span>FRENCH POLYNESIA · SOUTH PACIFIC</span><span>DISCOVER THE BLUE</span></div>
     {!activeIsland && <header className={navVisible ? "main-nav nav-visible" : "main-nav nav-hidden"}>
@@ -149,7 +151,11 @@ export default function App() {
       {query && <div className="search-suggestions">{results.length ? results.map((item: any, i) => <a key={i} href={item.name ? '#islands' : '#experiences'} onClick={() => { if (item.resultType === 'island') openIsland(item); else if (item.resultType === 'place') openPlace(item); else document.getElementById('experiences')?.scrollIntoView({ behavior: 'smooth' }); setQuery(''); }}><span>{item.name || item.title}</span><small>{item.tag || item.kind || item.type}</small><ArrowRight size={15}/></a>) : <p>No matches yet. Try an island, a place or an experience.</p>}</div>}
     </header>}
 
-    {activeIsland ? <main className="island-detail-page" id="island-detail">
+    {activePlaceData ? <main className="place-detail-page" id="place-detail">
+      <div className="detail-topbar"><button onClick={closeIslandPage}><ArrowRight size={15}/> BACK TO DISCOVERY</button><span>PLACE DISCOVERY · FRENCH POLYNESIA</span></div>
+      <section className="place-detail-hero"><img src={activePlaceData.image} alt={activePlaceData.title}/><div className="place-detail-shade"/><div className="place-detail-heading"><span>{activePlaceData.category} · {activePlaceData.island.toUpperCase()}</span><h1>{activePlaceData.title}</h1><p>{activePlaceData.location}</p></div></section>
+      <section className="place-detail-copy"><span className="section-kicker">THE STORY BEHIND THE PLACE</span><h2>A moment<br/><em>to remember.</em></h2><p>{activePlaceData.description}</p><div className="place-location"><MapPin/><div><strong>WHERE TO FIND IT</strong><span>{activePlaceData.location}</span><small>{activePlaceData.note}</small></div></div><a href={'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(activePlaceData.location + ' French Polynesia')} target="_blank" rel="noreferrer">OPEN THIS LOCATION IN GOOGLE MAPS <ArrowRight size={15}/></a><button className="place-island-link" onClick={() => openIsland(islandDetails.find(i => i.slug === activePlaceData.islandSlug)!)}>EXPLORE THE {activePlaceData.island.toUpperCase()} ISLAND PAGE <ArrowRight size={15}/></button></section>
+    </main> : {activeIsland ? <main className="island-detail-page" id="island-detail">
       <div className="detail-topbar"><button onClick={closeIslandPage}><ArrowRight size={15}/> BACK TO ALL ISLANDS</button><span>{activeIsland.archipelago} · FRENCH POLYNESIA</span></div>
       <section className="detail-hero"><img src={activeIsland.image} alt={`${activeIsland.name} island landscape`} /><div className="detail-hero-shade"/><div className="detail-hero-copy"><span>{activeIsland.kind}</span><h1>{activeIsland.name}</h1><p>{activeIsland.tag}</p></div><div className="detail-hero-index">THE ISLANDS OF TAHITI<br/>DISCOVERY SERIES / 0{islandDetails.findIndex(i=>i.slug===activeIsland.slug)+1}</div></section>
       <section className="detail-intro"><span className="section-kicker">A CLOSER LOOK · {activeIsland.archipelago.toUpperCase()}</span><h2>Find your own<br/><em>island rhythm.</em></h2><p>{activeIsland.description} {activeIsland.mapNote}</p></section>
@@ -199,10 +205,10 @@ export default function App() {
       <section className="island-life" id="island-life">
         <div className="island-life-heading reveal"><span className="section-kicker">05 / THE ISLANDS IN MOTION</span><h2>Feel the life<br/><em>between the waves.</em></h2><p>Tradition, celebration and adventure are part of everyday island life.</p></div>
         <div className="life-mosaic">
-          <article className="life-photo life-photo-main"><img src="https://www.tahititourisme.com/app/uploads/iris-images/25627/spectacle-de-ori-tahiti-au-heiva-i-tahiti-a-kmh-media-production-765x550-f50_50.webp" alt="Ori Tahiti dancers performing at Heiva i Tahiti"/><div><small>CULTURE · HEIVA I TAHITI</small><h3>When the islands dance</h3></div></article>
-          <article className="life-photo life-photo-market"><img src="https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=1100&q=85" alt="Colourful market produce"/><div><small>FLAVOURS · PAPEETE</small><h3>Meet the rhythm of the market</h3></div></article>
-          <article className="life-photo life-photo-ocean"><img src="https://www.tahititourisme.com/app/uploads/iris-images/26222/hawaiki-nui-vaa-a-steve-dickinson-5-380x600-f50_50.webp" alt="Hawaiki Nui Va’a outrigger canoe race"/><div><small>OCEAN · HAWAIKI NUI VA’A</small><h3>Follow the ocean voyagers</h3></div></article>
-          <article className="life-photo life-photo-trails"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=85" alt="Mountain trail landscape"/><div><small>NATURE · ADVENTURE</small><h3>Find your way into the green</h3></div></article>
+          <button className="life-photo life-photo-main" onClick={() => openPlace(placeDetails[0])}><img src="https://www.tahititourisme.com/app/uploads/iris-images/25627/spectacle-de-ori-tahiti-au-heiva-i-tahiti-a-kmh-media-production-765x550-f50_50.webp" alt="Ori Tahiti dancers performing at Heiva i Tahiti"/><div><small>CULTURE · HEIVA I TAHITI</small><h3>When the islands dance</h3><span className="life-open">DISCOVER THIS PLACE ↗</span></div></button>
+          <button className="life-photo life-photo-market" onClick={() => openPlace(placeDetails[1])}><img src="https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=1100&q=85" alt="Colourful market produce"/><div><small>FLAVOURS · PAPEETE</small><h3>Meet the rhythm of the market</h3><span className="life-open">DISCOVER THIS PLACE ↗</span></div></button>
+          <button className="life-photo life-photo-ocean" onClick={() => openPlace(placeDetails[2])}><img src="https://www.tahititourisme.com/app/uploads/iris-images/26222/hawaiki-nui-vaa-a-steve-dickinson-5-380x600-f50_50.webp" alt="Hawaiki Nui Va’a outrigger canoe race"/><div><small>OCEAN · HAWAIKI NUI VA’A</small><h3>Follow the ocean voyagers</h3><span className="life-open">DISCOVER THIS PLACE ↗</span></div></button>
+          <button className="life-photo life-photo-trails" onClick={() => openPlace(placeDetails[3])}><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=85" alt="Mountain trail landscape"/><div><small>NATURE · ADVENTURE</small><h3>Find your way into the green</h3><span className="life-open">DISCOVER THIS PLACE ↗</span></div></button>
         </div>
         <p className="life-credit">Festival imagery: Tahiti Tourisme · Heiva i Tahiti, KMH Media Production. Event and activity details should be checked against official listings.</p>
       </section>
