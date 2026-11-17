@@ -48,7 +48,8 @@ function gtc_island_map_shortcode($atts = []): string {
     }
     wp_enqueue_style('gtc-leaflet');
     wp_enqueue_script('gtc-leaflet');
-    wp_enqueue_script('gtc-island-map', '', ['gtc-leaflet'], GTC_VERSION, true);
+    wp_register_script('gtc-island-map', false, ['gtc-leaflet'], GTC_VERSION, true);
+    wp_enqueue_script('gtc-island-map');
     $script = <<<'JS'
 document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('.gtc-island-map[data-markers]').forEach(function (node) {
