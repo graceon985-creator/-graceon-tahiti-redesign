@@ -160,9 +160,12 @@ export default function App() {
     {!activeIsland && !activePlaceData && !activeCulture && <header className={navVisible ? "main-nav nav-visible" : "main-nav nav-hidden"}>
       <a className="wordmark" href="#home"><span className="wordmark-symbol">T</span><span>TAHITI<small>ISLANDS OF</small></span></a>
       <nav className={menuOpen ? 'nav-items is-open' : 'nav-items'}>
-        <a href="#islands" onClick={() => setMenuOpen(false)}>The islands</a>
-        <a href="#experiences" onClick={() => setMenuOpen(false)}>Experiences</a>
-        <a href="#culture" onClick={() => setMenuOpen(false)}>Culture & nature</a>
+        <a href="#islands" onClick={() => setMenuOpen(false)}>Islands</a>
+        <a href="#experiences" onClick={() => setMenuOpen(false)}>Activities</a>
+        <a href="#events" onClick={() => setMenuOpen(false)}>Events</a>
+        <a href="#practical" onClick={() => setMenuOpen(false)}>Practical info</a>
+        <a href="#accommodation" onClick={() => setMenuOpen(false)}>Accommodation</a>
+        <a href="#offers" onClick={() => setMenuOpen(false)}>Special offers</a>
       </nav>
       <div className="nav-right">
         <label className="nav-search"><Search size={16}/><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search islands, places, experiences..." aria-label="Search the site"/>{query && <button onClick={() => setQuery('')} aria-label="Clear search"><X size={14}/></button>}</label>
@@ -234,7 +237,40 @@ export default function App() {
         </div>
         <p className="life-credit">Festival imagery: Tahiti Tourisme · Heiva i Tahiti, KMH Media Production. Event and activity details should be checked against official listings.</p>
       </section>
-\n      <section className="journey-cta" id="journey"><div className="journey-copy reveal"><span className="section-kicker-light">YOUR STORY STARTS HERE</span><h2>Let the islands<br/><em>find you.</em></h2><p>Start with a feeling. Follow it across the blue.</p><a href="#islands">EXPLORE THE ARCHIPELAGO <ArrowRight size={16}/></a></div><div className="journey-image"><img className="parallax-image" src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=1600&q=90" alt="Island lagoon"/></div></section>
+\n      <section className="directory-section events-directory" id="events">
+        <div className="directory-heading"><span className="section-kicker">06 / WHAT’S HAPPENING</span><h2>Island moments.<br/><em>Worth travelling for.</em></h2><p>Discover cultural celebrations, sporting gatherings and local events across the islands.</p></div>
+        <div className="directory-grid">
+          <article className="directory-card"><span className="directory-number">01</span><div><small>OFFICIAL EVENT LISTINGS</small><h3>Explore the calendar</h3><p>Event information is designed to be supplied from Tahiti Tourisme’s official APIDAE calendar, with dates, locations and details kept current.</p></div><span className="directory-status">APIDAE CONNECTION REQUIRED</span></article>
+          <article className="directory-card"><span className="directory-number">02</span><div><small>PLAN BY PLACE</small><h3>Find events by island</h3><p>Browse activities by island, date, period and category, then continue to the relevant island page for local context.</p></div><span className="directory-status">FILTERS TO IMPLEMENT</span></article>
+          <article className="directory-card"><span className="directory-number">03</span><div><small>PLAN AHEAD</small><h3>Know before you go</h3><p>Dates, schedules and venues can change. The live calendar will display the latest information provided by the official source.</p></div><span className="directory-status">LIVE DATA REQUIRED</span></article>
+        </div>
+      </section>
+
+      <section className="directory-section practical-directory" id="practical">
+        <div className="directory-heading"><span className="section-kicker">07 / BEFORE YOU SET OFF</span><h2>Everything you need.<br/><em>Close at hand.</em></h2><p>Clear, practical information for visitors already in French Polynesia and those preparing to explore another island.</p></div>
+        <div className="practical-grid">
+          <article><span>01 / GETTING AROUND</span><h3>Inter-island transport</h3><p>Compare the available ways to travel between islands and check schedules, conditions and bookings directly with the relevant transport operators.</p></article>
+          <article><span>02 / ON THE ISLAND</span><h3>Local transport</h3><p>Find guidance about getting around each island, including local transport options and visitor information.</p></article>
+          <article><span>03 / ESSENTIALS</span><h3>Useful services</h3><p>Bring together practical services, visitor centres, tourism committees and important local contacts.</p></article>
+          <article><span>04 / TRAVEL WELL</span><h3>Local guidance</h3><p>Understand local formalities, respectful visitor practices and useful advice for different situations.</p></article>
+        </div>
+        <p className="directory-footnote">Official contact details, transport information and local procedures must be validated by Tahiti Tourisme before publication.</p>
+      </section>
+
+      <section className="directory-section stay-directory" id="accommodation">
+        <div className="directory-heading"><span className="section-kicker">08 / WHERE TO STAY</span><h2>Find your place<br/><em>in the islands.</em></h2><p>Explore accommodation options by island and travel style, with provider information managed through the official tourism database.</p></div>
+        <div className="stay-feature">
+          <div className="stay-feature-image"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1500&q=85" alt="Tropical accommodation beside a lagoon"/></div>
+          <div className="stay-feature-copy"><span>ACCOMMODATION DIRECTORY</span><h3>From island guesthouses<br/><em>to lagoon stays.</em></h3><p>Browse accommodation by destination and relevant criteria. Provider profiles, contact details, services and available information are intended to be retrieved from APIDAE.</p><div className="directory-status">APIDAE PROVIDER LISTINGS REQUIRED</div></div>
+        </div>
+      </section>
+
+      <section className="directory-section offers-directory" id="offers">
+        <div className="directory-heading"><span className="section-kicker">09 / MAKE IT YOURS</span><h2>Special offers.<br/><em>Made for discovery.</em></h2><p>A dedicated place for current offers from tourism providers across the Islands of Tahiti.</p></div>
+        <div className="offers-panel"><div><span>OFFICIAL OFFER DIRECTORY</span><h3>Find an offer<br/><em>for your journey.</em></h3><p>Offers will be displayed with their provider, destination, validity dates and relevant conditions. Expired offers must automatically disappear from public listings.</p></div><div className="offers-rules"><p><strong>01</strong> Search and filter by island or offer type</p><p><strong>02</strong> Show only offers within their validity period</p><p><strong>03</strong> Link each offer to its associated provider profile</p><p><strong>04</strong> Preserve the official geographic access restrictions</p><small>LIVE OFFER DATA AND ACCESS RULES REQUIRE CLIENT INTEGRATION</small></div></div>
+      </section>
+
+      <section className="journey-cta" id="journey"><div className="journey-copy reveal"><span className="section-kicker-light">YOUR STORY STARTS HERE</span><h2>Let the islands<br/><em>find you.</em></h2><p>Start with a feeling. Follow it across the blue.</p><a href="#islands">EXPLORE THE ARCHIPELAGO <ArrowRight size={16}/></a></div><div className="journey-image"><img className="parallax-image" src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=1600&q=90" alt="Island lagoon"/></div></section>
     </main>}
 
     <footer className="site-footer"><a className="wordmark footer-mark" href="#home"><span className="wordmark-symbol">T</span><span>TAHITI<small>ISLANDS OF</small></span></a><p>THE ISLANDS OF TAHITI · FRENCH POLYNESIA</p><div className="footer-note">AN INDEPENDENT REDESIGN CONCEPT — NOT COMMISSIONED, APPROVED OR ENDORSED BY TAHITI TOURISME.<br/>DESIGNED & DEVELOPED BY GRACEON DIGITAL STUDIO</div></footer>
