@@ -256,3 +256,4 @@ require_once __DIR__ . '/passport.php';
 require_once __DIR__ . '/island-highlights.php';
 require_once __DIR__ . '/island-map.php';
 require_once __DIR__ . '/journey.php';
+require_once __DIR__ . '/island-content-pack.php';
