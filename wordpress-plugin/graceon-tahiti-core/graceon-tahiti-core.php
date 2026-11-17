@@ -181,6 +181,8 @@ register_activation_hook(__FILE__, function (): void {
     gtc_register_content_types();
     gtc_register_taxonomies();
     gtc_seed_island_profiles();
+    gtc_register_highlight_content();
+    gtc_seed_bora_bora_highlights();
     flush_rewrite_rules();
 });
 register_deactivation_hook(__FILE__, 'flush_rewrite_rules');
@@ -249,3 +251,6 @@ function gtc_search_content(WP_REST_Request $request): WP_REST_Response {
 
 // Account-based digital passport feature.
 require_once __DIR__ . '/passport.php';
+
+// Island-specific editorial highlights and image credits.
+require_once __DIR__ . '/island-highlights.php';
