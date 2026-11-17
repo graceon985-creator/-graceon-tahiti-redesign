@@ -20,11 +20,11 @@ function gtc_passport_handle_stamp(): void {
     check_admin_referer('gtc_passport_stamp');
     $slug = isset($_POST['island']) ? sanitize_title(wp_unslash($_POST['island'])) : '';
     if (!in_array($slug, gtc_passport_island_slugs(), true)) {
-        wp_die(esc_html__('That island is not part of this passport.', 'graceon-tahiti-core'), 400);
+        wp_die(esc_html__('That island is not part of this passport.', 'graceon-tahiti-core'), '', ['response' => 400]);
     }
     $island = get_page_by_path($slug, OBJECT, 'iot_island');
     if (!$island || $island->post_status !== 'publish') {
-        wp_die(esc_html__('This island passport page is not available yet.', 'graceon-tahiti-core'), 404);
+        wp_die(esc_html__('This island passport page is not available yet.', 'graceon-tahiti-core'), '', ['response' => 404]);
     }
     $stamps = gtc_passport_get_stamps(get_current_user_id());
     if (!in_array($slug, $stamps, true)) {
