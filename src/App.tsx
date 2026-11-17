@@ -31,12 +31,21 @@ const islandDetails = [
   { name: 'Fakarava', slug:'fakarava', archipelago:'Tuamotu Archipelago', tag: 'The wild atoll', kind: 'Biosphere · Lagoon · Nature', image: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1400&q=85', description: 'A remarkable atoll recognised for its exceptional natural environment and fragile marine ecosystems.', places:['Garuae Pass','Tetamanu village area','Pink-sand motu','Rotoava village'], activities:['Explore the atoll by bicycle or kayak','Discover the lagoon with local guides','Learn about the protected biosphere environment'], mapNote:'Fakarava is part of the Tuamotu Archipelago and is known for its protected natural environment.' }
 ];
 
+const placeDetails = [
+  { slug:'heiva', title:'Heiva i Tahiti', island:'Tahiti', islandSlug:'tahiti', category:'Culture · Dance · Heritage', location:'Papeete and festival venues across Tahiti', description:'A major celebration of Polynesian culture through traditional dance, music, sport and community gatherings. Festival venues and programme details vary by edition.', image:'https://www.tahititourisme.com/app/uploads/iris-images/25627/spectacle-de-ori-tahiti-au-heiva-i-tahiti-a-kmh-media-production-765x550-f50_50.webp', note:'Check the official annual programme for dates and exact performance locations.' },
+  { slug:'market', title:'Papeete Market', island:'Tahiti', islandSlug:'tahiti', category:'Local life · Food · Crafts', location:'Marché de Papeete, central Papeete, Tahiti', description:'A lively central market where visitors can discover local produce, flowers, crafts, vanilla and flavours from across French Polynesia.', image:'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=1400&q=85', note:'The market is in central Papeete. Check local opening hours before visiting.' },
+  { slug:'vaa', title:'Hawaiki Nui Va’a', island:'Leeward Islands · Society Islands', islandSlug:'raiatea', category:'Ocean · Sport · Tradition', location:'Leeward Islands; race route and stages vary by year', description:'A celebrated outrigger canoe race across the Leeward Islands. Its route links islands including Huahine, Raiatea, Taha’a and Bora Bora; stages and schedules are edition-specific.', image:'https://www.tahititourisme.com/app/uploads/iris-images/26222/hawaiki-nui-vaa-a-steve-dickinson-5-380x600-f50_50.webp', note:'Use the official race programme for the current year’s route and spectator locations.' },
+  { slug:'belvedere', title:'Belvedere Lookout', island:'Moorea', islandSlug:'moorea', category:'Nature · Viewpoint · Hiking', location:'Belvedere Lookout, Moorea, Society Islands', description:'A celebrated viewpoint above Moorea’s volcanic interior, with sweeping views towards Cook’s Bay, Opunohu Bay and the green mountain ridges.', image:'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1400&q=85', note:'Road and trail conditions can change; check local guidance before setting out.' }
+];
+
 export default function App() {
   const root = useRef<HTMLDivElement>(null);
+  const [activePlace, setActivePlace] = useState(() => new URLSearchParams(window.location.search).get('place'));
   const [activeIsland, setActiveIsland] = useState<(typeof islandDetails)[number] | null>(() => { const slug = new URLSearchParams(window.location.search).get('island'); return islandDetails.find(item => item.slug === slug) || null; });
-  const openIsland = (island: (typeof islandDetails)[number]) => { window.history.pushState({}, '', `${window.location.pathname}?island=${island.slug}`); setActiveIsland(island); window.scrollTo({ top: 0, behavior: 'smooth' }); };
-  const closeIslandPage = () => { window.history.pushState({}, '', window.location.pathname); setActiveIsland(null); window.scrollTo({ top: 0, behavior: 'smooth' }); };
-  useEffect(() => { const sync = () => { const slug = new URLSearchParams(window.location.search).get('island'); setActiveIsland(islandDetails.find(item => item.slug === slug) || null); }; window.addEventListener('popstate', sync); return () => window.removeEventListener('popstate', sync); }, []);
+  const openPlace = (place: (typeof placeDetails)[number]) => { window.history.pushState({}, '', window.location.pathname + '?place=' + place.slug); setActiveIsland(null); setActivePlace(place.slug); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const openIsland = (island: (typeof islandDetails)[number]) => { window.history.pushState({}, '', `${window.location.pathname}?island=${island.slug}`); setActivePlace(null); setActiveIsland(island); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  const closeIslandPage = () => { window.history.pushState({}, '', window.location.pathname); setActiveIsland(null); setActivePlace(null); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+  useEffect(() => { const sync = () => { const params = new URLSearchParams(window.location.search); const slug = params.get('island'); setActiveIsland(islandDetails.find(item => item.slug === slug) || null); setActivePlace(params.get('place')); }; window.addEventListener('popstate', sync); return () => window.removeEventListener('popstate', sync); }, []);
   const [scene, setScene] = useState(0);
   const [paused, setPaused] = useState(false);
   const [query, setQuery] = useState('');
@@ -107,9 +116,9 @@ export default function App() {
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return [];
-    return [...islandDetails, ...experiences].filter((item: any) =>
-      [item.name, item.tag, item.kind, item.description, item.title, item.copy].filter(Boolean).join(' ').toLowerCase().includes(q)
-    ).slice(0, 6);
+    return [...islandDetails.map(item => ({...item, resultType:'island'})), ...experiences.map(item => ({...item, resultType:'experience'})), ...placeDetails.map(item => ({...item, name:item.title, resultType:'place'}))].filter((item: any) =>
+      [item.name, item.tag, item.kind, item.description, item.title, item.copy, item.location, item.island, ...(item.places || []), ...(item.activities || [])].filter(Boolean).join(' ').toLowerCase().includes(q)
+    ).slice(0, 8);
   }, [query]);
 
   const sendGuide = (value = guideText) => {
@@ -133,11 +142,11 @@ export default function App() {
         <a href="#culture" onClick={() => setMenuOpen(false)}>Culture & nature</a>
       </nav>
       <div className="nav-right">
-        <label className="nav-search"><Search size={16}/><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search Tahiti..." aria-label="Search the site"/>{query && <button onClick={() => setQuery('')} aria-label="Clear search"><X size={14}/></button>}</label>
+        <label className="nav-search"><Search size={16}/><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search islands, places, experiences..." aria-label="Search the site"/>{query && <button onClick={() => setQuery('')} aria-label="Clear search"><X size={14}/></button>}</label>
         <a className="nav-plan" href="#islands">Find your island <ArrowRight size={15}/></a>
         <button className="nav-menu" onClick={() => setMenuOpen(v => !v)} aria-label="Toggle navigation">{menuOpen ? <X/> : <Menu/>}</button>
       </div>
-      {query && <div className="search-suggestions">{results.length ? results.map((item: any, i) => <a key={i} href={item.name ? '#islands' : '#experiences'} onClick={() => { if (item.name) openIsland(item); else document.getElementById('experiences')?.scrollIntoView({ behavior: 'smooth' }); setQuery(''); }}><span>{item.name || item.title}</span><small>{item.tag || item.kind || item.type}</small><ArrowRight size={15}/></a>) : <p>No matches yet. Try “lagoon”, “culture” or an island name.</p>}</div>}
+      {query && <div className="search-suggestions">{results.length ? results.map((item: any, i) => <a key={i} href={item.name ? '#islands' : '#experiences'} onClick={() => { if (item.resultType === 'island') openIsland(item); else if (item.resultType === 'place') openPlace(item); else document.getElementById('experiences')?.scrollIntoView({ behavior: 'smooth' }); setQuery(''); }}><span>{item.name || item.title}</span><small>{item.tag || item.kind || item.type}</small><ArrowRight size={15}/></a>) : <p>No matches yet. Try an island, a place or an experience.</p>}</div>}
     </header>}
 
     {activeIsland ? <main className="island-detail-page" id="island-detail">
