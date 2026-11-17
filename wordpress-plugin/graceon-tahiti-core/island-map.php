@@ -146,7 +146,7 @@ function gtc_highlights_section_shortcode($atts = []): string {
         <article class="iot-curated-card">
           <a class="iot-curated-card__visual<?php echo $image || has_post_thumbnail($place) ? '' : ' is-placeholder'; ?>" href="<?php echo esc_url(get_permalink($place)); ?>">
             <?php if ($image) : ?><img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr(get_the_title($place)); ?>" loading="lazy"><?php elseif (has_post_thumbnail($place)) : echo get_the_post_thumbnail($place, 'iot-card'); endif; ?>
-            <?php if ($credit) : ?><small class="iot-image-credit"><?php echo esc_html($credit); ?><?php if ($license) : ?> · <a href="<?php echo esc_url($license); ?>" target="_blank" rel="noopener noreferrer">License</a><?php endif; ?></small><?php endif; ?>
+            <?php if ($credit) : ?><small class="iot-image-credit"><?php echo esc_html($credit); ?><?php if ($license) : ?> · <?php echo esc_html__('license noted', 'graceon-tahiti-core'); ?><?php endif; ?></small><?php endif; ?>
           </a>
           <div class="iot-curated-card__copy">
             <h3><a href="<?php echo esc_url(get_permalink($place)); ?>"><?php echo esc_html(get_the_title($place)); ?></a></h3>
