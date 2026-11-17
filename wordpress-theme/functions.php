@@ -63,3 +63,20 @@ function iot_customize_register(WP_Customize_Manager $wp_customize): void {
     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'iot_hero_image', ['label' => __('Hero photograph', 'islands-of-tahiti'), 'section' => 'iot_home_hero']));
 }
 add_action('customize_register', 'iot_customize_register');
+
+/** Safe, useful fallback navigation when no menu has been assigned yet. */
+function iot_fallback_menu(): void {
+    echo '<ul class="iot-fallback-menu">';
+    $links = [
+        __('Islands', 'islands-of-tahiti') => home_url('/#islands'),
+        __('Experiences', 'islands-of-tahiti') => get_post_type_archive_link('iot_experience'),
+        __('Events', 'islands-of-tahiti') => get_post_type_archive_link('iot_event'),
+        __('Practical information', 'islands-of-tahiti') => get_post_type_archive_link('iot_tip'),
+        __('Accommodation', 'islands-of-tahiti') => get_post_type_archive_link('iot_accommodation'),
+        __('Special offers', 'islands-of-tahiti') => get_post_type_archive_link('iot_offer'),
+    ];
+    foreach ($links as $label => $url) {
+        if ($url) { printf('<li><a href="%1$s">%2$s</a></li>', esc_url($url), esc_html($label)); }
+    }
+    echo '</ul>';
+}
