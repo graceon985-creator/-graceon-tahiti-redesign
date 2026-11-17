@@ -50,7 +50,7 @@ function gtc_pwa_asset_response(): void {
     if ($asset === 'sw') {
         status_header(200);
         header('Content-Type: application/javascript; charset=utf-8');
-        header('Service-Worker-Allowed: ' . trailingslashit(home_url('/')));
+        header('Service-Worker-Allowed: ' . trailingslashit((string) wp_parse_url(home_url('/'), PHP_URL_PATH)));
         header('Cache-Control: no-cache, no-store, must-revalidate');
         $home = wp_json_encode(home_url('/'));
         $offline = wp_json_encode(get_template_directory_uri() . '/offline.html');
