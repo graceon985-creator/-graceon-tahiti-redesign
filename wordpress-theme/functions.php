@@ -32,6 +32,8 @@ function iot_enqueue_assets(): void {
         'restUrl' => esc_url_raw(rest_url()),
         'nonce' => wp_create_nonce('wp_rest'),
         'language' => determine_locale(),
+        'ajaxUrl' => admin_url('admin-ajax.php'),
+        'journeyNonce' => wp_create_nonce('gtc_journey_toggle'),
     ]);
 }
 add_action('wp_enqueue_scripts', 'iot_enqueue_assets');
