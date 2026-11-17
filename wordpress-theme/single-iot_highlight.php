@@ -26,6 +26,7 @@ get_header();
       <p class="iot-island-eyebrow"><?php echo esc_html($kicker ?: 'A PLACE TO DISCOVER'); ?></p>
       <h1><?php the_title(); ?></h1>
       <?php if ($location) : ?><p class="iot-place-location"><?php echo esc_html($location); ?></p><?php endif; ?>
+      <?php if (function_exists('gtc_journey_save_button')) { echo gtc_journey_save_button($place_id); } ?>
     </div>
     <?php if ($credit) : ?><small class="iot-place-credit"><?php echo esc_html($credit); ?><?php if ($license) : ?> · <a href="<?php echo esc_url($license); ?>" target="_blank" rel="noopener noreferrer">Image license</a><?php endif; ?></small><?php endif; ?>
   </section>
