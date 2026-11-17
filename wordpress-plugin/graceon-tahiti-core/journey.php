@@ -91,3 +91,21 @@ function gtc_my_journey_shortcode(): string {
     return (string) ob_get_clean();
 }
 add_shortcode('gtc_my_journey', 'gtc_my_journey_shortcode');
+
+/** Create a dedicated page for the shortcode without replacing existing content. */
+function gtc_ensure_my_journey_page(): void {
+    if (!current_user_can('manage_options') || get_option('gtc_my_journey_page_created')) { return; }
+    $page = get_page_by_path('my-journey');
+    if (!$page) {
+        $id = wp_insert_post([
+            'post_type' => 'page',
+            'post_status' => 'publish',
+            'post_title' => __('My Journey', 'graceon-tahiti-core'),
+            'post_name' => 'my-journey',
+            'post_content' => '[gtc_my_journey]',
+        ], true);
+        if (is_wp_error($id)) { return; }
+    }
+    update_option('gtc_my_journey_page_created', 1, false);
+}
+add_action('admin_init', 'gtc_ensure_my_journey_page', 40);
