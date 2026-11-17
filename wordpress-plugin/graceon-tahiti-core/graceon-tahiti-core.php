@@ -183,6 +183,7 @@ register_activation_hook(__FILE__, function (): void {
     gtc_seed_island_profiles();
     gtc_register_highlight_content();
     gtc_seed_bora_bora_highlights();
+    gtc_pwa_register_rewrites();
     flush_rewrite_rules();
 });
 register_deactivation_hook(__FILE__, 'flush_rewrite_rules');
@@ -257,3 +258,4 @@ require_once __DIR__ . '/island-highlights.php';
 require_once __DIR__ . '/island-map.php';
 require_once __DIR__ . '/journey.php';
 require_once __DIR__ . '/island-content-pack.php';
+require_once __DIR__ . '/pwa.php';
