@@ -121,15 +121,36 @@ export default function App() {
     ).slice(0, 8);
   }, [query]);
 
-  const sendGuide = (value = guideText) => {
+  const sendGuide = async (value = guideText) => {
     const q = value.trim().toLowerCase();
     if (!q) return;
-    if (q.includes('bora')) setGuideReply('Bora Bora is known for its remarkable lagoon and the dramatic Mount Otemanu. Explore the island to learn more.');
-    else if (q.includes('moorea')) setGuideReply('Moorea is loved for its twin bays, lush mountain scenery and welcoming island atmosphere.');
-    else if (q.includes('culture')) setGuideReply('Discover living Polynesian culture through language, dance, craft, food and heritage places across the islands.');
-    else if (q.includes('plan') || q.includes('trip')) setGuideReply('A good first step is choosing the kind of experience you want: lagoons, nature, culture or a little of everything. Explore the islands above to compare.');
-    else setGuideReply('I can help you explore Tahiti, Moorea, Bora Bora, Huahine, Raiatea, Taha’a, Rangiroa and Fakarava. Ask me about an island, culture or trip inspiration.');
+    setGuideReply('One moment — let me check that for you…');
     setGuideText('');
+    if (/(weather|temperature|\btemp\b|hot|warm|rain|forecast|degrees|°c)/i.test(q)) {
+      try {
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-17.535&longitude=-149.569&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m&timezone=Pacific%2FTahiti');
+        if (!response.ok) throw new Error('Weather service unavailable');
+        const data = await response.json();
+        const current = data.current;
+        const labels: Record<number,string> = {0:'clear sky',1:'mainly clear',2:'partly cloudy',3:'overcast',45:'foggy',48:'foggy',51:'light drizzle',53:'drizzle',55:'heavy drizzle',61:'light rain',63:'rain',65:'heavy rain',80:'rain showers',81:'rain showers',82:'heavy rain showers',95:'thunderstorms',96:'thunderstorms',99:'thunderstorms'};
+        const condition = labels[current.weather_code] || 'changing conditions';
+        setGuideReply('Right now in Papeete, Tahiti: ' + Math.round(current.temperature_2m) + '°C, feels like ' + Math.round(current.apparent_temperature) + '°C, with ' + condition + '. Humidity is ' + Math.round(current.relative_humidity_2m) + '% and wind is ' + Math.round(current.wind_speed_10m) + ' km/h. This is live weather for Tahiti — other islands can be different.');
+      } catch {
+        setGuideReply('I could not reach the live weather service just now. For the most accurate current temperature, check the weather for Papeete, Tahiti. Conditions can differ across the islands.');
+      }
+    } else if (/(bora|otemanu)/i.test(q)) setGuideReply('Bora Bora is famous for its turquoise lagoon, small motu islets and Mount Otemanu. You can explore Vaitape, Matira Beach and the lagoon with a licensed local operator.');
+    else if (/moorea/i.test(q)) setGuideReply('Moorea is known for Cook’s Bay, Opunohu Bay, green volcanic peaks and the Belvedere Lookout. Visitors often enjoy lagoon trips, local food and guided nature walks.');
+    else if (/huahine/i.test(q)) setGuideReply('Huahine is a quieter Society Island with traditional villages and important archaeological sites around Maeva. It is a lovely choice for culture, history and a slower island pace.');
+    else if (/raiatea/i.test(q)) setGuideReply('Raiatea is deeply connected to Polynesian heritage. Taputapuātea, a UNESCO World Heritage site, is one of its most important cultural places. The island also has green valleys and the Faaroa River.');
+    else if (/taha.?a/i.test(q)) setGuideReply('Taha’a is often called the vanilla island. It shares a lagoon with Raiatea and is known for vanilla farms, quiet motu and lagoon excursions.');
+    else if (/rangiroa/i.test(q)) setGuideReply('Rangiroa is a vast atoll in the Tuamotu archipelago, known for its immense lagoon, Tiputa Pass and small island communities. Explore with local guides and respect marine-life rules.');
+    else if (/fakarava/i.test(q)) setGuideReply('Fakarava is a protected biosphere atoll in the Tuamotu archipelago, celebrated for its lagoon and fragile natural environment. Choose responsible local operators.');
+    else if (/tahiti|papeete/i.test(q)) setGuideReply('Tahiti is the main gateway to French Polynesia. In Papeete you can visit the market and waterfront, while the island also offers black-sand beaches, waterfalls and green valleys.');
+    else if (/culture|dance|heiva|tradition|heritage/i.test(q)) setGuideReply('Polynesian culture is lived through language, dance, music, navigation, craft, food and community gatherings. Heiva i Tahiti is a major annual celebration; dates and venues vary each year.');
+    else if (/plan|trip|itinerary|visit|where should/i.test(q)) setGuideReply('Start by choosing your travel mood: culture and city life on Tahiti, dramatic bays on Moorea, lagoon scenery in Bora Bora, heritage on Raiatea and Huahine, or wide-open atolls in Rangiroa and Fakarava. Travel times and inter-island transport should be checked with official operators.');
+    else if (/activity|activities|snorkel|hike|boat|things to do/i.test(q)) setGuideReply('Popular experiences include guided lagoon outings, cultural and food tours, mountain viewpoints, village markets and nature walks. Always follow local guidance and use licensed operators for water activities.');
+    else if (/map|location|where is/i.test(q)) setGuideReply('Use the island map section to choose one of the eight featured islands. Each island page includes a Google Maps view and links to explore nearby places.');
+    else setGuideReply('I can answer common questions about the eight featured islands, local culture, activities, trip ideas and the current weather in Papeete. Try asking “What is the temperature in Tahiti?” or “What can I do in Moorea?”');
   };
 
   const activePlaceData = placeDetails.find(place => place.slug === activePlace);
@@ -175,15 +196,9 @@ export default function App() {
     </main> : <main id="home">
       <section className="moving-gallery" aria-label="Changing scenes of the islands">
         {scenes.map((s, i) => <div key={s.label} className={i === scene ? 'scene is-active' : 'scene'}><img src={s.image} alt={s.label} /><div className="scene-shade"/></div>)}
-
+        <div className="hero-editorial-title"><span>THE ISLANDS OF TAHITI</span><h1>Not just a place.<br/><em>A world to feel.</em></h1></div>
+        <p className="hero-editorial-caption">From the pulse of island culture to volcanic valleys, quiet lagoons and open-ocean horizons — discover a world shaped by its people, traditions and extraordinary nature.</p>
         <div className="scene-dots">{scenes.map((s, i) => <button key={s.label} className={i === scene ? 'active' : ''} onClick={() => setScene(i)} aria-label={'Show scene ' + (i + 1)}/>)}</div>
-      </section>
-
-      <section className="intro-story reveal">
-        <div className="intro-image intro-image-one"><img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=900&q=85" alt="Turquoise island lagoon"/></div>
-        <div className="intro-image intro-image-two"><img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=85" alt="Pacific island coastline"/></div>
-        <div className="intro-copy"><span className="section-kicker">01 / THE ARCHIPELAGO</span><h2>Not just a place.<br/><em>A world to feel.</em></h2><p>From the pulse of Heiva dance and the colour of Papeete Market to volcanic valleys, island trails and open-ocean voyages, discover a living destination shaped by its people, traditions and extraordinary nature.</p><div className="intro-number"><strong>118</strong><span>ISLANDS & ATOLLS<br/>FIVE ARCHIPELAGOS</span></div></div>
-        <div className="intro-image intro-image-three"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85" alt="Island lagoon from above"/></div>
       </section>
 
       <section className="island-discovery" id="islands">
@@ -225,6 +240,6 @@ export default function App() {
     <footer className="site-footer"><a className="wordmark footer-mark" href="#home"><span className="wordmark-symbol">T</span><span>TAHITI<small>ISLANDS OF</small></span></a><p>THE ISLANDS OF TAHITI · FRENCH POLYNESIA</p><div className="footer-note">AN INDEPENDENT REDESIGN CONCEPT — NOT COMMISSIONED, APPROVED OR ENDORSED BY TAHITI TOURISME.<br/>DESIGNED & DEVELOPED BY GRACEON DIGITAL STUDIO</div></footer>
 
     <button className="guide-launcher" onClick={() => setGuideOpen(v => !v)} aria-label="Open GRACEON island guide" aria-expanded={guideOpen} aria-controls="island-guide-panel"><span className="guide-orbit"><Sparkles size={20}/></span><span className="guide-pulse"/></button>
-    {guideOpen && <aside className="guide-panel" id="island-guide-panel" role="dialog" aria-label="GRACEON island guide"><div className="guide-header"><span className="guide-avatar"><Sparkles size={18}/></span><div><strong>Island Guide</strong><small>GRACEON · TAHITI DISCOVERY</small></div><button onClick={() => setGuideOpen(false)} aria-label="Close guide"><X/></button></div><div className="guide-body"><p className="guide-greeting">{guideReply}</p><div className="guide-prompts"><button onClick={() => sendGuide('Tell me about Bora Bora')}>Discover Bora Bora</button><button onClick={() => sendGuide('Help me plan a trip')}>Plan my journey</button><button onClick={() => sendGuide('Tell me about culture')}>Culture & heritage</button></div></div><form className="guide-input" onSubmit={e => { e.preventDefault(); sendGuide(); }}><input value={guideText} onChange={e => setGuideText(e.target.value)} placeholder="Ask about the islands..." aria-label="Ask the island guide"/><button aria-label="Send message"><Send size={17}/></button></form><small className="guide-disclaimer">Concept guide · Answers are currently pre-written, not live AI.</small></aside>}
+    {guideOpen && <aside className="guide-panel" id="island-guide-panel" role="dialog" aria-label="GRACEON island guide"><div className="guide-header"><span className="guide-avatar"><Sparkles size={18}/></span><div><strong>Island Guide</strong><small>GRACEON · TAHITI DISCOVERY</small></div><button onClick={() => setGuideOpen(false)} aria-label="Close guide"><X/></button></div><div className="guide-search-wrap"><label><Search size={15}/><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search islands, places, activities..." aria-label="Search islands and places"/></label>{query && <div className="guide-search-results">{results.length ? results.map((item: any, i) => <button key={i} onClick={() => { if (item.resultType === 'island') openIsland(item); else if (item.resultType === 'place') openPlace(item); else { setGuideOpen(false); document.getElementById('experiences')?.scrollIntoView({ behavior: 'smooth' }); } setQuery(''); }}><span>{item.name || item.title}</span><small>{item.tag || item.kind || item.type}</small><ArrowRight size={13}/></button>) : <p>No matches found. Try an island or activity.</p>}</div>}</div><div className="guide-body"><p className="guide-greeting">{guideReply}</p><div className="guide-prompts"><button onClick={() => sendGuide('Tell me about Bora Bora')}>Discover Bora Bora</button><button onClick={() => sendGuide('What is the temperature in Tahiti?')}>Weather in Tahiti</button><button onClick={() => sendGuide('Tell me about culture')}>Culture & heritage</button></div></div><form className="guide-input" onSubmit={e => { e.preventDefault(); sendGuide(); }}><input value={guideText} onChange={e => setGuideText(e.target.value)} placeholder="Ask about islands, weather, places..." aria-label="Ask the island guide"/><button aria-label="Send message"><Send size={17}/></button></form><small className="guide-disclaimer">Travel discovery assistant · Weather is live for Papeete; other answers use destination information.</small></aside>}
   </div>;
 }
