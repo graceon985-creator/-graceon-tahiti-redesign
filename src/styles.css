@@ -121,3 +121,73 @@
 .detail-map{padding:70px 6%;display:flex;flex-direction:column;align-items:stretch;gap:25px}.detail-map-copy{padding:0}.detail-map-copy h2{font-size:59px}.detail-map iframe{height:340px}
 .detail-next{padding:35px 6%;display:block}.detail-next>div{margin-top:18px}.detail-next button{font-size:15px}
 }
+
+
+/* Refined island-first opening and editorial discovery */
+.moving-gallery{height:min(82vh,850px);min-height:560px}
+.scene-shade{background:linear-gradient(0deg,rgba(3,24,30,.27),rgba(3,24,30,.18))}
+.scene-dots{z-index:4;right:5%;bottom:30px;display:flex;gap:9px}
+.scene-dots button{width:7px;height:7px;border:1px solid #ffffffbb;background:#ffffff35;border-radius:50%;padding:0;transition:all .3s}
+.scene-dots button.active{width:25px;border-radius:10px;background:#fff}
+.intro-story{grid-template-columns:.8fr 1.2fr 1.2fr .8fr;grid-template-rows:220px 170px;gap:16px;align-items:stretch}
+.intro-image{overflow:hidden;position:relative;background:#164653;min-height:0}
+.intro-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s}
+.intro-image:hover img{transform:scale(1.06)}
+.intro-image-one{grid-column:1;grid-row:1;border-radius:2px 70px 2px 2px}
+.intro-image-two{grid-column:4;grid-row:1/3;border-radius:70px 2px 2px 2px}
+.intro-image-three{grid-column:1;grid-row:2;border-radius:2px 2px 2px 55px}
+.intro-copy{grid-column:2/4;grid-row:1/3;padding:12px 22px 8px;align-self:center}
+.intro-copy h2{font:clamp(40px,4.7vw,66px)/1.02 'Playfair Display';font-weight:400;letter-spacing:-.045em;margin:16px 0}
+.intro-copy h2 em{color:#b8795c}
+.intro-copy p{max-width:520px;color:#647c78;font-size:12px;line-height:1.9}
+.intro-copy .intro-number{display:flex;align-items:center;gap:17px;border:0;padding:0;margin:22px 0 0}
+.intro-copy .intro-number strong{font-size:42px}
+.constellation-motivation{position:absolute;left:50%;top:48%;transform:translate(-50%,-50%);z-index:2;text-align:center;pointer-events:none;color:#6f8980;width:230px}
+.constellation-motivation>span{font-size:7px;letter-spacing:.22em}
+.constellation-motivation strong{display:block;font:29px/1.02 'Playfair Display';font-weight:400;color:#164c56;margin:10px 0}
+.constellation-motivation strong em{color:#b8795c}
+.constellation-motivation small{font-size:8px;letter-spacing:.05em}
+.life-photo{width:100%;border:0;padding:0;text-align:left;color:inherit;cursor:pointer;font:inherit}
+.life-open{display:block;margin-top:11px;font-size:7px;letter-spacing:.16em;color:#f0c4a3;opacity:.9}
+.life-photo:hover .life-open{letter-spacing:.2em}
+.culture-open{display:inline-flex;align-items:center;gap:15px;margin-top:22px;border:0;border-bottom:1px solid #b8795c;padding:0 0 9px;background:transparent;color:#123c45;font-size:8px;letter-spacing:.15em;cursor:pointer}
+.place-detail-hero{height:min(620px,72vh);min-height:430px;position:relative;overflow:hidden;background:#103d48;color:#fff}
+.place-detail-hero>img{width:100%;height:100%;object-fit:cover;display:block}
+.place-detail-shade{position:absolute;inset:0;background:linear-gradient(0deg,#062d39bb,transparent 70%)}
+.place-detail-heading{position:absolute;left:9%;bottom:13%;z-index:1}
+.place-detail-heading>span{font-size:8px;letter-spacing:.18em;color:#f1c2a1}
+.place-detail-heading h1{font:clamp(54px,9vw,112px)/.95 'Playfair Display';font-weight:400;margin:17px 0}
+.place-detail-heading p{font-size:11px;color:#f2e6d8}
+.place-detail-copy{background:#f1eee5;color:#123c45;padding:90px 12%;max-width:none}
+.place-detail-copy h2{font:clamp(52px,6vw,78px)/.95 'Playfair Display';font-weight:400;margin:18px 0}
+.place-detail-copy h2 em{color:#b8795c}
+.place-detail-copy>p{max-width:680px;color:#667c77;font-size:13px;line-height:2}
+.place-location{display:flex;gap:16px;align-items:flex-start;max-width:680px;padding:24px 0;margin:28px 0;border-top:1px solid #c6d1c8;border-bottom:1px solid #c6d1c8}
+.place-location>svg{color:#b8795c;flex-shrink:0}
+.place-location strong,.place-location span,.place-location small{display:block}
+.place-location strong{font-size:8px;letter-spacing:.17em;margin-bottom:8px}
+.place-location span{font:22px 'Playfair Display'}
+.place-location small{font-size:10px;line-height:1.7;color:#7a8d84;margin-top:8px}
+.place-detail-copy>a,.place-island-link{display:inline-flex;align-items:center;gap:12px;margin:8px 15px 0 0;padding:14px 17px;background:#0b4653;color:white;border:1px solid #0b4653;font-size:8px;letter-spacing:.13em;cursor:pointer}
+.place-island-link{background:transparent;color:#0b4653}
+.culture-detail-heading{padding:90px 10% 55px;background:#e7e8df;color:#123c45}
+.culture-detail-heading h1{font:clamp(58px,8vw,100px)/.93 'Playfair Display';font-weight:400;letter-spacing:-.05em;margin:22px 0}
+.culture-detail-heading h1 em{color:#b8795c}
+.culture-detail-heading p{max-width:520px;color:#6b8179;font-size:12px;line-height:1.9}
+.culture-detail-grid{padding:20px 8% 100px;background:#e7e8df;display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.culture-detail-grid button{position:relative;text-align:left;border:0;padding:0 0 20px;background:#f1eee5;color:#123c45;cursor:pointer;overflow:hidden}
+.culture-detail-grid img{width:100%;height:300px;object-fit:cover;display:block;transition:transform .8s}
+.culture-detail-grid button:hover img{transform:scale(1.04)}
+.culture-detail-grid button>span,.culture-detail-grid h2,.culture-detail-grid small{display:flex;margin-left:23px;margin-right:23px}
+.culture-detail-grid button>span{font-size:7px;letter-spacing:.17em;color:#b8795c;margin-top:20px}
+.culture-detail-grid h2{font:34px 'Playfair Display';font-weight:400;margin-top:10px;margin-bottom:8px}
+.culture-detail-grid small{align-items:center;gap:8px;color:#6b8179;font-size:9px}
+@media(max-width:760px){
+.moving-gallery{height:76vh;min-height:490px}
+.scene-dots{bottom:20px;right:6%}
+.intro-story{grid-template-columns:1fr 1fr;grid-template-rows:155px 155px auto;gap:10px;padding:65px 6%}
+.intro-image-one{grid-column:1;grid-row:1}.intro-image-two{grid-column:2;grid-row:1/3;border-radius:45px 2px 2px 2px}.intro-image-three{grid-column:1;grid-row:2}.intro-copy{grid-column:1/3;grid-row:3;padding:22px 0 0}.intro-copy h2{font-size:49px}.intro-copy p{font-size:11px}
+.constellation-motivation{top:49%;width:155px}.constellation-motivation strong{font-size:22px}.constellation-motivation small{font-size:7px}
+.place-detail-hero{height:510px;min-height:0}.place-detail-heading{left:7%;right:7%;bottom:12%}.place-detail-heading h1{font-size:clamp(48px,13vw,76px)}.place-detail-copy{padding:65px 7%}.place-detail-copy h2{font-size:57px}.place-detail-copy>a,.place-island-link{margin:7px 8px 0 0;font-size:7px}
+.culture-detail-heading{padding:65px 7% 35px}.culture-detail-heading h1{font-size:58px}.culture-detail-grid{padding:10px 6% 65px;grid-template-columns:1fr;gap:13px}.culture-detail-grid img{height:240px}.culture-detail-grid h2{font-size:29px}
+}
