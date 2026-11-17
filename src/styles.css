@@ -191,3 +191,32 @@
 .place-detail-hero{height:510px;min-height:0}.place-detail-heading{left:7%;right:7%;bottom:12%}.place-detail-heading h1{font-size:clamp(48px,13vw,76px)}.place-detail-copy{padding:65px 7%}.place-detail-copy h2{font-size:57px}.place-detail-copy>a,.place-island-link{margin:7px 8px 0 0;font-size:7px}
 .culture-detail-heading{padding:65px 7% 35px}.culture-detail-heading h1{font-size:58px}.culture-detail-grid{padding:10px 6% 65px;grid-template-columns:1fr;gap:13px}.culture-detail-grid img{height:240px}.culture-detail-grid h2{font-size:29px}
 }
+
+
+/* Editorial headline integrated into the rotating island-photo hero */
+.moving-gallery{height:min(88vh,900px);min-height:570px}
+.scene-shade{background:linear-gradient(180deg,rgba(3,24,30,.25),rgba(3,24,30,.08) 48%,rgba(3,24,30,.28))}
+.hero-editorial-title{position:absolute;z-index:3;left:7.5%;top:11%;max-width:min(660px,72vw);color:#fff;text-shadow:0 3px 24px rgba(0,20,28,.2);pointer-events:none}
+.hero-editorial-title>span{font-size:8px;letter-spacing:.28em;color:#f0d9c2}
+.hero-editorial-title h1{font:clamp(45px,6.8vw,88px)/.98 'Playfair Display';font-weight:400;letter-spacing:-.045em;margin:15px 0}
+.hero-editorial-title h1 em{font-style:italic;color:#f1d9c5;font-size:.94em}
+.hero-editorial-caption{position:absolute;z-index:3;right:7.5%;bottom:11%;width:min(390px,38vw);margin:0;color:#fff;font-size:11px;line-height:1.9;text-align:right;text-shadow:0 2px 15px #001b25;pointer-events:none}
+.scene-dots{bottom:30px}
+.guide-search-wrap{padding:13px 17px 0;background:#f4f1e8;position:relative;z-index:3}
+.guide-search-wrap>label{display:flex;align-items:center;gap:9px;border-bottom:1px solid #aabbb1;padding:9px 0;color:#68817a}
+.guide-search-wrap input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:#123c45;font-size:10px}
+.guide-search-results{position:absolute;top:calc(100% - 1px);left:17px;right:17px;max-height:190px;overflow:auto;background:#fffdf7;box-shadow:0 12px 25px #001e2c24;border:1px solid #d9e1d8}
+.guide-search-results button{width:100%;display:grid;grid-template-columns:1fr auto;gap:3px 8px;padding:10px 12px;text-align:left;border:0;border-bottom:1px solid #e1e6de;background:transparent;color:#123c45;cursor:pointer}
+.guide-search-results button:hover{background:#e8eee6}
+.guide-search-results button span{font:16px 'Playfair Display'}
+.guide-search-results button small{font-size:8px;color:#82948b}
+.guide-search-results button svg{grid-column:2;grid-row:1/3;align-self:center;color:#b8795c}
+.guide-search-results p{font-size:10px;color:#718680;padding:10px 12px;margin:0}
+@media(max-width:640px){
+ .moving-gallery{height:75vh;min-height:520px}
+ .hero-editorial-title{left:6%;top:9%;max-width:86vw}
+ .hero-editorial-title>span{font-size:7px}
+ .hero-editorial-title h1{font-size:clamp(42px,11vw,62px);margin:12px 0}
+ .hero-editorial-caption{right:6%;bottom:12%;width:78%;font-size:10px;line-height:1.7}
+ .scene-dots{bottom:22px}
+}
