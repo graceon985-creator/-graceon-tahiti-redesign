@@ -69,3 +69,38 @@
 @media(max-width:620px){.iot-island-hero{min-height:78svh;padding:7vw}.iot-island-hero__topline{left:7vw;right:7vw;top:22px;font-size:8px}.iot-island-hero__side-note{display:none}.iot-island-hero h1{font-size:clamp(66px,18vw,108px)}.iot-island-hero__description{font-size:17px}.iot-island-intro{display:block;padding:70px 7vw}.iot-island-intro__index{margin-bottom:42px}.iot-island-intro__aside{margin:35px 0 0 22px}.iot-island-feature,.iot-island-discover{padding:68px 6vw}.iot-island-section-head{display:block}.iot-island-section-head>span{display:block;margin-top:18px}.iot-island-feature-card__image{height:290px;min-height:0}.iot-island-feature-card__copy{padding:28px 22px 34px}.iot-island-highlight-grid{grid-template-columns:1fr;gap:18px}.iot-island-highlight-card__image{height:260px}.iot-island-highlight-card__copy{padding:22px}.iot-island-culture__copy{padding:65px 7vw}.iot-island-culture__visual{min-height:300px}.iot-island-plan{display:block;padding:68px 7vw}.iot-island-plan__actions{margin-top:30px}.iot-island-passport{padding:25px 5vw}}
 
 .iot-island-hero__credit{position:absolute;right:8vw;bottom:22px;z-index:2;font-size:9px;letter-spacing:.04em;color:rgba(255,255,255,.85)}.iot-island-hero__credit a{color:#fff;text-decoration:underline}
+
+
+/* Interactive island map and dedicated place stories */
+.iot-place-title-link{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.iot-place-title-link:hover{border-color:#b77d5f}
+.iot-island-map-block,.iot-place-map{padding:100px 9vw;background:#f3f0e8}
+.gtc-map-section{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(240px,.7fr);gap:28px;align-items:start}
+.gtc-island-map{width:100%;height:520px;min-height:360px;background:#d9e1d9;border:1px solid rgba(23,56,61,.14);z-index:1}
+.gtc-map-attribution{grid-column:1/-1;margin:-18px 0 0;font-size:9px;color:#71817a}
+.gtc-map-place-list{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid #c9d0c7}
+.gtc-map-place-list li{padding:14px 4px;border-bottom:1px solid #c9d0c7;display:grid;gap:5px}
+.gtc-map-place-list a{font:20px/1.2 Georgia,serif;color:#17383d;text-decoration:none}
+.gtc-map-place-list a:hover{color:#a66f52}
+.gtc-map-place-list span{font-size:10px;letter-spacing:.06em;color:#71817a}
+.gtc-map-empty{padding:30px;background:#e7e4da;color:#61736d}
+.iot-place-hero{min-height:min(760px,84vh);position:relative;display:flex;align-items:flex-end;padding:8vw;background:#143d45;overflow:hidden;color:#fff}
+.iot-place-hero__image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.iot-place-hero__shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,24,30,.78),rgba(3,24,30,.08) 75%)}
+.iot-place-hero__content{position:relative;z-index:1;max-width:900px}
+.iot-place-back{display:inline-block;margin-bottom:50px;color:#fff;text-decoration:none;font-size:9px;letter-spacing:.16em}
+.iot-place-hero h1{font:clamp(60px,10vw,132px)/.94 Georgia,serif;letter-spacing:-.05em;margin:14px 0 18px}
+.iot-place-location{font-size:11px;letter-spacing:.12em;color:#e6c4a9}
+.iot-place-credit{position:absolute;right:8vw;bottom:22px;z-index:2;color:#fff;font-size:9px}
+.iot-place-credit a{color:#fff}
+.iot-place-story{display:grid;grid-template-columns:.6fr 2fr;gap:6vw;padding:110px 9vw;background:#f3f0e8}
+.iot-place-story__label{display:flex;flex-direction:column;gap:10px;font-size:9px;letter-spacing:.16em;color:#788780}
+.iot-place-story__body{max-width:800px}
+.iot-place-story__body h2,.iot-place-return h2{font:clamp(38px,5.5vw,70px)/1.02 Georgia,serif;letter-spacing:-.04em;font-weight:400;margin:12px 0 28px}
+.iot-place-content{font-size:15px;line-height:1.9;color:#62716b}
+.iot-place-content p{margin:0 0 1.2em}
+.iot-place-return{padding:90px 9vw;background:#123c42;color:#f5f1e8}
+.iot-place-return h2{max-width:700px}
+.iot-place-return .iot-island-hero__link{color:#fff}
+@media(max-width:900px){.gtc-map-section{grid-template-columns:1fr}.gtc-island-map{height:440px}.gtc-map-attribution{grid-column:auto}.iot-place-story{grid-template-columns:1fr;gap:28px}.iot-place-story__label{flex-direction:row;justify-content:space-between}}
+@media(max-width:620px){.iot-island-map-block,.iot-place-map{padding:68px 6vw}.gtc-island-map{height:360px;min-height:300px}.iot-place-hero{min-height:75svh;padding:7vw}.iot-place-back{margin-bottom:34px}.iot-place-hero h1{font-size:clamp(56px,15vw,90px)}.iot-place-story{padding:70px 7vw}.iot-place-return{padding:70px 7vw}}
