@@ -51,3 +51,15 @@ add_action('after_setup_theme', function (): void {
     add_image_size('iot-hero', 2000, 1200, true);
     add_image_size('iot-card', 900, 700, true);
 });
+
+
+function iot_customize_register(WP_Customize_Manager $wp_customize): void {
+    $wp_customize->add_section('iot_home_hero', ['title' => __('Islands homepage hero', 'islands-of-tahiti'), 'priority' => 30]);
+    $wp_customize->add_setting('iot_hero_title', ['default' => __('Not just a place. A world to feel.', 'islands-of-tahiti'), 'sanitize_callback' => 'sanitize_textarea_field']);
+    $wp_customize->add_control('iot_hero_title', ['label' => __('Hero heading', 'islands-of-tahiti'), 'section' => 'iot_home_hero', 'type' => 'textarea']);
+    $wp_customize->add_setting('iot_hero_copy', ['default' => __('From the pulse of island culture to volcanic valleys, quiet lagoons and open-ocean horizons — discover a world shaped by its people, traditions and extraordinary nature.', 'islands-of-tahiti'), 'sanitize_callback' => 'sanitize_textarea_field']);
+    $wp_customize->add_control('iot_hero_copy', ['label' => __('Hero supporting text', 'islands-of-tahiti'), 'section' => 'iot_home_hero', 'type' => 'textarea']);
+    $wp_customize->add_setting('iot_hero_image', ['default' => '', 'sanitize_callback' => 'esc_url_raw']);
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'iot_hero_image', ['label' => __('Hero photograph', 'islands-of-tahiti'), 'section' => 'iot_home_hero']));
+}
+add_action('customize_register', 'iot_customize_register');
