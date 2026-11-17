@@ -3,7 +3,7 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { ArrowDown, ArrowRight, Search, Menu, X, Send, Sparkles, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowDown, ArrowRight, Search, Menu, X, Send, Sparkles, MapPin } from 'lucide-react';
 import { experiences } from './data';
 import './styles.css';
 
