@@ -49,7 +49,6 @@ export default function App() {
   const closeIslandPage = () => { window.history.pushState({}, '', window.location.pathname); setActiveCulture(false); setActiveIsland(null); setActivePlace(null); window.scrollTo({ top: 0, behavior: 'smooth' }); };
   useEffect(() => { const sync = () => { const params = new URLSearchParams(window.location.search); const slug = params.get('island'); setActiveIsland(islandDetails.find(item => item.slug === slug) || null); setActivePlace(params.get('place')); setActiveCulture(params.get('culture') === '1'); }; window.addEventListener('popstate', sync); return () => window.removeEventListener('popstate', sync); }, []);
   const [scene, setScene] = useState(0);
-  const [paused, setPaused] = useState(false);
   const [query, setQuery] = useState('');
   const [selectedIsland, setSelectedIsland] = useState<(typeof islandDetails)[number] | null>(null);
   const [guideOpen, setGuideOpen] = useState(false);
@@ -82,10 +81,9 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    if (paused) return;
     const timer = window.setInterval(() => setScene(s => (s + 1) % scenes.length), 6500);
     return () => window.clearInterval(timer);
-  }, [paused]);
+  }, []);
 
   useGSAP(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -177,9 +175,7 @@ export default function App() {
     </main> : <main id="home">
       <section className="moving-gallery" aria-label="Changing scenes of the islands">
         {scenes.map((s, i) => <div key={s.label} className={i === scene ? 'scene is-active' : 'scene'}><img src={s.image} alt={s.label} /><div className="scene-shade"/></div>)}
-        <div className="scene-copy"><span className="section-kicker-light">{scenes[scene].label}</span><h2>{scenes[scene].title}</h2><p>LET THE OCEAN SET THE PACE</p>
-          <div className="scene-controls"><button onClick={() => setScene(s => (s + scenes.length - 1) % scenes.length)} aria-label="Previous scene"><ChevronLeft/></button><button onClick={() => setPaused(p => !p)} aria-label={paused ? 'Play slideshow' : 'Pause slideshow'}>{paused ? 'PLAY' : 'PAUSE'}</button><button onClick={() => setScene(s => (s + 1) % scenes.length)} aria-label="Next scene"><ChevronRight/></button><span>0{scene + 1} / 0{scenes.length}</span></div>
-        </div>
+
         <div className="scene-dots">{scenes.map((s, i) => <button key={s.label} className={i === scene ? 'active' : ''} onClick={() => setScene(i)} aria-label={'Show scene ' + (i + 1)}/>)}</div>
       </section>
 
