@@ -151,14 +151,24 @@ register_activation_hook(__FILE__, function (): void {
 register_deactivation_hook(__FILE__, 'flush_rewrite_rules');
 
 
-/** Keep expired offers out of public offer archives. */
+/** Show only offers that are currently within their validity window. */
 function gtc_filter_public_offers(WP_Query $query): void {
     if (is_admin() || !$query->is_main_query() || !$query->is_post_type_archive('iot_offer')) { return; }
     $today = current_time('Y-m-d');
     $query->set('meta_query', [
-        'relation' => 'OR',
-        ['key' => 'iot_offer_end', 'value' => $today, 'compare' => '>=', 'type' => 'DATE'],
-        ['key' => 'iot_offer_end', 'compare' => 'NOT EXISTS'],
+        'relation' => 'AND',
+        [
+            'relation' => 'OR',
+            ['key' => 'iot_offer_start', 'value' => $today, 'compare' => '<=', 'type' => 'DATE'],
+            ['key' => 'iot_offer_start', 'compare' => 'NOT EXISTS'],
+            ['key' => 'iot_offer_start', 'value' => '', 'compare' => '='],
+        ],
+        [
+            'relation' => 'OR',
+            ['key' => 'iot_offer_end', 'value' => $today, 'compare' => '>=', 'type' => 'DATE'],
+            ['key' => 'iot_offer_end', 'compare' => 'NOT EXISTS'],
+            ['key' => 'iot_offer_end', 'value' => '', 'compare' => '='],
+        ],
     ]);
 }
 add_action('pre_get_posts', 'gtc_filter_public_offers');
