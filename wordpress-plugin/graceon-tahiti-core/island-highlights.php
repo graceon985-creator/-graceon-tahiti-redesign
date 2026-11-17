@@ -39,6 +39,8 @@ function gtc_highlight_meta_fields(): array {
         'gtc_highlight_location' => ['Location label', 'text'],
         'gtc_highlight_map_url' => ['Map link', 'url'],
         'gtc_highlight_kicker' => ['Short category label', 'text'],
+        'gtc_highlight_latitude' => ['Map latitude', 'text'],
+        'gtc_highlight_longitude' => ['Map longitude', 'text'],
     ];
 }
 
@@ -130,6 +132,26 @@ function gtc_seed_bora_bora_highlights(): void {
         update_post_meta($id, 'gtc_highlight_kicker', sanitize_text_field($kicker));
         wp_set_object_terms($id, 'bora-bora', 'iot_highlight_island', false);
     }
+    // Curated map coordinates for the Bora Bora starter locations. Editors can
+    // refine them later; existing non-empty values are never overwritten.
+    $coordinates = [
+        'otemanu' => ['-16.5004', '-151.7415'],
+        'matira-beach' => ['-16.5414', '-151.7340'],
+        'motu-tapu' => ['-16.5120', '-151.7330'],
+        'hawaiki-nui-vaa' => ['-16.5414', '-151.7340'],
+        'vaitape' => ['-16.5060', '-151.7500'],
+    ];
+    foreach ($coordinates as $slug => $pair) {
+        $place = get_page_by_path($slug, OBJECT, 'iot_highlight');
+        if (!$place) { continue; }
+        if (get_post_meta($place->ID, 'gtc_highlight_latitude', true) === '') {
+            update_post_meta($place->ID, 'gtc_highlight_latitude', $pair[0]);
+        }
+        if (get_post_meta($place->ID, 'gtc_highlight_longitude', true) === '') {
+            update_post_meta($place->ID, 'gtc_highlight_longitude', $pair[1]);
+        }
+    }
+
 }
 
 /**
