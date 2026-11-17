@@ -43,8 +43,13 @@ function gtc_island_map_shortcode($atts = []): string {
             'lng' => (float) $lng,
         ];
     }
-    if (!$markers) {
-        return '<div class="gtc-map-empty"><p>' . esc_html__('Map locations are being curated for this island.', 'graceon-tahiti-core') . '</p></div>';
+    $all_query = new WP_Query([
+        'post_type' => 'iot_highlight', 'post_status' => 'publish', 'posts_per_page' => 100,
+        'orderby' => ['menu_order' => 'ASC', 'title' => 'ASC'],
+        'tax_query' => [[ 'taxonomy' => 'iot_highlight_island', 'field' => 'slug', 'terms' => $island ]],
+    ]);
+    if (!$all_query->posts) {
+        return '<div class="gtc-map-empty"><p>' . esc_html__('Place information is being prepared for this island.', 'graceon-tahiti-core') . '</p></div>';
     }
     wp_enqueue_style('gtc-leaflet');
     wp_enqueue_script('gtc-leaflet');
@@ -88,15 +93,20 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 JS;
     wp_add_inline_script('gtc-island-map', $script);
-    $center = $markers[0];
     $json = wp_json_encode($markers);
     $list = '<ul class="gtc-map-place-list">';
-    foreach ($markers as $marker) {
-        $list .= '<li><a href="' . esc_url($marker['url']) . '">' . esc_html($marker['title']) . '</a>';
-        if ($marker['location']) { $list .= '<span>' . esc_html($marker['location']) . '</span>'; }
+    foreach ($all_query->posts as $place) {
+        $location = (string) get_post_meta($place->ID, 'gtc_highlight_location', true);
+        $map_url = (string) get_post_meta($place->ID, 'gtc_highlight_map_url', true);
+        $list .= '<li><a href="' . esc_url(get_permalink($place)) . '">' . esc_html(get_the_title($place)) . '</a>';
+        if ($location) { $list .= '<span>' . esc_html($location) . '</span>'; }
+        if ($map_url) { $list .= '<a class="gtc-map-directions" href="' . esc_url($map_url) . '" target="_blank" rel="noopener noreferrer">' . esc_html__('OPEN DIRECTIONS ↗', 'graceon-tahiti-core') . '</a>'; }
         $list .= '</li>';
     }
     $list .= '</ul>';
+    if (!$markers) {
+        return '<section class="gtc-map-section gtc-map-section--pending" aria-label="' . esc_attr__('Island places and directions', 'graceon-tahiti-core') . '"><div class="gtc-map-empty"><p>' . esc_html__('Exact map pins for these places are still being checked. You can open each place for details or directions.', 'graceon-tahiti-core') . '</p></div>' . $list . '</section>';
+    }
     return '<section class="gtc-map-section" aria-label="' . esc_attr__('Island map and places', 'graceon-tahiti-core') . '"><div class="gtc-island-map" role="application" aria-label="' . esc_attr__('Interactive map of island highlights', 'graceon-tahiti-core') . '" data-markers="' . esc_attr($json) . '"></div><p class="gtc-map-attribution">' . esc_html__('Map data © OpenStreetMap contributors', 'graceon-tahiti-core') . '</p>' . $list . '</section>';
 }
 add_shortcode('gtc_island_map', 'gtc_island_map_shortcode');
