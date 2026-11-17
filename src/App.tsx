@@ -61,9 +61,12 @@ export default function App() {
       y: 48, opacity: 0, duration: 1, ease: 'power3.out',
       scrollTrigger: { trigger: el, start: 'top 86%' }
     }));
-    gsap.to('.thread-dash', { strokeDashoffset: -900, duration: 24, repeat: -1, ease: 'none' });
-    gsap.utils.toArray<HTMLElement>('.parallax-image').forEach(img => gsap.to(img, {
-      yPercent: -10, ease: 'none', scrollTrigger: { trigger: img, scrub: true }
+    gsap.fromTo('.thread-dash', { strokeDashoffset: 1000, opacity: 0.15 }, {
+      strokeDashoffset: 0, opacity: 1, ease: 'none',
+      scrollTrigger: { trigger: '.island-discovery', start: 'top 82%', end: 'bottom 25%', scrub: 1 }
+    });
+    gsap.utils.toArray<HTMLElement>('.parallax-image, .scene img').forEach(img => gsap.to(img, {
+      yPercent: -10, ease: 'none', scrollTrigger: { trigger: img.closest('section') || img, scrub: true }
     }));
   }, { scope: root });
 
@@ -144,7 +147,7 @@ export default function App() {
       <section className="island-discovery" id="islands">
         <div className="island-heading reveal"><div><span className="section-kicker">02 / FIND YOUR ISLAND</span><h2>Eight islands.<br/><em>Infinite shades of blue.</em></h2></div><p>Move across the constellation. Choose an island and let its story unfold.</p></div>
         <div className="island-constellation">
-          <svg className="constellation-lines" viewBox="0 0 1000 720" preserveAspectRatio="none" aria-hidden="true"><path d="M90 170 C220 20 330 300 470 150 S740 40 900 210 S760 520 600 430 S300 600 90 540" fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="5 9"/><path className="thread-dash" d="M90 170 C220 20 330 300 470 150 S740 40 900 210 S760 520 600 430 S300 600 90 540" fill="none" stroke="#d38f70" strokeWidth="2.2" strokeDasharray="7 13"/></svg>
+          <svg className="constellation-lines" viewBox="0 0 1000 720" preserveAspectRatio="none" aria-hidden="true"><path d="M90 170 C220 20 330 300 470 150 S740 40 900 210 S760 520 600 430 S300 600 90 540" fill="none" stroke="currentColor" strokeWidth="1.2" strokeDasharray="5 9"/><path className="thread-dash" d="M90 170 C220 20 330 300 470 150 S740 40 900 210 S760 520 600 430 S300 600 90 540" fill="none" stroke="#d38f70" strokeWidth="2.2" pathLength="1000" strokeDasharray="1000" strokeDashoffset="1000"/></svg>
           {islandDetails.map((island, i) => <button key={island.name} className={'island-orbit island-orbit-' + (i + 1)} onClick={() => setSelectedIsland(island)} onMouseEnter={e => e.currentTarget.classList.add('hovered')} onMouseLeave={e => e.currentTarget.classList.remove('hovered')}>
             <img src={island.image} alt=""/><span className="island-orbit-shade"/><span className="orbit-index">0{i + 1}</span><span className="orbit-title">{island.name}</span><span className="orbit-explore">EXPLORE <ArrowRight size={13}/></span>
           </button>)}
