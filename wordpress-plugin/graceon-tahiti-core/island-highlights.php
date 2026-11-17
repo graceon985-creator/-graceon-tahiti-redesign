@@ -142,3 +142,20 @@ function gtc_maybe_seed_bora_bora_highlights(): void {
     update_option('gtc_bora_bora_highlights_seeded', 1, false);
 }
 add_action('admin_init', 'gtc_maybe_seed_bora_bora_highlights');
+
+/** Replace only the untouched starter placeholder on the Bora Bora demo page. */
+function gtc_polish_bora_bora_starter_intro(): void {
+    if (!current_user_can('manage_options') || get_option('gtc_bora_bora_intro_polished')) { return; }
+    $island = get_page_by_path('bora-bora', OBJECT, 'iot_island');
+    if (!$island || strpos((string) $island->post_content, 'starter profile is editorial placeholder content') === false) {
+        update_option('gtc_bora_bora_intro_polished', 1, false);
+        return;
+    }
+    wp_update_post([
+        'ID' => $island->ID,
+        'post_excerpt' => 'Known as the Pearl of the Pacific, Bora Bora brings together a dramatic volcanic silhouette, a luminous lagoon and a living island culture that reaches far beyond the postcard.',
+        'post_content' => '<p>Known as the Pearl of the Pacific, Bora Bora is shaped by the contrast between its volcanic heart, the calm waters of its lagoon and the communities who call the island home. The familiar views are only the beginning: follow the coastline to Matira, look out toward the motu, discover Vaitape and learn the stories carried by the island’s people and traditions.</p>',
+    ]);
+    update_option('gtc_bora_bora_intro_polished', 1, false);
+}
+add_action('admin_init', 'gtc_polish_bora_bora_starter_intro', 20);
