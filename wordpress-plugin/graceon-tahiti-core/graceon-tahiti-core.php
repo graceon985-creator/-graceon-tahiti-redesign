@@ -246,3 +246,6 @@ function gtc_search_content(WP_REST_Request $request): WP_REST_Response {
     }
     return new WP_REST_Response(['items' => $items], 200);
 }
+
+// Account-based digital passport feature.
+require_once __DIR__ . '/passport.php';
