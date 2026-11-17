@@ -36,6 +36,7 @@ export default function App() {
   const [guideText, setGuideText] = useState('');
   const [guideReply, setGuideReply] = useState('Ia Ora Na! I can help you discover the islands and find inspiration for your journey.');
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navVisible, setNavVisible] = useState(true);
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -46,6 +47,18 @@ export default function App() {
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.lagSmoothing(0);
     return () => { cancelAnimationFrame(raf); lenis.destroy(); };
+  }, []);
+
+  useEffect(() => {
+    let previousY = window.scrollY;
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY < 90 || currentY < previousY - 5) setNavVisible(true);
+      else if (currentY > previousY + 5) setNavVisible(false);
+      previousY = currentY;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
   useEffect(() => {
@@ -103,7 +116,7 @@ export default function App() {
 
   return <div className="site-v2" ref={root}>
     <div className="topline"><span>THE ISLANDS OF TAHITI</span><span>FRENCH POLYNESIA · SOUTH PACIFIC</span><span>DISCOVER THE BLUE</span></div>
-    <header className="main-nav">
+    <header className={navVisible ? "main-nav nav-visible" : "main-nav nav-hidden"}>
       <a className="wordmark" href="#home"><span className="wordmark-symbol">T</span><span>TAHITI<small>ISLANDS OF</small></span></a>
       <nav className={menuOpen ? 'nav-items is-open' : 'nav-items'}>
         <a href="#islands" onClick={() => setMenuOpen(false)}>The islands</a>
@@ -112,7 +125,7 @@ export default function App() {
       </nav>
       <div className="nav-right">
         <label className="nav-search"><Search size={16}/><input value={query} onChange={e => setQuery(e.target.value)} placeholder="Search Tahiti..." aria-label="Search the site"/>{query && <button onClick={() => setQuery('')} aria-label="Clear search"><X size={14}/></button>}</label>
-        <a className="nav-plan" href="#islands">Explore <ArrowRight size={15}/></a>
+        <a className="nav-plan" href="#islands">Find your island <ArrowRight size={15}/></a>
         <button className="nav-menu" onClick={() => setMenuOpen(v => !v)} aria-label="Toggle navigation">{menuOpen ? <X/> : <Menu/>}</button>
       </div>
       {query && <div className="search-suggestions">{results.length ? results.map((item: any, i) => <a key={i} href={item.name ? '#islands' : '#experiences'} onClick={() => { if (item.name) setSelectedIsland(item); else document.getElementById('experiences')?.scrollIntoView({ behavior: 'smooth' }); setQuery(''); }}><span>{item.name || item.title}</span><small>{item.tag || item.kind || item.type}</small><ArrowRight size={15}/></a>) : <p>No matches yet. Try “lagoon”, “culture” or an island name.</p>}</div>}
@@ -140,7 +153,7 @@ export default function App() {
 
       <section className="intro-story reveal">
         <span className="section-kicker">01 / THE ARCHIPELAGO</span>
-        <div><h2>Not just a place.<br/><em>A different way of feeling.</em></h2><p>Scattered across the South Pacific, the islands of Tahiti invite you to move with the rhythm of the ocean — from volcanic peaks and deep valleys to coral gardens and welcoming villages.</p></div>
+        <div><h2>Not just a place.<br/><em>A world to feel.</em></h2><p>From the pulse of Heiva dance and the colour of Papeete Market to volcanic valleys, island trails and open-ocean voyages, discover a living destination shaped by its people, traditions and extraordinary nature.</p></div>
         <div className="intro-number"><strong>118</strong><span>ISLANDS & ATOLLS<br/>FIVE ARCHIPELAGOS</span></div>
       </section>
 
@@ -161,9 +174,20 @@ export default function App() {
         <div className="experience-rows">{experiences.map((e, i) => <article className="experience-item reveal" key={e.n}><span>{e.n}</span><div><small>{e.type}</small><h3>{e.title}</h3><p>{e.copy}</p></div><img src={e.image} alt=""/><ArrowRight className="experience-arrow"/></article>)}</div>
       </section>
 
-      <section className="culture-section" id="culture"><div className="culture-image"><img className="parallax-image" src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1800&q=90" alt="Ocean waves"/></div><div className="culture-copy reveal"><span className="section-kicker">04 / MORE THAN A VIEW</span><h2>A culture<br/>that moves<br/><em>with the sea.</em></h2><p>Here, heritage lives in language, dance, navigation, craft, food and the generous spirit of the people who call these islands home.</p><a href="#journey">DISCOVER THE CULTURE <ArrowRight size={16}/></a></div><div className="culture-script">TE FENUA<br/>TE MOANA<small>THE LAND · THE OCEAN</small></div></section>
+      <section className="culture-section" id="culture"><div className="culture-image"><img className="parallax-image" src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1800&q=90" alt="Ocean waves"/></div><div className="culture-copy reveal"><span className="section-kicker">04 / MORE THAN A VIEW</span><h2>A culture<br/>that moves<br/><em>with the sea.</em></h2><p>Here, heritage lives in language, dance, navigation, craft, food and the generous spirit of the people who call these islands home.</p><a href="#island-life">STEP INTO ISLAND LIFE <ArrowRight size={16}/></a></div><div className="culture-script">TE FENUA<br/>TE MOANA<small>THE LAND · THE OCEAN</small></div></section>
 
-      <section className="journey-cta" id="journey"><div className="journey-copy reveal"><span className="section-kicker-light">YOUR STORY STARTS HERE</span><h2>Let the islands<br/><em>find you.</em></h2><p>Start with a feeling. Follow it across the blue.</p><a href="#islands">EXPLORE THE ARCHIPELAGO <ArrowRight size={16}/></a></div><div className="journey-image"><img className="parallax-image" src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=1600&q=90" alt="Island lagoon"/></div></section>
+
+      <section className="island-life" id="island-life">
+        <div className="island-life-heading reveal"><span className="section-kicker">05 / THE ISLANDS IN MOTION</span><h2>Feel the life<br/><em>between the waves.</em></h2><p>Tradition, celebration and adventure are part of everyday island life.</p></div>
+        <div className="life-mosaic">
+          <article className="life-photo life-photo-main"><img src="https://www.tahititourisme.com/app/uploads/iris-images/25627/spectacle-de-ori-tahiti-au-heiva-i-tahiti-a-kmh-media-production-765x550-f50_50.webp" alt="Ori Tahiti dancers performing at Heiva i Tahiti"/><div><small>CULTURE · HEIVA I TAHITI</small><h3>When the islands dance</h3></div></article>
+          <article className="life-photo life-photo-market"><img src="https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&w=1100&q=85" alt="Colourful market produce"/><div><small>FLAVOURS · PAPEETE</small><h3>Meet the rhythm of the market</h3></div></article>
+          <article className="life-photo life-photo-ocean"><img src="https://www.tahititourisme.com/app/uploads/iris-images/26222/hawaiki-nui-vaa-a-steve-dickinson-5-380x600-f50_50.webp" alt="Hawaiki Nui Va’a outrigger canoe race"/><div><small>OCEAN · HAWAIKI NUI VA’A</small><h3>Follow the ocean voyagers</h3></div></article>
+          <article className="life-photo life-photo-trails"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1000&q=85" alt="Mountain trail landscape"/><div><small>NATURE · ADVENTURE</small><h3>Find your way into the green</h3></div></article>
+        </div>
+        <p className="life-credit">Festival imagery: Tahiti Tourisme · Heiva i Tahiti, KMH Media Production. Event and activity details should be checked against official listings.</p>
+      </section>
+\n      <section className="journey-cta" id="journey"><div className="journey-copy reveal"><span className="section-kicker-light">YOUR STORY STARTS HERE</span><h2>Let the islands<br/><em>find you.</em></h2><p>Start with a feeling. Follow it across the blue.</p><a href="#islands">EXPLORE THE ARCHIPELAGO <ArrowRight size={16}/></a></div><div className="journey-image"><img className="parallax-image" src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=1600&q=90" alt="Island lagoon"/></div></section>
     </main>
 
     <footer className="site-footer"><a className="wordmark footer-mark" href="#home"><span className="wordmark-symbol">T</span><span>TAHITI<small>ISLANDS OF</small></span></a><p>THE ISLANDS OF TAHITI · FRENCH POLYNESIA</p><div className="footer-note">AN INDEPENDENT REDESIGN CONCEPT — NOT COMMISSIONED, APPROVED OR ENDORSED BY TAHITI TOURISME.<br/>DESIGNED & DEVELOPED BY GRACEON DIGITAL STUDIO</div></footer>
