@@ -122,3 +122,29 @@
 .iot-curated-card__copy>span{display:block;margin-top:14px;font-size:9px;letter-spacing:.1em;color:#788780}
 @media(max-width:900px){.iot-curated-section{padding:78px 7vw}.iot-curated-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.iot-curated-section{padding:68px 6vw}.iot-curated-grid{grid-template-columns:1fr}.iot-curated-card__visual{height:230px}.iot-curated-card__copy{padding:21px}}
+
+
+/* Private My Journey collection */
+.gtc-journey-save,.gtc-journey-login{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:13px 18px;border:1px solid #b77d5f;background:transparent;color:#17484b;text-decoration:none;font:700 9px/1.2 Arial,sans-serif;letter-spacing:.13em;cursor:pointer}
+.gtc-journey-save[data-saved="1"]{background:#17484b;border-color:#17484b;color:#fff}
+.gtc-journey-save:disabled{opacity:.6;cursor:wait}
+.gtc-my-journey-empty{padding:80px 8vw;background:#e8e4d9;text-align:center}
+.gtc-my-journey-empty h2,.gtc-my-journey__heading h2{font:clamp(38px,5vw,66px)/1 Georgia,serif;font-weight:400;letter-spacing:-.04em}
+.gtc-my-journey-empty p{max-width:520px;margin:0 auto 24px;color:#64736f;line-height:1.8}
+.gtc-my-journey-empty>a{display:inline-block;padding:14px 0;border-bottom:1px solid #b77d5f;text-decoration:none;font-size:9px;letter-spacing:.14em}
+.gtc-my-journey{padding:90px 8vw;background:#f3f0e8}
+.gtc-my-journey__heading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:38px}
+.gtc-my-journey__heading h2{margin:8px 0 0}
+.gtc-my-journey__heading>span{font-size:10px;letter-spacing:.12em;color:#75837d}
+.gtc-my-journey__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.gtc-my-journey__card{background:#e8e4d9;min-width:0}
+.gtc-my-journey__image{display:block;height:220px;background:linear-gradient(135deg,#153f47,#88a497)}
+.gtc-my-journey__image img{width:100%;height:100%;object-fit:cover}
+.gtc-my-journey__card>div{padding:22px}
+.gtc-my-journey__card small{font-size:9px;letter-spacing:.15em;color:#9b725c}
+.gtc-my-journey__card h3{font:28px/1.1 Georgia,serif;font-weight:400;margin:10px 0}
+.gtc-my-journey__card h3 a{color:#17383d;text-decoration:none}
+.gtc-my-journey__card p{font-size:12px;line-height:1.7;color:#687772}
+.gtc-my-journey__card .gtc-journey-save{margin-top:12px}
+@media(max-width:900px){.gtc-my-journey__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.gtc-my-journey{padding:68px 6vw}.gtc-my-journey__heading{display:block}.gtc-my-journey__heading>span{display:block;margin-top:15px}.gtc-my-journey__grid{grid-template-columns:1fr}}
