@@ -6,3 +6,64 @@
 
 /* Archive filtering and date metadata */
 .iot-event-filters{display:flex;align-items:end;gap:14px;flex-wrap:wrap;margin:0 auto 38px;max-width:1400px;padding:22px;background:#e7e2d7;border:1px solid rgba(16,44,53,.12)}.iot-event-filters label{display:grid;gap:7px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--iot-muted)}.iot-event-filters input{min-width:180px;padding:12px 14px;border:1px solid #b8c3bb;background:#fff;color:var(--iot-ink);font:inherit}.iot-event-filters button{padding:13px 20px;border:0;background:var(--iot-deep);color:#fff;font:inherit;font-size:11px;letter-spacing:.08em;cursor:pointer}.iot-event-filters>a{font-size:11px;color:var(--iot-sea);padding:13px 4px}.iot-event-date{display:block;color:var(--iot-sea);font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}@media(max-width:600px){.iot-event-filters{align-items:stretch;flex-direction:column}.iot-event-filters input{width:100%}}
+
+
+/* Editorial island journey pages */
+.iot-island-experience{background:#f3f0e8;color:#17383d;overflow:hidden}
+.iot-island-hero{min-height:min(820px,92vh);position:relative;display:flex;align-items:flex-end;padding:8vw;color:#fff;background:#123c46 var(--iot-island-hero,linear-gradient(130deg,#174c54,#8aa89a)) center 48%/cover no-repeat}
+.iot-island-hero__overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,24,31,.58),rgba(4,24,31,.08) 75%),linear-gradient(0deg,rgba(4,24,31,.62),transparent 64%)}
+.iot-island-hero__topline{position:absolute;top:32px;left:8vw;right:8vw;display:flex;justify-content:space-between;font-size:9px;letter-spacing:.2em;color:rgba(255,255,255,.8)}
+.iot-island-hero__copy{position:relative;z-index:1;max-width:850px;padding:70px 0 36px}
+.iot-island-eyebrow{font-size:9px;letter-spacing:.2em;color:#b77d5f;font-weight:700;margin:0 0 16px}
+.iot-island-hero h1{font:clamp(72px,13vw,176px)/.88 Georgia,serif;letter-spacing:-.065em;margin:0 0 24px;color:#fff}
+.iot-island-hero__description{max-width:520px;font:clamp(17px,2vw,22px)/1.55 Georgia,serif;color:rgba(255,255,255,.92)}
+.iot-island-hero__link{display:inline-flex;align-items:center;gap:24px;margin-top:28px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.65);font-size:9px;letter-spacing:.17em;text-decoration:none}
+.iot-island-hero__link span{font-size:18px;color:#d7a181}
+.iot-island-hero__side-note{position:absolute;right:3vw;bottom:10vw;writing-mode:vertical-rl;font-size:8px;letter-spacing:.2em;color:rgba(255,255,255,.8)}
+.iot-island-intro{display:grid;grid-template-columns:.6fr 2fr .8fr;gap:5vw;padding:120px 9vw 130px;border-bottom:1px solid rgba(23,56,61,.13)}
+.iot-island-intro__index,.iot-island-section-head>span{font-size:9px;letter-spacing:.16em;color:#7b8984}
+.iot-island-intro__index span{color:#b77d5f}
+.iot-island-intro__body{max-width:720px}
+.iot-island-intro__body h2,.iot-island-section-head h2,.iot-island-culture h2,.iot-island-plan h2{font:clamp(42px,6vw,76px)/.98 Georgia,serif;letter-spacing:-.045em;font-weight:400;margin:0 0 28px}
+.iot-island-intro__text{font-size:15px;line-height:1.9;color:#64736f}
+.iot-island-intro__text p{margin:0 0 1em}
+.iot-island-intro__aside{align-self:end;border-left:1px solid #c7b7a5;padding:0 0 0 22px;color:#697974;font:17px/1.55 Georgia,serif}
+.iot-island-aside-mark{font-size:30px;color:#b77d5f}
+.iot-island-feature,.iot-island-discover{padding:100px 9vw}
+.iot-island-section-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:42px}
+.iot-island-section-head h2{margin:0}
+.iot-island-feature-card{display:grid;grid-template-columns:1.25fr .75fr;background:#e8e4d9;min-height:510px}
+.iot-island-feature-card__image,.iot-island-highlight-card__image{position:relative;overflow:hidden;background:#c6d0c7;min-height:300px}
+.iot-island-feature-card__image img,.iot-island-highlight-card__image img{width:100%;height:100%;min-height:inherit;object-fit:cover;display:block;transition:transform .8s}
+.iot-island-feature-card:hover .iot-island-feature-card__image img,.iot-island-highlight-card:hover img{transform:scale(1.035)}
+.iot-island-feature-card__copy{padding:clamp(28px,5vw,68px);align-self:center}
+.iot-island-feature-card__copy h3,.iot-island-highlight-card h3{font:clamp(34px,4vw,54px)/1 Georgia,serif;font-weight:400;letter-spacing:-.035em;margin:0 0 20px}
+.iot-island-feature-card__excerpt{font:19px/1.55 Georgia,serif;color:#516761}
+.iot-island-feature-card__content{font-size:13px;line-height:1.8;color:#697974}
+.iot-island-location{display:block;margin:22px 0 12px;font-size:10px;letter-spacing:.08em;color:#7a8982}
+.iot-island-text-link{display:inline-block;margin-top:12px;color:#155c5b;font-size:9px;letter-spacing:.16em;text-decoration:none;border-bottom:1px solid #b77d5f;padding-bottom:8px}
+.iot-image-credit{position:absolute;left:12px;bottom:12px;padding:6px 9px;background:rgba(7,31,35,.7);color:#fff;font-size:9px;line-height:1.4}
+.iot-image-credit a{color:#fff;text-decoration:underline}
+.iot-island-discover{background:#e7e4da}
+.iot-island-highlight-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.iot-island-highlight-card{background:#f5f2ea;min-width:0}
+.iot-island-highlight-card__image{height:340px;min-height:0}
+.iot-island-highlight-card__copy{padding:26px 30px 32px}
+.iot-island-highlight-card h3{font-size:36px;margin-bottom:14px}
+.iot-island-highlight-card__copy>p:not(.iot-island-eyebrow){font-size:13px;line-height:1.8;color:#687772;max-width:540px}
+.iot-island-culture{display:grid;grid-template-columns:1fr 1fr;min-height:540px;background:#123c42;color:#f5f1e8}
+.iot-island-culture__copy{padding:clamp(50px,8vw,120px);align-self:center}
+.iot-island-culture h2{max-width:520px}
+.iot-island-culture__copy>p:not(.iot-island-eyebrow){max-width:480px;color:#c5d0c8;line-height:1.9;font-size:14px}
+.iot-island-culture .iot-island-text-link{color:#e2b18f}
+.iot-island-culture__visual{display:flex;align-items:center;justify-content:center;min-height:420px;background:linear-gradient(145deg,rgba(9,48,53,.1),rgba(4,28,34,.65)),url('https://commons.wikimedia.org/wiki/Special:FilePath/Hawaiki_Nui_Va%27a_3.jpg?width=1400') center/cover}
+.iot-island-culture__visual span{font:clamp(36px,5vw,68px)/.95 Georgia,serif;color:#fff;text-align:center;text-shadow:0 2px 18px rgba(0,0,0,.35);letter-spacing:-.04em}
+.iot-island-plan{display:flex;justify-content:space-between;align-items:end;gap:40px;padding:100px 9vw;background:#d9e1d9}
+.iot-island-plan>div:first-child{max-width:650px}
+.iot-island-plan h2{margin-bottom:18px}
+.iot-island-plan p:not(.iot-island-eyebrow){max-width:490px;color:#60716b;line-height:1.8;font-size:14px}
+.iot-island-plan__actions{display:flex;flex-direction:column;gap:14px;min-width:210px}
+.iot-island-plan__actions a{padding:14px 0;border-bottom:1px solid #9caa9f;text-decoration:none;font-size:9px;letter-spacing:.14em;color:#164b4b}
+.iot-island-passport{padding:40px 8vw}
+@media(max-width:900px){.iot-island-intro{grid-template-columns:1fr 3fr;gap:30px;padding:85px 7vw}.iot-island-intro__aside{grid-column:2}.iot-island-feature,.iot-island-discover{padding:80px 7vw}.iot-island-feature-card{grid-template-columns:1fr}.iot-island-feature-card__image{height:430px}.iot-island-culture{grid-template-columns:1fr}.iot-island-culture__visual{min-height:400px}.iot-island-plan{padding:80px 7vw}}
+@media(max-width:620px){.iot-island-hero{min-height:78svh;padding:7vw}.iot-island-hero__topline{left:7vw;right:7vw;top:22px;font-size:8px}.iot-island-hero__side-note{display:none}.iot-island-hero h1{font-size:clamp(66px,18vw,108px)}.iot-island-hero__description{font-size:17px}.iot-island-intro{display:block;padding:70px 7vw}.iot-island-intro__index{margin-bottom:42px}.iot-island-intro__aside{margin:35px 0 0 22px}.iot-island-feature,.iot-island-discover{padding:68px 6vw}.iot-island-section-head{display:block}.iot-island-section-head>span{display:block;margin-top:18px}.iot-island-feature-card__image{height:290px;min-height:0}.iot-island-feature-card__copy{padding:28px 22px 34px}.iot-island-highlight-grid{grid-template-columns:1fr;gap:18px}.iot-island-highlight-card__image{height:260px}.iot-island-highlight-card__copy{padding:22px}.iot-island-culture__copy{padding:65px 7vw}.iot-island-culture__visual{min-height:300px}.iot-island-plan{display:block;padding:68px 7vw}.iot-island-plan__actions{margin-top:30px}.iot-island-passport{padding:25px 5vw}}
