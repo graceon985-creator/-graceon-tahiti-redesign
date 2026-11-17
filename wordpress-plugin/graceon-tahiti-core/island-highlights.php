@@ -132,8 +132,40 @@ function gtc_seed_bora_bora_highlights(): void {
         update_post_meta($id, 'gtc_highlight_kicker', sanitize_text_field($kicker));
         wp_set_object_terms($id, 'bora-bora', 'iot_highlight_island', false);
     }
+
+    $types = [
+        'otemanu' => 'landmark',
+        'matira-beach' => 'landmark',
+        'motu-tapu' => 'hidden-gem',
+        'hawaiki-nui-vaa' => 'culture',
+        'vaitape' => 'culture',
+        'lagoon-explorations' => 'activity',
+    ];
+    foreach ($types as $slug => $type) {
+        $place = get_page_by_path($slug, OBJECT, 'iot_highlight');
+        if ($place && !wp_get_object_terms($place->ID, 'iot_highlight_type')) {
+            wp_set_object_terms($place->ID, $type, 'iot_highlight_type', false);
+        }
+    }
+
     // Curated map coordinates for the Bora Bora starter locations. Editors can
     // refine them later; existing non-empty values are never overwritten.
+
+    $types = [
+        'otemanu' => 'landmark',
+        'matira-beach' => 'landmark',
+        'motu-tapu' => 'hidden-gem',
+        'hawaiki-nui-vaa' => 'culture',
+        'vaitape' => 'culture',
+        'lagoon-explorations' => 'activity',
+    ];
+    foreach ($types as $slug => $type) {
+        $place = get_page_by_path($slug, OBJECT, 'iot_highlight');
+        if ($place && !wp_get_object_terms($place->ID, 'iot_highlight_type')) {
+            wp_set_object_terms($place->ID, $type, 'iot_highlight_type', false);
+        }
+    }
+
     $coordinates = [
         'otemanu' => ['-16.5004', '-151.7415'],
         'matira-beach' => ['-16.5414', '-151.7340'],
