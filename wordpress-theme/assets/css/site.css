@@ -148,3 +148,7 @@
 .gtc-my-journey__card .gtc-journey-save{margin-top:12px}
 @media(max-width:900px){.gtc-my-journey__grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:620px){.gtc-my-journey{padding:68px 6vw}.gtc-my-journey__heading{display:block}.gtc-my-journey__heading>span{display:block;margin-top:15px}.gtc-my-journey__grid{grid-template-columns:1fr}}
+
+.gtc-map-directions{font-size:9px!important;letter-spacing:.1em;color:#155c5b!important;text-decoration:none}
+.gtc-map-section--pending{display:block}
+.gtc-map-section--pending .gtc-map-empty{margin-bottom:20px}
