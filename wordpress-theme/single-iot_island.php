@@ -19,6 +19,10 @@ get_header();
           'taxonomy' => 'iot_highlight_island',
           'field' => 'slug',
           'terms' => $slug,
+      ], [
+          'taxonomy' => 'iot_highlight_type',
+          'field' => 'slug',
+          'terms' => 'landmark',
       ]],
   ]);
   $items = $highlights->posts;
@@ -113,6 +117,11 @@ get_header();
   </section>
   <?php endif; ?>
 
+
+
+  <?php echo do_shortcode('[gtc_highlights_section type="activity" eyebrow="ON LAND · ON THE LAGOON" title="Find your kind of adventure."]'); ?>
+  <?php echo do_shortcode('[gtc_highlights_section type="culture" eyebrow="PEOPLE · TRADITIONS · FLAVOURS" title="Meet the island beyond its scenery."]'); ?>
+  <?php echo do_shortcode('[gtc_highlights_section type="hidden-gem" eyebrow="TAKE THE QUIETER PATH" title="Discover the places in between."]'); ?>
 
   <section class="iot-island-map-block" id="island-map">
     <div class="iot-island-section-head">
