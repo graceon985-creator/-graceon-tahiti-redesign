@@ -191,9 +191,11 @@ function gtc_seed_bora_bora_highlights(): void {
  * content once from the dashboard without overwriting editor changes.
  */
 function gtc_maybe_seed_bora_bora_highlights(): void {
-    if (!current_user_can('manage_options') || get_option('gtc_bora_bora_highlights_seeded')) { return; }
-    gtc_seed_bora_bora_highlights();
-    update_option('gtc_bora_bora_highlights_seeded', 1, false);
+    if (!current_user_can('manage_options')) { return; }
+    if (!get_option('gtc_bora_bora_highlights_seeded')) {
+        gtc_seed_bora_bora_highlights();
+        update_option('gtc_bora_bora_highlights_seeded', 1, false);
+    }
 }
 add_action('admin_init', 'gtc_maybe_seed_bora_bora_highlights');
 
@@ -237,3 +239,25 @@ function gtc_maybe_backfill_bora_bora_coordinates(): void {
     }
 }
 add_action('admin_init', 'gtc_maybe_backfill_bora_bora_coordinates', 30);
+
+
+/** Add the new lagoon activity to sites that were seeded before it existed. */
+function gtc_maybe_seed_lagoon_exploration(): void {
+    if (!current_user_can('manage_options') || get_page_by_path('lagoon-explorations', OBJECT, 'iot_highlight')) { return; }
+    $id = wp_insert_post([
+        'post_type' => 'iot_highlight',
+        'post_status' => 'publish',
+        'post_title' => 'Discover the lagoon',
+        'post_name' => 'lagoon-explorations',
+        'post_excerpt' => 'Explore Bora Bora’s marine world with a locally guided lagoon outing.',
+        'post_content' => '<p>The lagoon is central to the Bora Bora experience. Depending on local conditions and responsible operators, visitors can discover coral gardens, observe marine life, and explore the motu by boat, kayak or paddleboard. Choose guides who respect wildlife and reef environments.</p>',
+        'menu_order' => 6,
+    ], true);
+    if (is_wp_error($id)) { return; }
+    update_post_meta($id, 'gtc_highlight_location', 'Bora Bora lagoon');
+    update_post_meta($id, 'gtc_highlight_kicker', 'ON THE WATER');
+    update_post_meta($id, 'gtc_highlight_map_url', 'https://www.google.com/maps/search/?api=1&query=Bora+Bora+Lagoon');
+    wp_set_object_terms($id, 'bora-bora', 'iot_highlight_island', false);
+    wp_set_object_terms($id, 'activity', 'iot_highlight_type', false);
+}
+add_action('admin_init', 'gtc_maybe_seed_lagoon_exploration', 35);
