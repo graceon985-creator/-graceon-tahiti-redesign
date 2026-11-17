@@ -70,7 +70,7 @@ get_header();
       </div>
       <div class="iot-island-feature-card__copy">
         <p class="iot-island-eyebrow"><?php echo esc_html($kicker ?: 'MUST-SEE'); ?></p>
-        <h3><?php echo esc_html(get_the_title($first)); ?></h3>
+        <h3><a class="iot-place-title-link" href="<?php echo esc_url(get_permalink($first)); ?>"><?php echo esc_html(get_the_title($first)); ?></a></h3>
         <p class="iot-island-feature-card__excerpt"><?php echo esc_html(get_the_excerpt($first)); ?></p>
         <div class="iot-island-feature-card__content"><?php echo wp_kses_post(apply_filters('the_content', $first->post_content)); ?></div>
         <?php if ($location) : ?><p class="iot-island-location"><?php echo esc_html($location); ?></p><?php endif; ?>
@@ -102,7 +102,7 @@ get_header();
         </div>
         <div class="iot-island-highlight-card__copy">
           <p class="iot-island-eyebrow"><?php echo esc_html($kicker ?: 'DISCOVER'); ?></p>
-          <h3><?php echo esc_html(get_the_title($item)); ?></h3>
+          <h3><a class="iot-place-title-link" href="<?php echo esc_url(get_permalink($item)); ?>"><?php echo esc_html(get_the_title($item)); ?></a></h3>
           <p><?php echo esc_html(get_the_excerpt($item)); ?></p>
           <?php if ($location) : ?><span class="iot-island-location"><?php echo esc_html($location); ?></span><?php endif; ?>
           <?php if ($map) : ?><a class="iot-island-text-link" href="<?php echo esc_url($map); ?>" target="_blank" rel="noopener noreferrer">OPEN MAP ↗</a><?php endif; ?>
@@ -112,6 +112,15 @@ get_header();
     </div>
   </section>
   <?php endif; ?>
+
+
+  <section class="iot-island-map-block" id="island-map">
+    <div class="iot-island-section-head">
+      <div><p class="iot-island-eyebrow">FIND YOUR WAY</p><h2>Explore the island on the map.</h2></div>
+      <span>04 / PLACES & LOCATIONS</span>
+    </div>
+    <?php echo do_shortcode('[gtc_island_map]'); ?>
+  </section>
 
   <section class="iot-island-culture">
     <div class="iot-island-culture__copy">
