@@ -10,9 +10,14 @@ import './styles.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const scenes = [
-  { image: 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=2200&q=90', title: 'A thousand shades of blue', label: 'THE PACIFIC, UNFOLDED' },
-  { image: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=2200&q=90', title: 'Find your own horizon', label: 'MOOREA · FRENCH POLYNESIA' },
-  { image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=90', title: 'Let the islands move you', label: 'BORA BORA · SOUTH PACIFIC' }
+  { image: 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=2200&q=90', title: 'Tahiti', label: 'TAHITI · SOCIETY ISLANDS' },
+  { image: 'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=2200&q=90', title: 'Moorea', label: 'MOOREA · SOCIETY ISLANDS' },
+  { image: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=90', title: 'Bora Bora', label: 'BORA BORA · SOCIETY ISLANDS' },
+  { image: 'https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=2200&q=90', title: 'Huahine', label: 'HUAHINE · SOCIETY ISLANDS' },
+  { image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=2200&q=90', title: 'Raiatea', label: 'RAIATEA · SOCIETY ISLANDS' },
+  { image: 'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=2200&q=90', title: 'Taha’a', label: 'TAHA’A · SOCIETY ISLANDS' },
+  { image: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=2200&q=90', title: 'Rangiroa', label: 'RANGIROA · TUAMOTU ISLANDS' },
+  { image: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=2200&q=90', title: 'Fakarava', label: 'FAKARAVA · TUAMOTU ISLANDS' }
 ];
 
 const islandDetails = [
@@ -144,17 +149,6 @@ export default function App() {
       <section className="detail-map"><div className="detail-map-copy"><span className="section-kicker">FIND YOUR WAY</span><h2>Meet me<br/><em>on the map.</em></h2><p>{activeIsland.mapNote} Open the map to explore the island and nearby places. Inter-island transfers should be checked separately with local transport operators.</p><a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(activeIsland.name+', French Polynesia')}`} target="_blank" rel="noreferrer">OPEN GOOGLE MAPS <ArrowRight size={15}/></a></div><iframe title={`${activeIsland.name} on Google Maps`} src={`https://www.google.com/maps?q=${encodeURIComponent(activeIsland.name+', French Polynesia')}&output=embed`} loading="lazy" referrerPolicy="no-referrer-when-downgrade"/></section>
       <section className="detail-next"><span>KEEP EXPLORING</span><div>{islandDetails.filter(i=>i.slug!==activeIsland.slug).slice(0,3).map(i=><button key={i.slug} onClick={()=>openIsland(i)}>{i.name}<ArrowRight size={15}/></button>)}</div></section>
     </main> : <main id="home">
-      <section className="blue-opening">
-        <div className="blue-opening-inner">
-          <p className="eyebrow-light"><span/> THE SOUTH PACIFIC · 118 ISLANDS & ATOLLS</p>
-          <h1>There is a blue<br/>that <em>stays with you.</em></h1>
-          <p className="blue-lead">A world of islands, living culture and endless ocean. Your journey begins in The Islands of Tahiti.</p>
-          <a href="#islands" className="opening-discover">DISCOVER TAHITI <span><ArrowDown size={18}/></span></a>
-        </div>
-        <div className="opening-coordinate">17°40′S<br/>149°25′W</div>
-        <div className="opening-bottom"><span>IA ORA NA</span><span>FRENCH POLYNESIA</span><span>01 / THE JOURNEY</span></div>
-      </section>
-
       <section className="moving-gallery" aria-label="Changing scenes of the islands">
         {scenes.map((s, i) => <div key={s.label} className={i === scene ? 'scene is-active' : 'scene'}><img src={s.image} alt={s.label} /><div className="scene-shade"/></div>)}
         <div className="scene-copy"><span className="section-kicker-light">{scenes[scene].label}</span><h2>{scenes[scene].title}</h2><p>LET THE OCEAN SET THE PACE</p>
@@ -164,9 +158,10 @@ export default function App() {
       </section>
 
       <section className="intro-story reveal">
-        <span className="section-kicker">01 / THE ARCHIPELAGO</span>
-        <div><h2>Not just a place.<br/><em>A world to feel.</em></h2><p>From the pulse of Heiva dance and the colour of Papeete Market to volcanic valleys, island trails and open-ocean voyages, discover a living destination shaped by its people, traditions and extraordinary nature.</p></div>
-        <div className="intro-number"><strong>118</strong><span>ISLANDS & ATOLLS<br/>FIVE ARCHIPELAGOS</span></div>
+        <div className="intro-image intro-image-one"><img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=900&q=85" alt="Turquoise island lagoon"/></div>
+        <div className="intro-image intro-image-two"><img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=900&q=85" alt="Pacific island coastline"/></div>
+        <div className="intro-copy"><span className="section-kicker">01 / THE ARCHIPELAGO</span><h2>Not just a place.<br/><em>A world to feel.</em></h2><p>From the pulse of Heiva dance and the colour of Papeete Market to volcanic valleys, island trails and open-ocean voyages, discover a living destination shaped by its people, traditions and extraordinary nature.</p><div className="intro-number"><strong>118</strong><span>ISLANDS & ATOLLS<br/>FIVE ARCHIPELAGOS</span></div></div>
+        <div className="intro-image intro-image-three"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85" alt="Island lagoon from above"/></div>
       </section>
 
       <section className="island-discovery" id="islands">
@@ -177,18 +172,19 @@ export default function App() {
             <img src={island.image} alt=""/><span className="island-orbit-shade"/><span className="orbit-index">0{i + 1}</span><span className="orbit-title">{island.name}</span><span className="orbit-explore">EXPLORE <ArrowRight size={13}/></span>
           </button>)}
         </div>
-        <p className="constellation-caption"><MapPin size={13}/> SELECT AN ISLAND TO DISCOVER ITS STORY</p>
+        <div className="constellation-motivation"><span>LET THE BLUE GUIDE YOU</span><strong>Every island<br/><em>has a story.</em></strong><small>Find the one that feels like yours.</small></div><p className="constellation-caption"><MapPin size={13}/> SELECT AN ISLAND TO DISCOVER ITS STORY</p>
       </section>
 
       {selectedIsland && <div className="island-modal" role="dialog" aria-modal="true" aria-label={selectedIsland.name} onClick={() => setSelectedIsland(null)}><div className="island-modal-card" onClick={e => e.stopPropagation()}><button className="modal-close" onClick={() => setSelectedIsland(null)} aria-label="Close island details"><X/></button><img src={selectedIsland.image} alt={selectedIsland.name}/><div className="modal-copy"><span className="section-kicker">{selectedIsland.kind}</span><h2>{selectedIsland.name}</h2><h3>{selectedIsland.tag}</h3><p>{selectedIsland.description}</p><button onClick={() => { setSelectedIsland(null); document.getElementById('experiences')?.scrollIntoView({ behavior: 'smooth' }); }}>DISCOVER EXPERIENCES <ArrowRight size={16}/></button></div></div></div>}
 
-      <section className="archipelago-map" id="map"><div className="map-intro"><span className="section-kicker">03 / FIND YOUR WAY</span><h2>Eight islands.<br/><em>One living map.</em></h2><p>Explore the archipelago, choose an island and open its location in Google Maps.</p></div><div className="map-layout"><iframe title="The Islands of Tahiti map" src="https://www.google.com/maps?q=The+Islands+of+Tahiti+French+Polynesia&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><div className="map-island-list">{islandDetails.map((island,i)=><button key={island.slug} onClick={()=>openIsland(island)}><span>0{i+1}</span><strong>{island.name}</strong><small>{island.archipelago}</small><ArrowRight size={15}/></button>)}</div></div><p className="map-footnote">Google Maps is provided for geographic orientation. Sea and air connections between islands are not represented as guaranteed routes.</p></section>
-
-      <section className="experience-section" id="experiences"><div className="experience-heading reveal"><span className="section-kicker-light">03 / MAKE IT YOURS</span><h2>Follow what<br/><em>moves you.</em></h2><p>Some journeys are measured in miles. The best ones are measured in moments.</p></div>
+      <section className="experience-section" id="experiences"><div className="experience-heading reveal"><span className="section-kicker-light">03 / CHOOSE YOUR EXPERIENCE</span><h2>Discover what<br/><em>calls to you.</em></h2><p>From lagoon days to mountain trails, find an experience that brings the islands closer.</p></div>
         <div className="experience-rows">{experiences.map((e, i) => <article className="experience-item reveal" key={e.n}><span>{e.n}</span><div><small>{e.type}</small><h3>{e.title}</h3><p>{e.copy}</p></div><img src={e.image} alt=""/><ArrowRight className="experience-arrow"/></article>)}</div>
       </section>
 
-      <section className="culture-section" id="culture"><div className="culture-image"><img className="parallax-image" src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1800&q=90" alt="Ocean waves"/></div><div className="culture-copy reveal"><span className="section-kicker">04 / MORE THAN A VIEW</span><h2>A culture<br/>that moves<br/><em>with the sea.</em></h2><p>Here, heritage lives in language, dance, navigation, craft, food and the generous spirit of the people who call these islands home.</p><a href="#island-life">STEP INTO ISLAND LIFE <ArrowRight size={16}/></a></div><div className="culture-script">TE FENUA<br/>TE MOANA<small>THE LAND · THE OCEAN</small></div></section>
+
+      <section className="archipelago-map" id="map"><div className="map-intro"><span className="section-kicker">03 / FIND YOUR WAY</span><h2>Eight islands.<br/><em>One living map.</em></h2><p>Explore the archipelago, choose an island and open its location in Google Maps.</p></div><div className="map-layout"><iframe title="The Islands of Tahiti map" src="https://www.google.com/maps?q=The+Islands+of+Tahiti+French+Polynesia&output=embed" loading="lazy" referrerPolicy="no-referrer-when-downgrade"/><div className="map-island-list">{islandDetails.map((island,i)=><button key={island.slug} onClick={()=>openIsland(island)}><span>0{i+1}</span><strong>{island.name}</strong><small>{island.archipelago}</small><ArrowRight size={15}/></button>)}</div></div><p className="map-footnote">Google Maps is provided for geographic orientation. Sea and air connections between islands are not represented as guaranteed routes.</p></section>
+
+      <section className="culture-section" id="culture"><div className="culture-image"><img className="parallax-image" src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1800&q=90" alt="Ocean waves"/></div><div className="culture-copy reveal"><span className="section-kicker">04 / MORE THAN A VIEW</span><h2>A culture<br/>that moves<br/><em>with the sea.</em></h2><p>Here, heritage lives in language, dance, navigation, craft, food and the generous spirit of the people who call these islands home.</p><a href="#island-life">EXPLORE CULTURE & NATURE <ArrowRight size={16}/></a></div><div className="culture-script">TE FENUA<br/>TE MOANA<small>THE LAND · THE OCEAN</small></div></section>
 
 
       <section className="island-life" id="island-life">
