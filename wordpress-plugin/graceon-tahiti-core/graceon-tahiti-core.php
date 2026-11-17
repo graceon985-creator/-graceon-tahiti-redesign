@@ -70,11 +70,13 @@ function gtc_meta_fields(): array {
 }
 function gtc_register_meta(): void {
     foreach (gtc_meta_fields() as $key => $field) {
-        register_post_meta('', $key, [
-            'type' => 'string', 'single' => true, 'show_in_rest' => true,
-            'sanitize_callback' => $field[2] === 'email' ? 'sanitize_email' : ($field[2] === 'url' ? 'esc_url_raw' : 'sanitize_text_field'),
-            'auth_callback' => static function (): bool { return current_user_can('edit_posts'); },
-        ]);
+        foreach ($field[1] as $post_type) {
+            register_post_meta($post_type, $key, [
+                'type' => 'string', 'single' => true, 'show_in_rest' => true,
+                'sanitize_callback' => $field[2] === 'email' ? 'sanitize_email' : ($field[2] === 'url' ? 'esc_url_raw' : 'sanitize_text_field'),
+                'auth_callback' => static function (): bool { return current_user_can('edit_posts'); },
+            ]);
+        }
     }
 }
 add_action('init', 'gtc_register_meta');
