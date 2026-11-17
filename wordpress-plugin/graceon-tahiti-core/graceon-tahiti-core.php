@@ -149,3 +149,55 @@ register_activation_hook(__FILE__, function (): void {
     flush_rewrite_rules();
 });
 register_deactivation_hook(__FILE__, 'flush_rewrite_rules');
+
+
+/** Keep expired offers out of public offer archives. */
+function gtc_filter_public_offers(WP_Query $query): void {
+    if (is_admin() || !$query->is_main_query() || !$query->is_post_type_archive('iot_offer')) { return; }
+    $today = current_time('Y-m-d');
+    $query->set('meta_query', [
+        'relation' => 'OR',
+        ['key' => 'iot_offer_end', 'value' => $today, 'compare' => '>=', 'type' => 'DATE'],
+        ['key' => 'iot_offer_end', 'compare' => 'NOT EXISTS'],
+    ]);
+}
+add_action('pre_get_posts', 'gtc_filter_public_offers');
+
+/** Lightweight internal search endpoint across the structured tourism content. */
+function gtc_register_search_route(): void {
+    register_rest_route('gtc/v1', '/search', [
+        'methods' => WP_REST_Server::READABLE,
+        'callback' => 'gtc_search_content',
+        'permission_callback' => '__return_true',
+        'args' => [
+            'q' => ['required' => true, 'sanitize_callback' => 'sanitize_text_field'],
+            'limit' => ['default' => 12, 'sanitize_callback' => 'absint'],
+        ],
+    ]);
+}
+add_action('rest_api_init', 'gtc_register_search_route');
+
+function gtc_search_content(WP_REST_Request $request): WP_REST_Response {
+    $term = trim((string) $request->get_param('q'));
+    if (mb_strlen($term) < 2) {
+        return new WP_REST_Response(['items' => [], 'message' => __('Enter at least two characters.', 'graceon-tahiti-core')], 200);
+    }
+    $limit = min(20, max(1, (int) $request->get_param('limit')));
+    $query = new WP_Query([
+        'post_type' => ['iot_island','iot_experience','iot_event','iot_provider','iot_accommodation','iot_offer','iot_tip','post','page'],
+        'post_status' => 'publish', 'posts_per_page' => $limit,
+        's' => $term, 'no_found_rows' => true,
+    ]);
+    $items = [];
+    foreach ($query->posts as $post) {
+        $items[] = [
+            'id' => $post->ID,
+            'type' => $post->post_type,
+            'title' => get_the_title($post),
+            'url' => get_permalink($post),
+            'excerpt' => wp_strip_all_tags(get_the_excerpt($post)),
+            'image' => get_the_post_thumbnail_url($post, 'iot-card') ?: null,
+        ];
+    }
+    return new WP_REST_Response(['items' => $items], 200);
+}
