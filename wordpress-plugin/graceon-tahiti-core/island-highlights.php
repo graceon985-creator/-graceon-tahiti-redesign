@@ -131,3 +131,14 @@ function gtc_seed_bora_bora_highlights(): void {
         wp_set_object_terms($id, 'bora-bora', 'iot_highlight_island', false);
     }
 }
+
+/**
+ * Existing demo installs may already have the plugin active. Seed Bora Bora
+ * content once from the dashboard without overwriting editor changes.
+ */
+function gtc_maybe_seed_bora_bora_highlights(): void {
+    if (!current_user_can('manage_options') || get_option('gtc_bora_bora_highlights_seeded')) { return; }
+    gtc_seed_bora_bora_highlights();
+    update_option('gtc_bora_bora_highlights_seeded', 1, false);
+}
+add_action('admin_init', 'gtc_maybe_seed_bora_bora_highlights');
