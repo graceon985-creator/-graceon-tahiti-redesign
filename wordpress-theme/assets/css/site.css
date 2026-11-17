@@ -152,3 +152,7 @@
 .gtc-map-directions{font-size:9px!important;letter-spacing:.1em;color:#155c5b!important;text-decoration:none}
 .gtc-map-section--pending{display:block}
 .gtc-map-section--pending .gtc-map-empty{margin-bottom:20px}
+
+.iot-pwa-install{border:1px solid rgba(255,255,255,.42);background:transparent;color:inherit;padding:10px 13px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.iot-pwa-install[hidden]{display:none}
+@media(max-width:900px){.iot-pwa-install{margin:8px 0}}
