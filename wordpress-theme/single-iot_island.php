@@ -145,6 +145,7 @@ get_header();
     <div><p class="iot-island-eyebrow">MAKE IT YOUR JOURNEY</p><h2>Keep the places that call to you.</h2><p>Save this island to your personal journey and collect your digital passport stamps as you explore.</p></div>
     <div class="iot-island-plan__actions">
       <?php if (function_exists('gtc_journey_save_button')) { echo gtc_journey_save_button($island_id); } ?>
+      <a href="<?php echo esc_url(home_url('/my-journey/')); ?>">OPEN MY JOURNEY ↗</a>
       <a href="<?php echo esc_url(home_url('/my-passport/')); ?>">OPEN MY PASSPORT ↗</a>
     </div>
   </section>
