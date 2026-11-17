@@ -181,3 +181,27 @@ function gtc_polish_bora_bora_starter_intro(): void {
     update_option('gtc_bora_bora_intro_polished', 1, false);
 }
 add_action('admin_init', 'gtc_polish_bora_bora_starter_intro', 20);
+
+
+/** Backfill map coordinates on already-active demo installations. */
+function gtc_maybe_backfill_bora_bora_coordinates(): void {
+    if (!current_user_can('manage_options')) { return; }
+    $coordinates = [
+        'otemanu' => ['-16.5004', '-151.7415'],
+        'matira-beach' => ['-16.5414', '-151.7340'],
+        'motu-tapu' => ['-16.5120', '-151.7330'],
+        'hawaiki-nui-vaa' => ['-16.5414', '-151.7340'],
+        'vaitape' => ['-16.5060', '-151.7500'],
+    ];
+    foreach ($coordinates as $slug => $pair) {
+        $place = get_page_by_path($slug, OBJECT, 'iot_highlight');
+        if (!$place) { continue; }
+        if (get_post_meta($place->ID, 'gtc_highlight_latitude', true) === '') {
+            update_post_meta($place->ID, 'gtc_highlight_latitude', $pair[0]);
+        }
+        if (get_post_meta($place->ID, 'gtc_highlight_longitude', true) === '') {
+            update_post_meta($place->ID, 'gtc_highlight_longitude', $pair[1]);
+        }
+    }
+}
+add_action('admin_init', 'gtc_maybe_backfill_bora_bora_coordinates', 30);
