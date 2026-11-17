@@ -144,7 +144,7 @@ get_header();
   <section class="iot-island-plan">
     <div><p class="iot-island-eyebrow">MAKE IT YOUR JOURNEY</p><h2>Keep the places that call to you.</h2><p>Save this island to your personal journey and collect your digital passport stamps as you explore.</p></div>
     <div class="iot-island-plan__actions">
-      <a href="<?php echo esc_url(wp_login_url(get_permalink())); ?>">SAVE TO MY JOURNEY ↗</a>
+      <?php if (function_exists('gtc_journey_save_button')) { echo gtc_journey_save_button($island_id); } ?>
       <a href="<?php echo esc_url(home_url('/my-passport/')); ?>">OPEN MY PASSPORT ↗</a>
     </div>
   </section>
