@@ -16,6 +16,28 @@
     });
   }
 
+
+  let deferredInstallPrompt = null;
+  const installButton = document.querySelector('[data-iot-install]');
+  window.addEventListener('beforeinstallprompt', event => {
+    event.preventDefault();
+    deferredInstallPrompt = event;
+    if (installButton) installButton.hidden = false;
+  });
+  if (installButton) {
+    installButton.addEventListener('click', async () => {
+      if (!deferredInstallPrompt) return;
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+      installButton.hidden = true;
+    });
+  }
+  window.addEventListener('appinstalled', () => {
+    if (installButton) installButton.hidden = true;
+    deferredInstallPrompt = null;
+  });
+
   document.addEventListener('click', async event => {
     const button = event.target.closest('[data-gtc-save]');
     if (!button || !window.IOT_SITE || !IOT_SITE.ajaxUrl) return;
