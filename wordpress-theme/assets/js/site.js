@@ -38,6 +38,29 @@
     deferredInstallPrompt = null;
   });
 
+
+  document.addEventListener('click', async event => {
+    const button = event.target.closest('[data-gtc-report]');
+    if (!button || button.disabled) return;
+    button.disabled = true;
+    const body = new FormData();
+    body.append('action', 'gtc_report_community_story');
+    body.append('post_id', button.dataset.postId || '');
+    body.append('nonce', button.dataset.nonce || '');
+    try {
+      const response = await fetch((window.IOT_SITE && IOT_SITE.ajaxUrl) || '/wp-admin/admin-ajax.php', {
+        method: 'POST', credentials: 'same-origin', body
+      });
+      const result = await response.json();
+      if (!result.success) throw new Error('Report could not be sent.');
+      button.textContent = 'REPORTED ✓';
+      button.disabled = true;
+    } catch (error) {
+      button.textContent = 'TRY REPORT AGAIN';
+      button.disabled = false;
+    }
+  });
+
   document.addEventListener('click', async event => {
     const button = event.target.closest('[data-gtc-save]');
     if (!button || !window.IOT_SITE || !IOT_SITE.ajaxUrl) return;
