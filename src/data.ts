@@ -1,0 +1,11 @@
+export const islands = [
+ {name:'Tahiti',tag:'The vibrant heart',kind:'Culture · Peaks · City life',image:'https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=1400&q=85',description:'Black-sand shores, green valleys and the energy of Papeete meet beneath the island’s volcanic peaks.'},
+ {name:'Moorea',tag:'A garden in the sea',kind:'Bays · Pineapple fields · Lagoon',image:'https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=1400&q=85',description:'Twin bays, pineapple plantations and the Belvedere lookout reveal an island shaped by mountains and water.'},
+ {name:'Bora Bora',tag:'The iconic lagoon',kind:'Lagoon · Motu · Heritage',image:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=85',description:'A luminous lagoon surrounds motu islets beneath Mount Otemanu, with stories that reach beyond the shoreline.'},
+ {name:'The Tuamotu',tag:'At the edge of blue',kind:'Atolls · Diving · Ocean life',image:'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1400&q=85',description:'A world of coral atolls, quiet villages and extraordinary underwater encounters.'}
+];
+export const experiences = [
+ {n:'01',title:'Into the blue',type:'Ocean & lagoon',copy:'Explore coral gardens, paddle calm lagoons or discover the islands from the water.',image:'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=85'},
+ {n:'02',title:'Follow the green',type:'Nature & trails',copy:'Walk through lush valleys, discover waterfalls and look out across volcanic ridgelines.',image:'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1200&q=85'},
+ {n:'03',title:'Feel the rhythm',type:'Culture & heritage',copy:'Meet living traditions through dance, crafts, tattoo artistry, food and community festivals.',image:'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=85'}
+];
