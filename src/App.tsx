@@ -136,7 +136,7 @@ export default function App() {
 
   return <div className="site-v2" ref={root}>
     <div className="topline"><span>THE ISLANDS OF TAHITI</span><span>FRENCH POLYNESIA · SOUTH PACIFIC</span><span>DISCOVER THE BLUE</span></div>
-    {!activeIsland && <header className={navVisible ? "main-nav nav-visible" : "main-nav nav-hidden"}>
+    {!activeIsland && !activePlaceData && !activeCulture && <header className={navVisible ? "main-nav nav-visible" : "main-nav nav-hidden"}>
       <a className="wordmark" href="#home"><span className="wordmark-symbol">T</span><span>TAHITI<small>ISLANDS OF</small></span></a>
       <nav className={menuOpen ? 'nav-items is-open' : 'nav-items'}>
         <a href="#islands" onClick={() => setMenuOpen(false)}>The islands</a>
@@ -160,11 +160,11 @@ export default function App() {
         <button onClick={() => openPlace(placeDetails[2])}><img src={placeDetails[2].image} alt="Hawaiki Nui Va’a canoe race"/><span>LEEWARD ISLANDS · OCEAN</span><h2>Hawaiki Nui Va’a</h2><small>A race across island waters <ArrowRight size={14}/></small></button>
         <button onClick={() => openPlace(placeDetails[3])}><img src={placeDetails[3].image} alt="Moorea Belvedere landscape"/><span>MOOREA · NATURE</span><h2>Belvedere Lookout</h2><small>Mountain views and green valleys <ArrowRight size={14}/></small></button>
       </section>
-    </main> : {activePlaceData ? <main className="place-detail-page" id="place-detail">
+    </main> : activePlaceData ? <main className="place-detail-page" id="place-detail">
       <div className="detail-topbar"><button onClick={closeIslandPage}><ArrowRight size={15}/> BACK TO DISCOVERY</button><span>PLACE DISCOVERY · FRENCH POLYNESIA</span></div>
       <section className="place-detail-hero"><img src={activePlaceData.image} alt={activePlaceData.title}/><div className="place-detail-shade"/><div className="place-detail-heading"><span>{activePlaceData.category} · {activePlaceData.island.toUpperCase()}</span><h1>{activePlaceData.title}</h1><p>{activePlaceData.location}</p></div></section>
       <section className="place-detail-copy"><span className="section-kicker">THE STORY BEHIND THE PLACE</span><h2>A moment<br/><em>to remember.</em></h2><p>{activePlaceData.description}</p><div className="place-location"><MapPin/><div><strong>WHERE TO FIND IT</strong><span>{activePlaceData.location}</span><small>{activePlaceData.note}</small></div></div><a href={'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(activePlaceData.location + ' French Polynesia')} target="_blank" rel="noreferrer">OPEN THIS LOCATION IN GOOGLE MAPS <ArrowRight size={15}/></a><button className="place-island-link" onClick={() => openIsland(islandDetails.find(i => i.slug === activePlaceData.islandSlug)!)}>EXPLORE THE {activePlaceData.island.toUpperCase()} ISLAND PAGE <ArrowRight size={15}/></button></section>
-    </main> : {activeIsland ? <main className="island-detail-page" id="island-detail">
+    </main> : activeIsland ? <main className="island-detail-page" id="island-detail">
       <div className="detail-topbar"><button onClick={closeIslandPage}><ArrowRight size={15}/> BACK TO ALL ISLANDS</button><span>{activeIsland.archipelago} · FRENCH POLYNESIA</span></div>
       <section className="detail-hero"><img src={activeIsland.image} alt={`${activeIsland.name} island landscape`} /><div className="detail-hero-shade"/><div className="detail-hero-copy"><span>{activeIsland.kind}</span><h1>{activeIsland.name}</h1><p>{activeIsland.tag}</p></div><div className="detail-hero-index">THE ISLANDS OF TAHITI<br/>DISCOVERY SERIES / 0{islandDetails.findIndex(i=>i.slug===activeIsland.slug)+1}</div></section>
       <section className="detail-intro"><span className="section-kicker">A CLOSER LOOK · {activeIsland.archipelago.toUpperCase()}</span><h2>Find your own<br/><em>island rhythm.</em></h2><p>{activeIsland.description} {activeIsland.mapNote}</p></section>
