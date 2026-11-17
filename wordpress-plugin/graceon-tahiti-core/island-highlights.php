@@ -111,7 +111,7 @@ function gtc_seed_bora_bora_highlights(): void {
             'Vaitape', 'https://www.google.com/maps/search/?api=1&query=Vaitape+Bora+Bora'
         ],
     ];
-    foreach ($items as $item) {
+    foreach ($items as $index => $item) {
         [$slug, $title, $kicker, $excerpt, $body, $image, $credit, $license, $location, $map] = $item;
         $existing = get_page_by_path($slug, OBJECT, 'iot_highlight');
         if ($existing) { continue; }
@@ -119,7 +119,7 @@ function gtc_seed_bora_bora_highlights(): void {
             'post_type' => 'iot_highlight', 'post_status' => 'publish',
             'post_title' => $title, 'post_name' => $slug,
             'post_excerpt' => $excerpt, 'post_content' => '<p>' . esc_html($body) . '</p>',
-            'menu_order' => count($items),
+            'menu_order' => $index + 1,
         ], true);
         if (is_wp_error($id)) { continue; }
         update_post_meta($id, 'gtc_highlight_image_url', esc_url_raw($image));
