@@ -92,20 +92,38 @@ function gtc_my_journey_shortcode(): string {
 }
 add_shortcode('gtc_my_journey', 'gtc_my_journey_shortcode');
 
-/** Create a dedicated page for the shortcode without replacing existing content. */
-function gtc_ensure_my_journey_page(): void {
-    if (!current_user_can('manage_options') || get_option('gtc_my_journey_page_created')) { return; }
-    $page = get_page_by_path('my-journey');
-    if (!$page) {
-        $id = wp_insert_post([
+/** Create My Journey and Passport pages without overwriting any existing page content. */
+function gtc_ensure_journey_pages(): void {
+    if (!current_user_can('manage_options')) { return; }
+
+    $journey = get_page_by_path('my-journey');
+    if (!$journey) {
+        $journey_id = wp_insert_post([
             'post_type' => 'page',
             'post_status' => 'publish',
             'post_title' => __('My Journey', 'graceon-tahiti-core'),
             'post_name' => 'my-journey',
-            'post_content' => '[gtc_my_journey]',
+            'post_content' => "[gtc_tahiti_passport]\n\n[gtc_my_journey]",
         ], true);
-        if (is_wp_error($id)) { return; }
+        if (is_wp_error($journey_id)) { return; }
+    } elseif (strpos($journey->post_content, '[gtc_tahiti_passport]') === false) {
+        $content = "[gtc_tahiti_passport]\n\n" . $journey->post_content;
+        wp_update_post(['ID' => $journey->ID, 'post_content' => $content]);
     }
+
+    $passport = get_page_by_path('my-passport');
+    if (!$passport) {
+        $passport_id = wp_insert_post([
+            'post_type' => 'page',
+            'post_status' => 'publish',
+            'post_title' => __('My Tahiti Passport', 'graceon-tahiti-core'),
+            'post_name' => 'my-passport',
+            'post_content' => '[gtc_tahiti_passport]',
+        ], true);
+        if (is_wp_error($passport_id)) { return; }
+    }
+
     update_option('gtc_my_journey_page_created', 1, false);
+    update_option('gtc_my_passport_page_created', 1, false);
 }
-add_action('admin_init', 'gtc_ensure_my_journey_page', 40);
+add_action('admin_init', 'gtc_ensure_journey_pages', 40);
