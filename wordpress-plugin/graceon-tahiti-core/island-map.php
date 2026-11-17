@@ -100,3 +100,65 @@ JS;
     return '<section class="gtc-map-section" aria-label="' . esc_attr__('Island map and places', 'graceon-tahiti-core') . '"><div class="gtc-island-map" role="application" aria-label="' . esc_attr__('Interactive map of island highlights', 'graceon-tahiti-core') . '" data-markers="' . esc_attr($json) . '"></div><p class="gtc-map-attribution">' . esc_html__('Map data © OpenStreetMap contributors', 'graceon-tahiti-core') . '</p>' . $list . '</section>';
 }
 add_shortcode('gtc_island_map', 'gtc_island_map_shortcode');
+
+
+/**
+ * Reusable editorial section for an island highlight category.
+ * Usage: [gtc_highlights_section type="activity" title="Things to do"]
+ */
+function gtc_highlights_section_shortcode($atts = []): string {
+    $atts = shortcode_atts([
+        'type' => '',
+        'title' => '',
+        'eyebrow' => 'DISCOVER MORE',
+        'island' => '',
+    ], $atts, 'gtc_highlights_section');
+    $type = sanitize_title($atts['type']);
+    $island = sanitize_title($atts['island']);
+    if (!$island && is_singular('iot_island')) {
+        $island = get_post_field('post_name', get_queried_object_id());
+    }
+    if (!$island || !$type) { return ''; }
+    $query = new WP_Query([
+        'post_type' => 'iot_highlight', 'post_status' => 'publish', 'posts_per_page' => 12,
+        'orderby' => ['menu_order' => 'ASC', 'title' => 'ASC'],
+        'tax_query' => [
+            'relation' => 'AND',
+            ['taxonomy' => 'iot_highlight_island', 'field' => 'slug', 'terms' => $island],
+            ['taxonomy' => 'iot_highlight_type', 'field' => 'slug', 'terms' => $type],
+        ],
+    ]);
+    if (!$query->have_posts()) { return ''; }
+    ob_start();
+    ?>
+    <section class="iot-curated-section iot-curated-section--<?php echo esc_attr($type); ?>">
+      <div class="iot-island-section-head">
+        <div><p class="iot-island-eyebrow"><?php echo esc_html($atts['eyebrow']); ?></p><h2><?php echo esc_html($atts['title'] ?: __('Explore more of the island', 'graceon-tahiti-core')); ?></h2></div>
+        <span><?php echo esc_html(strtoupper(str_replace('-', ' ', $type))); ?></span>
+      </div>
+      <div class="iot-curated-grid">
+      <?php foreach ($query->posts as $place) :
+        $image = get_post_meta($place->ID, 'gtc_highlight_image_url', true);
+        $credit = get_post_meta($place->ID, 'gtc_highlight_image_credit', true);
+        $license = get_post_meta($place->ID, 'gtc_highlight_license_url', true);
+        $location = get_post_meta($place->ID, 'gtc_highlight_location', true);
+      ?>
+        <article class="iot-curated-card">
+          <a class="iot-curated-card__visual<?php echo $image || has_post_thumbnail($place) ? '' : ' is-placeholder'; ?>" href="<?php echo esc_url(get_permalink($place)); ?>">
+            <?php if ($image) : ?><img src="<?php echo esc_url($image); ?>" alt="<?php echo esc_attr(get_the_title($place)); ?>" loading="lazy"><?php elseif (has_post_thumbnail($place)) : echo get_the_post_thumbnail($place, 'iot-card'); endif; ?>
+            <?php if ($credit) : ?><small class="iot-image-credit"><?php echo esc_html($credit); ?><?php if ($license) : ?> · <a href="<?php echo esc_url($license); ?>" target="_blank" rel="noopener noreferrer">License</a><?php endif; ?></small><?php endif; ?>
+          </a>
+          <div class="iot-curated-card__copy">
+            <h3><a href="<?php echo esc_url(get_permalink($place)); ?>"><?php echo esc_html(get_the_title($place)); ?></a></h3>
+            <p><?php echo esc_html(get_the_excerpt($place)); ?></p>
+            <?php if ($location) : ?><span><?php echo esc_html($location); ?></span><?php endif; ?>
+            <a class="iot-island-text-link" href="<?php echo esc_url(get_permalink($place)); ?>">DISCOVER THIS STORY ↗</a>
+          </div>
+        </article>
+      <?php endforeach; ?>
+      </div>
+    </section>
+    <?php
+    return (string) ob_get_clean();
+}
+add_shortcode('gtc_highlights_section', 'gtc_highlights_section_shortcode');
