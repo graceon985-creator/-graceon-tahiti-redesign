@@ -104,3 +104,21 @@
 .iot-place-return .iot-island-hero__link{color:#fff}
 @media(max-width:900px){.gtc-map-section{grid-template-columns:1fr}.gtc-island-map{height:440px}.gtc-map-attribution{grid-column:auto}.iot-place-story{grid-template-columns:1fr;gap:28px}.iot-place-story__label{flex-direction:row;justify-content:space-between}}
 @media(max-width:620px){.iot-island-map-block,.iot-place-map{padding:68px 6vw}.gtc-island-map{height:360px;min-height:300px}.iot-place-hero{min-height:75svh;padding:7vw}.iot-place-back{margin-bottom:34px}.iot-place-hero h1{font-size:clamp(56px,15vw,90px)}.iot-place-story{padding:70px 7vw}.iot-place-return{padding:70px 7vw}}
+
+
+/* Island-specific activity, culture and hidden-gem editorial collections */
+.iot-curated-section{padding:96px 9vw;background:#e7e4da}
+.iot-curated-section:nth-of-type(even){background:#f3f0e8}
+.iot-curated-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.iot-curated-card{background:#f7f4ec;min-width:0}
+.iot-curated-card__visual{height:250px;display:block;position:relative;overflow:hidden;background:#b7c8bf}
+.iot-curated-card__visual img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .7s}
+.iot-curated-card__visual:hover img{transform:scale(1.04)}
+.iot-curated-card__visual.is-placeholder{background:linear-gradient(135deg,#173e45,#6e9388 58%,#d3c3a9)}
+.iot-curated-card__copy{padding:24px 26px 28px}
+.iot-curated-card h3{font:clamp(25px,3vw,34px)/1.05 Georgia,serif;font-weight:400;margin:0 0 12px}
+.iot-curated-card h3 a{color:#17383d;text-decoration:none}
+.iot-curated-card__copy>p{font-size:13px;line-height:1.8;color:#687772}
+.iot-curated-card__copy>span{display:block;margin-top:14px;font-size:9px;letter-spacing:.1em;color:#788780}
+@media(max-width:900px){.iot-curated-section{padding:78px 7vw}.iot-curated-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.iot-curated-section{padding:68px 6vw}.iot-curated-grid{grid-template-columns:1fr}.iot-curated-card__visual{height:230px}.iot-curated-card__copy{padding:21px}}
