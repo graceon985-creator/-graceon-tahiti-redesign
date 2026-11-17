@@ -34,6 +34,7 @@ get_header();
       <a class="iot-island-hero__link" href="#island-highlights">EXPLORE THE ISLAND <span>↓</span></a>
     </div>
     <div class="iot-island-hero__side-note">THE PACIFIC · FRENCH POLYNESIA</div>
+    <?php if ($slug === 'bora-bora' && !has_post_thumbnail()) : ?><div class="iot-island-hero__credit">Matira Beach · Scott Williams · <a href="https://creativecommons.org/licenses/by/2.5/" target="_blank" rel="noopener noreferrer">CC BY 2.5</a></div><?php endif; ?>
   </section>
 
   <section class="iot-island-intro">
