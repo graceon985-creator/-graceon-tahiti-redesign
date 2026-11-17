@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<rect width="512" height="512" rx="112" fill="#153c43"/>
+<circle cx="256" cy="256" r="178" fill="none" stroke="#d8cbb4" stroke-width="3" opacity=".7"/>
+<path d="M90 332c55-34 99-34 154 0s99 34 178 0" fill="none" stroke="#79aaa0" stroke-width="13" stroke-linecap="round"/>
+<path d="M110 375c55-27 99-27 146 0s99 27 146 0" fill="none" stroke="#79aaa0" stroke-width="8" stroke-linecap="round" opacity=".7"/>
+<text x="256" y="282" text-anchor="middle" font-family="Georgia,serif" font-size="250" font-style="italic" fill="#f3f0e8">T</text>
+<circle cx="380" cy="132" r="18" fill="#b77d5f"/>
+</svg>
