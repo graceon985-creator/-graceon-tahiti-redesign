@@ -41,6 +41,7 @@ function gtc_highlight_meta_fields(): array {
         'gtc_highlight_kicker' => ['Short category label', 'text'],
         'gtc_highlight_latitude' => ['Map latitude', 'text'],
         'gtc_highlight_longitude' => ['Map longitude', 'text'],
+        'gtc_highlight_source_url' => ['Editorial research source URL', 'url'],
     ];
 }
 
