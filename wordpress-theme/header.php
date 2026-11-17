@@ -18,4 +18,5 @@
     <?php wp_nav_menu(['theme_location' => 'primary', 'container' => false, 'fallback_cb' => 'iot_fallback_menu']); ?>
   </nav>
   <a class="iot-header-cta" href="<?php echo esc_url(get_post_type_archive_link('iot_island') ?: home_url('/#islands')); ?>"><?php esc_html_e('Find your island', 'islands-of-tahiti'); ?> <span>↗</span></a>
+  <button class="iot-pwa-install" type="button" data-iot-install hidden><?php esc_html_e('Install app', 'islands-of-tahiti'); ?> ↧</button>
 </header>
