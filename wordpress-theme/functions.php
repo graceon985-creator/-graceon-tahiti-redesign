@@ -5,7 +5,7 @@
  */
 if (!defined('ABSPATH')) { exit; }
 
-define('IOT_THEME_VERSION', '1.0.6');
+define('IOT_THEME_VERSION', '1.0.7');
 define('IOT_THEME_DIR', get_template_directory());
 define('IOT_THEME_URI', get_template_directory_uri());
 
@@ -72,6 +72,7 @@ function iot_fallback_menu(): void {
     $links = [
         __('Islands', 'islands-of-tahiti') => home_url('/#islands'),
         __('My Journey', 'islands-of-tahiti') => home_url('/my-journey/'),
+        __('Smart Guide', 'islands-of-tahiti') => home_url('/smart-guide/'),
         __('Tahiti Passport', 'islands-of-tahiti') => home_url('/my-passport/'),
         __('Experiences', 'islands-of-tahiti') => get_post_type_archive_link('iot_experience'),
         __('Events', 'islands-of-tahiti') => get_post_type_archive_link('iot_event'),
