@@ -3,8 +3,8 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
-import { ArrowDown, ArrowRight, Search, Menu, X, Compass, Send, Sparkles, Waves, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
-import { islands, experiences } from './data';
+import { ArrowDown, ArrowRight, Search, Menu, X, Send, Sparkles, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
+import { experiences } from './data';
 import './styles.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -54,7 +54,7 @@ export default function App() {
   }, [paused]);
 
   useGSAP(() => {
-    gsap.from('.hero-blue-inner > *', { y: 35, opacity: 0, duration: 1, stagger: 0.14, ease: 'power3.out' });
+    gsap.from('.blue-opening-inner > *', { y: 35, opacity: 0, duration: 1, stagger: 0.14, ease: 'power3.out' });
     gsap.utils.toArray<HTMLElement>('.reveal').forEach(el => gsap.from(el, {
       y: 48, opacity: 0, duration: 1, ease: 'power3.out',
       scrollTrigger: { trigger: el, start: 'top 86%' }
