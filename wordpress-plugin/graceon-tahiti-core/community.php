@@ -70,6 +70,11 @@ function gtc_community_submit_story(): void {
             exit;
         }
         $clean_path = wp_tempnam('gtc-community-clean.jpg');
+        if (!$clean_path) {
+            wp_delete_post($post_id, true);
+            wp_safe_redirect(add_query_arg('community', 'image-error', wp_get_referer() ?: home_url('/community/')));
+            exit;
+        }
         $cleaned = $editor->save($clean_path, 'image/jpeg');
         if (is_wp_error($cleaned) || empty($cleaned['path'])) {
             if (file_exists($clean_path)) { wp_delete_file($clean_path); }
