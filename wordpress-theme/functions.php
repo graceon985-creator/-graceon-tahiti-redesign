@@ -5,7 +5,7 @@
  */
 if (!defined('ABSPATH')) { exit; }
 
-define('IOT_THEME_VERSION', '1.0.5');
+define('IOT_THEME_VERSION', '1.0.6');
 define('IOT_THEME_DIR', get_template_directory());
 define('IOT_THEME_URI', get_template_directory_uri());
 
