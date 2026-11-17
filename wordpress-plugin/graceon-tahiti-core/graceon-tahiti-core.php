@@ -143,9 +143,44 @@ function gtc_admin_notice(): void {
 }
 add_action('admin_notices', 'gtc_admin_notice');
 
+/**
+ * Seed the eight island profiles on a fresh demo install so the homepage and
+ * detail templates can be reviewed immediately. Existing editor content is
+ * never overwritten; administrators can edit or remove these sample entries.
+ */
+function gtc_seed_island_profiles(): void {
+    $islands = [
+        ['tahiti', 'Tahiti', 'Society Islands', 'The lively heart of French Polynesia, where volcanic landscapes, coastal villages and a vibrant cultural life meet the Pacific.', 'Discover Tahiti'],
+        ['moorea', 'Moorea', 'Society Islands', 'A dramatic island of green mountain peaks, winding bays and welcoming communities, just across the water from Tahiti.', 'Explore Moorea'],
+        ['bora-bora', 'Bora Bora', 'Society Islands', 'A celebrated lagoon destination surrounded by small motu and a striking volcanic silhouette rising above the water.', 'Experience Bora Bora'],
+        ['huahine', 'Huahine', 'Society Islands', 'A quieter island of lush landscapes, traditional villages and archaeological sites connected to Polynesian heritage.', 'Meet Huahine'],
+        ['raiatea', 'Raiatea', 'Society Islands', 'An island deeply connected to Polynesian heritage, with a mountainous interior, river valleys and important cultural sites.', 'Discover Raiatea'],
+        ['tahaa', "Taha'a", 'Society Islands', 'Known for its vanilla-growing tradition, Taha’a offers a gentle island atmosphere, small villages and beautiful lagoon scenery.', 'Visit Taha’a'],
+        ['rangiroa', 'Rangiroa', 'Tuamotu Archipelago', 'One of the world’s great atolls, with a vast lagoon, small villages and a strong connection to the ocean.', 'Explore Rangiroa'],
+        ['fakarava', 'Fakarava', 'Tuamotu Archipelago', 'A remote atoll known for its exceptional marine environment, traditional island life and protected natural heritage.', 'Discover Fakarava'],
+    ];
+    foreach ($islands as $index => $island) {
+        [$slug, $name, $group, $description, $heading] = $island;
+        if (get_page_by_path($slug, OBJECT, 'iot_island')) { continue; }
+        $post_id = wp_insert_post([
+            'post_type' => 'iot_island',
+            'post_status' => 'publish',
+            'post_title' => $name,
+            'post_name' => $slug,
+            'post_excerpt' => $description,
+            'post_content' => '<h2>' . esc_html($heading) . '</h2><p>' . esc_html($description) . '</p><p>' . esc_html__('This starter profile is editorial placeholder content for the independent redesign demonstration. It should be reviewed and expanded with approved destination copy and photography before publication.', 'graceon-tahiti-core') . '</p>',
+            'menu_order' => $index + 1,
+        ], true);
+        if (!is_wp_error($post_id)) {
+            update_post_meta($post_id, 'iot_island_archipelago', $group);
+        }
+    }
+}
+
 register_activation_hook(__FILE__, function (): void {
     gtc_register_content_types();
     gtc_register_taxonomies();
+    gtc_seed_island_profiles();
     flush_rewrite_rules();
 });
 register_deactivation_hook(__FILE__, 'flush_rewrite_rules');
