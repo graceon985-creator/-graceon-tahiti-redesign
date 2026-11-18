@@ -13,6 +13,15 @@ import InteractiveArchipelagoMap from './InteractiveArchipelagoMap';
 import IslandOrbit from './IslandOrbit';
 gsap.registerPlugin(ScrollTrigger);
 type LocalVisit = {verifiedAt:string;accuracy:number};
+const frenchEvents:Record<string,{title:string;location:string;date:string;summary:string;category:string}> = {
+'hura-mataeinaa-2026':{title:"Hura Mata'eina'a – Célébrer Matari'i i ni'a",location:'Salle Omnisport Afareaitu, Moorea',date:'20–22 novembre 2026',summary:"Trois jours de célébration culturelle avec concours de danse 'Ori Tahiti, spectacles et activités communautaires.",category:'Culture & danse'},
+'matarii-2026':{title:"Matari'i i ni'a – Saison de l'abondance",location:'Célébrée dans toute la Polynésie française',date:'À partir du 20 novembre · célébration annuelle',summary:"La saison polynésienne de l'abondance commence avec le lever des Pléiades. Les programmes varient selon les îles et les années; consultez les annonces locales.",category:'Culture & patrimoine'},
+'heiva-tahiti':{title:'Heiva i Tahiti',location:'Place To’ata, Papeete',date:'Généralement en juillet · dates 2027 à annoncer',summary:"Grande célébration du chant, de la musique et de la danse polynésiens traditionnels, inspirée par les légendes et le patrimoine des îles.",category:'Culture & danse'},
+'hura-tapairu':{title:'Hura Tapairu',location:'Maison de la Culture – Te Fare Tauhiti Nui, Papeete',date:'Généralement en novembre · dates à annoncer',summary:"Concours de danse pour petites troupes, reconnu pour ses créations originales et ses interprétations contemporaines de la danse tahitienne.",category:'Culture & danse'},
+'farerei-haga':{title:'Farerei Haga',location:'Rangiroa, archipel des Tuamotu',date:'Généralement en septembre · dates à annoncer',summary:"Rencontre de groupes de danse des atolls voisins. Confirmez la prochaine édition auprès des organisateurs locaux.",category:'Culture & danse'},
+'hawaiki-nui-vaa':{title:'Hawaiki Nui Va’a',location:'Îles de la Société',date:'Course annuelle · édition 2026 : 28–30 octobre (terminée)',summary:"Grande course de pirogues à balancier traversant plusieurs îles de la Société. Les prochaines dates doivent être confirmées auprès des organisateurs.",category:'Sport & va’a'}
+};
+
 function isValidLocalVisit(value:unknown):value is LocalVisit {
  if(!value||typeof value!=='object')return false;
  const visit=value as Record<string,unknown>;
@@ -54,13 +63,13 @@ export default function App(){
     <div className="event-filters" role="group" aria-label={active==='FR'?'Filtrer les événements':'Filter events'}>
      {['All','Culture & dance','Culture & heritage','Sport & va’a'].map(category=><button type="button" key={category} className={eventFilter===category?'event-filter active':'event-filter'} onClick={()=>setEventFilter(category)}>{active==='FR'?({'All':'Tout','Culture & dance':'Culture & danse','Culture & heritage':'Culture & patrimoine','Sport & va’a':'Sport & va’a'} as Record<string,string>)[category]:category}</button>)}
     </div>
-    <div className="event-grid">{events.filter(event=>eventFilter==='All'||event.category===eventFilter).map((event,index)=><article className="event-card reveal" key={event.id}>
-     <div className="event-image"><img src={event.image} alt={event.title}/><span>0{index+1} / 06</span></div>
+    <div className="event-grid">{events.filter(event=>eventFilter==='All'||event.category===eventFilter).map((event,index)=>{const fr=frenchEvents[event.id];return <article className="event-card reveal" key={event.id}>
+     <div className="event-image"><img src={event.image} alt={active==="FR"&&fr?fr.title:event.title}/><span>0{index+1} / 06</span></div>
      <div className="event-card-top"><span className="event-number">0{index+1}</span><span className={event.dateStatus==='confirmed'?'event-status confirmed':'event-status seasonal'}>{active==='FR'?(event.dateStatus==='confirmed'?'DATES CONFIRMÉES':'SAISONNIER · DATES À VÉRIFIER'):(event.dateStatus==='confirmed'?'DATES CONFIRMED':'SEASONAL · CHECK DATES')}</span></div>
-     <div className="event-category">{event.category} · {event.island}</div><h3>{event.title}</h3><p className="event-date">{event.dateLabel}</p><p className="event-summary">{event.summary}</p>
-     <div className="event-location"><MapPin size={15}/><span>{event.location}</span></div>
+     <div className="event-category">{active==='FR'&&fr?fr.category:event.category} · {event.island}</div><h3>{active==='FR'&&fr?fr.title:event.title}</h3><p className="event-date">{active==='FR'&&fr?fr.date:event.dateLabel}</p><p className="event-summary">{active==='FR'&&fr?fr.summary:event.summary}</p>
+     <div className="event-location"><MapPin size={15}/><span>{active==='FR'&&fr?fr.location:event.location}</span></div>
      <div className="event-actions"><a href={event.officialUrl} target="_blank" rel="noreferrer">{active==='FR'?'DÉTAILS OFFICIELS':'OFFICIAL DETAILS'} <ArrowRight size={14}/></a><a href={'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(event.mapQuery)} target="_blank" rel="noreferrer">{active==='FR'?'VOIR LA CARTE':'OPEN MAP'} <MapPin size={14}/></a></div>
-    </article>)}</div>
+    </article>})}</div>
     <p className="events-note">{active==='FR'?"Vérifiez toujours les dates, l'accès et les réservations auprès de l'organisateur avant votre voyage. Les informations proviennent de Tahiti Tourisme.":"Always confirm dates, access and reservations with the event organizer before travelling. Event information is sourced from Tahiti Tourisme."}</p>
     <div id="culture" className="culture-atlas culture-atlas-embedded">
      <div className="culture-atlas-heading"><span className="section-kicker">05 / THE LIVING ISLANDS</span><h2>{active==='FR'?<>La culture est vivante.<br/><em>Elle se partage chaque jour.</em></>:<>Culture is not a show.<br/><em>It is everyday life.</em></>}</h2><p>{active==='FR'?"Découvrez les traditions, la créativité et les moments partagés qui façonnent les îles — à travers les personnes et les lieux qui les font vivre.":"Discover the traditions, creativity and shared moments that shape the islands — through the people and places that keep them alive."}</p></div>
