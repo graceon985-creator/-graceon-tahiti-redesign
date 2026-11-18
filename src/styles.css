@@ -485,3 +485,59 @@
 .hero-foot{left:8.5%;right:8.5%;bottom:15px;border-color:#ffffff4a;color:#d9e5df;z-index:3}
 @media(max-width:900px){.hero{height:calc(88svh - 113px);min-height:620px}.hero-copy{left:6%;top:42%;max-width:75%}.hero h1{font-size:clamp(64px,11vw,100px)}.hero-thumbnails{right:5%;width:52%;bottom:54px}.hero-next{left:6%;bottom:54px}}
 @media(max-width:640px){.announcement{height:25px;font-size:7px}.announcement span:nth-child(2){display:none}.nav{height:68px}.hero{height:calc(88svh - 93px);min-height:630px}.hero-copy{left:7%;right:7%;top:35%;max-width:none}.hero h1{font-size:clamp(61px,15vw,88px);margin:22px 0 16px}.hero-intro{font-size:12px;max-width:280px}.hero-feature-copy{top:7%;right:7%}.hero-feature-copy h2{font-size:27px}.hero-feature-copy>span{font-size:7px}.hero-thumbnails{left:7%;right:7%;bottom:60px;width:auto;height:60px;gap:5px}.hero-thumb span{font-size:6px;padding:13px 5px 5px}.hero-next{left:auto;right:7%;bottom:135px;width:36px;height:36px}.hero-foot{left:7%;right:7%;bottom:14px;font-size:6px}.circle-link{padding:13px 15px;font-size:7px}}
+
+/* Scroll-aware navigation: visible at the top and when the visitor scrolls upward. */
+.nav{position:sticky;top:0;z-index:1100;transform:translateY(-110%);transition:transform .32s ease,background .25s ease;will-change:transform}
+.nav.nav-visible{transform:translateY(0)}
+/* Passport lives at the edge of the experience, not as a content section. */
+.passport-side-trigger{position:fixed;left:0;top:48%;z-index:1150;display:flex;flex-direction:column;align-items:center;gap:9px;width:112px;padding:10px 9px 12px;background:rgba(8,44,53,.94);border:1px solid rgba(235,205,169,.7);border-left:0;box-shadow:8px 12px 32px #06252d35;cursor:pointer;transform:translateY(-50%);transition:width .25s ease,background .25s ease}
+.passport-side-trigger:hover{width:126px;background:#0b3e49}
+.passport-side-cover{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;width:88px;height:119px;padding:12px 7px;color:#fff;background:var(--passport-cover);box-shadow:4px 6px 0 rgba(0,0,0,.22);overflow:hidden}
+.passport-side-photo,.passport-side-frame{position:absolute;inset:0;z-index:-1;background-size:cover;background-position:center}
+.passport-side-frame{inset:7px;border:1px solid #ffffffa8;z-index:0}
+.passport-side-cover small{font-size:6px;letter-spacing:.2em}
+.passport-side-cover strong{font:25px 'Playfair Display',serif;font-weight:400;letter-spacing:.12em}
+.passport-side-cover i{font-style:normal;font-size:22px}
+.passport-side-cover em{font-size:5px;letter-spacing:.16em;font-style:normal}
+.passport-side-label{display:flex;align-items:center;justify-content:center;gap:5px;color:#f2d1ad;font-size:7px;letter-spacing:.12em;white-space:nowrap}
+.passport-island-memory-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.passport-island-memory{display:grid;grid-template-columns:104px minmax(0,1fr);gap:12px;align-items:center;padding:10px;background:#eeebe2;border:1px solid #dfdbd0;min-width:0}
+.passport-memory-image{height:92px;position:relative;overflow:hidden;background:#d7ded6}
+.passport-memory-image img{width:100%;height:100%;object-fit:cover}
+.passport-memory-image>span{position:absolute;left:7px;top:7px;color:white;background:#102f35b8;padding:4px 6px;font-size:8px}
+.passport-memory-info{min-width:0;display:grid;gap:8px}
+.passport-memory-info>strong{font:19px 'Playfair Display',serif;font-weight:400}
+.passport-memory-info>button{display:flex;align-items:center;gap:6px;justify-self:start;border:1px solid #b9c2b8;background:transparent;color:#315d55;padding:7px 8px;font-size:7px;letter-spacing:.08em;cursor:pointer}
+.passport-memory-info>button:disabled{opacity:.45;cursor:not-allowed}
+.passport-memory-file{display:flex;align-items:center;justify-content:space-between;gap:5px;font-size:8px;color:#7a857d;min-width:0}
+.passport-memory-file span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.passport-memory-file button{border:0;background:transparent;color:#9b6c55;cursor:pointer}
+.passport-modal-section .passport-photo-note{margin-top:12px}
+/* A culture atlas: visitors choose the story they want to discover. */
+.culture-atlas{padding:100px 8.5% 110px;background:#eae7dd;color:#173f3c;display:block}
+.culture-atlas-heading{max-width:780px;margin-bottom:55px}
+.culture-atlas-heading h2{font:clamp(44px,6.4vw,82px)/.98 'Playfair Display',serif;font-weight:400;letter-spacing:-.035em;margin:18px 0}
+.culture-atlas-heading h2 em{color:#b8795b}
+.culture-atlas-heading p{max-width:510px;font-size:13px;line-height:1.9;color:#657770}
+.culture-atlas-layout{display:grid;grid-template-columns:minmax(220px,.7fr) minmax(0,1.5fr);gap:7%;align-items:stretch}
+.culture-atlas-tabs{display:flex;flex-direction:column;border-top:1px solid #c8c9bd}
+.culture-atlas-tabs button{display:grid;grid-template-columns:32px 1fr 18px;align-items:center;gap:10px;text-align:left;padding:22px 8px;border:0;border-bottom:1px solid #c8c9bd;background:transparent;color:#63756d;font:22px 'Playfair Display',serif;cursor:pointer;transition:color .2s,padding .2s}
+.culture-atlas-tabs button span{font:8px Arial;letter-spacing:.12em;color:#b8795b}
+.culture-atlas-tabs button svg{opacity:0;transition:opacity .2s,transform .2s}
+.culture-atlas-tabs button.active{color:#153f3b;padding-left:16px}
+.culture-atlas-tabs button.active svg{opacity:1;transform:translateX(3px)}
+.culture-atlas-feature{display:grid;grid-template-columns:1fr 1fr;min-height:430px;background:#f6f3eb;animation:cultureReveal .45s ease both}
+@keyframes cultureReveal{from{opacity:.5;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.culture-atlas-image{position:relative;min-height:430px;overflow:hidden}
+.culture-atlas-image img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}
+.culture-image-index{position:absolute;left:18px;bottom:18px;color:white;font-size:9px;letter-spacing:.15em}
+.culture-atlas-copy{display:flex;flex-direction:column;justify-content:center;padding:clamp(24px,4vw,54px)}
+.culture-atlas-copy h3{font:clamp(29px,3.3vw,43px)/1.06 'Playfair Display',serif;font-weight:400;margin:18px 0}
+.culture-atlas-copy p{font-size:12px;line-height:1.95;color:#68786f}
+.culture-atlas-foot{margin-top:32px;padding-top:15px;border-top:1px solid #d5d2c7;font-size:7px;letter-spacing:.15em;color:#a16e54}
+.ga-launcher{width:48px!important;height:48px!important;min-width:48px!important;border-radius:50%!important;padding:0!important;display:grid!important;place-items:center!important;background:#bd7656!important;color:#fff!important;border:1px solid #f1d0b2!important;box-shadow:0 10px 30px #092d3445!important}
+.ga-launch-icon{display:grid!important;place-items:center!important;width:100%!important;height:100%!important;border-radius:50%!important;background:transparent!important;color:#fff!important;font:600 25px 'Playfair Display',serif!important;letter-spacing:-.04em}
+.ga-launcher>span:nth-child(2),.ga-launcher>svg:last-child{display:none!important}
+.ga-launcher:hover{transform:translateY(-3px);background:#a95f49!important}
+@media(max-width:900px){.culture-atlas{padding:80px 6%}.culture-atlas-layout{gap:4%}.culture-atlas-feature{min-height:390px}.culture-atlas-image{min-height:390px}.passport-side-trigger{width:92px;padding:8px 6px 9px}.passport-side-cover{width:72px;height:100px}}
+@media(max-width:640px){.passport-side-trigger{top:auto;bottom:86px;left:0;transform:none;width:68px;padding:6px 4px 7px;gap:5px}.passport-side-trigger:hover{width:74px}.passport-side-cover{width:55px;height:76px;padding:6px 4px;gap:4px}.passport-side-cover small{font-size:4px}.passport-side-cover strong{font-size:16px}.passport-side-cover i{font-size:14px}.passport-side-cover em{font-size:4px}.passport-side-label{font-size:5px;letter-spacing:.04em;gap:2px}.passport-side-label svg{width:9px}.passport-island-memory-grid{grid-template-columns:1fr}.passport-island-memory{grid-template-columns:90px minmax(0,1fr)}.culture-atlas{padding:68px 6% 75px}.culture-atlas-heading{margin-bottom:32px}.culture-atlas-heading h2{font-size:49px}.culture-atlas-layout{grid-template-columns:1fr;gap:22px}.culture-atlas-tabs button{font-size:19px;padding:16px 6px}.culture-atlas-feature{grid-template-columns:1fr}.culture-atlas-image{min-height:245px}.culture-atlas-copy{padding:25px}.culture-atlas-copy h3{font-size:31px}.nav{z-index:1100}.ga-launcher{width:44px!important;height:44px!important;min-width:44px!important}.passport-modal-layout{grid-template-columns:1fr}}
