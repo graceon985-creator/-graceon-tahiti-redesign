@@ -53,11 +53,6 @@ function FocusPin({pin}:{pin:Pin|null}) {
   return null;
 }
 
-function FocusIsland({position}:{position:LatLngExpression}) {
-  const map = useMap();
-  useEffect(()=>{map.flyTo(position,7,{duration:1.1})},[map,position]);
-  return null;
-}
 
 export default function InteractiveArchipelagoMap({islands,activities}:Props) {
   const [selected,setSelected] = useState('Tahiti');
