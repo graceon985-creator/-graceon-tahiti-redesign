@@ -80,13 +80,6 @@ export default function App(){
           <p>{['Explore coral gardens, paddle calm lagoons or discover the islands from the water.','Discover the colour, traditions and everyday rhythm of the islands.'][activeExperienceSlide]}</p>
           <button type="button" className="experience-explore" onClick={()=>setActiveExperienceSlide((activeExperienceSlide+1)%2)}><span>EXPLORE</span><ArrowRight size={18}/></button>
         </div>
-        <div className="experience-preview-cards">
-          {[1].map(offset=>{const index=(activeExperienceSlide+offset)%2;return <button type="button" key={index} className="experience-preview-card" onClick={()=>setActiveExperienceSlide(index)}>
-            <span className="experience-preview-number">0{index+1}</span>
-            <span className="experience-preview-title">{['Into the blue','Feel the rhythm'][index]}</span>
-            <img src={['https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=88','https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=88'][index]} alt=""/>
-          </button>})}
-        </div>
         <div className="experience-showcase-footer">
           <span>SCROLL TO EXPLORE ↓</span>
           <div className="experience-progress"><span>0{activeExperienceSlide+1}</span><i><b style={{width:`${(activeExperienceSlide+1)*50}%`}}/></i><span>0{(activeExperienceSlide+1)%2+1}</span></div>
