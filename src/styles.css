@@ -796,3 +796,40 @@
 .culture-celebration-section .events-note{color:#66756b;font-size:10px}
 @media(max-width:900px){.event-feature{grid-template-columns:1fr 1fr;min-height:480px}.event-feature-visual{min-height:480px}.event-gallery{gap:16px}.event-card-image{height:220px}}
 @media(max-width:640px){.events-section.culture-celebration-section{padding:78px 6% 84px}.culture-celebration-section .events-heading h2{font-size:clamp(48px,13vw,64px)}.event-feature{grid-template-columns:1fr;min-height:unset}.event-feature-visual{min-height:300px}.event-feature-copy{padding:28px 24px}.event-feature-copy h3{font-size:42px}.event-gallery{grid-template-columns:1fr;gap:18px}.event-card-image{height:245px}.event-timeline-copy{padding:22px 22px 8px}.event-timeline-meta{margin:8px 22px 0;padding:10px 0 22px}}
+
+
+/* MAKE IT YOURS — new warm editorial art direction and integrated Living Islands culture story */
+.experience-section{background:#e9dfcf;color:#173d3b;padding:108px 8.5% 112px}
+.experience-top h2{color:#173d3b}
+.experience-top h2 em{color:#a95f43}
+.experience-top>p{color:#63756d}
+.experience-list{border-top:1px solid #c7b9a5}
+.experience-row{border-bottom:1px solid #c7b9a5;padding:28px 18px;min-height:250px}
+.experience-row:before{background:radial-gradient(320px circle at var(--x) var(--y),rgba(169,95,67,.12),transparent 72%)}
+.exp-number{color:#a95f43}
+.exp-title span{color:#8b765f}
+.exp-title h3{color:#173d3b;font-size:clamp(32px,3.2vw,44px)}
+.exp-title p{color:#62746c}
+.exp-image-collage{height:205px;gap:8px}
+.exp-image-collage .exp-image-main,.exp-image-collage .exp-image-detail-one,.exp-image-collage .exp-image-detail-two{border-radius:2px}
+.exp-image-collage>span{background:#a95f43;color:#fff5e8}
+.exp-arrow{border-color:#b6a28e;color:#173d3b}
+.culture-living-feature{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);margin-top:86px;background:#173f3e;color:#f4eee3;box-shadow:0 28px 65px rgba(49,47,34,.13);min-height:620px}
+.culture-living-visual{position:relative;min-height:620px;display:grid;grid-template-columns:1.35fr .65fr;gap:9px;padding:12px;overflow:hidden}
+.culture-living-visual img{width:100%;height:100%;object-fit:cover;min-height:0;display:block}
+.culture-living-main{grid-row:1;grid-column:1}
+.culture-living-detail{grid-row:1;grid-column:2;object-position:center}
+.culture-living-index{position:absolute;left:28px;bottom:28px;background:#f1e7d7;color:#173f3e;padding:10px 14px;font-size:8px;letter-spacing:.16em}
+.culture-living-copy{padding:clamp(32px,4.5vw,68px);display:flex;flex-direction:column;justify-content:center}
+.culture-living-copy .section-kicker{color:#e5aa82}
+.culture-living-copy h3{font:clamp(38px,4.1vw,58px)/.99 'Playfair Display',serif;letter-spacing:-.045em;font-weight:400;margin:20px 0}
+.culture-living-copy h3 em{color:#e6a780;font-weight:400}
+.culture-living-copy>p{color:#d0dbd2;font-size:13px;line-height:1.85;max-width:460px}
+.culture-living-pillars{display:grid;grid-template-columns:1fr;gap:0;margin-top:26px}
+.culture-living-pillars>div{display:grid;grid-template-columns:34px 1fr;column-gap:12px;padding:15px 0;border-top:1px solid #52716a}
+.culture-living-pillars>div>span{grid-row:1/3;color:#e6a780;font:18px 'Playfair Display',serif}
+.culture-living-pillars b{font:19px 'Playfair Display',serif;font-weight:400;color:#fff6e9}
+.culture-living-pillars p{margin:5px 0 0;color:#c2d1c8;font-size:10px;line-height:1.7}
+.culture-living-foot{margin-top:22px;color:#e6a780;font-size:8px;letter-spacing:.17em}
+@media(max-width:900px){.experience-section{padding:82px 6%}.culture-living-feature{grid-template-columns:1fr;min-height:unset}.culture-living-visual{min-height:420px}.culture-living-copy{padding:38px}}
+@media(max-width:640px){.experience-section{padding:72px 6% 78px}.experience-row{grid-template-columns:28px 1fr 30px;gap:12px;min-height:0;padding:22px 0}.experience-row .exp-image-collage{grid-column:2/4;display:grid!important;height:190px;margin-top:10px}.experience-row .exp-title h3{font-size:29px}.culture-living-feature{margin-top:55px}.culture-living-visual{min-height:320px;grid-template-columns:1fr .62fr;padding:8px;gap:6px}.culture-living-index{left:18px;bottom:18px;font-size:7px}.culture-living-copy{padding:30px 23px}.culture-living-copy h3{font-size:43px}.culture-living-pillars b{font-size:18px}}
