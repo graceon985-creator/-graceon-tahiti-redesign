@@ -80,3 +80,11 @@
 .destination-map-link{display:flex;align-items:center;gap:10px;flex-shrink:0;text-decoration:none;background:#163e3c;color:#f5f2e9;padding:14px 18px;font-size:9px;letter-spacing:.12em;transition:background .25s,transform .25s;}
 .destination-map-link:hover{background:#c87956;transform:translateY(-2px);}
 @media(max-width:640px){.destination-map-cta{align-items:flex-start;flex-direction:column;gap:18px;padding:24px 0;margin-bottom:32px;}.destination-map-link{width:100%;justify-content:center;}}
+
+/* Interactive cultural discovery */
+.culture-tabs{display:flex;flex-wrap:wrap;gap:7px;margin:22px 0 15px;}
+.culture-tab{border:1px solid #c9c7bb;background:transparent;color:#355c55;padding:9px 12px;font-size:9px;letter-spacing:.04em;cursor:pointer;transition:background .2s,color .2s,border-color .2s;}
+.culture-tab.active,.culture-tab:hover{background:#173f3e;border-color:#173f3e;color:#f4f1e9;}
+.culture-tab-content{min-height:130px;padding:17px 18px;background:#eee9dd;border-left:2px solid #c87956;animation:islandDetailIn .22s ease both;}
+.culture-tab-content h3{font:24px 'Playfair Display',serif;font-weight:400;margin:0 0 8px;color:#214946;}
+.culture-tab-content p{font-size:11px;line-height:1.8;color:#627772;margin:0;}
