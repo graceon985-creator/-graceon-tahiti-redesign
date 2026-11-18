@@ -156,3 +156,12 @@
 .iot-pwa-install{border:1px solid rgba(255,255,255,.42);background:transparent;color:inherit;padding:10px 13px;font-size:9px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
 .iot-pwa-install[hidden]{display:none}
 @media(max-width:900px){.iot-pwa-install{margin:8px 0}}
+
+
+/* Island page quick exploration navigation */
+.iot-island-explore-nav{position:sticky;top:0;z-index:30;display:flex;gap:.55rem;overflow-x:auto;white-space:nowrap;padding:1rem clamp(1rem,4vw,3.5rem);background:rgba(10,35,44,.94);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.12);scrollbar-width:none}
+.iot-island-explore-nav::-webkit-scrollbar{display:none}
+.iot-island-explore-nav a{display:inline-flex;align-items:center;border:1px solid rgba(255,255,255,.24);border-radius:999px;padding:.62rem 1rem;color:#f7f4eb;text-decoration:none;font-size:.78rem;letter-spacing:.04em;transition:background .2s,border-color .2s,transform .2s}
+.iot-island-explore-nav a:hover,.iot-island-explore-nav a:focus-visible{background:#d5a875;border-color:#d5a875;color:#102b35;transform:translateY(-1px)}
+.iot-island-anchor-section,.iot-island-map-block,.iot-island-plan{scroll-margin-top:5rem}
+@media(max-width:600px){.iot-island-explore-nav{gap:.4rem;padding:.75rem .8rem}.iot-island-explore-nav a{padding:.55rem .8rem;font-size:.73rem}}
