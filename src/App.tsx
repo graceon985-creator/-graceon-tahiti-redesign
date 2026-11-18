@@ -54,6 +54,7 @@ export default function App(){
      {['All','Culture & dance','Culture & heritage','Sport & va’a'].map(category=><button type="button" key={category} className={eventFilter===category?'event-filter active':'event-filter'} onClick={()=>setEventFilter(category)}>{category}</button>)}
     </div>
     <div className="event-grid">{events.filter(event=>eventFilter==='All'||event.category===eventFilter).map((event,index)=><article className="event-card reveal" key={event.id}>
+     <div className="event-image"><img src={event.image} alt={event.title}/><span>0{index+1} / 06</span></div>
      <div className="event-card-top"><span className="event-number">0{index+1}</span><span className={event.dateStatus==='confirmed'?'event-status confirmed':'event-status seasonal'}>{event.dateStatus==='confirmed'?'DATES CONFIRMED':'SEASONAL · CHECK DATES'}</span></div>
      <div className="event-category">{event.category} · {event.island}</div><h3>{event.title}</h3><p className="event-date">{event.dateLabel}</p><p className="event-summary">{event.summary}</p>
      <div className="event-location"><MapPin size={15}/><span>{event.location}</span></div>
