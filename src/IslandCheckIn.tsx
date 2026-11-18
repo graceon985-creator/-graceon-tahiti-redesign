@@ -31,7 +31,7 @@ export default function IslandCheckIn({islandName,visit,onVerified}:Props){
      setStatus('This reading is outside the '+zone.name+' check-in area, or its accuracy overlaps the boundary. The check-in area is within 800 m of this visitor hub.');setBusy(false);return;
     }
     const verifiedAt=new Date().toISOString();
-    onVerified({verifiedAt,accuracy:Math.round(accuracy)});
+    onVerified({verifiedAt,accuracy:Math.max(1,Math.round(accuracy))});
     setStatus('Location check passed on this device. Your prototype stamp has been added locally.');setBusy(false);
    },error=>{
     const message=error.code===1?'Location permission was denied. You can allow it in your browser settings and try again.':error.code===2?'Your device could not determine a location. Check location services and try again.':error.code===3?'The location request timed out. Try again with a clearer view of the sky.':'The browser could not complete the location request. Please try again.';
