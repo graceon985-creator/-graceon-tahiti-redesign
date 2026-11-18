@@ -1,0 +1,2 @@
+[functions.verify-island-visit]
+verify_jwt = true
