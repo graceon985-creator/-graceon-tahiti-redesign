@@ -10,6 +10,7 @@ import GraceonAssistant from './GraceonAssistant';
 import TahitiPassport from './TahitiPassport';
 import IslandCheckIn from './IslandCheckIn';
 import InteractiveArchipelagoMap from './InteractiveArchipelagoMap';
+import IslandOrbit from './IslandOrbit';
 gsap.registerPlugin(ScrollTrigger);
 type LocalVisit = {verifiedAt:string;accuracy:number};
 const frenchEvents:Record<string,{title:string;location:string;date:string;summary:string;category:string}> = {
@@ -64,6 +65,7 @@ export default function App(){
 
     </div>
    </section>
+   <IslandOrbit islands={islands} language={active} query={query} onQueryChange={setQuery} onExplore={setSelectedIsland} onOpenMap={()=>setMapOpen(true)}/>
 
 <section id="activities" className="activities-section activities-cinematic">
       <div className="experience-showcase">
