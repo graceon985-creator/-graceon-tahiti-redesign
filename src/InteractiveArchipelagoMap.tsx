@@ -41,13 +41,13 @@ const islandCoordinates:Record<string,[number,number]> = {
   'Fakarava':[-16.310,-145.625]
 };
 
-function FocusIsland({position}:{position:LatLngExpression}) {
+function MapIslandAutoFocus({position}:{position:LatLngExpression}) {
   const map = useMap();
   useEffect(()=>{map.flyTo(position,7,{duration:1.1})},[map,position]);
   return null;
 }
 
-function FocusPin({pin}:{pin:Pin|null}) {
+function MapActivityPinFocus({pin}:{pin:Pin|null}) {
   const map = useMap();
   useEffect(()=>{if(pin) map.flyTo([pin.lat,pin.lng],11,{duration:1.1})},[map,pin]);
   return null;
@@ -84,8 +84,8 @@ export default function InteractiveArchipelagoMap({islands,activities}:Props) {
       <div className="archipelago-map-frame">
         <MapContainer center={[-16.5,-149.5]} zoom={4.6} minZoom={3} maxZoom={13} scrollWheelZoom={false} className="archipelago-leaflet-map">
           <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-          <FocusIsland position={position}/>
-          <FocusPin pin={focusedPin}/>
+          <MapIslandAutoFocus position={position}/>
+          <MapActivityPinFocus pin={focusedPin}/>
           {Object.entries(islandCoordinates).map(([name,coords])=><CircleMarker key={name} center={coords} radius={selected===name?9:6} pathOptions={{color:'#f5f0e5',weight:2,fillColor:selected===name?'#bd7656':'#1c5550',fillOpacity:1}} eventHandlers={{click:()=>{setSelected(name);setFilter('All');setFocusedTitle(null)}}}>
             <Popup><strong>{name}</strong><br/>Island reference location</Popup>
           </CircleMarker>)}
