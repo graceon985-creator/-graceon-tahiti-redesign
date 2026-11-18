@@ -7,7 +7,7 @@ import './InteractiveArchipelagoMap.css';
 
 type Island = {name:string;kind:string;description:string};
 type Activity = {title:string;category:string;location:string;description:string;mapQuery:string;officialUrl:string};
-type Props = {islands:Island[];activities:Record<string,Activity[]>};
+type Props = {islands:Island[];activities:Record<string,Activity[]>;focusRequest?:{islandName:string;title:string;nonce:number}|null};
 type Pin = {island:string;title:string;category:string;location:string;description:string;officialUrl:string;mapQuery:string;lat:number;lng:number;precision:string};
 
 // Verified against OpenStreetMap/Mapcarta place records; valley/village markers identify
@@ -54,7 +54,7 @@ function MapActivityPinFocus({pin}:{pin:Pin|null}) {
 }
 
 
-export default function InteractiveArchipelagoMap({islands,activities}:Props) {
+export default function InteractiveArchipelagoMap({islands,activities,focusRequest}:Props) {
   const [selected,setSelected] = useState('Tahiti');
   const [filter,setFilter] = useState('All');
   const [focusedTitle,setFocusedTitle] = useState<string|null>(null);
@@ -67,6 +67,8 @@ export default function InteractiveArchipelagoMap({islands,activities}:Props) {
     return point?[{...activity,island:selected,...point}]:[];
   });
   const focusedPin = pins.find(pin=>pin.title===focusedTitle) ?? null;
+  useEffect(()=>{if(!focusRequest)return;setSelected(focusRequest.islandName);setFilter('All');setFocusedTitle(focusRequest.title)},[focusRequest?.nonce]);
+  const focusedPlaceIsUnpinned=Boolean(focusRequest&&selected===focusRequest.islandName&&!verifiedPins[focusRequest.title]);
   const visibleActivities = selectedActivities.filter(item=>filter==='All'||item.category.startsWith(filter));
   return <section id="explore-map" className="archipelago-map-section">
     <div className="archipelago-map-heading">
@@ -100,10 +102,11 @@ export default function InteractiveArchipelagoMap({islands,activities}:Props) {
         <h3>{activeIsland?.name ?? selected}</h3>
         <p>{activeIsland?.description ?? 'Explore this island in French Polynesia.'}</p>
         <div className="map-activity-count">{pins.length} VERIFIED MAP PINS · {selectedActivities.length} FEATURED PLACES</div>
+        {focusedPlaceIsUnpinned&&<div className="map-focus-notice">“{focusRequest?.title}” is saved in your passport, but its exact map pin is still being checked. Showing the island area instead.</div>}
         <div className="map-category-filters">{categories.map(category=><button key={category} className={filter===category?'active':''} onClick={()=>setFilter(category)}>{category}</button>)}</div>
         <div className="map-activity-list">{visibleActivities.map((activity,index)=>{
           const pin=verifiedPins[activity.title];
-          return <article key={activity.title} className={focusedTitle===activity.title?'is-focused':''}>
+          return <article key={activity.title} className={focusedTitle===activity.title?'is-focused':''} ref={focusedTitle===activity.title?(el)=>el?.scrollIntoView({behavior:'smooth',block:'nearest'}):undefined}>
             <span>0{index+1}</span><div><h4>{activity.title}</h4><small>{activity.location} · {activity.category}</small><p>{activity.description}</p><div className="map-activity-links">
               {pin?<button type="button" onClick={()=>setFocusedTitle(activity.title)}>VIEW ON MAP <MapPin size={12}/></button>:<span className="map-pin-pending">PIN AWAITING LOCATION CHECK</span>}
               <a href={activity.officialUrl} target="_blank" rel="noreferrer">OFFICIAL GUIDE <ArrowRight size={12}/></a>
