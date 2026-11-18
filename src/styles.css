@@ -932,3 +932,28 @@
 .activities-footnote{margin-top:34px;padding-top:16px;border-top:1px solid rgba(28,40,39,.2);font-size:9px;letter-spacing:.16em;color:#78847b}
 @media(max-width:900px){.activities-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.activities-heading{grid-template-columns:1fr;gap:20px}}
 @media(max-width:600px){.activities-grid{grid-template-columns:1fr}.activity-card-image{height:230px}.activities-heading h2{font-size:clamp(3.4rem,16vw,5.4rem)}.activities-island-filter{margin-right:-20px;padding-right:20px}}
+
+/* Refined opening: one cinematic image, clear typography over the photograph */
+.hero-copy{left:8%;top:48%;max-width:min(650px,58%);text-shadow:0 3px 26px rgba(0,20,27,.65)}
+.hero-copy .eyebrow{font-size:11px;letter-spacing:.22em;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.8)}
+.hero-copy .eyebrow-line{background:#edc19a}
+.hero h1{font-size:clamp(72px,10.2vw,154px);line-height:.86;color:#fff;text-shadow:0 4px 32px rgba(0,18,25,.72)}
+.hero-intro{font-size:clamp(14px,1.2vw,17px);color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.85);max-width:440px}
+.hero-feature-shade{background:linear-gradient(90deg,rgba(2,25,34,.76) 0%,rgba(3,30,39,.46) 43%,rgba(3,30,39,.08) 100%),linear-gradient(0deg,rgba(2,25,34,.52),transparent 48%)}
+.hero-feature-copy{right:7%;top:auto;bottom:13%;text-align:right;max-width:390px}
+.hero-feature-copy>span,.hero-feature-copy h2,.hero-feature-copy p{text-shadow:0 2px 16px rgba(0,0,0,.65)}
+.hero-photo-cluster{display:none!important}
+.upgraded-stamp{z-index:4}
+@media(max-width:900px){.hero-copy{left:6%;top:43%;max-width:78%}.hero h1{font-size:clamp(64px,11vw,106px)}.hero-feature-copy{bottom:15%;right:6%}}
+@media(max-width:640px){.hero-copy{left:7%;right:7%;top:37%;max-width:none}.hero h1{font-size:clamp(60px,15vw,88px)}.hero-intro{font-size:12px}.hero-feature-copy{right:7%;bottom:17%;max-width:70%}.hero-feature-copy h2{font-size:25px}}
+/* Place the island finder heading and search directly over a photographic backdrop */
+.island-orbit-section{background:#073b4d url('https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=2200&q=88') center/cover no-repeat}
+.island-orbit-section:before{opacity:1;background:linear-gradient(180deg,rgba(3,31,43,.78) 0%,rgba(4,46,57,.66) 48%,rgba(3,34,45,.88) 100%),radial-gradient(rgba(255,255,255,.12) .7px,transparent .7px);background-size:auto,22px 22px}
+.island-orbit-top h2{color:#fff;text-shadow:0 3px 22px rgba(0,0,0,.5)}
+.island-orbit-top p{color:#f0f3ed;text-shadow:0 2px 12px rgba(0,0,0,.55)}
+.island-orbit-kicker{color:#f3d0ad}
+.island-orbit-search{border-bottom-color:rgba(255,255,255,.8);color:#fff}
+.island-orbit-search input{font-size:12px}
+.island-orbit-search input::placeholder{color:rgba(255,255,255,.86)}
+.island-map-open{border-color:rgba(255,255,255,.8);background:rgba(3,30,39,.42);backdrop-filter:blur(5px)}
+@media(max-width:900px){.island-orbit-top{gap:24px}.island-orbit-tools{align-items:flex-start}}
