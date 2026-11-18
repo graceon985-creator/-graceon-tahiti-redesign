@@ -69,23 +69,34 @@ export default function App(){
       <div className="experience-showcase">
         <div className="experience-showcase-image" style={{backgroundImage:`url(${[
           'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=2200&q=90',
+          'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1800&q=90',
           'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1800&q=90'
         ][activeExperienceSlide]})`}}/>
         <div className="experience-showcase-shade"/>
-        
+        <div className="experience-showcase-nav">
+          <span className="experience-brand-mark">✳</span>
+          <nav><a href="#activities">EXPERIENCES</a><a href="#about">ABOUT</a><a href="#journal">JOURNAL</a><a href="#contact">CONTACT</a></nav>
+        </div>
         <div className="experience-showcase-main">
           <span className="experience-showcase-number">0{activeExperienceSlide+1}</span>
-          <h2>{['Into the blue','Feel the rhythm'][activeExperienceSlide]}</h2>
-          <span className="experience-showcase-category">{['OCEAN & LAGOON','CULTURE & ISLAND LIFE'][activeExperienceSlide]}</span>
-          <p>{['Explore coral gardens, paddle calm lagoons or discover the islands from the water.','Discover the colour, traditions and everyday rhythm of the islands.'][activeExperienceSlide]}</p>
-          <button type="button" className="experience-explore" onClick={()=>setActiveExperienceSlide((activeExperienceSlide+1)%2)}><span>EXPLORE</span><ArrowRight size={18}/></button>
+          <h2>{['Into the blue','Follow the green','Feel the rhythm'][activeExperienceSlide]}</h2>
+          <span className="experience-showcase-category">{['OCEAN & LAGOON','NATURE & TRAILS','CULTURE & ISLAND LIFE'][activeExperienceSlide]}</span>
+          <p>{['Explore coral gardens, paddle calm lagoons or discover the islands from the water.','Follow forest paths, find hidden waterfalls and discover the islands beyond the shore.','Discover the colour, traditions and everyday rhythm of the islands.'][activeExperienceSlide]}</p>
+          <button type="button" className="experience-explore" onClick={()=>setActiveExperienceSlide((activeExperienceSlide+1)%3)}><span>EXPLORE</span><ArrowRight size={18}/></button>
+        </div>
+        <div className="experience-preview-cards">
+          {[1,2].map(offset=>{const index=(activeExperienceSlide+offset)%3;return <button type="button" key={index} className="experience-preview-card" onClick={()=>setActiveExperienceSlide(index)}>
+            <span className="experience-preview-number">0{index+1}</span>
+            <span className="experience-preview-title">{['Into the blue','Follow the green','Feel the rhythm'][index]}</span>
+            <img src={['https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=88','https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=88','https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=88'][index]} alt=""/>
+          </button>})}
         </div>
         <div className="experience-showcase-footer">
           <span>SCROLL TO EXPLORE ↓</span>
-          <div className="experience-progress"><span>0{activeExperienceSlide+1}</span><i><b style={{width:`${(activeExperienceSlide+1)*50}%`}}/></i><span>0{(activeExperienceSlide+1)%2+1}</span></div>
-          <span>01 / 02</span>
+          <div className="experience-progress"><span>0{activeExperienceSlide+1}</span><i><b style={{width:`${(activeExperienceSlide+1)*33.333}%`}}/></i><span>0{(activeExperienceSlide+1)%3+1}</span></div>
+          <span>01 / 02 / 03</span>
         </div>
-        <div className="experience-slide-controls">{[0,1].map(index=><button type="button" aria-label={'Show experience '+(index+1)} className={activeExperienceSlide===index?'active':''} onClick={()=>setActiveExperienceSlide(index)}/>)}</div>
+        <div className="experience-slide-controls">{[0,1,2].map(index=><button type="button" aria-label={'Show experience '+(index+1)} className={activeExperienceSlide===index?'active':''} onClick={()=>setActiveExperienceSlide(index)}/>)}</div>
       </div>
     </section>
 <section id="events" className="events-section section-pad culture-celebration-section">
