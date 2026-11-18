@@ -255,6 +255,7 @@ require_once __DIR__ . '/passport.php';
 
 // Island-specific editorial highlights and image credits.
 require_once __DIR__ . '/island-highlights.php';
+require_once __DIR__ . '/destination-highlights.php';
 require_once __DIR__ . '/island-map.php';
 require_once __DIR__ . '/journey.php';
 require_once __DIR__ . '/island-content-pack.php';
