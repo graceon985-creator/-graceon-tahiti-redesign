@@ -1,0 +1,91 @@
+import {useMemo,useState} from 'react';
+import {ArrowRight,BookmarkPlus,CalendarDays,Compass,Flag,Heart,MapPin,Plus,ShieldAlert,Sparkles,Trash2,UserRound,Plane,Ship,Phone,Info} from 'lucide-react';
+import {islands} from './data';
+import './TravelFeatures.css';
+
+type Island = typeof islands[number];
+type Post = {id:string;author:string;text:string;image:string;place:string;createdAt:string;reports:number};
+type Props = {savedIslands:string[];journeyIslands:string[];onToggleJourneyIsland:(name:string)=>void};
+const STORAGE='graceon-travel-features-v1';
+const read=(key:string,fallback:any)=>{try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback}catch{return fallback}};
+const interests=['Lagoon & beaches','Nature & hiking','Marine life','Culture & heritage','Food & local life','Quiet & slow travel'];
+const interestTerms:Record<string,string[]>={'Lagoon & beaches':['lagoon','beach','motu','water'],'Nature & hiking':['nature','mountain','valley','trail','waterfall'],'Marine life':['marine','reef','ocean','diving','lagoon'],'Culture & heritage':['culture','heritage','marae','village','history'],'Food & local life':['food','market','vanilla','village','local'],'Quiet & slow travel':['quiet','slow','remote','peaceful','village']};
+
+export default function TravelFeatures({savedIslands,journeyIslands,onToggleJourneyIsland}:Props){
+ const [profile,setProfile]=useState(()=>read('graceon-profile-v1',{name:'',email:''}));
+ const [profileEditing,setProfileEditing]=useState(!read('graceon-profile-v1',null));
+ const [days,setDays]=useState(5);
+ const [selectedInterests,setSelectedInterests]=useState<string[]>(['Nature & hiking','Culture & heritage']);
+ const [plan,setPlan]=useState<{day:number;island:Island;activity:string}[]>(()=>read('graceon-trip-plan-v1',[]));
+ const [posts,setPosts]=useState<Post[]>(()=>read('graceon-community-posts-v1',[]));
+ const [reported,setReported]=useState<string[]>(()=>read('graceon-community-reports-v1',[]));
+ const [postText,setPostText]=useState('');
+ const [postPlace,setPostPlace]=useState('Tahiti');
+ const [postImage,setPostImage]=useState('');
+ const [activeTab,setActiveTab]=useState<'all'|'saved'|'plan'>('all');
+ const [notice,setNotice]=useState('');
+ const visiblePosts=useMemo(()=>posts.filter(p=>!reported.includes(p.id)),[posts,reported]);
+ const journeyCount=journeyIslands.length+savedIslands.length;
+ const toggleInterest=(item:string)=>setSelectedInterests(old=>old.includes(item)?old.filter(x=>x!==item):[...old,item]);
+ const makePlan=()=>{
+  const ranked=islands.map(island=>{const hay=(island.kind+' '+island.description+' '+island.detail+' '+island.culture).toLowerCase();const score=selectedInterests.reduce((n,p)=>n+(interestTerms[p]||[]).some(term=>hay.includes(term.toLowerCase()))?1:0,0);return {island,score}}).sort((a,b)=>b.score-a.score);
+  const picks=(ranked.filter(x=>x.score>0).map(x=>x.island).concat(islands.filter(x=>!ranked.some(r=>r.island.name===x.name&&r.score>0)))).slice(0,Math.min(days,8));
+  const next=Array.from({length:days},(_,i)=>{const island=picks[i%picks.length];const activities=island.explore?.length?island.explore:island.highlights;return {day:i+1,island,activity:activities[i%activities.length]};});
+  setPlan(next);localStorage.setItem('graceon-trip-plan-v1',JSON.stringify(next));setNotice('Your sample itinerary is ready. Save islands to My Journey to keep building it.');
+ };
+ const addPost=()=>{
+  if(!postText.trim())return;
+  const next:Post={id:Date.now().toString(),author:profile.name.trim()||'Island traveller',text:postText.trim(),image:postImage.trim(),place:postPlace,createdAt:new Date().toISOString(),reports:0};
+  const updated=[next,...posts];setPosts(updated);localStorage.setItem('graceon-community-posts-v1',JSON.stringify(updated));setPostText('');setPostImage('');setNotice('Post added to this browser’s demo community.');
+ };
+ const reportPost=(id:string)=>{
+  const next=[...reported,id];setReported(next);localStorage.setItem('graceon-community-reports-v1',JSON.stringify(next));setNotice('Thanks. This post is now hidden in this browser’s demo view.');
+ };
+ const saveProfile=()=>{localStorage.setItem('graceon-profile-v1',JSON.stringify(profile));setProfileEditing(false);setNotice('Your local travel profile is saved on this device.');};
+ const addPlanIslands=()=>{plan.forEach(item=>{if(!journeyIslands.includes(item.island.name))onToggleJourneyIsland(item.island.name)});setNotice('The itinerary destinations were added to My Journey.');};
+ const allJourney=[...new Set([...journeyIslands,...savedIslands])];
+ return <div className="travel-features">
+  <section id="my-journey" className="tf-section tf-journey">
+   <div className="tf-heading"><div><span className="tf-kicker">01 / YOUR PERSONAL SPACE</span><h2>My <em>Journey.</em></h2></div><p>Keep the places you love, shape your island route and bring your trip ideas together in one place.</p></div>
+   <div className="tf-journey-grid">
+    <aside className="tf-profile-card"><div className="tf-profile-icon"><UserRound/></div><span className="tf-label">TRAVELLER PROFILE</span>
+     {profileEditing?<div className="tf-profile-fields"><label>Your name<input value={profile.name} onChange={e=>setProfile({...profile,name:e.target.value})} placeholder="How should we call you?"/></label><label>Email (optional)<input type="email" value={profile.email} onChange={e=>setProfile({...profile,email:e.target.value})} placeholder="you@example.com"/></label><button className="tf-button" onClick={saveProfile}>Save profile <ArrowRight size={15}/></button></div>:<><h3>{profile.name||'Your travel profile'}</h3><p>{profile.email||'Your island plans, saved on this device.'}</p><button className="tf-text-button" onClick={()=>setProfileEditing(true)}>EDIT PROFILE <ArrowRight size={13}/></button></>}
+     <div className="tf-profile-stats"><div><strong>{allJourney.length}</strong><span>ISLANDS</span></div><div><strong>{plan.length}</strong><span>ITINERARY DAYS</span></div></div>
+     <small className="tf-local-note">Demo profile · stored in this browser only. No account or cloud sync is connected yet.</small>
+    </aside>
+    <div className="tf-journey-content">
+     <div className="tf-tabs"><button className={activeTab==='all'?'active':''} onClick={()=>setActiveTab('all')}>All saved</button><button className={activeTab==='saved'?'active':''} onClick={()=>setActiveTab('saved')}>Saved islands</button><button className={activeTab==='plan'?'active':''} onClick={()=>setActiveTab('plan')}>My itinerary</button></div>
+     {activeTab==='plan'?<div className="tf-itinerary-list">{plan.length?plan.map(item=><article className="tf-itinerary-row" key={item.day}><span>DAY {String(item.day).padStart(2,'0')}</span><div><strong>{item.island.name}</strong><p>{item.activity}</p></div><MapPin size={16}/></article>):<p className="tf-empty">Your itinerary is waiting. Use the GRACEON AI Guide below to create a first draft.</p>}</div>:<div className="tf-saved-grid">{(activeTab==='saved'?savedIslands:allJourney).map(name=>{const island=islands.find(i=>i.name===name);if(!island)return null;return <article className="tf-saved-card" key={name}><img src={island.image} alt={name}/><div><span>THE ISLANDS OF TAHITI</span><h3>{name}</h3><button onClick={()=>onToggleJourneyIsland(name)}>{journeyIslands.includes(name)?'REMOVE FROM JOURNEY':'ADD TO JOURNEY'} <ArrowRight size={12}/></button></div></article>})}{(activeTab==='saved'?savedIslands:allJourney).length===0&&<p className="tf-empty">No islands saved yet. Explore the eight islands above and add your favourites to your journey.</p>}</div>}
+    </div>
+   </div>
+  </section>
+
+  <section id="ai-guide" className="tf-section tf-guide">
+   <div className="tf-heading"><div><span className="tf-kicker">02 / YOUR PERSONAL ISLAND CONCIERGE</span><h2>Meet your <em>AI Guide.</em></h2></div><p>Tell GRACEON what matters to you. Build a day-by-day island route around your interests and the time you have.</p></div>
+   <div className="tf-guide-panel"><div className="tf-guide-intro"><span className="tf-guide-orbit"><Sparkles/></span><span className="tf-label">GRACEON · TRAVEL PLANNER</span><h3>A journey shaped<br/>around <em>you.</em></h3><p>Choose your travel interests and trip length. GRACEON will create a suggested route using the destination information in this guide.</p><div className="tf-guide-disclaimer">Personalized demo recommendations · not live generative AI. Confirm transport, opening hours and availability with local operators.</div></div>
+    <div className="tf-guide-builder"><label className="tf-days-label">HOW MANY DAYS? <strong>{days} DAYS</strong></label><input className="tf-range" type="range" min="2" max="10" value={days} onChange={e=>setDays(Number(e.target.value))}/><div className="tf-interest-heading"><span>WHAT DO YOU LOVE?</span><small>SELECT ALL THAT APPLY</small></div><div className="tf-interest-grid">{interests.map(item=><button key={item} className={selectedInterests.includes(item)?'selected':''} onClick={()=>toggleInterest(item)}>{selectedInterests.includes(item)?'✓':'+'} {item}</button>)}</div><button className="tf-button tf-generate" onClick={makePlan}><Sparkles size={16}/> Create my itinerary <ArrowRight size={15}/></button></div>
+   </div>
+   {plan.length>0&&<div className="tf-plan-result"><div className="tf-plan-top"><div><span className="tf-kicker">YOUR SUGGESTED ROUTE</span><h3>{plan.length} days across the islands</h3></div><button className="tf-button" onClick={addPlanIslands}><BookmarkPlus size={15}/> Save to My Journey</button></div><div className="tf-plan-days">{plan.map(item=><article key={item.day}><span>DAY {String(item.day).padStart(2,'0')}</span><img src={item.island.image} alt=""/><div><h4>{item.island.name}</h4><p>{item.activity}</p></div></article>)}</div></div>}
+  </section>
+
+  <section id="community" className="tf-section tf-community">
+   <div className="tf-heading"><div><span className="tf-kicker">03 / NOTES FROM THE ISLANDS</span><h2>Island <em>Community.</em></h2></div><p>A simple space for travellers to exchange moments, helpful tips and local recommendations. Keep it kind and respectful.</p></div>
+   <div className="tf-community-grid"><div className="tf-compose"><span className="tf-label">SHARE A MOMENT</span><h3>What did you discover?</h3><textarea value={postText} onChange={e=>setPostText(e.target.value)} placeholder="Share a photo story, experience or recommendation…"/><label>Island<select value={postPlace} onChange={e=>setPostPlace(e.target.value)}>{islands.map(i=><option key={i.name}>{i.name}</option>)}</select></label><label>Image URL (optional)<input value={postImage} onChange={e=>setPostImage(e.target.value)} placeholder="Paste a public image link"/></label><button className="tf-button" onClick={addPost}><Plus size={15}/> Publish post <ArrowRight size={14}/></button><small>Posts are saved locally in this demo. Public sharing needs a connected community backend.</small></div>
+    <div className="tf-feed"><div className="tf-feed-heading"><span className="tf-label">COMMUNITY FIELD NOTES</span><span>{visiblePosts.length} POSTS</span></div>{visiblePosts.length?visiblePosts.map(post=><article className="tf-post" key={post.id}>{post.image&&<img className="tf-post-image" src={post.image} alt="Community share" onError={e=>{e.currentTarget.style.display='none'}}}/>}<div className="tf-post-body"><div className="tf-post-meta"><strong>{post.author}</strong><span>{post.place} · {new Date(post.createdAt).toLocaleDateString()}</span></div><p>{post.text}</p><button className="tf-report" onClick={()=>reportPost(post.id)}><Flag size={13}/> Report content</button></div></article>):<div className="tf-empty tf-feed-empty"><Heart/><strong>Be the first to share a story.</strong><p>Your community feed will grow with traveller recommendations and island moments.</p></div>}</div>
+   </div>
+   <p className="tf-moderation-note"><ShieldAlert size={15}/> Reporting hides the post in this browser demo only. Shared moderation and public posting require backend authentication and moderation tools.</p>
+  </section>
+
+  <section id="travel-essentials" className="tf-section tf-essentials">
+   <div className="tf-heading"><div><span className="tf-kicker">04 / BEFORE YOU GO</span><h2>Travel <em>Essentials.</em></h2></div><p>Practical information for a smoother visit. Always verify entry rules and schedules for your nationality and travel dates.</p></div>
+   <div className="tf-essential-grid">
+    <article className="tf-essential-card"><span className="tf-essential-icon"><Plane/></span><span className="tf-label">01 · ENTRY & VISAS</span><h3>Know before you arrive.</h3><p>Entry requirements depend on your nationality, passport, trip length and route. Check the official French visa service and Tahiti Tourisme guidance before booking.</p><a href="https://france-visas.gouv.fr/en/" target="_blank" rel="noreferrer">French visa information <ArrowRight size={14}/></a><a href="https://tahititourisme.com/" target="_blank" rel="noreferrer">Tahiti Tourisme <ArrowRight size={14}/></a></article>
+    <article className="tf-essential-card"><span className="tf-essential-icon"><Ship/></span><span className="tf-label">02 · BETWEEN ISLANDS</span><h3>Plan your connections.</h3><p>Flights and passenger ferries connect different island groups. Routes, luggage rules and timetables vary, so check operators directly and leave sensible connection time.</p><a href="https://www.airtahiti.com/" target="_blank" rel="noreferrer">Air Tahiti flights <ArrowRight size={14}/></a><a href="https://www.aremiti.pf/" target="_blank" rel="noreferrer">Aremiti ferry <ArrowRight size={14}/></a></article>
+    <article className="tf-essential-card tf-emergency"><span className="tf-essential-icon"><Phone/></span><span className="tf-label">03 · EMERGENCY CONTACTS</span><h3>Keep these numbers close.</h3><div className="tf-emergency-numbers"><div><strong>15</strong><span>Medical / SAMU</span></div><div><strong>16</strong><span>Sea rescue</span></div><div><strong>17</strong><span>Police</span></div><div><strong>18</strong><span>Fire service</span></div></div><a href="https://tahititourisme.pf/en-pf/emergency-contacts-and-risk-management-measures/" target="_blank" rel="noreferrer">Official emergency guidance <ArrowRight size={14}/></a></article>
+    <article className="tf-essential-card"><span className="tf-essential-icon"><MapPin/></span><span className="tf-label">04 · VISITOR INFORMATION</span><h3>Find local guidance.</h3><p>Tahiti Tourisme’s information team in Papeete can help visitors with practical guidance. Look up current visitor information and local contacts before travelling onward.</p><a href="https://tahititourisme.pf/en-pf/islands-and-archipelagos/the-society-islands/tahiti/tahiti-practical-information/" target="_blank" rel="noreferrer">Papeete visitor information <ArrowRight size={14}/></a><a href="https://tahititourisme.com/" target="_blank" rel="noreferrer">Official visitor website <ArrowRight size={14}/></a></article>
+   </div>
+   <div className="tf-source-note"><Info size={15}/> Emergency numbers are published by Tahiti Tourisme. Entry rules, routes and visitor-centre hours can change; check official sources before departure.</div>
+  </section>
+  {notice&&<div className="tf-toast" role="status"><span>{notice}</span><button onClick={()=>setNotice('')}>×</button></div>}
+ </div>;
+}
