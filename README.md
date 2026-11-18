@@ -25,3 +25,8 @@ npm run build
 - Photography currently uses Unsplash image URLs as visual placeholders; replace with Tahiti Tourisme-approved/licensed destination photography and add image credits before any public/commercial presentation.
 - No live booking, event feed, map API or Apidae integration is claimed.
 - Footer credits GRACEON Digital Studio as the concept designer/developer; it does not imply legal registration or client affiliation.
+
+
+## Server-backed island check-ins (next-stage foundation)
+
+A Supabase Edge Function, database migration, and setup guide are included under `supabase/` and `docs/server-verified-checkins.md`. The public GitHub Pages experience still uses device-local prototype check-ins until a Supabase project, authentication, database migration, and function deployment are configured. Do not describe the current browser-only check-ins as fraud-proof or server-verified.
