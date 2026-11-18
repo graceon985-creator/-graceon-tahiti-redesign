@@ -19,3 +19,13 @@
 .upgraded-stamp{left:-2%;bottom:25%;z-index:2;box-shadow:0 8px 30px rgba(16,50,47,.12);}
 @media(max-width:900px){.hero-gallery-upgraded{height:480px;padding-left:2%;}.hero-thumbnails{height:78px;gap:7px;}}
 @media(max-width:640px){.hero-gallery-upgraded{height:370px;padding:0;margin-top:10px;gap:9px;}.hero-feature{border-radius:2px;}.hero-feature-copy{left:7%;bottom:9%;}.hero-feature-copy h2{font-size:36px;}.hero-feature-copy>span{font-size:8px;}.hero-next{right:13px;bottom:13px;width:38px;height:38px;}.hero-thumbnails{height:68px;gap:5px;}.hero-thumb span{font-size:6px;padding:13px 4px 5px;letter-spacing:.08em;}.upgraded-stamp{left:-3%;bottom:23%;width:72px;height:72px;}.upgraded-stamp b{font-size:24px;}.upgraded-stamp small{font-size:6px;}}
+
+/* Hour 3 — eight destinations and expandable island discovery */
+.island-select{width:100%;border:0;padding:0;background:none;cursor:pointer;text-align:left;}
+.island-select:focus-visible{outline:2px solid #c87956;outline-offset:3px;}
+.island-detail-panel{margin-top:18px;padding:20px 18px;background:#e9e5da;border-left:2px solid #c87956;animation:islandDetailIn .28s ease both;}
+.detail-label{font-size:8px;letter-spacing:.16em;color:#b16e51;font-weight:700;}
+.island-detail-panel ul{padding-left:17px;margin:12px 0;font-size:11px;line-height:1.9;color:#355b55;}
+.island-detail-panel p{font-size:11px;line-height:1.8;color:#627674;margin:10px 0;}
+.island-close{border:0;border-bottom:1px solid #b16e51;background:transparent;color:#173b3b;padding:7px 0;cursor:pointer;font-size:10px;}
+@keyframes islandDetailIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
