@@ -13,3 +13,61 @@ export const experiences = [
  {n:'02',title:'Follow the green',type:'Nature & trails',copy:'Walk through lush valleys, discover waterfalls and look out across volcanic ridgelines.',image:'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1200&q=85'},
  {n:'03',title:'Feel the rhythm',type:'Culture & heritage',copy:'Meet living traditions through dance, crafts, tattoo artistry, food and community festivals.',image:'https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=1200&q=85'}
 ];
+
+
+export type IslandEvent = {
+ id:string; title:string; island:string; location:string; dateLabel:string;
+ dateStatus:'confirmed'|'seasonal'; category:string; summary:string;
+ officialUrl:string; mapQuery:string;
+};
+
+export const events: IslandEvent[] = [
+ {
+  id:'hura-mataeinaa-2026', title:"Hura Mata'eina'a – Celebrate Matari'i i ni'a",
+  island:'Moorea', location:'Salle Omnisport Afareaitu, Moorea',
+  dateLabel:'20–22 November 2026', dateStatus:'confirmed', category:'Culture & dance',
+  summary:"A three-day cultural celebration with an 'Ori Tahiti dance competition, performances and community activities. Free admission and local transport are listed by the organizer.",
+  officialUrl:'https://www.tahititourisme.com/agenda/hura-mataeinaa-celebrate-matarii-nia/',
+  mapQuery:'Salle Omnisport Afareaitu Moorea French Polynesia'
+ },
+ {
+  id:'matarii-2026', title:"Matari'i i ni'a – Season of Abundance",
+  island:'Tahiti & the islands', location:'Celebrated across French Polynesia',
+  dateLabel:'From 20 November · annual seasonal celebration', dateStatus:'seasonal', category:'Culture & heritage',
+  summary:'The Polynesian season of abundance begins with the rising of the Pleiades. Community celebrations and local programs vary by island and year; check local announcements for specific activities.',
+  officialUrl:'https://www.tahititourisme.com/campaign/the-season-of-abundance/',
+  mapQuery:'Papeete Tahiti French Polynesia'
+ },
+ {
+  id:'heiva-tahiti', title:'Heiva i Tahiti',
+  island:'Tahiti', location:'Place To’ata, Papeete',
+  dateLabel:'Usually July · 2027 dates to be announced', dateStatus:'seasonal', category:'Culture & dance',
+  summary:'The major celebration of traditional Polynesian singing, music and dance, with groups presenting performances inspired by island legends and heritage.',
+  officialUrl:'https://www.tahititourisme.com/event/heiva-i-tahiti/',
+  mapQuery:'Place Toata Papeete Tahiti French Polynesia'
+ },
+ {
+  id:'hura-tapairu', title:'Hura Tapairu',
+  island:'Tahiti', location:'Maison de la Culture – Te Fare Tauhiti Nui, Papeete',
+  dateLabel:'Usually November · dates to be announced', dateStatus:'seasonal', category:'Culture & dance',
+  summary:'A dance competition created for smaller troupes, known for original performances and contemporary interpretations rooted in Tahitian dance.',
+  officialUrl:'https://www.tahititourisme.com/discover/festivals-and-events/',
+  mapQuery:'Maison de la Culture Te Fare Tauhiti Nui Papeete'
+ },
+ {
+  id:'farerei-haga', title:'Farerei Haga',
+  island:'Rangiroa', location:'Rangiroa, Tuamotu Archipelago',
+  dateLabel:'Usually September · dates to be announced', dateStatus:'seasonal', category:'Culture & dance',
+  summary:'A gathering of dance groups from neighboring atolls, offering visitors a chance to experience local performance traditions. Confirm the next edition with local organizers.',
+  officialUrl:'https://www.tahititourisme.com/discover/tahitian-culture/tahitian-dance/',
+  mapQuery:'Rangiroa Avatoru French Polynesia'
+ },
+ {
+  id:'hawaiki-nui-vaa', title:'Hawaiki Nui Va’a',
+  island:'Huahine · Raiatea · Taha’a · Bora Bora', location:'Society Islands',
+  dateLabel:'Annual race · 2026 edition: 28–30 October (past)', dateStatus:'seasonal', category:'Sport & va’a',
+  summary:'A major outrigger-canoe race crossing several Society Islands. The next edition dates should be confirmed with the organizers before travel.',
+  officialUrl:'https://www.tahititourisme.com/discover/festivals-and-events/',
+  mapQuery:'Society Islands French Polynesia'
+ }
+];
