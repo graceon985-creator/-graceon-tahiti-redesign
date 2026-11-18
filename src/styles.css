@@ -88,3 +88,5 @@
 .culture-tab-content{min-height:130px;padding:17px 18px;background:#eee9dd;border-left:2px solid #c87956;animation:islandDetailIn .22s ease both;}
 .culture-tab-content h3{font:24px 'Playfair Display',serif;font-weight:400;margin:0 0 8px;color:#214946;}
 .culture-tab-content p{font-size:11px;line-height:1.8;color:#627772;margin:0;}
+
+.destination-place[href]{color:inherit;text-decoration:none;transition:color .2s,transform .2s;}.destination-place[href]:hover{color:#c87956;transform:translateX(5px);}.destination-place[href]:focus-visible{outline:2px solid #c87956;outline-offset:4px;}
