@@ -1,4 +1,4 @@
-import {useMemo,useState} from 'react';
+import {useEffect,useMemo,useState} from 'react';
 import {CircleMarker,MapContainer,Popup,TileLayer,useMap} from 'react-leaflet';
 import type {LatLngExpression} from 'leaflet';
 import {ArrowRight,MapPin} from 'lucide-react';
@@ -22,7 +22,7 @@ const islandCoordinates:Record<string,[number,number]> = {
 
 function FocusIsland({position}:{position:LatLngExpression}) {
   const map = useMap();
-  map.flyTo(position,7,{duration:1.1});
+  useEffect(()=>{map.flyTo(position,7,{duration:1.1})},[map,position]);
   return null;
 }
 
