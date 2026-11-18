@@ -130,3 +130,58 @@
 .destination-access>a{display:flex;align-items:center;gap:10px;flex-shrink:0;padding:13px 16px;background:#173f3e;color:#f4f1e9;font-size:8px;letter-spacing:.12em;transition:background .2s,transform .2s;}
 .destination-access>a:hover{background:#c87956;transform:translateY(-2px);}
 @media(max-width:640px){.destination-access{align-items:flex-start;flex-direction:column;padding:23px 7%;gap:16px}.destination-access>a{width:100%;justify-content:center;text-align:center;}}
+
+
+/* Tahiti Passport — collectible island discovery stamps */
+.passport-section{background:#e9e5da;color:#173f3c;}
+.passport-heading{display:grid;grid-template-columns:1fr 330px;gap:8%;align-items:center;margin-bottom:58px;}
+.passport-heading h2{font:clamp(48px,6vw,78px) 'Playfair Display',serif;font-weight:400;line-height:.98;letter-spacing:-.045em;margin:18px 0;}
+.passport-heading h2 em{color:#bd7656;font-weight:400;}
+.passport-heading p{max-width:490px;font-size:13px;line-height:1.9;color:#657770;}
+.passport-cover{position:relative;min-height:330px;padding:42px 28px 28px;background:#173f3c;color:#f4f1e9;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;box-shadow:12px 14px 0 #d1cbbd;}
+.passport-cover:before,.passport-cover:after{content:'';position:absolute;inset:13px;border:1px solid rgba(229,194,151,.55);pointer-events:none;}
+.passport-cover:after{inset:19px;border:1px dashed rgba(229,194,151,.3);}
+.passport-cover-orbit{position:absolute;top:25px;font-size:10px;letter-spacing:.35em;color:#e3b38d;}
+.passport-cover>span:first-of-type{font-size:8px;letter-spacing:.25em;color:#e3b38d;}
+.passport-cover>strong{font:48px 'Playfair Display',serif;font-weight:400;letter-spacing:.12em;margin:6px 0;}
+.passport-cover>small{font-size:8px;letter-spacing:.23em;}
+.passport-cover-mark{width:66px;height:66px;border:1px solid #e3b38d;border-radius:50%;display:grid;place-items:center;font:42px 'Playfair Display',serif;color:#e3b38d;margin:22px 0 14px;}
+.passport-cover-bottom{font-size:7px;letter-spacing:.16em;color:#c5d0c5;}
+.passport-progress{display:grid;grid-template-columns:180px 1fr;column-gap:30px;align-items:center;padding:24px 0;border-top:1px solid #c9c9bd;border-bottom:1px solid #c9c9bd;margin-bottom:30px;}
+.passport-progress>div:first-child{display:grid;gap:8px;}
+.passport-progress strong{font:32px 'Playfair Display',serif;font-weight:400;}
+.passport-progress strong small{font:8px 'DM Sans',sans-serif;letter-spacing:.13em;color:#879087;}
+.passport-progress-track{height:5px;background:#d1d0c4;overflow:hidden;}
+.passport-progress-track span{display:block;height:100%;background:#bd7656;transition:width .35s ease;}
+.passport-progress>p{grid-column:2;margin:8px 0 0;font-size:10px;color:#77847b;}
+.passport-stamp-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;}
+.passport-stamp-card{min-width:0;background:#f3f0e7;border:1px solid #d7d4c8;padding:12px;transition:transform .25s,border-color .25s;}
+.passport-stamp-card:hover{transform:translateY(-4px);border-color:#bd7656;}
+.passport-stamp-art{height:180px;position:relative;display:grid;place-items:center;background:#e5e1d6;overflow:hidden;}
+.passport-stamp-art:before{content:'';position:absolute;width:150px;height:150px;border:1px dashed #b5b8a9;border-radius:50%;}
+.passport-stamp-number{position:absolute;top:12px;left:13px;font-size:8px;letter-spacing:.15em;color:#9b8876;}
+.passport-stamp-ring{width:130px;height:130px;border:1px solid #a9a99a;border-radius:50%;outline:4px double #b9b6a6;outline-offset:5px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px;color:#8c9286;transform:rotate(-8deg);opacity:.72;}
+.passport-stamp-ring span,.passport-stamp-ring small{font-size:7px;letter-spacing:.12em;}
+.passport-stamp-ring strong{font:19px 'Playfair Display',serif;font-weight:400;margin:8px 0;}
+.passport-stamp-card.earned .passport-stamp-art{background:#dce5d9;}
+.passport-stamp-card.earned .passport-stamp-ring{border:2px solid #235b4d;outline-color:#235b4d;color:#235b4d;opacity:1;transform:rotate(-8deg);}
+.passport-stamp-card.earned .passport-stamp-ring strong{font-size:20px;}
+.passport-check{position:absolute;right:15px;bottom:14px;width:25px;height:25px;border-radius:50%;display:grid;place-items:center;background:#235b4d;color:white;}
+.passport-stamp-meta{padding:15px 4px 5px;}
+.passport-stamp-meta>span{font-size:8px;letter-spacing:.1em;color:#a17a62;}
+.passport-stamp-meta h3{font:24px 'Playfair Display',serif;font-weight:400;margin:7px 0;}
+.passport-stamp-meta p{font-size:10px;line-height:1.6;color:#78847b;min-height:32px;margin:0 0 10px;}
+.passport-stamp-meta button,.passport-next>button{display:flex;align-items:center;gap:8px;border:0;border-bottom:1px solid #bd7656;background:none;color:#31564f;padding:8px 0;font-size:8px;letter-spacing:.1em;cursor:pointer;}
+.passport-stamp-meta button:hover,.passport-next>button:hover{color:#bd7656;}
+.passport-next{display:flex;align-items:center;gap:18px;padding:22px 24px;margin-top:28px;background:#173f3c;color:#f4f1e9;}
+.passport-next-icon{width:46px;height:46px;flex:none;border:1px solid #81968a;border-radius:50%;display:grid;place-items:center;color:#e3b38d;}
+.passport-next>div:nth-child(2){flex:1;}
+.passport-next .detail-label{color:#e3b38d;}
+.passport-next h3{font:24px 'Playfair Display',serif;font-weight:400;margin:6px 0;}
+.passport-next p{font-size:10px;color:#c4d0c6;line-height:1.6;margin:0;}
+.passport-next>button{color:#f4f1e9;border-color:#e3b38d;flex:none;}
+.passport-collect{margin-top:18px;padding:13px 16px;border:1px solid #bd7656;background:#173f3c;color:#f4f1e9;font-size:9px;letter-spacing:.12em;cursor:pointer;transition:background .2s;}
+.passport-collect:hover{background:#bd7656;}
+.passport-collect.collected{background:#e2e9df;border-color:#7e9a82;color:#315b4b;cursor:default;}
+@media(max-width:850px){.passport-heading{grid-template-columns:1fr 260px;gap:5%;}.passport-cover{min-height:290px}.passport-stamp-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:600px){.passport-section{padding-top:65px;padding-bottom:65px}.passport-heading{grid-template-columns:1fr;gap:30px}.passport-cover{width:min(100%,330px);min-height:300px;margin:0 auto}.passport-progress{grid-template-columns:1fr;gap:13px}.passport-progress>p{grid-column:1}.passport-stamp-grid{gap:10px}.passport-stamp-art{height:145px}.passport-stamp-ring{width:105px;height:105px}.passport-stamp-ring strong{font-size:16px}.passport-stamp-meta h3{font-size:20px}.passport-next{align-items:flex-start;flex-wrap:wrap;padding:18px}.passport-next>div:nth-child(2){min-width:calc(100% - 70px)}.passport-next>button{margin-left:64px}}
