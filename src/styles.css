@@ -1017,3 +1017,50 @@
 .hero h1{color:#fff;text-shadow:0 4px 32px rgba(0,10,18,.92)}
 .hero-intro{display:inline-block;padding:7px 10px;background:rgba(4,29,38,.38);backdrop-filter:blur(4px);color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.95)}
 @media(max-width:640px){.passport-side-trigger{width:68px;padding:6px 4px;gap:5px}.passport-side-trigger:hover{width:72px}.passport-side-cover{width:52px;height:70px}.passport-side-cover strong{font-size:15px}.passport-side-cover i{font-size:13px}.passport-side-label{font-size:5px}.hero-copy .eyebrow{font-size:8px;padding:6px 8px}.hero-intro{padding:6px 8px}}
+
+
+/* Final visual correction: compact passport, richer hero image gallery,
+   and restore the deep-ocean celebration palette. */
+.passport-side-trigger{width:58px!important;padding:5px 4px!important;gap:4px!important}
+.passport-side-trigger:hover{width:62px!important}
+.passport-side-cover{width:43px!important;height:59px!important;padding:5px 3px!important;gap:2px!important}
+.passport-side-cover small{font-size:4px!important}
+.passport-side-cover strong{font-size:13px!important;letter-spacing:.08em}
+.passport-side-cover i{font-size:11px!important}
+.passport-side-cover em{font-size:3px!important}
+.passport-side-label{font-size:0!important;gap:0!important}
+.passport-side-label svg{width:11px;height:11px}
+.hero-photo-previews{position:absolute;z-index:5;right:6.5%;bottom:13%;display:flex;gap:12px;width:min(410px,37%)}
+.hero-photo-preview{position:relative;flex:1;min-width:0;height:clamp(94px,12vw,150px);padding:0;border:1px solid rgba(255,255,255,.68);border-radius:12px;overflow:hidden;background:#0a3440;cursor:pointer;box-shadow:0 12px 32px rgba(0,0,0,.24);transition:transform .3s,border-color .3s}
+.hero-photo-preview:hover{transform:translateY(-7px);border-color:#e9c19e}
+.hero-photo-preview img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s}
+.hero-photo-preview:hover img{transform:scale(1.07)}
+.hero-photo-preview:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(0,15,20,.8))}
+.hero-photo-preview span{position:absolute;z-index:1;left:12px;bottom:10px;color:#fff;font-size:9px;letter-spacing:.14em}
+.hero-copy .eyebrow{background:rgba(4,29,38,.58);border:1px solid rgba(255,255,255,.2);backdrop-filter:blur(7px);padding:9px 13px;border-radius:2px}
+.hero-intro{background:rgba(4,29,38,.48);backdrop-filter:blur(7px);border-left:2px solid #e8bd98}
+.events-section.culture-celebration-section{background:#082f39!important;color:#f4f0e7!important;position:relative;overflow:hidden}
+.events-section.culture-celebration-section:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 85% 12%,rgba(36,105,111,.25),transparent 45%),linear-gradient(135deg,rgba(4,27,35,.4),transparent 60%)}
+.culture-celebration-section>*{position:relative}
+.culture-celebration-section .events-heading h2{color:#f5f0e6}
+.culture-celebration-section .events-heading h2 em{color:#dfaa83}
+.culture-celebration-section .events-heading>p{color:#c0d0ca}
+.culture-celebration-section .section-kicker{color:#dfaa83}
+.culture-celebration-section .event-filter{color:#e0e8df;border-color:rgba(226,235,224,.34);background:rgba(255,255,255,.035)}
+.culture-celebration-section .event-filter.active,.culture-celebration-section .event-filter:hover{background:#d5a17c;color:#123b43;border-color:#d5a17c}
+.culture-celebration-section .event-feature{background:#103f48;border:1px solid rgba(224,236,226,.16);box-shadow:0 24px 70px rgba(0,0,0,.16)}
+.culture-celebration-section .event-feature-copy{background:linear-gradient(145deg,#103f48,#0b3039);color:#f4f0e7}
+.culture-celebration-section .event-feature-copy h3{color:#fff}
+.culture-celebration-section .event-feature-copy p,.culture-celebration-section .event-feature-place{color:#c2d0c9}
+.culture-celebration-section .event-feature-date{color:#e3b18d}
+.culture-celebration-section .event-feature-links a{color:#e7b58f}
+.culture-celebration-section .event-card{background:#103f48;border:1px solid rgba(224,236,226,.16);color:#f4f0e7}
+.culture-celebration-section .event-timeline-copy h3{color:#fff}
+.culture-celebration-section .event-timeline-copy p,.culture-celebration-section .event-timeline-location{color:#c2d0c9}
+.culture-celebration-section .event-timeline-meta strong{color:#f3e9d8}
+.culture-celebration-section .event-timeline-meta>div a{color:#e7b58f}
+.culture-celebration-section .event-status{color:#d9e4dc;border-color:rgba(226,235,224,.35)}
+.culture-celebration-section .event-status.confirmed{background:rgba(112,158,126,.18);color:#c9e4ce;border-color:#6e9b7b}
+.culture-celebration-section .events-note{color:#afc2ba}
+@media(max-width:760px){.hero-photo-previews{right:6%;bottom:9%;width:58%;gap:7px}.hero-photo-preview{height:88px}.hero-photo-preview span{font-size:7px;left:7px;bottom:7px}.hero-copy{top:43%}}
+@media(max-width:480px){.hero-photo-previews{width:66%;bottom:7%;}.hero-photo-preview{height:72px}.passport-side-trigger{width:48px!important}.passport-side-cover{width:37px!important;height:51px!important}}
