@@ -165,3 +165,18 @@
 .iot-island-explore-nav a:hover,.iot-island-explore-nav a:focus-visible{background:#d5a875;border-color:#d5a875;color:#102b35;transform:translateY(-1px)}
 .iot-island-anchor-section,.iot-island-map-block,.iot-island-plan{scroll-margin-top:5rem}
 @media(max-width:600px){.iot-island-explore-nav{gap:.4rem;padding:.75rem .8rem}.iot-island-explore-nav a{padding:.55rem .8rem;font-size:.73rem}}
+
+/* Place detail page enhancements: official source and related destinations */
+.iot-place-actions{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.iot-place-source{opacity:.86}
+.iot-place-related{padding:95px 9vw;background:#e8e4d9}
+.iot-place-related__grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.iot-place-related-card{color:inherit;text-decoration:none;display:flex;flex-direction:column;min-width:0}
+.iot-place-related-card__image{height:260px;overflow:hidden;background:linear-gradient(130deg,#c6d0c7,#7d9990)}
+.iot-place-related-card__image img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .7s}
+.iot-place-related-card:hover .iot-place-related-card__image img{transform:scale(1.04)}
+.iot-place-related-card small{font-size:9px;letter-spacing:.15em;color:#788780;margin-top:18px}
+.iot-place-related-card h3{font:clamp(24px,3vw,36px)/1.08 Georgia,serif;font-weight:400;margin:10px 0 20px}
+.iot-place-related-card>span{font-size:9px;letter-spacing:.14em;color:#155c5b;margin-top:auto}
+@media(max-width:760px){.iot-place-related{padding:75px 7%}.iot-place-related__grid{grid-template-columns:1fr 1fr;gap:14px}.iot-place-related-card__image{height:180px}.iot-place-related-card h3{font-size:24px}}
+@media(max-width:480px){.iot-place-related__grid{grid-template-columns:1fr}.iot-place-related-card__image{height:230px}}
