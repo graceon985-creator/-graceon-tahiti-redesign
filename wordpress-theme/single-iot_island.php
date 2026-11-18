@@ -61,6 +61,7 @@ get_header();
     $kicker = get_post_meta($first->ID, 'gtc_highlight_kicker', true);
     $location = get_post_meta($first->ID, 'gtc_highlight_location', true);
     $map = get_post_meta($first->ID, 'gtc_highlight_map_url', true);
+    $source = get_post_meta($first->ID, 'gtc_highlight_source_url', true);
   ?>
   <section class="iot-island-feature" id="island-highlights">
     <div class="iot-island-section-head">
@@ -79,6 +80,7 @@ get_header();
         <div class="iot-island-feature-card__content"><?php echo wp_kses_post(apply_filters('the_content', $first->post_content)); ?></div>
         <?php if ($location) : ?><p class="iot-island-location"><?php echo esc_html($location); ?></p><?php endif; ?>
         <?php if ($map) : ?><a class="iot-island-text-link" href="<?php echo esc_url($map); ?>" target="_blank" rel="noopener noreferrer">FIND IT ON THE MAP ↗</a><?php endif; ?>
+        <?php if ($source) : ?><a class="iot-island-text-link" href="<?php echo esc_url($source); ?>" target="_blank" rel="noopener noreferrer">READ OFFICIAL DESTINATION GUIDE ↗</a><?php endif; ?>
       </div>
     </article>
   </section>
@@ -98,6 +100,7 @@ get_header();
         $kicker = get_post_meta($item->ID, 'gtc_highlight_kicker', true);
         $location = get_post_meta($item->ID, 'gtc_highlight_location', true);
         $map = get_post_meta($item->ID, 'gtc_highlight_map_url', true);
+        $source = get_post_meta($item->ID, 'gtc_highlight_source_url', true);
       ?>
       <article class="iot-island-highlight-card">
         <div class="iot-island-highlight-card__image">
@@ -110,6 +113,7 @@ get_header();
           <p><?php echo esc_html(get_the_excerpt($item)); ?></p>
           <?php if ($location) : ?><span class="iot-island-location"><?php echo esc_html($location); ?></span><?php endif; ?>
           <?php if ($map) : ?><a class="iot-island-text-link" href="<?php echo esc_url($map); ?>" target="_blank" rel="noopener noreferrer">OPEN MAP ↗</a><?php endif; ?>
+          <?php if ($source) : ?><a class="iot-island-text-link" href="<?php echo esc_url($source); ?>" target="_blank" rel="noopener noreferrer">OFFICIAL DESTINATION GUIDE ↗</a><?php endif; ?>
         </div>
       </article>
       <?php endforeach; ?>
