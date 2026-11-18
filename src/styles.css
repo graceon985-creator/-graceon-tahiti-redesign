@@ -29,3 +29,34 @@
 .island-detail-panel p{font-size:11px;line-height:1.8;color:#627674;margin:10px 0;}
 .island-close{border:0;border-bottom:1px solid #b16e51;background:transparent;color:#173b3b;padding:7px 0;cursor:pointer;font-size:10px;}
 @keyframes islandDetailIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* Hour 4 — destination detail guide pages */
+.destination-page{position:fixed;inset:0;z-index:1000;background:#f5f2e9;color:#163e3c;overflow-y:auto;overscroll-behavior:contain;}
+.destination-hero{height:min(68vh,650px);min-height:420px;position:relative;overflow:hidden;background:#163e3c;}
+.destination-hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.destination-overlay{position:absolute;inset:0;background:linear-gradient(90deg,rgba(9,39,40,.58),transparent 85%),linear-gradient(0deg,rgba(9,39,40,.45),transparent 70%);}
+.destination-back{position:absolute;top:28px;left:6%;display:flex;align-items:center;gap:9px;background:rgba(13,46,45,.4);border:1px solid rgba(255,255,255,.65);color:white;padding:12px 16px;font-size:9px;letter-spacing:.13em;cursor:pointer;}
+.destination-back svg{transform:rotate(180deg)}
+.destination-title{position:absolute;left:8%;bottom:9%;color:white;}
+.destination-title>span{font-size:9px;letter-spacing:.18em;color:#f3d0b8;}
+.destination-title h1{font:clamp(54px,9vw,120px) 'Playfair Display',serif;font-weight:400;letter-spacing:-.04em;margin:12px 0 0;line-height:1;}
+.destination-title p{font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin-top:18px;}
+.destination-body{padding:75px 8%;display:grid;grid-template-columns:1fr 1fr;gap:8%;background:#f5f2e9;}
+.destination-intro h2{font:clamp(34px,4vw,58px) 'Playfair Display',serif;font-weight:400;line-height:1.12;margin:20px 0 28px;}
+.destination-intro h2 em{color:#c87956;font-style:italic;}
+.destination-intro p{max-width:470px;color:#647b75;font-size:13px;line-height:1.9;margin:0 0 15px;}
+.destination-highlights{padding-top:18px;}
+.destination-place-list{margin-top:18px;border-top:1px solid #d4d9cf;}
+.destination-place{display:grid;grid-template-columns:36px 1fr 18px;align-items:center;gap:12px;padding:18px 0;border-bottom:1px solid #d4d9cf;}
+.destination-place>span{font-size:9px;color:#c87956;letter-spacing:.1em;}
+.destination-place h3{font:22px 'Playfair Display',serif;font-weight:400;margin:0;}
+.destination-place svg{color:#c87956;}
+.destination-experiences{padding:65px 8% 75px;background:#e9e5da;}
+.destination-experiences h2{font:clamp(35px,5vw,64px) 'Playfair Display',serif;font-weight:400;margin:15px 0 35px;}
+.destination-activity-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.destination-activity-grid>div{min-width:0;}
+.destination-activity-grid img{width:100%;height:230px;object-fit:cover;display:block;}
+.destination-activity-grid h3{font:23px 'Playfair Display',serif;font-weight:400;margin:18px 0 8px;}
+.destination-activity-grid p{font-size:11px;line-height:1.8;color:#60756e;}
+.destination-back-bottom{display:flex;align-items:center;gap:10px;margin-top:45px;padding:14px 20px;border:1px solid #c87956;background:transparent;color:#163e3c;font-size:9px;letter-spacing:.13em;cursor:pointer;}
+@media(max-width:760px){.destination-hero{height:55vh;min-height:380px;}.destination-title h1{font-size:64px;}.destination-body{grid-template-columns:1fr;gap:42px;padding:48px 7%;}.destination-place h3{font-size:20px;}.destination-experiences{padding:48px 7%;}.destination-activity-grid{grid-template-columns:1fr;gap:28px;}.destination-activity-grid img{height:220px;}.destination-back{top:16px;left:5%;padding:10px 12px;font-size:8px;}}
