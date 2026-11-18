@@ -44,7 +44,6 @@ export default function GraceonAssistant({journeyIslands,language='EN'}:GraceonA
  const [message,setMessage]=useState('');
  const [messages,setMessages]=useState<Message[]>([]);
  const quickPrompts: string[]=language==='FR'?['J’aime la nature et la randonnée','Je veux découvrir la culture locale','Aidez-moi à préparer 5 jours']:quickPromptsDefault;
- const quickPrompts=language==='FR'?['J’aime la nature et la randonnée','Je veux découvrir la culture locale','Aidez-moi à préparer 5 jours']:quickPromptsDefault;
  const send=(text:string)=>{
   const value=text.trim(); if(!value) return;
   setMessages(prev=>[...prev,{role:'user',text:value},{role:'assistant',text:getDemoReply(value,journeyIslands)}]);
