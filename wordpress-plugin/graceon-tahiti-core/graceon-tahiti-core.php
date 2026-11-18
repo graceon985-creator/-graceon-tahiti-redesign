@@ -259,5 +259,6 @@ require_once __DIR__ . '/island-map.php';
 require_once __DIR__ . '/journey.php';
 require_once __DIR__ . '/island-content-pack.php';
 require_once __DIR__ . '/pwa.php';
+require_once __DIR__ . '/ai-knowledge.php';
 require_once __DIR__ . '/ai-guide.php';
 require_once __DIR__ . '/community.php';
