@@ -40,7 +40,9 @@ function gtc_ai_guide_response(WP_REST_Request $request): WP_REST_Response {
     }
 
     try {
-        $answer = call_user_func($provider, $question, determine_locale());
+        $locale = determine_locale();
+        $context = function_exists('gtc_ai_guide_retrieve_context') ? gtc_ai_guide_retrieve_context($question, $locale) : '';
+        $answer = call_user_func($provider, $question, $locale, $context);
     } catch (Throwable $error) {
         return new WP_REST_Response(['message' => __('The guide could not answer right now. Please try again later.', 'graceon-tahiti-core')], 502);
     }
