@@ -152,6 +152,7 @@ function gtc_highlights_section_shortcode($atts = []): string {
         $credit = get_post_meta($place->ID, 'gtc_highlight_image_credit', true);
         $license = get_post_meta($place->ID, 'gtc_highlight_license_url', true);
         $location = get_post_meta($place->ID, 'gtc_highlight_location', true);
+        $source = get_post_meta($place->ID, 'gtc_highlight_source_url', true);
       ?>
         <article class="iot-curated-card">
           <a class="iot-curated-card__visual<?php echo $image || has_post_thumbnail($place) ? '' : ' is-placeholder'; ?>" href="<?php echo esc_url(get_permalink($place)); ?>">
@@ -163,6 +164,7 @@ function gtc_highlights_section_shortcode($atts = []): string {
             <p><?php echo esc_html(get_the_excerpt($place)); ?></p>
             <?php if ($location) : ?><span><?php echo esc_html($location); ?></span><?php endif; ?>
             <a class="iot-island-text-link" href="<?php echo esc_url(get_permalink($place)); ?>">DISCOVER THIS STORY ↗</a>
+            <?php if ($source) : ?><a class="iot-island-text-link" href="<?php echo esc_url($source); ?>" target="_blank" rel="noopener noreferrer">OFFICIAL DESTINATION GUIDE ↗</a><?php endif;>
           </div>
         </article>
       <?php endforeach; ?>
