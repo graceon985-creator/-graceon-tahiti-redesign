@@ -10,7 +10,6 @@ import GraceonAssistant from './GraceonAssistant';
 import TahitiPassport from './TahitiPassport';
 import IslandCheckIn from './IslandCheckIn';
 import InteractiveArchipelagoMap from './InteractiveArchipelagoMap';
-import IslandOrbit from './IslandOrbit';
 gsap.registerPlugin(ScrollTrigger);
 type LocalVisit = {verifiedAt:string;accuracy:number};
 const frenchEvents:Record<string,{title:string;location:string;date:string;summary:string;category:string}> = {
@@ -61,10 +60,11 @@ export default function App(){
       <p className="eyebrow"><span className="eyebrow-line"/> THE ISLANDS OF TAHITI</p>
       <h1>{active==="FR"?<>Le cœur<br/>de la <em>Polynésie.</em></>:<>The heart<br/>of <em>Polynesia.</em></>}</h1>
       <p className="hero-intro">{active==="FR"?"Huit îles. Un océan. Mille façons de découvrir la Polynésie.":"Eight islands. One ocean. A thousand ways to discover Polynesia."}</p>
+      <button type="button" className="hero-map-button" onClick={()=>setMapOpen(true)}><MapPin size={16}/>{active==="FR"?"Explorer la carte":"Explore the map"}<ArrowRight size={15}/></button>
 
     </div>
    </section>
-   <IslandOrbit islands={islands} language={active} query={query} onQueryChange={setQuery} onExplore={setSelectedIsland} onOpenMap={()=>setMapOpen(true)}/>
+
 <section id="activities" className="activities-section activities-cinematic">
       <div className="experience-showcase">
         <div className="experience-showcase-image" style={{backgroundImage:`url(${[
