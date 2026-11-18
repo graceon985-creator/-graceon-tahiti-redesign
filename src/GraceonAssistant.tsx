@@ -59,7 +59,7 @@ export default function GraceonAssistant({journeyIslands,language='EN'}:GraceonA
     {messages.map((item,i)=><div key={i} className={item.role==='user'?'ga-message ga-user':'ga-message ga-bot'}>{item.text}</div>)}
    </div>
    <form className="ga-input" onSubmit={e=>{e.preventDefault();send(message)}}><input value={message} onChange={e=>setMessage(e.target.value)} placeholder={language==="FR"?"Posez une question sur les îles…":"Ask about the islands…"} aria-label="Ask GRACEON"/><button type="submit" aria-label="Send message"><Send size={16}/></button></form>
-   <div className="ga-note">{language==="FR"?"Démo conceptuelle · suggestions prédéfinies, sans IA en direct":"{language==="FR"?"Démo conceptuelle · suggestions prédéfinies, sans IA en direct":"Concept demo · preset recommendations, no live AI"}"}</div>
+   <div className="ga-note">{language==="FR"?"Démo conceptuelle · suggestions prédéfinies, sans IA en direct":"Concept demo · preset recommendations, no live AI"}</div>
   </section>}
   <button className="ga-launcher" onClick={()=>setOpen(v=>!v)} aria-expanded={open}><span className="ga-launch-icon">G</span></button>
  </div>;
