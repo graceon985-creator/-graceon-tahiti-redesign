@@ -49,10 +49,20 @@ export default function App(){
   <div className="announcement"><span>THE ISLANDS OF TAHITI</span><span>FRENCH POLYNESIA · SOUTH PACIFIC</span><span>35°S / 149°W</span></div>
   <header className={navVisible?"nav nav-visible":"nav"}><a className="brand" href="#"><span className="brand-mark">T</span><span>TAHITI<small>ISLANDS OF</small></span></a><nav className={menu?'nav-links open':'nav-links'}><a href="#islands" onClick={()=>setMenu(false)}>{active==="FR"?"Les îles":"The islands"}</a><a href="#passport" onClick={()=>setMenu(false)}>{active==="FR"?"Passeport de Tahiti":"Tahiti Passport"}</a><a href="#activities" onClick={()=>setMenu(false)}>{active==="FR"?"Activités":"Activities"}</a><a href="#events" onClick={()=>setMenu(false)}>{active==="FR"?"Événements":"Events"}</a><a href="#journal" onClick={()=>setMenu(false)}>{active==="FR"?"Carnet de voyage":"Travel notes"}</a></nav><div className="nav-actions"><button className="lang" onClick={()=>setActive(active==='EN'?'FR':'EN')}><Globe2 size={15}/>{active}</button><a className="plan-link" href="#plan">{active==="FR"?"Planifier votre voyage":"Plan your journey"} <ArrowRight size={15}/></a><button className="menu-btn" onClick={()=>setMenu(!menu)} aria-label="Toggle menu">{menu?<X/>:<Menu/>}</button></div></header>
   <main>
-   <section className="hero">
-    <div className="hero-copy"><p className="eyebrow"><span className="eyebrow-line"/> THE ISLANDS OF TAHITI</p><h1>{active==="FR"?<>Le cœur<br/>de la <em>Polynésie.</em></>:<>The heart<br/>of <em>Polynesia.</em></>}</h1><p className="hero-intro">{active==="FR"?"Huit îles. Un océan. Mille façons de découvrir la Polynésie.":"Eight islands. One ocean. A thousand ways to discover Polynesia."}</p><div className="hero-search-tools"><label className="hero-search"><Compass size={18}/><input value={query} onChange={e=>setQuery(e.target.value)} placeholder={active==="FR"?"Rechercher une île, une expérience…":"Search islands, experiences…"} aria-label="Search islands and experiences"/></label><button type="button" className="hero-map-button" onClick={()=>setMapOpen(true)}><MapPin size={16}/>{active==="FR"?"Explorer la carte":"Explore the map"}<ArrowRight size={15}/></button></div></div>
-    <div className="hero-gallery hero-gallery-upgraded" aria-label="Changing island gallery"><div className="hero-feature"><img className="hero-feature-image" src={heroScenes[heroScene].image} alt={heroScenes[heroScene].name}/><div className="hero-feature-shade"/><div className="hero-feature-copy"><span>{heroScenes[heroScene].label}</span><h2>{heroScenes[heroScene].name}</h2><p>THE ISLANDS OF TAHITI · {String(heroScene+1).padStart(2,'0')} / 08</p></div><button className="hero-next" aria-label="Next island image" onClick={()=>setHeroScene(s=>(s+1)%heroScenes.length)}><ArrowRight/></button></div><div className="gallery-stamp upgraded-stamp"><div className="orbit">✳ &nbsp; ✳ &nbsp; ✳ &nbsp; ✳ &nbsp;</div><b>17°</b><small>SOUTH<br/>PACIFIC</small></div></div>
-    
+   <section className="hero hero-full-image">
+    <div className="hero-gallery hero-gallery-upgraded" aria-label="Changing island gallery">
+      <div className="hero-feature">
+        <img className="hero-feature-image" src={heroScenes[heroScene].image} alt={heroScenes[heroScene].name}/>
+        <div className="hero-feature-shade"/>
+        <button className="hero-next" aria-label="Next island image" onClick={()=>setHeroScene(s=>(s+1)%heroScenes.length)}><ArrowRight/></button>
+      </div>
+    </div>
+    <div className="hero-copy">
+      <p className="eyebrow"><span className="eyebrow-line"/> THE ISLANDS OF TAHITI</p>
+      <h1>{active==="FR"?<>Le cœur<br/>de la <em>Polynésie.</em></>:<>The heart<br/>of <em>Polynesia.</em></>}</h1>
+      <p className="hero-intro">{active==="FR"?"Huit îles. Un océan. Mille façons de découvrir la Polynésie.":"Eight islands. One ocean. A thousand ways to discover Polynesia."}</p>
+      <button type="button" className="hero-map-button" onClick={()=>setMapOpen(true)}><MapPin size={16}/>{active==="FR"?"Explorer la carte":"Explore the map"}<ArrowRight size={15}/></button>
+    </div>
    </section>
    <IslandOrbit islands={islands} language={active} query={query} onQueryChange={setQuery} onExplore={setSelectedIsland} onOpenMap={()=>setMapOpen(true)}/>
 <section id="activities" className="activities-section activities-cinematic">
