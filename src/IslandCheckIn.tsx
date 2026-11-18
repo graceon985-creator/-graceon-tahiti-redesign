@@ -45,7 +45,7 @@ export default function IslandCheckIn({islandName,visit,onVerified}:Props){
   <div className='island-checkin-icon'>{visit?<ShieldCheck size={22}/>:<MapPin size={22}/>}</div>
   <div className='island-checkin-copy'><span className='detail-label'>{visit?'LOCATION CHECK PASSED':'GPS ISLAND CHECK-IN'}</span>
    <h3>{visit?'Your '+islandName+' check-in is recorded on this device.':'Check in near '+islandName}</h3>
-   <p>{visit?'Checked in '+new Date(visit.verifiedAt).toLocaleString()+' · GPS accuracy ±'+visit.accuracy+' m':'Allow one-time location access within {zone?.radius||800} m of '+(zone?.name||'the island check-in point')+'. The hub is an approximate reference point and needs local confirmation. A fresh reading is checked on this device; coordinates are not saved.'}</p>
+   <p>{visit?'Checked in '+new Date(visit.verifiedAt).toLocaleString()+' · GPS accuracy ±'+visit.accuracy+' m':`Allow one-time location access within ${zone?.radius||800} m of ${zone?.name||'the island check-in point'}. The hub is an approximate reference point and needs local confirmation. A fresh reading is checked on this device; coordinates are not saved.`}</p>
    {!visit&&<><a href={mapUrl} target='_blank' rel='noopener noreferrer'>VIEW CHECK-IN AREA IN GOOGLE MAPS <Navigation size={13}/></a><p className='island-checkin-note'>Prototype limitation: the check-in record is stored in this browser only. Browser location can be manipulated, so this is not server-authenticated proof of a visit.</p></>}
    {status&&<p className='island-checkin-status' role='status'>{status}</p>}
   </div>
