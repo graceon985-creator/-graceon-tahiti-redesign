@@ -19,25 +19,44 @@ export default function IslandCheckIn({islandName,visit,onVerified}:Props){
  const [status,setStatus]=useState(''); const [busy,setBusy]=useState(false); const zone=checkInZones[islandName];
  const mapUrl=zone?'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(zone.lat+','+zone.lng):'#';
  const verify=()=>{
-  if(!zone){setStatus('A verified check-in point is not configured for this island yet.');return;}
-  if(!('geolocation' in navigator)){setStatus('Location services are not supported by this browser.');return;}
-  setBusy(true);setStatus('Checking your current location…');
-  navigator.geolocation.getCurrentPosition(position=>{
-   const latitude=position.coords.latitude,longitude=position.coords.longitude,accuracy=position.coords.accuracy;
-   if(accuracy>100){setStatus('Your location accuracy is too low for a reliable check-in. Move to an open area and try again.');setBusy(false);return;}
-   const distance=distanceMetres(latitude,longitude,zone.lat,zone.lng);
-   if(distance+accuracy>zone.radius){setStatus('You are outside the '+zone.name+' check-in area. The check-in zone is within 800 m of this visitor hub.');setBusy(false);return;}
-   const verifiedAt=new Date().toISOString();onVerified({verifiedAt,accuracy:Math.round(accuracy)});setStatus('Location check passed on this device. Your prototype stamp has been added locally.');setBusy(false);
-  },error=>{const message=error.code===1?'Location permission was not granted. Allow location access in your browser settings to check in.':error.code===2?'Your location could not be determined. Check your device location settings and try again.':'Location request timed out. Try again in an open area.';setStatus(message);setBusy(false);},{enableHighAccuracy:true,timeout:20000,maximumAge:0});
+  if(busy||visit)return;
+  if(!zone){setStatus('A check-in point is not configured for this island yet.');return;}
+  if(!window.isSecureContext){setStatus('Browser location access requires a secure HTTPS connection. Open the published HTTPS site and try again.');return;}
+  if(!navigator.geolocation){setStatus('Location services are not supported by this browser.');return;}
+  setBusy(true);setStatus('Requesting a fresh location reading…');
+  try{
+   navigator.geolocation.getCurrentPosition(position=>{
+    const {latitude,longitude,accuracy}=position.coords;
+    if(!Number.isFinite(latitude)||!Number.isFinite(longitude)||!Number.isFinite(accuracy)||accuracy<=0||Math.abs(latitude)>90||Math.abs(longitude)>180){
+     setStatus('The device returned an invalid location reading. Please try again.');setBusy(false);return;
+    }
+    if(accuracy>100){
+     setStatus('The location reading is not precise enough yet (±'+Math.round(accuracy)+' m). Move to an open area and try again.');setBusy(false);return;
+    }
+    const distance=distanceMetres(latitude,longitude,zone.lat,zone.lng);
+    // Require the full reported accuracy circle to fit inside the check-in zone.
+    if(distance+accuracy>zone.radius){
+     setStatus('This reading is outside the '+zone.name+' check-in area, or its accuracy overlaps the boundary. The check-in area is within 800 m of this visitor hub.');setBusy(false);return;
+    }
+    const verifiedAt=new Date().toISOString();
+    onVerified({verifiedAt,accuracy:Math.round(accuracy)});
+    setStatus('Location check passed on this device. Your prototype stamp has been added locally.');setBusy(false);
+   },error=>{
+    const message=error.code===1?'Location permission was denied. You can allow it in your browser settings and try again.':error.code===2?'Your device could not determine a location. Check location services and try again.':error.code===3?'The location request timed out. Try again with a clearer view of the sky.':'The browser could not complete the location request. Please try again.';
+    setStatus(message);setBusy(false);
+   },{enableHighAccuracy:true,timeout:25000,maximumAge:0});
+  }catch{
+   setStatus('The browser could not start a location request. Check your site permissions and try again.');setBusy(false);
+  }
  };
  return <section className='island-checkin' aria-live='polite'>
   <div className='island-checkin-icon'>{visit?<ShieldCheck size={22}/>:<MapPin size={22}/>}</div>
   <div className='island-checkin-copy'><span className='detail-label'>{visit?'LOCATION CHECK PASSED':'GPS ISLAND CHECK-IN'}</span>
    <h3>{visit?'Your '+islandName+' check-in is recorded on this device.':'Check in near '+islandName}</h3>
-   <p>{visit?'Checked in '+new Date(visit.verifiedAt).toLocaleString()+' · GPS accuracy ±'+visit.accuracy+' m':'Allow one-time location access within 800 m of '+(zone?.name||'the island check-in point')+'. Your coordinates are checked on this device and are not saved.'}</p>
-   {!visit&&<><a href={mapUrl} target='_blank' rel='noopener noreferrer'>VIEW CHECK-IN AREA IN GOOGLE MAPS <Navigation size={13}/></a><p className='island-checkin-note'>Prototype note: check-ins are stored in this browser only. This client-side demo is not a server-authenticated anti-fraud system.</p></>}
+   <p>{visit?'Checked in '+new Date(visit.verifiedAt).toLocaleString()+' · GPS accuracy ±'+visit.accuracy+' m':'Allow one-time location access within 800 m of '+(zone?.name||'the island check-in point')+'. A fresh location reading is checked on this device; coordinates are not saved.'}</p>
+   {!visit&&<><a href={mapUrl} target='_blank' rel='noopener noreferrer'>VIEW CHECK-IN AREA IN GOOGLE MAPS <Navigation size={13}/></a><p className='island-checkin-note'>Prototype limitation: the check-in record is stored in this browser only. Browser location can be manipulated, so this is not server-authenticated proof of a visit.</p></>}
    {status&&<p className='island-checkin-status' role='status'>{status}</p>}
   </div>
-  {!visit&&<button type='button' onClick={verify} disabled={busy}>{busy?<><LoaderCircle size={14} className='spin'/> CHECKING</>:<>VERIFY MY VISIT <ShieldCheck size={14}/></>}</button>}
+  {!visit&&<button type='button' onClick={verify} disabled={busy} aria-busy={busy}>{busy?<><LoaderCircle size={14} className='spin'/> CHECKING</>:<>VERIFY MY VISIT <ShieldCheck size={14}/></>}</button>}
  </section>;
 }
