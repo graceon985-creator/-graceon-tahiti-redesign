@@ -64,7 +64,7 @@ function gtc_ai_guide_retrieve_context(string $question, string $locale = ''): s
         if ($content !== '' && $excerpt !== '' && mb_strlen($text) < 450) { $text .= ' ' . $content; }
         $text = mb_substr(preg_replace('/\s+/', ' ', $text), 0, 900);
         $line = "CONTENT TYPE: {$post->post_type}\nTITLE: {$title}\nDETAILS: {$text}\nURL: " . get_permalink($post);
-        foreach (['iot_location_name','gtc_highlight_location','gtc_highlight_kicker','iot_island_archipelago'] as $meta) {
+        foreach (['iot_location_name','gtc_highlight_location','gtc_highlight_kicker','iot_island_archipelago','gtc_highlight_source_url'] as $meta) {
             $value = get_post_meta($post->ID, $meta, true);
             if ($value) { $line .= "\n{$meta}: " . sanitize_text_field($value); }
         }
