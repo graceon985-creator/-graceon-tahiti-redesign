@@ -235,3 +235,32 @@
 .island-checkin .spin{animation:checkinSpin 1s linear infinite;}
 @keyframes checkinSpin{to{transform:rotate(360deg)}}
 @media(max-width:640px){.island-checkin{align-items:flex-start;flex-wrap:wrap;padding:16px;gap:12px}.island-checkin-copy{flex:1 1 calc(100% - 62px)}.island-checkin-copy h3{font-size:20px}.island-checkin>button{width:100%;}}
+
+
+/* Island events calendar */
+.events-section{background:#e9e5da;color:#173b3b}
+.events-heading{display:grid;grid-template-columns:1fr .72fr;gap:50px;align-items:end;margin-bottom:35px}
+.events-heading h2{font:clamp(46px,5.3vw,72px)/.98 'Playfair Display',serif;letter-spacing:-.05em;font-weight:400;margin:18px 0 0}
+.events-heading h2 em{color:#b66e50;font-weight:400}
+.events-heading>p{font-size:13px;line-height:1.9;color:#637673;max-width:380px;margin:0 0 5px}
+.event-filters{display:flex;gap:9px;flex-wrap:wrap;margin:0 0 28px}
+.event-filter{border:1px solid #c7c7b9;background:transparent;color:#536d67;padding:10px 15px;font-size:9px;letter-spacing:.08em;cursor:pointer;transition:.2s}
+.event-filter.active,.event-filter:hover{background:#173f3e;color:#f4f1e9;border-color:#173f3e}
+.event-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.event-card{background:#f4f1e9;padding:25px;min-height:340px;display:flex;flex-direction:column;border:1px solid #dedacf;transition:transform .25s,border-color .25s}
+.event-card:hover{transform:translateY(-4px);border-color:#c87956}
+.event-card-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:25px}
+.event-number{font:22px 'Playfair Display',serif;color:#c87956}
+.event-status{font-size:7px;letter-spacing:.11em;padding:7px 8px;border:1px solid #c8c7bb;color:#66756f}
+.event-status.confirmed{border-color:#9cb4a2;color:#35664f;background:#edf2e9}
+.event-category{font-size:8px;letter-spacing:.13em;text-transform:uppercase;color:#b16e51}
+.event-card h3{font:27px/1.1 'Playfair Display',serif;font-weight:400;margin:10px 0}
+.event-date{font-size:10px;font-weight:700;color:#173f3e;margin:0 0 12px}
+.event-summary{font-size:11px;line-height:1.75;color:#657672;margin:0 0 18px}
+.event-location{display:flex;gap:8px;align-items:flex-start;font-size:9px;line-height:1.5;color:#637673;margin-top:auto;padding-top:14px;border-top:1px solid #dedacf}
+.event-location svg{flex:none;color:#b16e51}
+.event-actions{display:flex;justify-content:space-between;gap:12px;margin-top:16px}
+.event-actions a{display:flex;align-items:center;gap:6px;font-size:8px;letter-spacing:.08em;color:#b16e51}
+.events-note{font-size:9px;line-height:1.7;color:#78847b;margin:22px 0 0}
+@media(max-width:900px){.event-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.events-heading{display:block}.events-heading>p{margin-top:20px}.event-grid{grid-template-columns:1fr}.event-card{min-height:0}.event-actions{justify-content:flex-start;gap:22px}}
