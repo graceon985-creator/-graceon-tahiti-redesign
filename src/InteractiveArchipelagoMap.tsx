@@ -1,5 +1,6 @@
 import {useEffect,useMemo,useState} from 'react';
-import {CircleMarker,MapContainer,Popup,TileLayer,useMap} from 'react-leaflet';
+import {Circle,CircleMarker,MapContainer,Popup,TileLayer,useMap} from 'react-leaflet';
+import {checkInZones} from './checkInZones';
 import type {LatLngExpression} from 'leaflet';
 import {ArrowRight,MapPin} from 'lucide-react';
 import 'leaflet/dist/leaflet.css';
@@ -60,6 +61,7 @@ export default function InteractiveArchipelagoMap({islands,activities,focusReque
   const [focusedTitle,setFocusedTitle] = useState<string|null>(null);
   const activeIsland = islands.find(island=>island.name===selected) ?? islands[0];
   const position = (islandCoordinates[selected] ?? islandCoordinates.Tahiti) as LatLngExpression;
+  const checkInZone = checkInZones[selected];
   const selectedActivities = useMemo(()=>activities[selected] ?? [],[activities,selected]);
   const categories = ['All',...Array.from(new Set(selectedActivities.map(item=>item.category.split(' · ')[0])))];
   const pins:Pin[] = selectedActivities.flatMap(activity=>{
@@ -73,7 +75,7 @@ export default function InteractiveArchipelagoMap({islands,activities,focusReque
   return <section id="explore-map" className="archipelago-map-section">
     <div className="archipelago-map-heading">
       <div><span className="section-kicker">03 / EXPLORE THE ARCHIPELAGO</span><h2>Find your place<br/><em>on the map.</em></h2></div>
-      <p>Explore the eight islands and open verified place markers for details. Pins are only shown where a named location has a checked map reference.</p>
+      <p>Explore the eight islands, featured places and the approximate GPS check-in hub. The dashed circle shows the local prototype check-in radius.</p>
     </div>
     <div className="archipelago-map-controls">
       <label htmlFor="archipelago-island-select">SELECT AN ISLAND</label>
@@ -87,6 +89,7 @@ export default function InteractiveArchipelagoMap({islands,activities,focusReque
         <MapContainer center={[-16.5,-149.5]} zoom={4.6} minZoom={3} maxZoom={13} scrollWheelZoom={false} className="archipelago-leaflet-map">
           <TileLayer attribution='&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
           <MapIslandAutoFocus position={position}/>
+          {checkInZone&&<><Circle center={[checkInZone.lat,checkInZone.lng]} radius={checkInZone.radius} pathOptions={{color:'#bd7656',weight:2,fillColor:'#bd7656',fillOpacity:0.12,dashArray:'6 6'}}/><CircleMarker center={[checkInZone.lat,checkInZone.lng]} radius={8} pathOptions={{color:'#fff8ec',weight:2,fillColor:'#bd7656',fillOpacity:1}}><Popup><strong>{checkInZone.name}</strong><br/>GPS check-in reference area · {checkInZone.radius} m radius<br/><small>{checkInZone.precision}</small></Popup></CircleMarker></>}
           <MapActivityPinFocus pin={focusedPin}/>
           {Object.entries(islandCoordinates).map(([name,coords])=><CircleMarker key={name} center={coords} radius={selected===name?9:6} pathOptions={{color:'#f5f0e5',weight:2,fillColor:selected===name?'#bd7656':'#1c5550',fillOpacity:1}} eventHandlers={{click:()=>{setSelected(name);setFilter('All');setFocusedTitle(null)}}}>
             <Popup><strong>{name}</strong><br/>Island reference location</Popup>
@@ -116,6 +119,6 @@ export default function InteractiveArchipelagoMap({islands,activities,focusReque
         })}</div>
       </aside>
     </div>
-    <p className="archipelago-map-footnote">Map pins use OpenStreetMap place references. Where a marker identifies a village or valley rather than an exact attraction entrance, this is stated in the pin details. Remaining attraction pins will be added after location checks.</p>
+    <p className="archipelago-map-footnote">The highlighted check-in circle is an approximate visitor-hub reference used by the local GPS prototype, not an official boundary or proof of presence. Hub coordinates must be confirmed with local destination partners before production use. Other attraction pins are shown only where a named location has a checked map reference.</p>
   </section>;
 }
