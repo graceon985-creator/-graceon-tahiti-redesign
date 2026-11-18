@@ -1115,3 +1115,27 @@
 .hero.hero-full-image .hero-photo-previews,.hero.hero-full-image .hero-photo-preview,.hero.hero-full-image .hero-search-tools,.hero.hero-full-image .hero-search,.hero.hero-full-image .hero-feature-copy,.hero.hero-full-image .gallery-stamp,.hero.hero-full-image .hero-foot{display:none!important}
 .hero.hero-full-image .hero-next{position:absolute!important;z-index:12!important;right:4%!important;left:auto!important;top:auto!important;bottom:5%!important}
 @media(max-width:700px){.hero.hero-full-image{height:calc(100svh - 90px)!important;min-height:650px!important}.hero.hero-full-image .hero-copy{left:7%!important;top:48%!important;width:86%!important;max-width:86%!important;transform:translateY(-42%)!important}.hero.hero-full-image .hero-copy h1{font-size:clamp(54px,13vw,82px)!important}.hero.hero-full-image .hero-copy .hero-intro{font-size:13px!important}.hero.hero-full-image .hero-feature-image{object-position:50% 100%!important}}
+
+
+/* Reference-matched homepage: full-bleed Moorea landscape, left-lower typography, vertical right navigation. */
+.announcement{display:none!important}
+.nav,.nav.nav-visible{position:absolute!important;z-index:30!important;top:28px!important;right:4.5%!important;left:auto!important;width:245px!important;height:auto!important;min-height:0!important;padding:0!important;margin:0!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;justify-content:flex-start!important;gap:0!important;background:transparent!important;border:0!important;box-shadow:none!important;backdrop-filter:none!important;transform:none!important}
+.nav .brand{order:1!important;align-self:flex-end!important;display:flex!important;flex-direction:row!important;align-items:center!important;gap:12px!important;margin:34px 0 54px!important;color:#fff!important;text-align:left!important}
+.nav .brand-mark{width:48px!important;height:48px!important;border:1px solid rgba(255,255,255,.9)!important;color:#fff!important;font-family:Georgia,serif!important;font-size:30px!important}
+.nav .brand>span:last-child{font-size:25px!important;letter-spacing:.13em!important;color:#fff!important}
+.nav .brand small{display:block!important;font-size:8px!important;letter-spacing:.19em!important;color:#fff!important}
+.nav .nav-links{order:2!important;display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:0!important;width:100%!important;margin:0!important;padding:0!important;background:transparent!important}
+.nav .nav-links a{display:block!important;text-align:right!important;padding:16px 0!important;margin:0!important;color:#fff!important;font-size:18px!important;font-weight:400!important;border-bottom:1px solid rgba(255,255,255,.55)!important;text-shadow:0 2px 12px rgba(0,0,0,.45)!important}
+.nav .nav-links a:hover{color:#f0c49d!important}
+.nav .nav-actions{order:0!important;position:absolute!important;top:0!important;right:0!important;display:flex!important;justify-content:flex-end!important;gap:14px!important;width:auto!important;margin:0!important;padding:0!important;background:transparent!important}
+.nav .nav-actions .lang{color:#fff!important;background:transparent!important;border:0!important}
+.nav .nav-actions .plan-link,.nav .nav-actions .menu-btn{display:none!important}
+.hero.hero-full-image{height:100svh!important;min-height:700px!important;max-height:none!important;margin-top:0!important}
+.hero.hero-full-image .hero-copy{left:7.8%!important;right:auto!important;top:auto!important;bottom:7.5%!important;transform:none!important;width:min(650px,58%)!important;max-width:650px!important}
+.hero.hero-full-image .hero-copy .eyebrow{font-size:11px!important;letter-spacing:.13em!important;margin-bottom:22px!important}
+.hero.hero-full-image .hero-copy h1{font-size:clamp(66px,7.4vw,108px)!important;line-height:.9!important;margin:22px 0 14px!important;letter-spacing:-.055em!important}
+.hero.hero-full-image .hero-copy .hero-intro{font-size:14px!important;max-width:520px!important;margin:0!important;line-height:1.5!important}
+.hero.hero-full-image .hero-feature-image{object-position:center center!important}
+.hero.hero-full-image .hero-feature-shade{background:linear-gradient(90deg,rgba(2,25,33,.25) 0%,rgba(2,25,33,.05) 58%,rgba(2,25,33,.25) 100%),linear-gradient(0deg,rgba(2,25,33,.28),transparent 58%)!important}
+.hero.hero-full-image .hero-next{display:none!important}
+@media(max-width:760px){.nav,.nav.nav-visible{top:18px!important;right:5%!important;width:190px!important}.nav .brand{margin:35px 0 20px!important}.nav .brand>span:last-child{font-size:19px!important}.nav .brand-mark{width:40px!important;height:40px!important}.nav .nav-links a{font-size:14px!important;padding:10px 0!important}.hero.hero-full-image{height:100svh!important;min-height:680px!important}.hero.hero-full-image .hero-copy{left:6%!important;bottom:7%!important;width:88%!important;max-width:88%!important}.hero.hero-full-image .hero-copy h1{font-size:clamp(50px,12vw,78px)!important}.hero.hero-full-image .hero-copy .hero-intro{font-size:12px!important}}
