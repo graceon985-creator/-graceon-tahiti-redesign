@@ -3,10 +3,19 @@ import {ArrowRight, Check, Compass, Award, MapPinned, Route, Flag} from 'lucide-
 type Island = {name:string;tag:string;kind:string;image:string;signature:string};
 type Props = {islands:Island[];verifiedCheckins:Record<string,{verifiedAt:string;accuracy:number}>;journeyIslands:string[];savedPlaces:Record<string,string[]>;activities:Record<string,{title:string}[]>;onExplore:(name:string)=>void;onViewMap:(islandName:string,title:string)=>void};
 
+function isValidVisit(visit:unknown):visit is {verifiedAt:string;accuracy:number}{
+ if(!visit||typeof visit!=='object')return false;
+ const value=visit as Record<string,unknown>;
+ if(typeof value.verifiedAt!=='string')return false;
+ const timestamp=Date.parse(value.verifiedAt);
+ if(!Number.isFinite(timestamp)||timestamp>Date.now()+5*60*1000)return false;
+ return typeof value.accuracy==='number'&&Number.isFinite(value.accuracy)&&value.accuracy>0&&value.accuracy<=100;
+}
+
 export default function TahitiPassport({islands,verifiedCheckins,journeyIslands,savedPlaces,activities,onExplore,onViewMap}:Props){
  // Only known islands with a well-formed local GPS check-in can earn a stamp.
  // Saved places and route selections never contribute to this collection.
- const verifiedIslands=islands.filter(island=>{const visit=verifiedCheckins[island.name];return !!visit&&typeof visit.verifiedAt==='string'&&visit.verifiedAt.length>0&&Number.isFinite(visit.accuracy)&&visit.accuracy>0;});
+ const verifiedIslands=islands.filter(island=>isValidVisit(verifiedCheckins[island.name]));
  const stamps=verifiedIslands.map(island=>island.name);
  const verifiedCount=verifiedIslands.length;
  const total=islands.length;
