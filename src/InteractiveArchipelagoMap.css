@@ -28,3 +28,7 @@
 .archipelago-map-footnote{font-size:9px;line-height:1.7;color:#7b8378;margin:16px 0 0}
 @media(max-width:900px){.archipelago-map-layout{grid-template-columns:1fr}.archipelago-map-sidebar{max-height:none}.archipelago-map-frame,.archipelago-leaflet-map{min-height:460px;height:460px}}
 @media(max-width:640px){.archipelago-map-section{padding:70px 7%}.archipelago-map-heading{display:block}.archipelago-map-heading>p{margin-top:18px}.archipelago-map-controls{align-items:flex-start;flex-direction:column}.archipelago-map-controls>span{margin-left:0}.archipelago-map-controls select{width:100%}.archipelago-map-frame,.archipelago-leaflet-map{min-height:390px;height:390px}.archipelago-map-sidebar{padding:18px}}
+
+.map-activity-list article.is-focused{background:rgba(189,118,86,.08);margin:0 -10px;padding:15px 10px}
+.map-activity-links button{display:flex;align-items:center;gap:5px;border:0;padding:0;background:none;color:#a86e53;font-size:7px;letter-spacing:.09em;cursor:pointer}
+.map-pin-pending{font-size:7px;letter-spacing:.07em;color:#8b8d80}
