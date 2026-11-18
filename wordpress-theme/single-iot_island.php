@@ -54,6 +54,11 @@ get_header();
     </aside>
   </section>
 
+
+  <nav class="iot-island-explore-nav" aria-label="Explore this island">
+    <a href="#island-highlights">Highlights</a><a href="#island-activities">Experiences</a><a href="#island-culture">Culture</a><a href="#island-hidden-gems">Hidden gems</a><a href="#island-map">Map</a><a href="#island-plan">My journey</a>
+  </nav>
+
   <?php if ($first) :
     $image = get_post_meta($first->ID, 'gtc_highlight_image_url', true);
     $credit = get_post_meta($first->ID, 'gtc_highlight_image_credit', true);
@@ -123,9 +128,9 @@ get_header();
 
 
 
-  <?php echo do_shortcode('[gtc_highlights_section type="activity" eyebrow="ON LAND · ON THE LAGOON" title="Find your kind of adventure."]'); ?>
-  <?php echo do_shortcode('[gtc_highlights_section type="culture" eyebrow="PEOPLE · TRADITIONS · FLAVOURS" title="Meet the island beyond its scenery."]'); ?>
-  <?php echo do_shortcode('[gtc_highlights_section type="hidden-gem" eyebrow="TAKE THE QUIETER PATH" title="Discover the places in between."]'); ?>
+  <div id="island-activities" class="iot-island-anchor-section"><?php echo do_shortcode('[gtc_highlights_section type="activity" eyebrow="ON LAND · ON THE LAGOON" title="Find your kind of adventure."]'); ?></div>
+  <div id="island-culture" class="iot-island-anchor-section"><?php echo do_shortcode('[gtc_highlights_section type="culture" eyebrow="PEOPLE · TRADITIONS · FLAVOURS" title="Meet the island beyond its scenery."]'); ?></div>
+  <div id="island-hidden-gems" class="iot-island-anchor-section"><?php echo do_shortcode('[gtc_highlights_section type="hidden-gem" eyebrow="TAKE THE QUIETER PATH" title="Discover the places in between."]'); ?></div>
 
   <section class="iot-island-map-block" id="island-map">
     <div class="iot-island-section-head">
@@ -135,7 +140,7 @@ get_header();
     <?php echo do_shortcode('[gtc_island_map]'); ?>
   </section>
 
-  <section class="iot-island-culture">
+  <section class="iot-island-culture" id="island-culture-story">
     <div class="iot-island-culture__copy">
       <p class="iot-island-eyebrow">PEOPLE · CULTURE · MEMORY</p>
       <h2>A place is more than its view.</h2>
@@ -145,7 +150,7 @@ get_header();
     <div class="iot-island-culture__visual"><span>THE ISLANDS<br>ARE STORIES<br>IN MOTION.</span></div>
   </section>
 
-  <section class="iot-island-plan">
+  <section class="iot-island-plan" id="island-plan">
     <div><p class="iot-island-eyebrow">MAKE IT YOUR JOURNEY</p><h2>Keep the places that call to you.</h2><p>Save this island to your personal journey and collect your digital passport stamps as you explore.</p></div>
     <div class="iot-island-plan__actions">
       <?php if (function_exists('gtc_journey_save_button')) { echo gtc_journey_save_button($island_id); } ?>
