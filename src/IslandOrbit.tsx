@@ -1,5 +1,5 @@
-import {useMemo,useState} from 'react';
-import {ArrowDownRight,ArrowRight,Map,Search,X} from 'lucide-react';
+import {useMemo} from 'react';
+import {ArrowDownRight,ArrowRight,Map} from 'lucide-react';
 import type {CSSProperties} from 'react';
 
 type Island={name:string;kind:string;tag:string;image:string;description:string};
