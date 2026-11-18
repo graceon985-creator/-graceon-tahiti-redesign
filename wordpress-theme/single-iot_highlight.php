@@ -9,6 +9,11 @@ get_header();
   $license = get_post_meta($place_id, 'gtc_highlight_license_url', true);
   $location = get_post_meta($place_id, 'gtc_highlight_location', true);
   $map = get_post_meta($place_id, 'gtc_highlight_map_url', true);
+  $source = get_post_meta($place_id, 'gtc_highlight_source_url', true);
+  $place_type_terms = get_the_terms($place_id, 'iot_highlight_type');
+  $place_type = ($place_type_terms && !is_wp_error($place_type_terms)) ? $place_type_terms[0]->name : '';
+  $related_places = [];
+  if ($island_term) { $related_places = get_posts(['post_type'=>'iot_highlight','post_status'=>'publish','posts_per_page'=>3,'post__not_in'=>[$place_id],'tax_query'=>[['taxonomy'=>'iot_highlight_island','field'=>'slug','terms'=>$island_term->slug]],'orderby'=>'menu_order','order'=>'ASC']); }
   $kicker = get_post_meta($place_id, 'gtc_highlight_kicker', true);
   $terms = get_the_terms($place_id, 'iot_highlight_island');
   $island_term = ($terms && !is_wp_error($terms)) ? $terms[0] : null;
@@ -37,9 +42,27 @@ get_header();
       <p class="iot-island-eyebrow">BEYOND THE VIEW</p>
       <h2><?php echo esc_html(get_the_excerpt() ?: get_the_title()); ?></h2>
       <div class="iot-place-content"><?php the_content(); ?></div>
-      <?php if ($map) : ?><a class="iot-island-text-link" href="<?php echo esc_url($map); ?>" target="_blank" rel="noopener noreferrer">OPEN DIRECTIONS ↗</a><?php endif; ?>
+      <div class="iot-place-actions">
+        <?php if ($map) : ?><a class="iot-island-text-link" href="<?php echo esc_url($map); ?>" target="_blank" rel="noopener noreferrer">OPEN DIRECTIONS ↗</a><?php endif; ?>
+        <?php if ($source) : ?><a class="iot-island-text-link iot-place-source" href="<?php echo esc_url($source); ?>" target="_blank" rel="noopener noreferrer">OFFICIAL TOURISM INFORMATION ↗</a><?php endif; ?>
+      </div>
     </article>
   </section>
+
+
+  <?php if (!empty($related_places)) : ?>
+  <section class="iot-place-related">
+    <div class="iot-island-section-head"><div><p class="iot-island-eyebrow"><?php echo esc_html($island_term ? $island_term->name : 'THE ISLAND'); ?> · <?php esc_html_e('MORE TO EXPLORE','islands-of-tahiti'); ?></p><h2>Keep discovering.</h2></div><span><?php esc_html_e('A FEW MORE PLACES','islands-of-tahiti'); ?></span></div>
+    <div class="iot-place-related__grid">
+      <?php foreach ($related_places as $related_place) : ?>
+      <a class="iot-place-related-card" href="<?php echo esc_url(get_permalink($related_place)); ?>">
+        <div class="iot-place-related-card__image"><?php if (has_post_thumbnail($related_place)) { echo get_the_post_thumbnail($related_place,'iot-card'); } ?></div>
+        <small><?php echo esc_html(get_post_meta($related_place->ID,'gtc_highlight_kicker',true)); ?></small><h3><?php echo esc_html(get_the_title($related_place)); ?></h3><span>DISCOVER PLACE ↗</span>
+      </a>
+      <?php endforeach; ?>
+    </div>
+  </section>
+  <?php endif; ?>
 
   <section class="iot-place-map">
     <div class="iot-island-section-head">
