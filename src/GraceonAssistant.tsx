@@ -2,8 +2,8 @@ import {useState} from 'react';
 import {X, Send, Sparkles} from 'lucide-react';
 
 type Message={role:'user'|'assistant';text:string};
-type GraceonAssistantProps={journeyIslands:string[]};
-const quickPrompts=['I love nature and hiking','I want culture and local life','Help me plan a 5-day trip'];
+type GraceonAssistantProps={journeyIslands:string[];language?:'EN'|'FR'};
+const quickPromptsDefault=['I love nature and hiking','I want culture and local life','Help me plan a 5-day trip'];
 
 const destinationTips=[
  {name:'Moorea',keys:['nature','green','hike','mountain','trail','scenery','landscape'],why:'Twin bays, green mountain ridges, valley trails and pineapple-growing landscapes.'},
@@ -39,10 +39,11 @@ function getDemoReply(message:string,journeyIslands:string[]){
  return 'I can help you choose islands by the kind of trip you imagine. Try mentioning what you love—lagoon, nature, hiking, culture, food, vanilla, sailing or a quiet getaway. I can also sketch a sample itinerary, but this demo does not check live availability.';
 }
 
-export default function GraceonAssistant({journeyIslands}:GraceonAssistantProps){
+export default function GraceonAssistant({journeyIslands,language='EN'}:GraceonAssistantProps){
  const [open,setOpen]=useState(false);
  const [message,setMessage]=useState('');
  const [messages,setMessages]=useState<Message[]>([]);
+ const quickPrompts: string[]=language==='FR'?['J’aime la nature et la randonnée','Je veux découvrir la culture locale','Aidez-moi à préparer 5 jours']:quickPromptsDefault;
  const quickPrompts=language==='FR'?['J’aime la nature et la randonnée','Je veux découvrir la culture locale','Aidez-moi à préparer 5 jours']:quickPromptsDefault;
  const send=(text:string)=>{
   const value=text.trim(); if(!value) return;
@@ -58,7 +59,7 @@ export default function GraceonAssistant({journeyIslands}:GraceonAssistantProps)
     {messages.map((item,i)=><div key={i} className={item.role==='user'?'ga-message ga-user':'ga-message ga-bot'}>{item.text}</div>)}
    </div>
    <form className="ga-input" onSubmit={e=>{e.preventDefault();send(message)}}><input value={message} onChange={e=>setMessage(e.target.value)} placeholder={language==="FR"?"Posez une question sur les îles…":"Ask about the islands…"} aria-label="Ask GRACEON"/><button type="submit" aria-label="Send message"><Send size={16}/></button></form>
-   <div className="ga-note">{language==="FR"?"Démo conceptuelle · suggestions prédéfinies, sans IA en direct":"Concept demo · preset recommendations, no live AI"}</div>
+   <div className="ga-note">{language==="FR"?"Démo conceptuelle · suggestions prédéfinies, sans IA en direct":"{language==="FR"?"Démo conceptuelle · suggestions prédéfinies, sans IA en direct":"Concept demo · preset recommendations, no live AI"}"}</div>
   </section>}
   <button className="ga-launcher" onClick={()=>setOpen(v=>!v)} aria-expanded={open}><span className="ga-launch-icon">G</span></button>
  </div>;
