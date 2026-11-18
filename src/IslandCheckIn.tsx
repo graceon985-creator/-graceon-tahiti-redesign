@@ -27,13 +27,13 @@ export default function IslandCheckIn({islandName,visit,onVerified}:Props){
    if(accuracy>100){setStatus('Your location accuracy is too low for a reliable check-in. Move to an open area and try again.');setBusy(false);return;}
    const distance=distanceMetres(latitude,longitude,zone.lat,zone.lng);
    if(distance+accuracy>zone.radius){setStatus('You are outside the '+zone.name+' check-in area. The check-in zone is within 800 m of this visitor hub.');setBusy(false);return;}
-   const verifiedAt=new Date().toISOString();onVerified({verifiedAt,accuracy:Math.round(accuracy)});setStatus('Location check passed. Your island stamp has been added to this device’s passport.');setBusy(false);
+   const verifiedAt=new Date().toISOString();onVerified({verifiedAt,accuracy:Math.round(accuracy)});setStatus('Location check passed on this device. Your prototype stamp has been added locally.');setBusy(false);
   },error=>{const message=error.code===1?'Location permission was not granted. Allow location access in your browser settings to check in.':error.code===2?'Your location could not be determined. Check your device location settings and try again.':'Location request timed out. Try again in an open area.';setStatus(message);setBusy(false);},{enableHighAccuracy:true,timeout:20000,maximumAge:0});
  };
  return <section className='island-checkin' aria-live='polite'>
   <div className='island-checkin-icon'>{visit?<ShieldCheck size={22}/>:<MapPin size={22}/>}</div>
-  <div className='island-checkin-copy'><span className='detail-label'>{visit?'VISIT VERIFIED':'GPS ISLAND CHECK-IN'}</span>
-   <h3>{visit?'Your '+islandName+' stamp is secured.':'Verify your visit to '+islandName}</h3>
+  <div className='island-checkin-copy'><span className='detail-label'>{visit?'LOCATION CHECK PASSED':'GPS ISLAND CHECK-IN'}</span>
+   <h3>{visit?'Your '+islandName+' check-in is recorded on this device.':'Check in near '+islandName}</h3>
    <p>{visit?'Checked in '+new Date(visit.verifiedAt).toLocaleString()+' · GPS accuracy ±'+visit.accuracy+' m':'Allow one-time location access within 800 m of '+(zone?.name||'the island check-in point')+'. Your coordinates are checked on this device and are not saved.'}</p>
    {!visit&&<><a href={mapUrl} target='_blank' rel='noopener noreferrer'>VIEW CHECK-IN AREA IN GOOGLE MAPS <Navigation size={13}/></a><p className='island-checkin-note'>Prototype note: check-ins are stored in this browser only. This client-side demo is not a server-authenticated anti-fraud system.</p></>}
    {status&&<p className='island-checkin-status' role='status'>{status}</p>}
