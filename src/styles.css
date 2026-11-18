@@ -60,3 +60,15 @@
 .destination-activity-grid p{font-size:11px;line-height:1.8;color:#60756e;}
 .destination-back-bottom{display:flex;align-items:center;gap:10px;margin-top:45px;padding:14px 20px;border:1px solid #c87956;background:transparent;color:#163e3c;font-size:9px;letter-spacing:.13em;cursor:pointer;}
 @media(max-width:760px){.destination-hero{height:55vh;min-height:380px;}.destination-title h1{font-size:64px;}.destination-body{grid-template-columns:1fr;gap:42px;padding:48px 7%;}.destination-place h3{font-size:20px;}.destination-experiences{padding:48px 7%;}.destination-activity-grid{grid-template-columns:1fr;gap:28px;}.destination-activity-grid img{height:220px;}.destination-back{top:16px;left:5%;padding:10px 12px;font-size:8px;}}
+
+/* Hour 5 — richer island destination storytelling */
+.destination-signature{margin-top:28px;padding:20px 0 8px;border-top:1px solid #d4d9cf;max-width:480px;}
+.destination-signature>span{font-size:8px;letter-spacing:.16em;color:#b16e51;font-weight:700;}
+.destination-signature h3{font:clamp(19px,2.4vw,27px) 'Playfair Display',serif;font-weight:400;line-height:1.5;margin:12px 0 0;color:#234c48;}
+.destination-extra-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:8%;margin-bottom:56px;}
+.destination-extra-grid section{min-width:0;}
+.destination-extra-grid ul{list-style:none;padding:0;margin:18px 0 0;}
+.destination-extra-grid li{display:grid;grid-template-columns:28px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid #d1d7cc;font-size:12px;line-height:1.8;color:#4d6964;}
+.destination-extra-grid li span{font-size:9px;color:#c87956;letter-spacing:.1em;padding-top:2px;}
+.destination-extra-grid section>p{font-size:12px;line-height:1.9;color:#60756e;margin:12px 0 28px;}
+@media(max-width:760px){.destination-extra-grid{grid-template-columns:1fr;gap:32px;margin-bottom:38px;}.destination-signature h3{font-size:21px;}}
