@@ -541,3 +541,49 @@
 .ga-launcher:hover{transform:translateY(-3px);background:#a95f49!important}
 @media(max-width:900px){.culture-atlas{padding:80px 6%}.culture-atlas-layout{gap:4%}.culture-atlas-feature{min-height:390px}.culture-atlas-image{min-height:390px}.passport-side-trigger{width:92px;padding:8px 6px 9px}.passport-side-cover{width:72px;height:100px}}
 @media(max-width:640px){.passport-side-trigger{top:auto;bottom:86px;left:0;transform:none;width:68px;padding:6px 4px 7px;gap:5px}.passport-side-trigger:hover{width:74px}.passport-side-cover{width:55px;height:76px;padding:6px 4px;gap:4px}.passport-side-cover small{font-size:4px}.passport-side-cover strong{font-size:16px}.passport-side-cover i{font-size:14px}.passport-side-cover em{font-size:4px}.passport-side-label{font-size:5px;letter-spacing:.04em;gap:2px}.passport-side-label svg{width:9px}.passport-island-memory-grid{grid-template-columns:1fr}.passport-island-memory{grid-template-columns:90px minmax(0,1fr)}.culture-atlas{padding:68px 6% 75px}.culture-atlas-heading{margin-bottom:32px}.culture-atlas-heading h2{font-size:49px}.culture-atlas-layout{grid-template-columns:1fr;gap:22px}.culture-atlas-tabs button{font-size:19px;padding:16px 6px}.culture-atlas-feature{grid-template-columns:1fr}.culture-atlas-image{min-height:245px}.culture-atlas-copy{padding:25px}.culture-atlas-copy h3{font-size:31px}.nav{z-index:1100}.ga-launcher{width:44px!important;height:44px!important;min-width:44px!important}.passport-modal-layout{grid-template-columns:1fr}}
+
+/* Editorial photo composition: no thumbnail strip beneath the hero. */
+.hero-photo-cluster{position:absolute;z-index:4;inset:0;pointer-events:none}
+.hero-photo-card{position:absolute;overflow:hidden;border:5px solid rgba(246,242,230,.92);box-shadow:0 22px 55px #031e2c55;background:#123f4a}
+.hero-photo-card img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.88)}
+.hero-photo-card span{position:absolute;left:11px;bottom:10px;color:white;font-size:7px;letter-spacing:.16em;text-shadow:0 2px 8px #000}
+.hero-photo-one{width:clamp(150px,19vw,250px);height:clamp(110px,14vw,178px);right:12%;top:39%;transform:rotate(-5deg)}
+.hero-photo-two{width:clamp(125px,15vw,198px);height:clamp(100px,12vw,155px);right:4%;top:58%;transform:rotate(5deg)}
+.hero-photo-three{width:clamp(110px,13vw,170px);height:clamp(90px,10vw,132px);right:3%;top:31%;transform:rotate(7deg)}
+/* Hand-drawn route line connecting the island circles; GSAP reveals it with scroll. */
+.island-route-lines{position:absolute;inset:0;width:100%;height:100%;z-index:0;overflow:visible;pointer-events:none}
+.island-route-path{fill:none;stroke:#f0c49d;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:2600;stroke-dashoffset:2600;opacity:.78;filter:drop-shadow(0 0 4px #092d3540)}
+.island-orbit-bubble{z-index:1}
+.island-orbit-bubble:hover,.island-orbit-bubble:focus-visible{z-index:5}
+/* Event cards become a photo-led editorial calendar. */
+.event-card{padding:0;overflow:hidden;min-height:0}
+.event-image{position:relative;height:205px;overflow:hidden;background:#194c55}
+.event-image:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(0deg,rgba(3,30,36,.48),transparent)}
+.event-image img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+.event-card:hover .event-image img{transform:scale(1.06)}
+.event-image>span{position:absolute;z-index:1;right:14px;bottom:12px;color:white;font-size:8px;letter-spacing:.15em}
+.event-card>*:not(.event-image){margin-left:22px;margin-right:22px}
+.event-card-top{margin-top:18px;margin-bottom:18px}
+.event-card h3{font-size:26px;min-height:58px}
+.event-summary{min-height:78px}
+.event-location{margin-top:auto}
+.event-actions{padding-bottom:22px}
+.event-grid{align-items:stretch}
+.event-card:hover{transform:translateY(-5px);box-shadow:0 18px 38px #1a39321c}
+/* Map opens as a folded field-guide sheet over the site, never as a page section. */
+.map-paper-backdrop{position:fixed;inset:0;z-index:1400;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(4,27,34,.72);backdrop-filter:blur(8px);animation:paperBackdrop .25s ease both}
+@keyframes paperBackdrop{from{opacity:0}to{opacity:1}}
+.map-paper-sheet{position:relative;width:min(1240px,100%);max-height:92vh;overflow:auto;background:#f1eee5;color:#183e3d;box-shadow:0 35px 100px #001b24a6;transform-origin:top center;animation:paperUnfold .75s cubic-bezier(.18,.8,.22,1) both}
+@keyframes paperUnfold{0%{opacity:0;transform:perspective(1400px) rotateX(-13deg) scaleY(.08) translateY(-40px);clip-path:inset(0 0 88% 0)}55%{opacity:1;transform:perspective(1400px) rotateX(2deg) scaleY(1.015);clip-path:inset(0)}100%{transform:perspective(1400px) rotateX(0) scaleY(1);clip-path:inset(0)}}
+.map-paper-top{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 5%;background:#f1eee5ee;backdrop-filter:blur(10px);border-bottom:1px solid #d8d2c3}
+.map-paper-top h2{font:clamp(30px,4vw,48px) 'Playfair Display',serif;font-weight:400;margin:7px 0 0}
+.map-paper-top h2 em{color:#b87558}
+.map-paper-top>button{display:flex;align-items:center;gap:8px;border:1px solid #aeb9ae;background:transparent;color:#234b47;padding:11px 14px;font-size:8px;letter-spacing:.12em;cursor:pointer}
+.map-paper-sheet .archipelago-map-section{padding:28px 5% 35px!important}
+.map-paper-sheet .archipelago-map-heading{display:none}
+.map-paper-sheet .archipelago-map-layout{min-height:450px}
+.map-paper-sheet .archipelago-map-frame{min-height:450px}
+.map-paper-sheet .archipelago-leaflet-map{height:450px}
+.map-paper-sheet .archipelago-map-footnote{font-size:8px}
+@media(max-width:900px){.hero-photo-one{right:10%;top:49%}.hero-photo-two{right:3%;top:67%}.hero-photo-three{right:2%;top:39%}.event-image{height:180px}}
+@media(max-width:640px){.hero-photo-one{width:125px;height:92px;right:8%;top:58%;border-width:3px}.hero-photo-two{width:102px;height:78px;right:3%;top:73%;border-width:3px}.hero-photo-three{display:none}.hero-photo-card span{font-size:5px;left:6px;bottom:6px}.hero-copy{max-width:80%;}.hero-next{z-index:6}.island-orbit-stage{height:1050px}.island-orbit-bubble:nth-of-type(1),.island-orbit-bubble:nth-of-type(2),.island-orbit-bubble:nth-of-type(3),.island-orbit-bubble:nth-of-type(4),.island-orbit-bubble:nth-of-type(5),.island-orbit-bubble:nth-of-type(6),.island-orbit-bubble:nth-of-type(7),.island-orbit-bubble:nth-of-type(8){left:var(--bubble-left)!important;top:var(--bubble-top)!important}.island-orbit-bubble{max-width:39vw;max-height:39vw}.island-route-path{stroke-width:3.5}.event-image{height:205px}.event-card>*:not(.event-image){margin-left:18px;margin-right:18px}.event-card h3{min-height:0}.event-summary{min-height:0}.map-paper-backdrop{padding:7px;align-items:flex-end}.map-paper-sheet{max-height:95vh}.map-paper-top{padding:15px 5%}.map-paper-top h2{font-size:28px}.map-paper-top>button{padding:9px;font-size:7px}.map-paper-sheet .archipelago-map-section{padding:18px 4% 22px!important}.map-paper-sheet .archipelago-map-layout{grid-template-columns:1fr}.map-paper-sheet .archipelago-map-frame,.map-paper-sheet .archipelago-leaflet-map{height:320px;min-height:320px}}
