@@ -449,3 +449,39 @@
 .ga-launcher>span:nth-child(2),.ga-launcher>svg:last-child{display:none!important}
 .ga-launch-icon{width:100%!important;height:100%!important;background:#bd7656!important}
 .ga-panel{width:min(320px,calc(100vw - 28px))!important;height:420px!important}
+
+
+/* Full-bleed editorial opening inspired by the Oxidar Sinalei case-study mood */
+.announcement{background:#082f3d;color:#e5e8df}
+.nav{background:#0a3947;color:#f4f1e8;border-color:#ffffff24}
+.nav .brand-mark{border-color:#d5b18e;color:#f4f1e8}
+.nav-links a:hover,.text-link:hover{color:#e5b68f}
+.nav-actions .lang,.nav-actions .menu-btn{color:#f4f1e8}
+.plan-link{background:#d39a72;color:#123c45}
+.hero{display:block;position:relative;min-height:calc(100svh - 113px);height:calc(100svh - 113px);max-height:940px;overflow:hidden;padding:0;background:#073d4c;color:white}
+.hero-gallery-upgraded{position:absolute;inset:0;height:100%;padding:0;display:block}
+.hero-feature{position:absolute;inset:0;border-radius:0;min-height:0}
+.hero-feature-image{animation:heroSlowZoom 18s ease-in-out infinite alternate}
+@keyframes heroSlowZoom{from{transform:scale(1)}to{transform:scale(1.08)}}
+.hero-feature-shade{background:linear-gradient(90deg,rgba(4,34,43,.72) 0%,rgba(4,34,43,.32) 48%,rgba(4,34,43,.06) 100%),linear-gradient(0deg,rgba(3,30,38,.56),transparent 45%)}
+.hero-copy{position:absolute;z-index:4;left:8.5%;top:50%;transform:translateY(-48%);padding:0;max-width:620px;color:#fff}
+.hero-copy .eyebrow{color:#f0c49d}
+.hero-copy .eyebrow-line{background:#f0c49d}
+.hero h1{font-size:clamp(68px,9.6vw,142px);line-height:.88;letter-spacing:-.065em;margin:28px 0 22px;color:#fff;text-shadow:0 3px 30px #062c3566}
+.hero h1 em{color:#edc19a;font-weight:400}
+.hero-intro{max-width:390px;color:#e0e8e1;font-size:14px;line-height:1.8}
+.circle-link{width:auto;height:auto;border:1px solid #f0c49d;border-radius:0;padding:16px 20px;margin-top:28px;display:inline-flex;flex-direction:row;gap:18px;color:#fff;background:rgba(255,255,255,.06);backdrop-filter:blur(5px)}
+.circle-link:hover{background:#f0c49d;color:#123c45;transform:translateY(-3px) rotate(0)}
+.hero-feature-copy{left:auto;right:6%;top:12%;bottom:auto;text-align:right}
+.hero-feature-copy>span{color:#f0c49d}
+.hero-feature-copy h2{font-size:clamp(28px,3.5vw,48px)}
+.hero-feature-copy p{font-size:8px}
+.hero-thumbnails{position:absolute;z-index:5;right:5%;bottom:48px;width:min(510px,44%);height:76px;gap:8px}
+.hero-thumb{border-color:#ffffff55;opacity:.72}
+.hero-thumb.active{border:1px solid #edc19a;opacity:1}
+.hero-thumb span{font-size:7px}
+.hero-next{left:8.5%;right:auto;bottom:48px;width:42px;height:42px;background:rgba(4,42,51,.35)}
+.upgraded-stamp{display:none}
+.hero-foot{left:8.5%;right:8.5%;bottom:15px;border-color:#ffffff4a;color:#d9e5df;z-index:3}
+@media(max-width:900px){.hero{height:calc(88svh - 113px);min-height:620px}.hero-copy{left:6%;top:42%;max-width:75%}.hero h1{font-size:clamp(64px,11vw,100px)}.hero-thumbnails{right:5%;width:52%;bottom:54px}.hero-next{left:6%;bottom:54px}}
+@media(max-width:640px){.announcement{height:25px;font-size:7px}.announcement span:nth-child(2){display:none}.nav{height:68px}.hero{height:calc(88svh - 93px);min-height:630px}.hero-copy{left:7%;right:7%;top:35%;max-width:none}.hero h1{font-size:clamp(61px,15vw,88px);margin:22px 0 16px}.hero-intro{font-size:12px;max-width:280px}.hero-feature-copy{top:7%;right:7%}.hero-feature-copy h2{font-size:27px}.hero-feature-copy>span{font-size:7px}.hero-thumbnails{left:7%;right:7%;bottom:60px;width:auto;height:60px;gap:5px}.hero-thumb span{font-size:6px;padding:13px 5px 5px}.hero-next{left:auto;right:7%;bottom:135px;width:36px;height:36px}.hero-foot{left:7%;right:7%;bottom:14px;font-size:6px}.circle-link{padding:13px 15px;font-size:7px}}
