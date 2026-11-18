@@ -218,3 +218,20 @@
 .destination-place.explored .destination-place-info h3{text-decoration:line-through;text-decoration-color:#a5b8a4;text-decoration-thickness:1px;}
 @media(max-width:850px){.passport-achievement-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:600px){.passport-stats{gap:7px}.passport-stats>div{padding:12px 9px}.passport-stats strong{font-size:24px}.passport-stats span{font-size:7px;line-height:1.5}.passport-subhead{align-items:flex-start;flex-direction:column;gap:8px}.passport-achievement-grid{grid-template-columns:1fr;gap:8px}.passport-achievement{padding:13px}.destination-place{grid-template-columns:23px minmax(0,1fr);gap:9px}.place-check{grid-column:2;justify-self:start}.destination-place-info h3{font-size:19px}}
+
+
+/* GPS verified island check-in */
+.island-checkin{display:flex;align-items:center;gap:16px;margin:26px 0 34px;padding:20px 22px;background:#e8eee5;border:1px solid #c2d1c1;color:#214943;}
+.island-checkin-icon{width:46px;height:46px;flex:none;border:1px solid #83a18c;border-radius:50%;display:grid;place-items:center;color:#376b54;}
+.island-checkin-copy{flex:1;min-width:0;}
+.island-checkin-copy h3{font:23px 'Playfair Display',serif;font-weight:400;margin:6px 0;color:#234c48;}
+.island-checkin-copy p{font-size:10px;line-height:1.7;color:#687a70;margin:0;}
+.island-checkin-copy>a{display:inline-flex;align-items:center;gap:7px;margin-top:10px;color:#a66d4e;text-decoration:none;font-size:8px;letter-spacing:.1em;}
+.island-checkin-copy>a:hover{color:#214943;}
+.island-checkin-status{margin-top:9px!important;color:#a45f43!important;}
+.island-checkin>button{display:flex;align-items:center;justify-content:center;gap:8px;flex:none;padding:13px 15px;border:0;background:#173f3c;color:#f4f1e9;font-size:8px;letter-spacing:.1em;cursor:pointer;transition:background .2s;}
+.island-checkin>button:hover:not(:disabled){background:#bd7656;}
+.island-checkin>button:disabled{opacity:.65;cursor:wait;}
+.island-checkin .spin{animation:checkinSpin 1s linear infinite;}
+@keyframes checkinSpin{to{transform:rotate(360deg)}}
+@media(max-width:640px){.island-checkin{align-items:flex-start;flex-wrap:wrap;padding:16px;gap:12px}.island-checkin-copy{flex:1 1 calc(100% - 62px)}.island-checkin-copy h3{font-size:20px}.island-checkin>button{width:100%;}}
