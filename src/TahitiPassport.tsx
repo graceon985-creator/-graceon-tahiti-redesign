@@ -1,25 +1,29 @@
 import {ArrowRight, Check, Compass, Award, MapPinned, Route, Flag} from 'lucide-react';
 
 type Island = {name:string;tag:string;kind:string;image:string;signature:string};
-type Props = {islands:Island[];stamps:string[];verifiedCheckins:Record<string,{verifiedAt:string;accuracy:number}>;journeyIslands:string[];savedPlaces:Record<string,string[]>;activities:Record<string,{title:string}[]>;onExplore:(name:string)=>void;onViewMap:(islandName:string,title:string)=>void};
+type Props = {islands:Island[];verifiedCheckins:Record<string,{verifiedAt:string;accuracy:number}>;journeyIslands:string[];savedPlaces:Record<string,string[]>;activities:Record<string,{title:string}[]>;onExplore:(name:string)=>void;onViewMap:(islandName:string,title:string)=>void};
 
-export default function TahitiPassport({islands,stamps,verifiedCheckins,journeyIslands,savedPlaces,activities,onExplore,onViewMap}:Props){
- const verifiedCount=Object.keys(verifiedCheckins).length;
+export default function TahitiPassport({islands,verifiedCheckins,journeyIslands,savedPlaces,activities,onExplore,onViewMap}:Props){
+ // Only known islands with a well-formed local GPS check-in can earn a stamp.
+ // Saved places and route selections never contribute to this collection.
+ const verifiedIslands=islands.filter(island=>{const visit=verifiedCheckins[island.name];return !!visit&&typeof visit.verifiedAt==='string'&&visit.verifiedAt.length>0&&Number.isFinite(visit.accuracy)&&visit.accuracy>0;});
+ const stamps=verifiedIslands.map(island=>island.name);
+ const verifiedCount=verifiedIslands.length;
  const total=islands.length;
- const collected=islands.filter(island=>stamps.includes(island.name)).length;
+ const collected=verifiedCount;
  const next=islands.find(island=>!stamps.includes(island.name));
  const savedPlaceCount=Object.values(savedPlaces).reduce((count,places)=>count+places.length,0);
  const achievements=[
   {name:'First Discovery',detail:'Complete your first GPS check-in on this device.',unlocked:verifiedCount>=1,progress:Math.min(verifiedCount,1),goal:1,Icon:Flag},
-  {name:'Curious Explorer',detail:'Complete Record check-ins on three different islands.',unlocked:verifiedCount>=3,progress:Math.min(verifiedCount,3),goal:3,Icon:MapPinned},
-  {name:'Island Collector',detail:'Collect stamps from four island check-ins.',unlocked:collected>=4,progress:Math.min(collected,4),goal:4,Icon:Award},
+  {name:'Curious Explorer',detail:'Complete GPS check-ins on three different islands.',unlocked:verifiedCount>=3,progress:Math.min(verifiedCount,3),goal:3,Icon:MapPinned},
+  {name:'Island Collector',detail:'Collect stamps from four different island hubs.',unlocked:collected>=4,progress:Math.min(collected,4),goal:4,Icon:Award},
   {name:'Route Maker',detail:'Add three islands to your personal journey.',unlocked:journeyIslands.length>=3,progress:Math.min(journeyIslands.length,3),goal:3,Icon:Route},
-  {name:'Archipelago Explorer',detail:'Complete Check in at all eight island hubs.',unlocked:collected===total,progress:collected,goal:total,Icon:Compass}
+  {name:'Archipelago Explorer',detail:'Complete a GPS check-in at all eight island hubs.',unlocked:collected===total,progress:collected,goal:total,Icon:Compass}
  ];
  const unlocked=achievements.filter(item=>item.unlocked).length;
  return <section id="passport" className="passport-section section-pad">
   <div className="passport-heading">
-   <div><div className="section-kicker">03 / YOUR DISCOVERY RECORD</div><h2>The Tahiti<br/><em>Passport.</em></h2><p>Every island has a story. Check in near a featured island hub and collect a prototype stamp. Current check-ins are stored on this device; connect the server setup before treating them as trusted visits.</p></div>
+   <div><div className="section-kicker">03 / YOUR DISCOVERY RECORD</div><h2>The Tahiti<br/><em>Passport.</em></h2><p>Every island has a story. Complete a GPS check-in near a featured island hub to earn its stamp. Each island counts once. Check-ins are stored on this device and are not server-authenticated proof of travel.</p></div>
    <div className="passport-cover" aria-label="Tahiti Passport digital cover"><div className="passport-cover-orbit">✳ &nbsp; ✳ &nbsp; ✳</div><span>THE ISLANDS OF</span><strong>TAHITI</strong><small>DISCOVERY PASSPORT</small><div className="passport-cover-mark">T</div><span className="passport-cover-bottom">FRENCH POLYNESIA · SOUTH PACIFIC</span></div>
   </div>
   <div className="passport-progress"><div><span className="detail-label">YOUR ISLAND COLLECTION</span><strong>{collected}<small> / {total} STAMPS</small></strong></div><div className="passport-progress-track" role="progressbar" aria-label="Island stamps collected" aria-valuemin={0} aria-valuemax={total} aria-valuenow={collected}><span style={{width:`${total?collected/total*100:0}%`}}/></div><p>{collected===total?'All eight island stamps collected. Your archipelago discovery is complete.':collected===0?'Your passport is ready. Choose an island and begin exploring.':`${total-collected} more island ${total-collected===1?'stamp':'stamps'} to complete your collection.`}</p></div>
