@@ -18,12 +18,13 @@ export const experiences = [
 export type IslandEvent = {
  id:string; title:string; island:string; location:string; dateLabel:string;
  dateStatus:'confirmed'|'seasonal'; category:string; summary:string;
- officialUrl:string; mapQuery:string;
+ officialUrl:string; mapQuery:string; image:string;
 };
 
 export const events: IslandEvent[] = [
  {
   id:'hura-mataeinaa-2026', title:"Hura Mata'eina'a – Celebrate Matari'i i ni'a",
+  image:'https://images.unsplash.com/photo-1504609813442-a8924e83f76e?auto=format&fit=crop&w=1100&q=85',
   island:'Moorea', location:'Salle Omnisport Afareaitu, Moorea',
   dateLabel:'20–22 November 2026', dateStatus:'confirmed', category:'Culture & dance',
   summary:"A three-day cultural celebration with an 'Ori Tahiti dance competition, performances and community activities. Free admission and local transport are listed by the organizer.",
@@ -32,6 +33,7 @@ export const events: IslandEvent[] = [
  },
  {
   id:'matarii-2026', title:"Matari'i i ni'a – Season of Abundance",
+  image:'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1100&q=85',
   island:'Tahiti & the islands', location:'Celebrated across French Polynesia',
   dateLabel:'From 20 November · annual seasonal celebration', dateStatus:'seasonal', category:'Culture & heritage',
   summary:'The Polynesian season of abundance begins with the rising of the Pleiades. Community celebrations and local programs vary by island and year; check local announcements for specific activities.',
@@ -40,6 +42,7 @@ export const events: IslandEvent[] = [
  },
  {
   id:'heiva-tahiti', title:'Heiva i Tahiti',
+  image:'https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1100&q=85',
   island:'Tahiti', location:'Place To’ata, Papeete',
   dateLabel:'Usually July · 2027 dates to be announced', dateStatus:'seasonal', category:'Culture & dance',
   summary:'The major celebration of traditional Polynesian singing, music and dance, with groups presenting performances inspired by island legends and heritage.',
@@ -48,6 +51,7 @@ export const events: IslandEvent[] = [
  },
  {
   id:'hura-tapairu', title:'Hura Tapairu',
+  image:'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1100&q=85',
   island:'Tahiti', location:'Maison de la Culture – Te Fare Tauhiti Nui, Papeete',
   dateLabel:'Usually November · dates to be announced', dateStatus:'seasonal', category:'Culture & dance',
   summary:'A dance competition created for smaller troupes, known for original performances and contemporary interpretations rooted in Tahitian dance.',
@@ -56,6 +60,7 @@ export const events: IslandEvent[] = [
  },
  {
   id:'farerei-haga', title:'Farerei Haga',
+  image:'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1100&q=85',
   island:'Rangiroa', location:'Rangiroa, Tuamotu Archipelago',
   dateLabel:'Usually September · dates to be announced', dateStatus:'seasonal', category:'Culture & dance',
   summary:'A gathering of dance groups from neighboring atolls, offering visitors a chance to experience local performance traditions. Confirm the next edition with local organizers.',
@@ -64,6 +69,7 @@ export const events: IslandEvent[] = [
  },
  {
   id:'hawaiki-nui-vaa', title:'Hawaiki Nui Va’a',
+  image:'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1100&q=85',
   island:'Huahine · Raiatea · Taha’a · Bora Bora', location:'Society Islands',
   dateLabel:'Annual race · 2026 edition: 28–30 October (past)', dateStatus:'seasonal', category:'Sport & va’a',
   summary:'A major outrigger-canoe race crossing several Society Islands. The next edition dates should be confirmed with the organizers before travel.',
