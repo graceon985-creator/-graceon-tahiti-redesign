@@ -185,3 +185,36 @@
 .passport-collect.collected{background:#e2e9df;border-color:#7e9a82;color:#315b4b;cursor:default;}
 @media(max-width:850px){.passport-heading{grid-template-columns:1fr 260px;gap:5%;}.passport-cover{min-height:290px}.passport-stamp-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:600px){.passport-section{padding-top:65px;padding-bottom:65px}.passport-heading{grid-template-columns:1fr;gap:30px}.passport-cover{width:min(100%,330px);min-height:300px;margin:0 auto}.passport-progress{grid-template-columns:1fr;gap:13px}.passport-progress>p{grid-column:1}.passport-stamp-grid{gap:10px}.passport-stamp-art{height:145px}.passport-stamp-ring{width:105px;height:105px}.passport-stamp-ring strong{font-size:16px}.passport-stamp-meta h3{font-size:20px}.passport-next{align-items:flex-start;flex-wrap:wrap;padding:18px}.passport-next>div:nth-child(2){min-width:calc(100% - 70px)}.passport-next>button{margin-left:64px}}
+
+
+/* Passport progress: explored places and achievement milestones */
+.passport-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0 38px;}
+.passport-stats>div{padding:17px 19px;background:#f3f0e7;border:1px solid #d7d4c8;display:grid;gap:5px;}
+.passport-stats strong{font:30px 'Playfair Display',serif;font-weight:400;color:#234c48;}
+.passport-stats span{font-size:8px;letter-spacing:.13em;color:#879087;}
+.passport-subhead{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:17px;}
+.passport-subhead p{font-size:10px;line-height:1.6;color:#78847b;margin:0;max-width:390px;}
+.passport-achievement-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:40px;}
+.passport-achievement{display:flex;align-items:flex-start;gap:12px;padding:16px;background:#f3f0e7;border:1px solid #d7d4c8;min-width:0;}
+.passport-achievement.unlocked{background:#e1e9df;border-color:#aabca9;}
+.passport-achievement-icon{position:relative;flex:none;width:42px;height:42px;border:1px solid #bcbcac;border-radius:50%;display:grid;place-items:center;color:#9a9c8d;}
+.passport-achievement.unlocked .passport-achievement-icon{border-color:#668a70;color:#315b4b;}
+.passport-achievement-icon>span{position:absolute;right:-4px;bottom:-3px;width:17px;height:17px;border-radius:50%;display:grid;place-items:center;background:#315b4b;color:#fff;}
+.passport-achievement-copy{flex:1;min-width:0;}
+.passport-achievement-copy h3{font:18px 'Playfair Display',serif;font-weight:400;margin:0 0 5px;color:#244a45;}
+.passport-achievement-copy p{font-size:9px;line-height:1.6;color:#78847b;margin:0 0 12px;min-height:29px;}
+.passport-achievement-track{height:3px;background:#d5d3c8;overflow:hidden;}
+.passport-achievement-track span{display:block;height:100%;background:#bd7656;transition:width .3s;}
+.passport-achievement.unlocked .passport-achievement-track span{background:#477b5a;}
+.passport-achievement-copy small{display:block;margin-top:7px;font-size:7px;letter-spacing:.12em;color:#8a9388;}
+.destination-place{display:grid;grid-template-columns:30px minmax(0,1fr) auto;align-items:center;gap:12px;padding:16px 0;border-bottom:1px solid #d4d9cf;}
+.destination-place>span{font-size:9px;color:#c87956;letter-spacing:.1em;}
+.destination-place-info{min-width:0;}
+.destination-place-info h3{font:21px 'Playfair Display',serif;font-weight:400;margin:0 0 5px;color:#234c48;}
+.destination-place-info>a{display:inline-flex;align-items:center;gap:5px;font-size:7px;letter-spacing:.13em;color:#9b765f;text-decoration:none;}
+.destination-place-info>a:hover{color:#c87956;}
+.place-check{border:1px solid #c8cbbf;background:transparent;color:#7d897f;padding:9px 10px;font-size:7px;letter-spacing:.1em;cursor:pointer;white-space:nowrap;}
+.place-check:hover,.destination-place.explored .place-check{border-color:#668a70;background:#e1e9df;color:#315b4b;}
+.destination-place.explored .destination-place-info h3{text-decoration:line-through;text-decoration-color:#a5b8a4;text-decoration-thickness:1px;}
+@media(max-width:850px){.passport-achievement-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:600px){.passport-stats{gap:7px}.passport-stats>div{padding:12px 9px}.passport-stats strong{font-size:24px}.passport-stats span{font-size:7px;line-height:1.5}.passport-subhead{align-items:flex-start;flex-direction:column;gap:8px}.passport-achievement-grid{grid-template-columns:1fr;gap:8px}.passport-achievement{padding:13px}.destination-place{grid-template-columns:23px minmax(0,1fr);gap:9px}.place-check{grid-column:2;justify-self:start}.destination-place-info h3{font-size:19px}}
