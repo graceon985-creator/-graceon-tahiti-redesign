@@ -32,22 +32,20 @@ function gtc_ai_guide_retrieve_context(string $question, string $locale = ''): s
     $post_types = ['iot_island','iot_highlight','iot_experience','iot_event','iot_tip','iot_provider','iot_accommodation','iot_offer'];
     $found = [];
     $queries = [];
+    $island_names = [ 'tahiti'=>'Tahiti', 'moorea'=>'Moorea', 'bora-bora'=>'Bora Bora', 'huahine'=>'Huahine', 'raiatea'=>'Raiatea', 'taha-a'=>"Taha'a", 'rangiroa'=>'Rangiroa', 'fakarava'=>'Fakarava' ];
     $clean = trim(wp_strip_all_tags($question));
     if ($clean !== '') { $queries[] = $clean; }
     $island_slug = gtc_ai_guide_detect_island($clean);
     if ($island_slug !== '') {
         $island_post = get_page_by_path($island_slug, OBJECT, 'iot_island');
         if ($island_post && $island_post->post_status === 'publish') { $found[$island_post->ID] = $island_post; }
-        $island_term = get_term_by('slug', $island_slug, 'iot_highlight_island');
-        if ($island_term && !is_wp_error($island_term)) {
-            $q = new WP_Query([
+        $q = new WP_Query([
                 'post_type' => 'iot_highlight', 'post_status' => 'publish',
                 'posts_per_page' => 10, 'no_found_rows' => true,
                 'tax_query' => [[ 'taxonomy' => 'iot_highlight_island', 'field' => 'slug', 'terms' => $island_slug ]],
             ]);
-            foreach ($q->posts as $p) { $found[$p->ID] = $p; }
-        }
-        $queries[] = get_the_title($island_post ?: $island_slug);
+        foreach ($q->posts as $p) { $found[$p->ID] = $p; }
+        $queries[] = $island_names[$island_slug] ?? ucfirst($island_slug);
     }
     foreach ($queries as $search_term) {
         $q = new WP_Query([
