@@ -20,10 +20,14 @@ function getDemoReply(message:string){
  if(/\b(5 day|five day|5 days|five days|plan|itinerary)\b/.test(text)){
   return 'Here is a flexible 5-day starting idea:\n• Days 1–2: Tahiti — markets, culture, coast and a valley excursion.\n• Days 3–5: Moorea — lagoon, viewpoints and green landscapes.\n\nThis is only a sample; ferry and flight schedules, lodging and seasonal conditions should be checked before booking.';
  }
+ const islandMention=destinationTips.find(d=>text.includes(d.name.toLowerCase()));
+ if(islandMention){
+  return 'Great choice — '+islandMention.name+' could be a good starting point. '+islandMention.why+'\\n\\nA flexible 3-day idea:\\n• Day 1: Settle in and explore a nearby village or coastline.\\n• Day 2: Choose a guided nature, lagoon or cultural activity that matches the island.\\n• Day 3: Keep time for a local food stop and an easy scenic outing.\\n\\nOpen the island guide to see specific places. This concept does not check live schedules, weather or bookings.';
+ }
  const matches=destinationTips.filter(d=>d.keys.some(k=>text.includes(k)));
  if(matches.length){
   const chosen=matches.slice(0,3);
-  return 'Based on what you mentioned, I would start with:\n\n'+chosen.map(d=>'• '+d.name+' — '+d.why).join('\n\n')+'\n\nOpen the island guides on the page to compare highlights. These are inspiration suggestions, not live booking or weather information.';
+  return 'Based on what you mentioned, I would start with:\\n\\n'+chosen.map(d=>'• '+d.name+' — '+d.why).join('\\n\\n')+'\\n\\nIf you select more than one interest, I can suggest a simple combination. Open Island Discovery to compare matches and explore each guide. These are inspiration suggestions, not live booking or weather information.';
  }
  if(/\b(hello|hi|hey|bonjour)\b/.test(text)) return 'Hello! Tell me what you enjoy most—lagoon days, nature, culture, food, adventure or a quiet escape—and I’ll suggest islands to explore.';
  return 'I can help you choose islands by the kind of trip you imagine. Try mentioning what you love—lagoon, nature, hiking, culture, food, vanilla, sailing or a quiet getaway. I can also sketch a sample itinerary, but this demo does not check live availability.';
