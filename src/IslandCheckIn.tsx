@@ -1,19 +1,11 @@
 import {useState} from 'react';
+import {checkInZones} from './checkInZones';
 import {MapPin, ShieldCheck, LoaderCircle, Navigation} from 'lucide-react';
 type VerifiedVisit = {verifiedAt:string; accuracy:number};
 type Props = {islandName:string; visit?:VerifiedVisit; onVerified:(visit:VerifiedVisit)=>void};
 // Each check-in is tied to a specific visitor hub, not the whole island.
 // The 800 m radius is intentionally tighter than the earlier concept version.
-const checkInZones:Record<string,{name:string;lat:number;lng:number;radius:number}>={
- Tahiti:{name:'Papeete waterfront',lat:-17.5347,lng:-149.5684,radius:800},
- Moorea:{name:'Paopao village',lat:-17.5186,lng:-149.8219,radius:800},
- 'Bora Bora':{name:'Vaitape village',lat:-16.5074,lng:-151.7491,radius:800},
- Huahine:{name:'Fare village',lat:-16.7123,lng:-151.0349,radius:800},
- Raiatea:{name:'Uturoa waterfront',lat:-16.7302,lng:-151.4426,radius:800},
- 'Taha’a':{name:'Vaitoare village',lat:-16.6762,lng:-151.4574,radius:800},
- Rangiroa:{name:'Avatoru village',lat:-14.9417,lng:-147.7020,radius:800},
- Fakarava:{name:'Rotoava village',lat:-16.05586,lng:-145.61987,radius:800}
-};
+
 function distanceMetres(a:number,b:number,c:number,d:number){const rad=(n:number)=>n*Math.PI/180;const earth=6371000;const dLat=rad(c-a),dLng=rad(d-b);const h=Math.sin(dLat/2)**2+Math.cos(rad(a))*Math.cos(rad(c))*Math.sin(dLng/2)**2;return 2*earth*Math.asin(Math.sqrt(h));}
 export default function IslandCheckIn({islandName,visit,onVerified}:Props){
  const [status,setStatus]=useState(''); const [busy,setBusy]=useState(false); const zone=checkInZones[islandName];
@@ -53,7 +45,7 @@ export default function IslandCheckIn({islandName,visit,onVerified}:Props){
   <div className='island-checkin-icon'>{visit?<ShieldCheck size={22}/>:<MapPin size={22}/>}</div>
   <div className='island-checkin-copy'><span className='detail-label'>{visit?'LOCATION CHECK PASSED':'GPS ISLAND CHECK-IN'}</span>
    <h3>{visit?'Your '+islandName+' check-in is recorded on this device.':'Check in near '+islandName}</h3>
-   <p>{visit?'Checked in '+new Date(visit.verifiedAt).toLocaleString()+' · GPS accuracy ±'+visit.accuracy+' m':'Allow one-time location access within 800 m of '+(zone?.name||'the island check-in point')+'. A fresh location reading is checked on this device; coordinates are not saved.'}</p>
+   <p>{visit?'Checked in '+new Date(visit.verifiedAt).toLocaleString()+' · GPS accuracy ±'+visit.accuracy+' m':'Allow one-time location access within {zone?.radius||800} m of '+(zone?.name||'the island check-in point')+'. The hub is an approximate reference point and needs local confirmation. A fresh reading is checked on this device; coordinates are not saved.'}</p>
    {!visit&&<><a href={mapUrl} target='_blank' rel='noopener noreferrer'>VIEW CHECK-IN AREA IN GOOGLE MAPS <Navigation size={13}/></a><p className='island-checkin-note'>Prototype limitation: the check-in record is stored in this browser only. Browser location can be manipulated, so this is not server-authenticated proof of a visit.</p></>}
    {status&&<p className='island-checkin-status' role='status'>{status}</p>}
   </div>
