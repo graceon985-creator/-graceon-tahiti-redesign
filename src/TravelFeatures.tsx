@@ -14,7 +14,7 @@ const interestTerms:Record<string,string[]>={'Lagoon & beaches':['lagoon','beach
 export default function TravelFeatures({savedIslands,journeyIslands,onToggleJourneyIsland}:Props){
  const [profile,setProfile]=useState(()=>read('graceon-profile-v1',{name:'',email:''}));
  const [profileEditing,setProfileEditing]=useState(!read('graceon-profile-v1',null));
- const [days,setDays]=useState(5);
+ const [days,setDays]=useState(5);\n const [stayIsland,setStayIsland]=useState('All'); const [stayType,setStayType]=useState('Any');
  const [selectedInterests,setSelectedInterests]=useState<string[]>(['Nature & hiking','Culture & heritage']);
  const [plan,setPlan]=useState<{day:number;island:Island;activity:string}[]>(()=>read('graceon-trip-plan-v1',[]));
  const [posts,setPosts]=useState<Post[]>(()=>read('graceon-community-posts-v1',[]));
