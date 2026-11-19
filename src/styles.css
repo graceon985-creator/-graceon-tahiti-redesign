@@ -1207,3 +1207,30 @@
 .graceon-edge-items button{display:flex;align-items:center;gap:9px;padding:10px 14px;border:1px solid #d5b18b;background:#103b42;color:#f2ebde;border-radius:0 24px 24px 0;font-size:10px;letter-spacing:.09em;cursor:pointer;box-shadow:0 5px 18px #002c3433;white-space:nowrap}
 .graceon-edge-items button:hover{background:#c58f69;color:#123e45}
 @media(max-width:640px){.graceon-edge-menu{right:8px}.graceon-edge-dots{width:42px;height:42px}.graceon-edge-items button{padding:9px 11px;font-size:9px}}
+
+/* Moorea pilot guide expansion — deeper destination information, preserving the existing detail-page layout. */
+.destination-deep-guide{padding:clamp(32px,6vw,90px) clamp(20px,6vw,100px);background:#f0ece4;color:#183b40;border-top:1px solid #d7d1c5}
+.destination-guide-heading{max-width:720px;margin:0 0 40px}
+.destination-guide-heading h2{font:clamp(36px,5vw,66px)/.98 Georgia,serif;letter-spacing:-.04em;margin:18px 0 16px;color:#183b40}
+.destination-guide-heading p{font-size:15px;line-height:1.7;color:#52666a;max-width:600px}
+.destination-guide-places{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.destination-guide-place{display:grid;grid-template-columns:48px 1fr;gap:15px;padding:24px;background:#fff;border:1px solid #d9d3c8;min-height:190px}
+.destination-guide-number{font:20px Georgia,serif;color:#b47d58}
+.destination-guide-category{font-size:9px;letter-spacing:.15em;color:#a66f4e}
+.destination-guide-place h3,.destination-guide-experience-grid h3,.destination-guide-days h3{font:26px/1.1 Georgia,serif;margin:10px 0;color:#193b40}
+.destination-guide-place p,.destination-guide-experience-grid p,.destination-guide-days p{font-size:13px;line-height:1.65;color:#52666a;margin:0 0 16px}
+.destination-guide-place a{display:inline-flex;align-items:center;gap:7px;text-decoration:none;font-size:9px;letter-spacing:.12em;color:#193b40;border-bottom:1px solid #b47d58;padding-bottom:4px}
+.destination-guide-experiences{margin:50px 0 0;padding:28px 0;border-top:1px solid #d4ccbf;border-bottom:1px solid #d4ccbf}
+.destination-guide-experience-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:22px}
+.destination-guide-experience-grid article{padding:0 22px 0 0;border-right:1px solid #d4ccbf}
+.destination-guide-experience-grid article:last-child{border-right:0}
+.destination-guide-experience-grid h3{font-size:22px}
+.destination-guide-itinerary{margin:48px 0}
+.destination-guide-days{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:22px}
+.destination-guide-days article{display:flex;gap:14px;padding:24px;background:#183d43;color:#eee7db;min-height:200px}
+.destination-guide-days article>span{font:22px Georgia,serif;color:#c89b76}
+.destination-guide-days h3{color:#f0e8dc;font-size:22px;margin-top:0}
+.destination-guide-days p{color:#c6d0cd;margin:0}
+.destination-guide-notes{padding:28px 30px;background:#e6e0d5}
+.destination-guide-notes ul{margin:20px 0 0;padding-left:18px;display:grid;gap:12px;color:#52666a;font-size:13px;line-height:1.65}
+@media(max-width:720px){.destination-deep-guide{padding:42px 20px}.destination-guide-places{grid-template-columns:1fr}.destination-guide-place{min-height:0;padding:20px;grid-template-columns:32px 1fr}.destination-guide-experience-grid,.destination-guide-days{grid-template-columns:1fr}.destination-guide-experience-grid article{border-right:0;border-bottom:1px solid #d4ccbf;padding:0 0 18px}.destination-guide-experience-grid article:last-child{border-bottom:0}.destination-guide-days article{min-height:0}}
