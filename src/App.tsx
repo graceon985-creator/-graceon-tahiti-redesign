@@ -77,7 +77,7 @@ export default function App(){
         ][activeExperienceSlide]})`}}/>
         <div className="experience-showcase-shade"/>
         <div className="experience-showcase-nav">
-          <span className="experience-brand-mark">✳</span>
+          <span className="experience-brand-mark"><Compass size={27} strokeWidth={1.25}/></span>
           <nav><a href="#activities">EXPERIENCES</a><a href="#about">ABOUT</a><a href="#contact">CONTACT</a></nav>
         </div>
         <div className="experience-showcase-main">
@@ -108,7 +108,7 @@ export default function App(){
      {['All','Culture & dance','Culture & heritage','Sport & va’a'].map(category=><button type="button" key={category} className={eventFilter===category?'event-filter active':'event-filter'} onClick={()=>setEventFilter(category)}>{active==='FR'?({'All':'Tout','Culture & dance':'Culture & danse','Culture & heritage':'Culture & patrimoine','Sport & va’a':'Sport & va’a'} as Record<string,string>)[category]:category}</button>)}
     </div>
     {featuredCelebration&&<article className="event-feature reveal event-open-card" role="button" tabIndex={0} onClick={()=>setSelectedEvent(featuredCelebration.id)} onKeyDown={e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();setSelectedEvent(featuredCelebration.id)}}}>
-     <div className="event-feature-visual"><img src={featuredCelebration.image} alt={active==='FR'&&frenchEvents[featuredCelebration.id]?frenchEvents[featuredCelebration.id].title:featuredCelebration.title}/><span className="event-feature-index">01 / 06 · FIELD NOTES</span><span className="event-feature-orbit">✳<small>TAHITI<br/>CULTURE</small></span></div>
+     <div className="event-feature-visual"><img src={featuredCelebration.image} alt={active==='FR'&&frenchEvents[featuredCelebration.id]?frenchEvents[featuredCelebration.id].title:featuredCelebration.title}/><span className="event-feature-index">01 / 06 · FIELD NOTES</span><span className="event-feature-orbit"><Compass size={34} strokeWidth={1.15}/><small>TAHITI<br/>CULTURE</small></span></div>
      <div className="event-feature-copy"><div className="event-feature-top"><span>{active==='FR'?'À L’AFFICHE':'IN THE SPOTLIGHT'}</span><span className={featuredCelebration.dateStatus==='confirmed'?'event-status confirmed':'event-status seasonal'}>{active==='FR'?(featuredCelebration.dateStatus==='confirmed'?'DATES CONFIRMÉES':'DATES À CONFIRMER'):(featuredCelebration.dateStatus==='confirmed'?'DATES CONFIRMED':'DATES TO CONFIRM')}</span></div>
       <div className="event-category">{active==='FR'&&frenchEvents[featuredCelebration.id]?frenchEvents[featuredCelebration.id].category:featuredCelebration.category} · {featuredCelebration.island}</div>
       <h3>{active==='FR'&&frenchEvents[featuredCelebration.id]?frenchEvents[featuredCelebration.id].title:featuredCelebration.title}</h3>
