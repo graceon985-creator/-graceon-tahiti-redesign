@@ -78,7 +78,7 @@ export default function App(){
         <div className="experience-showcase-shade"/>
         <div className="experience-showcase-nav">
           <span className="experience-brand-mark">✳</span>
-          <nav><a href="#activities">EXPERIENCES</a><a href="#about">ABOUT</a><a href="#journal">JOURNAL</a><a href="#contact">CONTACT</a></nav>
+          <nav><a href="#activities">EXPERIENCES</a><a href="#about">ABOUT</a><a href="#contact">CONTACT</a></nav>
         </div>
         <div className="experience-showcase-main">
           <span className="experience-showcase-number">0{activeExperienceSlide+1}</span>
