@@ -30,3 +30,15 @@ npm run build
 ## Server-backed island check-ins (next-stage foundation)
 
 A Supabase Edge Function, database migration, and setup guide are included under `supabase/` and `docs/server-verified-checkins.md`. The public GitHub Pages experience still uses device-local prototype check-ins until a Supabase project, authentication, database migration, and function deployment are configured. Do not describe the current browser-only check-ins as fraud-proof or server-verified.
+
+
+## GitHub Copilot skills
+
+Project-specific agent skills live in `.github/skills/` and are automatically available to supported GitHub Copilot surfaces when relevant:
+
+- `ui-ux-pro-max` — visual design, layout, interaction, motion, responsive and accessibility basics (project-adapted instructions; upstream full catalog/scripts are not bundled). Upstream: https://github.com/nextlevelbuilder/ui-ux-pro-max-skill
+- `graceon-project` — project architecture, design/content requirements, and delivery constraints.
+- `frontend-review` — regression, responsive, functional, performance and build review.
+- `accessibility-check` — accessibility-specific audits and fixes.
+
+Always-on repo guidance: `.github/copilot-instructions.md`.
