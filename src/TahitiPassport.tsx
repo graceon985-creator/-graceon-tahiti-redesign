@@ -25,7 +25,7 @@ export default function TahitiPassport({islands,verifiedCheckins,journeyIslands,
  const next=()=>setPage(p=>Math.min(3,p+1)),previous=()=>setPage(p=>Math.max(0,p-1));
  return <>
   <button type="button" id="passport" className="passport-side-trigger" onClick={openBook} aria-haspopup="dialog" aria-label={fr?'Ouvrir mon passeport de Tahiti':'Open my Tahiti passport'}>
-   <span className="passport-side-cover" style={{'--passport-cover':cover} as CSSProperties}><span className="passport-side-photo" style={{backgroundImage:'linear-gradient(0deg,rgba(7,31,35,.82),rgba(7,31,35,.12)),url('+coverPhoto+')'}}/><span className="passport-side-frame"/><small>THE ISLANDS OF</small><strong>TAHITI</strong><i>✳</i><em>FRENCH POLYNESIA</em></span>
+   <span className="passport-side-cover" style={{'--passport-cover':cover} as CSSProperties}><span className="passport-side-photo" style={{backgroundImage:'linear-gradient(0deg,rgba(7,31,35,.82),rgba(7,31,35,.12)),url('+coverPhoto+')'}}/><span className="passport-side-frame"/><small>THE ISLANDS OF</small><strong>TAHITI</strong><i className="passport-side-emblem"><Compass size={30} strokeWidth={1.35}/></i><em>FRENCH POLYNESIA</em></span>
    <span className="passport-side-label">{fr?'OUVRIR MON PASSEPORT':'VIEW MY PASSPORT'} <ArrowRight size={13}/></span>
   </button>
   {open&&<div className="passport-book-backdrop" onMouseDown={e=>{if(e.target===e.currentTarget)setOpen(false)}}>
@@ -35,7 +35,7 @@ export default function TahitiPassport({islands,verifiedCheckins,journeyIslands,
      {page===0&&<div className="passport-book-cover-page" style={{'--passport-cover':cover} as CSSProperties}>
       <div className="passport-book-cover-art" style={{backgroundImage:'linear-gradient(0deg,rgba(5,34,42,.78),rgba(5,34,42,.15)),url('+coverPhoto+')'}}/>
       <div className="passport-book-cover-border"/>
-      <span className="passport-book-overline">THE ISLANDS OF</span><strong>TAHITI</strong><span className="passport-book-emblem">✳</span><small>FRENCH POLYNESIA · DISCOVERY PASSPORT</small>
+      <span className="passport-book-overline">THE ISLANDS OF</span><strong>TAHITI</strong><span className="passport-book-emblem"><Compass size={48} strokeWidth={1.35}/></span><small>FRENCH POLYNESIA · DISCOVERY PASSPORT</small>
       <div className="passport-book-cover-bottom"><span>{fr?'UN CARNET DE VOYAGE PERSONNEL':'A PERSONAL JOURNEY JOURNAL'}</span><button type="button" onClick={next}><BookOpen size={16}/>{fr?'OUVRIR LE PASSEPORT':'OPEN PASSPORT'} <ArrowRight size={15}/></button></div>
       <div className="passport-book-cover-colors"><span>{fr?'COULEUR DE COUVERTURE':'CHOOSE COVER'}</span>{covers.map(([name,color])=><button key={color} type="button" title={name} aria-label={name} className={cover===color?'active':''} style={{background:color}} onClick={()=>setCover(color)}/>)}</div>
      </div>}
