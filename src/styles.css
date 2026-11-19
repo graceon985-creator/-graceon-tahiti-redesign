@@ -1139,3 +1139,9 @@
 .hero.hero-full-image .hero-feature-shade{background:linear-gradient(90deg,rgba(2,25,33,.25) 0%,rgba(2,25,33,.05) 58%,rgba(2,25,33,.25) 100%),linear-gradient(0deg,rgba(2,25,33,.28),transparent 58%)!important}
 .hero.hero-full-image .hero-next{display:none!important}
 @media(max-width:760px){.nav,.nav.nav-visible{top:18px!important;right:5%!important;width:190px!important}.nav .brand{margin:35px 0 20px!important}.nav .brand>span:last-child{font-size:19px!important}.nav .brand-mark{width:40px!important;height:40px!important}.nav .nav-links a{font-size:14px!important;padding:10px 0!important}.hero.hero-full-image{height:100svh!important;min-height:680px!important}.hero.hero-full-image .hero-copy{left:6%!important;bottom:7%!important;width:88%!important;max-width:88%!important}.hero.hero-full-image .hero-copy h1{font-size:clamp(50px,12vw,78px)!important}.hero.hero-full-image .hero-copy .hero-intro{font-size:12px!important}}
+
+/* Passport emblem: restrained ivory compass, never an emoji glyph. */
+.passport-book-emblem{display:flex;align-items:center;justify-content:center;color:#f0e6d4;font-size:0;line-height:1;margin:10px 0 18px;filter:drop-shadow(0 2px 8px rgba(0,0,0,.22))}
+.passport-book-emblem svg{width:48px;height:48px}
+.passport-side-emblem{display:flex;align-items:center;justify-content:center;color:#f0e6d4;font-style:normal;line-height:1}
+.passport-side-emblem svg{width:25px;height:25px}
