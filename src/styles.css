@@ -1268,3 +1268,15 @@
 .destination-guide-extra-grid article:hover{transform:translateY(-3px);border-color:#b98b68}
 @media(max-width:1050px){.destination-guide-days{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:720px){.destination-guide-days{grid-template-columns:1fr}.destination-guide-days article{min-height:0}.destination-guide-experience-grid{grid-template-columns:1fr}}
+
+/* Cinematic hero film + refreshed visual language */
+.hero-film-frame{position:absolute;inset:0;overflow:hidden;background:#072e37}
+.hero-feature-video{position:absolute;left:50%;top:50%;width:100%;height:100%;min-width:177.78vh;min-height:56.25vw;transform:translate(-50%,-50%);border:0;pointer-events:none}
+.hero-film-label{position:absolute;right:clamp(22px,4vw,64px);bottom:clamp(24px,4vw,54px);z-index:5;display:flex;align-items:center;gap:10px;color:rgba(255,255,255,.88);font-size:9px;letter-spacing:.16em;padding:12px 15px;border:1px solid rgba(255,255,255,.34);background:rgba(6,35,42,.3);backdrop-filter:blur(12px)}
+.hero-film-pulse{width:6px;height:6px;border-radius:50%;background:#f2b58c;box-shadow:0 0 0 4px rgba(242,181,140,.15)}
+.hero-full-image .hero-feature-shade{background:linear-gradient(90deg,rgba(3,24,30,.72) 0%,rgba(3,24,30,.35) 45%,rgba(3,24,30,.02) 100%),linear-gradient(0deg,rgba(3,24,30,.52),transparent 45%)!important}
+.hero-full-image .hero-copy h1{max-width:820px;letter-spacing:-.075em!important;font-size:clamp(64px,8.7vw,140px)!important}
+.hero-full-image .hero-copy .eyebrow{font-size:10px;letter-spacing:.23em}
+.hero-full-image .hero-map-button{border-radius:40px!important;transition:background .3s,transform .3s!important}
+.hero-full-image .hero-map-button:hover{background:#e4b18a!important;color:#103b42!important;transform:translateY(-2px)}
+@media(max-width:760px){.hero-film-label{right:16px;bottom:18px;font-size:8px;padding:9px 12px}.hero-feature-video{min-width:220vh;min-height:124vw}.hero-full-image .hero-copy{width:88%!important;left:6%!important}.hero-full-image .hero-copy h1{font-size:clamp(54px,15vw,88px)!important}}
