@@ -1145,3 +1145,11 @@
 .passport-book-emblem svg{width:48px;height:48px}
 .passport-side-emblem{display:flex;align-items:center;justify-content:center;color:#f0e6d4;font-style:normal;line-height:1}
 .passport-side-emblem svg{width:25px;height:25px}
+
+
+/* 2026-11-19: remove green cast from the home hero; use a warm charcoal fallback and neutral shade. */
+.hero.hero-full-image{background:#211d1b!important}
+.hero.hero-full-image .hero-feature{background:#211d1b!important}
+.hero.hero-full-image .hero-feature-image{background-color:#211d1b!important}
+.hero.hero-full-image .hero-feature-shade{background:linear-gradient(90deg,rgba(20,17,16,.68) 0%,rgba(20,17,16,.30) 52%,rgba(20,17,16,.04) 100%),linear-gradient(0deg,rgba(20,17,16,.24),transparent 48%)!important}
+.hero.hero-full-image .hero-copy .hero-map-button{background:rgba(32,27,25,.52)!important}
