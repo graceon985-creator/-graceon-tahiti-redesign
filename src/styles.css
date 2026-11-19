@@ -1191,6 +1191,6 @@
 .passport-index-stamp.earned{background:#f1e6d7!important;border-color:#b8795b!important;color:#9e654c!important}
 
 /* Detail pages: scroll-up reveals a universal close affordance */
-.detail-exit-float{position:fixed;right:18px;top:18px;z-index:1600;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.72);background:rgba(20,38,40,.72);color:#fff;box-shadow:0 5px 20px rgba(0,0,0,.22);backdrop-filter:blur(9px);cursor:pointer}
+.detail-exit-float{position:fixed;right:18px;top:18px;z-index:1600;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(255,255,255,.72);background:rgba(20,38,40,.72);color:#fff;box-shadow:0 5px 20px rgba(0,0,0,.22);backdrop-filter:blur(9px);cursor:pointeropacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .2s,transform .2s}.detail-exit-float.revealed{opacity:1;pointer-events:auto;transform:translateY(0)}
 .detail-exit-float:hover{background:#bd7656}
 @media(max-width:760px){.detail-exit-float{top:calc(env(safe-area-inset-top,0px) + 10px);right:14px;width:44px;height:44px}}
