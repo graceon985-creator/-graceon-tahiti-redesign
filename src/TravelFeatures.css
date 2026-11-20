@@ -97,3 +97,10 @@
 .tf-stay-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:2px}
 .tf-stay-links a{display:inline-flex;align-items:center;gap:5px;font-size:8px;letter-spacing:.1em;color:#56716c;text-decoration:none}
 .tf-stay-links a:hover{color:#bd8b68}
+
+/* Accommodation directory controls + results bar */
+.tf-stays-resultsbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;max-width:1400px;margin:0 auto 14px;padding:14px 18px;border-top:1px solid #c9c5b9;border-bottom:1px solid #c9c5b9;color:#173e42}
+.tf-stays-resultsbar>span{font-size:8px;letter-spacing:.16em;color:#8e7258}
+.tf-stays-resultsbar>strong{font-size:10px;letter-spacing:.1em;font-weight:500}
+.tf-stays-resultsbar>a{display:inline-flex;align-items:center;gap:6px;color:#9a704d;font-size:8px;letter-spacing:.11em;text-decoration:none}
+@media(max-width:700px){.tf-stays-resultsbar{align-items:flex-start;flex-direction:column;gap:8px}}
