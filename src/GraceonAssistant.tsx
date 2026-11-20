@@ -31,8 +31,13 @@ function answerFor(text:string,journey:string[],locale:Locale){
   {terms:['culture','history','heritage','marae','ثقافة','تاريخ','تراث'],en:'Culture & heritage',ar:'الثقافة والتراث',islands:['Tahiti','Huahine','Raiatea']},
   {terms:['marine','reef','dive','diving','الحياة البحرية','شعاب','غوص'],en:'Marine life',ar:'الحياة البحرية',islands:['Rangiroa','Fakarava','Bora Bora']}
  ];
- const interest=interestMap.find(item=>item.terms.some(term=>q.includes(term)));
- if(interest){const label=locale==='ar'?interest.ar:interest.en;return (locale==='ar'?'بناءً على اهتمامك بـ '+label+'، بنصحك تبدأ بهاي الجزر:\n':'For '+label+', consider starting with:\n')+interest.islands.map((name,i)=>(i+1)+'. '+name).join('\n')+'\n\n'+c.reply;}
+ const matches=interestMap.filter(item=>item.terms.some(term=>q.includes(term)));
+ if(matches.length){
+  const labels=matches.map(item=>locale==='ar'?item.ar:item.en);
+  const suggested=[...new Set(matches.flatMap(item=>item.islands))];
+  const intro=locale==='ar'?'بناءً على اهتماماتك ('+labels.join('، ')+')، هاي جزر مناسبة كبداية:':'Based on your interests ('+labels.join(', ')+'), these islands are good starting points:';
+  return intro+'\n'+suggested.map((name,i)=>(i+1)+'. '+name).join('\n')+'\n\n'+c.reply;
+ }
  const islandDetails:Record<string,string>={'Tahiti':'Papenoo valley, volcanic landscapes, black-sand coast and Papeete markets.','Moorea':'Twin bays, valley viewpoints, lagoon activities and island trails.','Bora Bora':'Mount Otemanu views, Matira Beach, lagoon scenery and island history.','Huahine':'Heritage sites around Maeva, quiet coastlines and village life.','Raiatea':'Taputapuātea, Faaroa River and the rare tiare apetahi habitat.','Taha’a':'Vanilla farms, pearl farms, bays and calm motu.','Rangiroa':'Wide atoll horizons, reef passes and lagoon landscapes.','Fakarava':'Protected biosphere landscapes, motu, reef and local crafts.'};
  const island=Object.keys(islandDetails).find(name=>q.includes(name.toLowerCase()));
  if(island)return island+'\n\n'+islandDetails[island]+'\n\n'+c.reply;
