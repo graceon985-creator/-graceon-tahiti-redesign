@@ -601,6 +601,7 @@
 .culture-celebration-section .event-filter{border-color:#54727a;color:#dce5dd;border-radius:999px;padding:11px 17px;letter-spacing:.04em}
 .culture-celebration-section .event-filter.active,.culture-celebration-section .event-filter:hover{background:#e3ad85;color:#123e45;border-color:#e3ad85}
 .event-feature{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(360px,.92fr);min-height:510px;background:#f1ecdf;color:#153d42;box-shadow:0 30px 70px #001a2345}
+.event-image-credit{position:absolute;z-index:3;left:12px;bottom:10px;max-width:calc(100% - 24px);padding:5px 8px;background:#092d35b8;color:#fff;font:8px/1.35 'DM Sans',sans-serif;letter-spacing:.04em;border-radius:2px;backdrop-filter:blur(5px)}.event-feature-visual .event-image-credit{left:16px;bottom:50px}.event-card-image{position:relative}
 .event-feature-visual{position:relative;min-height:510px;overflow:hidden;background:#174d56}
 .event-feature-visual:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(0deg,#062d3bd9,transparent)}
 .event-feature-visual>img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;transition:transform 1s}
