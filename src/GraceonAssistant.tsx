@@ -42,10 +42,10 @@ function answerFor(text:string,journey:string[],locale:Locale){
  if(island)return island+'\n\n'+islandDetails[island]+'\n\n'+c.reply;
  return c.reply+'\n\n'+c.map;
 }
-export default function GraceonAssistant({journeyIslands}:Props){
+export default function GraceonAssistant({journeyIslands,language='EN'}:Props){
  const [open,setOpen]=useState(false);useEffect(()=>{const openAssistant=()=>setOpen(true);window.addEventListener('graceon-open-assistant',openAssistant);return()=>window.removeEventListener('graceon-open-assistant',openAssistant)},[]);const [message,setMessage]=useState('');const [messages,setMessages]=useState<Message[]>([]);const bodyRef=useRef<HTMLDivElement|null>(null);const inputRef=useRef<HTMLInputElement|null>(null);const launcherRef=useRef<HTMLButtonElement|null>(null);const wasOpenRef=useRef(false);
- const [locale,setLocale]=useState<Locale>(()=>detectLocale());
- useEffect(()=>{const update=()=>setLocale(detectLocale());window.addEventListener('languagechange',update);return()=>window.removeEventListener('languagechange',update)},[]);
+ const [locale,setLocale]=useState<Locale>(()=>language==='FR'?'fr':'en');
+ useEffect(()=>{setLocale(language==='FR'?'fr':'en')},[language]);
  const c=copy[locale];const rtl=locale==='ar';
  useEffect(()=>{if(open)inputRef.current?.focus();else if(wasOpenRef.current)launcherRef.current?.focus();wasOpenRef.current=open},[open]);
  useEffect(()=>{if(!open)return;const panel=document.querySelector<HTMLElement>('.ga-panel');if(!panel)return;const getFocusable=()=>Array.from(panel.querySelectorAll<HTMLElement>('button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])'));const closeOnEscape=(event:KeyboardEvent)=>{if(event.key==='Escape'){setOpen(false);return;}if(event.key!=='Tab')return;const items=getFocusable();if(!items.length){event.preventDefault();panel.focus();return;}const first=items[0],last=items[items.length-1];if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}};window.addEventListener('keydown',closeOnEscape);return()=>window.removeEventListener('keydown',closeOnEscape)},[open]);
