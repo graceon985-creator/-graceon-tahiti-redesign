@@ -172,11 +172,11 @@ export const events: IslandEvent[] = [
  },
  {
   id:'hura-tapairu', title:'Hura Tapairu',
-  image:'https://www.tahititourisme.com/app/uploads/iris-images/4617/huratapairu2022-manohiva-a-tftn-530x0.webp', imageCredit:'Tahiti Tourisme · Te Fare Tauhiti Nui',
+  image:'https://www.tahititourisme.com/app/uploads/iris-images/27008/huratapairu2022-te-vahine-tapairu-a-tftn-380x380-f50_50.webp', imageCredit:'Tahiti Tourisme · Te Fare Tauhiti Nui',
   island:'Tahiti', location:'Maison de la Culture – Te Fare Tauhiti Nui, Papeete',
   dateLabel:'Usually November · dates to be announced', dateStatus:'seasonal', category:'Culture & dance',
   summary:'A dance competition created for smaller troupes, known for original performances and contemporary interpretations rooted in Tahitian dance.',
-  officialUrl:'https://www.tahititourisme.com/discover/festivals-and-events/',
+  officialUrl:'https://www.tahititourisme.com/event/hura-tapairu/',
   mapQuery:'Maison de la Culture Te Fare Tauhiti Nui Papeete'
  },
  {
@@ -194,7 +194,7 @@ export const events: IslandEvent[] = [
   island:'Huahine · Raiatea · Taha’a · Bora Bora', location:'Society Islands',
   dateLabel:'2026 edition concluded · 28–30 October; next dates pending', dateStatus:'past', category:'Sport & va’a',
   summary:'A major outrigger-canoe race crossing several Society Islands. The next edition dates should be confirmed with the organizers before travel.',
-  officialUrl:'https://www.tahititourisme.com/discover/festivals-and-events/',
+  officialUrl:'https://www.tahititourisme.com/event/hawaiki-nui-vaa/',
   mapQuery:'Society Islands French Polynesia'
  }
 ];
