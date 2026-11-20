@@ -9,6 +9,27 @@ type Props = {savedIslands:string[];journeyIslands:string[];onToggleJourneyIslan
 
 const read=(key:string,fallback:any)=>{try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback}catch{return fallback}};
 const write=(key:string,value:unknown)=>{try{localStorage.setItem(key,JSON.stringify(value));return true}catch{return false}};
+function readProfile():{name:string;email:string}{
+ const stored=read('graceon-profile-v1',{});
+ if(!stored||typeof stored!=='object'||Array.isArray(stored))return {name:'',email:''};
+ return {name:typeof stored.name==='string'?stored.name.slice(0,80):'',email:typeof stored.email==='string'?stored.email.slice(0,254):''};
+}
+function readCommunityPosts():Post[]{
+ const stored=read('graceon-community-posts-v1',[]);
+ if(!Array.isArray(stored))return [];
+ return stored.flatMap((item):Post[]=>{
+  if(!item||typeof item!=='object'||Array.isArray(item))return [];
+  const post=item as Record<string,unknown>;
+  if(typeof post.id!=='string'||!post.id.trim()||post.id.length>80)return [];
+  if(typeof post.text!=='string'||!post.text.trim()||post.text.length>500)return [];
+  if(typeof post.author!=='string'||typeof post.place!=='string'||!islands.some(island=>island.name===post.place))return [];
+  if(typeof post.createdAt!=='string'||!Number.isFinite(Date.parse(post.createdAt)))return [];
+  const image=typeof post.image==='string'?post.image:'';
+  if(image.length>2200000||(image&&!image.startsWith('data:image/')&&!/^https?:\\/\\//i.test(image)))return [];
+  const reports=typeof post.reports==='number'&&Number.isFinite(post.reports)?Math.max(0,Math.floor(post.reports)):0;
+  return [{id:post.id,author:post.author.slice(0,80),text:post.text.trim(),image,place:post.place,createdAt:post.createdAt,reports}];
+ }).slice(0,100);
+}
 const interests=['Lagoon & beaches','Nature & hiking','Marine life','Culture & heritage','Food & local life','Quiet & slow travel'];
 const interestTerms:Record<string,string[]>={'Lagoon & beaches':['lagoon','beach','motu','water'],'Nature & hiking':['nature','mountain','valley','trail','waterfall'],'Marine life':['marine','reef','ocean','diving','lagoon'],'Culture & heritage':['culture','heritage','marae','village','history'],'Food & local life':['food','market','vanilla','village','local'],'Quiet & slow travel':['quiet','slow','remote','peaceful','village']};
 
@@ -24,14 +45,14 @@ function readTripPlan():{day:number;island:Island;activity:string}[]{
 }
 
 export default function TravelFeatures({savedIslands,journeyIslands,onToggleJourneyIsland}:Props){
- const [profile,setProfile]=useState(()=>read('graceon-profile-v1',{name:'',email:''}));
- const [profileEditing,setProfileEditing]=useState(!read('graceon-profile-v1',null));
+ const [profile,setProfile]=useState(readProfile);
+ const [profileEditing,setProfileEditing]=useState(()=>!read('graceon-profile-v1',null));
  const [days,setDays]=useState(5);
  const [stayIsland,setStayIsland]=useState('All'); const [stayType,setStayType]=useState('Any');
  const [selectedInterests,setSelectedInterests]=useState<string[]>(['Nature & hiking','Culture & heritage']);
  const [plan,setPlan]=useState<{day:number;island:Island;activity:string}[]>(readTripPlan);
- const [posts,setPosts]=useState<Post[]>(()=>read('graceon-community-posts-v1',[]));
- const [reported,setReported]=useState<string[]>(()=>read('graceon-community-reports-v1',[]));
+ const [posts,setPosts]=useState<Post[]>(readCommunityPosts);
+ const [reported,setReported]=useState<string[]>(()=>{const value=read('graceon-community-reports-v1',[]);return Array.isArray(value)?value.filter((id):id is string=>typeof id==='string'&&id.length<=80):[]});
  const [postText,setPostText]=useState('');
  const [postPlace,setPostPlace]=useState('Tahiti');
  const [postImage,setPostImage]=useState('');
