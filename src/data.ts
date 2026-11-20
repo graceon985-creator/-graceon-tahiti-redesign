@@ -145,11 +145,11 @@ export type IslandEvent = {
 export const events: IslandEvent[] = [
  {
   id:'hura-mataeinaa-2026', title:"Hura Mata'eina'a – Celebrate Matari'i i ni'a",
-  image:'https://images.unsplash.com/photo-1504609813442-a8924e83f76e?auto=format&fit=crop&w=1600&q=92',
+  image:'https://api.cloudly.space/resize/cropratio/640/640/75/aHR0cHM6Ly9zdGF0aWMuYXBpZGFlLXRvdXJpc21lLmNvbS9maWxlc3RvcmUvb2JqZXRzLXRvdXJpc3RpcXVlcy9pbWFnZXMvMTQ3LzE1MC80MzY4NTUyMy5qcGVn/image.webp', imageCredit:'Tahiti Tourisme · affiche officielle Hura Mata’eina’a 2026',
   island:'Moorea', location:'Salle Omnisport Afareaitu, Moorea',
   dateLabel:'20–22 November 2026 · 6:00 pm daily', dateStatus:'confirmed', category:'Culture & dance',
   summary:"A three-evening celebration of Matari'i i ni'a: opening performances on Friday, an 'Ori Tahiti dance competition on Saturday, and the awards ceremony with winning performances on Sunday. Admission and island transport are free, according to the official listing.",
-  officialUrl:'https://www.tahititourisme.com/agenda/hura-mataeinaa-celebrate-matarii-nia/',
+  officialUrl:'https://tahititourisme.pf/en-pf/events-tickets/all-the-events/hura-mataeinaa-celebrate-matarii-nia-afareaitu-moorea-en-en-pf-6911284/',
   mapQuery:'Salle Omnisport Afareaitu Moorea French Polynesia'
  },
  {
