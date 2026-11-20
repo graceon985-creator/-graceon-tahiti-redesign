@@ -56,7 +56,7 @@ const destinationExperiencePhotos:Record<string,string[]>={
 'Fakarava':[
 "https://images.unsplash.com/photo-1493558103817-58b2924bce98?auto=format&fit=crop&w=900&q=88",
 "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=900&q=88",
-"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=88"]
+"https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=88"]
 };
 
 const destinationPhotoStories:Record<string,string[]>={
