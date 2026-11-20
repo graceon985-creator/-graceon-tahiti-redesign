@@ -1536,3 +1536,14 @@
 .destination-photo-grid figure figcaption strong{max-width:900px!important;font-size:clamp(36px,6.4vw,88px)!important;line-height:.96!important}
 .destination-photo-grid figure figcaption p{max-width:520px!important;color:rgba(255,255,255,.85)!important;font-size:clamp(12px,1.1vw,15px)!important;line-height:1.85!important;margin-top:18px!important}
 @media(max-width:720px){.destination-photo-grid{padding:0 12px 8vh!important}.destination-photo-grid figure{top:4vh!important;height:82vh!important;min-height:480px!important;margin-bottom:10vh!important}.destination-photo-grid figure figcaption{left:22px!important;right:22px!important;bottom:28px!important}.destination-photo-grid figure figcaption strong{font-size:clamp(32px,10vw,54px)!important}.destination-photo-grid figure figcaption p{font-size:12px!important;max-width:95%!important}}
+
+/* Iteration 17 — island-detail interaction polish (homepage selector untouched) */
+.destination-page :is(a,button,[role="button"]):focus-visible{outline:2px solid #d1a078;outline-offset:4px}
+.destination-page .destination-photo-gallery figure{overflow:hidden}
+.destination-page .destination-photo-gallery figure img{will-change:transform;transition:transform 1.1s cubic-bezier(.2,.65,.3,1)}
+.destination-page .destination-photo-gallery figure:hover img{transform:scale(1.035)}
+.destination-page .destination-guide-experience-card{transition:transform .35s ease,border-color .35s ease,box-shadow .35s ease}
+.destination-page .destination-guide-experience-card:hover{transform:translateY(-4px);box-shadow:0 18px 38px rgba(20,48,48,.09)}
+.destination-page .destination-guide-faq details summary{cursor:pointer}
+@media(max-width:700px){.destination-page .destination-body{padding-left:20px;padding-right:20px}.destination-page .destination-photo-gallery{margin:36px 0 42px;padding:24px 0}.destination-page .destination-photo-grid{gap:12px}.destination-page .destination-guide-experience-grid{gap:12px}.destination-page .destination-guide-experience-card{min-width:0}.destination-page .destination-guide-itinerary{overflow-x:auto}.destination-page .destination-guide-days{min-width:0}.destination-page .destination-guide-extra-grid{gap:12px}}
+@media(prefers-reduced-motion:reduce){.destination-page .destination-photo-gallery figure img,.destination-page .destination-guide-experience-card{transition:none!important}}
