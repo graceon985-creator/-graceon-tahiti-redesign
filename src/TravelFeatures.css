@@ -104,3 +104,8 @@
 .tf-stays-resultsbar>strong{font-size:10px;letter-spacing:.1em;font-weight:500}
 .tf-stays-resultsbar>a{display:inline-flex;align-items:center;gap:6px;color:#9a704d;font-size:8px;letter-spacing:.11em;text-decoration:none}
 @media(max-width:700px){.tf-stays-resultsbar{align-items:flex-start;flex-direction:column;gap:8px}}
+
+/* Island accommodation quick links */
+.tf-stay-quicklinks{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:4px}
+.tf-stay-quicklinks a.tf-stay-guide{border-top:0!important;padding-top:0!important;text-decoration:none;font-size:8px;letter-spacing:.11em;}
+.tf-stay-quicklinks a.tf-stay-directory{color:#a77956!important;border-bottom:1px solid #cbb89f;padding-bottom:5px}
