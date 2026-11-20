@@ -181,7 +181,7 @@ export const events: IslandEvent[] = [
  },
  {
   id:'farerei-haga', title:'Farerei Haga',
-  image:'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=1600&q=92',
+  image:'https://api.cloudly.space/resize/clip/1920/1920/75/aHR0cDovL21lZGlhcy50b3VyaXNtLXN5c3RlbS5jb20vYy8zLzc0MDkzOV92aXN1ZWxfZXZlbnRfZmFyZXJlaV9oYWdhLmpwZw%3D%3D/image.webp', imageCredit:'Comité du tourisme de Rangiroa · affiche Farerei Haga 2022',
   island:'Rangiroa', location:'Rangiroa, Tuamotu Archipelago',
   dateLabel:'Usually September · dates to be announced', dateStatus:'seasonal', category:'Culture & dance',
   summary:'A gathering of dance groups from neighboring atolls, offering visitors a chance to experience local performance traditions. Confirm the next edition with local organizers.',
