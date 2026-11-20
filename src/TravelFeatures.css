@@ -155,3 +155,6 @@
 @media(max-width:800px){.tf-food-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tf-food-controls{align-items:start;flex-direction:column}.tf-food-note{max-width:100%}.tf-food-footer{flex-direction:column}}
 @media(max-width:520px){.tf-food-grid{grid-template-columns:1fr}.tf-food-card{min-height:86px;padding:17px}.tf-food-card strong{font-size:21px}.tf-food-controls select{min-width:0;width:100%}}
 @media(prefers-reduced-motion:reduce){.tf-food-card{transition:none}.tf-food-card:hover,.tf-food-card:focus-visible{transform:none}}
+
+/* Reduced-motion fallback: disable hover movement and transitions in secondary travel UI. */
+@media(prefers-reduced-motion:reduce){.tf-saved-card button:hover,.tf-post button:hover{transform:none}.tf-tabs button,.tf-saved-card button,.tf-post button,.tf-stay-links a,.tf-stay-quicklinks a,.tf-food-card{transition:none!important}}
