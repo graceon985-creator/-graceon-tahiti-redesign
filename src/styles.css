@@ -1551,4 +1551,4 @@
 /* Event status clarity — completed editions stay visually distinct from upcoming dates. */
 .event-status.past{border-color:#c9b7a6;color:#80634e;background:#f1e9df}
 
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.island-orbit-bubble{animation:islandFloatReduced 12s ease-in-out infinite!important;animation-delay:var(--bubble-delay)!important}.island-orbit-bubble:hover,.island-orbit-bubble:focus-visible{animation-play-state:paused!important}}@keyframes islandFloatReduced{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-3px,0)}}
