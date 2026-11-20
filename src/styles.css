@@ -1552,3 +1552,27 @@
 .event-status.past{border-color:#c9b7a6;color:#80634e;background:#f1e9df}
 
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto!important}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}.island-orbit-bubble{animation:islandFloatReduced 12s ease-in-out infinite!important;animation-delay:var(--bubble-delay)!important}.island-orbit-bubble:hover,.island-orbit-bubble:focus-visible{animation-play-state:paused!important}}@keyframes islandFloatReduced{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(0,-3px,0)}}
+
+
+/* Reference-led editorial flight sequence: kinetic typography + an island route board. */
+.experience-showcase{position:relative}
+.experience-flight-editorial{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+.experience-flight-word{position:absolute;right:-2vw;top:48%;font:clamp(92px,18vw,270px)/.78 Georgia,serif;letter-spacing:-.095em;white-space:nowrap;color:#fff;opacity:.14;text-transform:uppercase}
+.experience-flight-track{position:absolute;left:0;right:0;top:57%;height:1px;border-top:1px dashed rgba(255,255,255,.42);transform:rotate(-2deg)}
+.experience-flight-plane{position:absolute;left:50%;top:51%;display:grid;place-items:center;color:#f0c6a4;filter:drop-shadow(0 8px 22px rgba(0,0,0,.5));will-change:transform}
+.experience-showcase-main,.experience-preview-cards,.experience-showcase-footer,.experience-showcase-nav,.experience-slide-controls{z-index:3}
+.experience-route-board{position:relative;background:#171117;color:#f5eee7;padding:34px clamp(22px,5vw,72px) 40px;border-top:1px solid rgba(255,255,255,.08)}
+.experience-route-board-head{display:flex;align-items:end;justify-content:space-between;gap:24px;margin-bottom:22px}
+.experience-route-board-head>div{display:grid;gap:8px}
+.experience-route-board-head>div>span{font-size:9px;letter-spacing:.2em;color:#d6a887}
+.experience-route-board-head strong{font:clamp(25px,3.2vw,42px)/1.05 Georgia,serif;font-weight:400;letter-spacing:-.035em}
+.experience-route-board-head>small{font-size:8px;letter-spacing:.14em;color:#b7a9a8;text-align:right}
+.experience-route-board-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid #ffffff28;border-left:1px solid #ffffff18}
+.experience-route-board-grid button{min-width:0;display:grid;grid-template-columns:30px 1fr 18px;grid-template-rows:auto auto;gap:5px 10px;align-items:center;text-align:left;padding:15px 13px;background:transparent;border:0;border-right:1px solid #ffffff18;border-bottom:1px solid #ffffff28;color:inherit;cursor:pointer;transition:background .25s ease}
+.experience-route-board-grid button:hover,.experience-route-board-grid button:focus-visible{background:#38242c;outline:none}
+.route-board-index{grid-row:1/3;color:#d6a887;font:12px Georgia,serif}
+.route-board-name{font-size:13px;letter-spacing:.04em}
+.route-board-kind{grid-column:2;font-size:8px;letter-spacing:.08em;color:#b9adab;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.experience-route-board-grid svg{grid-column:3;grid-row:1/3;color:#d6a887}
+@media(max-width:760px){.experience-route-board{padding:28px 18px 32px}.experience-route-board-head{align-items:start;flex-direction:column}.experience-route-board-head>small{text-align:left}.experience-route-board-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.experience-route-board-grid button{padding:13px 9px;grid-template-columns:24px 1fr 16px}.route-board-name{font-size:12px}.route-board-kind{font-size:7px}.experience-flight-word{top:53%;font-size:clamp(82px,23vw,160px)}.experience-flight-track{top:59%}}
+@media(prefers-reduced-motion:reduce){.experience-flight-plane{transform:none!important}.experience-flight-word{opacity:.12!important}.experience-route-board-grid button{transition:none!important}}
