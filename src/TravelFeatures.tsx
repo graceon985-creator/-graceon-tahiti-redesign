@@ -29,10 +29,11 @@ export default function TravelFeatures({savedIslands,journeyIslands,onToggleJour
  const journeyCount=journeyIslands.length+savedIslands.length;
  const toggleInterest=(item:string)=>setSelectedInterests(old=>old.includes(item)?old.filter(x=>x!==item):[...old,item]);
  const makePlan=()=>{
-  const ranked=islands.map(island=>{const hay=(island.kind+' '+island.description+' '+island.detail+' '+island.culture).toLowerCase();const score=selectedInterests.reduce((n,p)=>n+(((interestTerms[p]||[]).some(term=>hay.includes(term.toLowerCase())))?1:0),0);return {island,score}}).sort((a,b)=>b.score-a.score);
-  const picks=(ranked.filter(x=>x.score>0).map(x=>x.island).concat(islands.filter(x=>!ranked.some(r=>r.island.name===x.name&&r.score>0)))).slice(0,Math.min(days,8));
-  const next=Array.from({length:days},(_,i)=>{const island=picks[i%picks.length];const activities=island.explore?.length?island.explore:island.highlights;return {day:i+1,island,activity:activities[i%activities.length]};});
-  setPlan(next);localStorage.setItem('graceon-trip-plan-v1',JSON.stringify(next));setNotice('Your sample itinerary is ready. Save islands to My Journey to keep building it.');
+  if(selectedInterests.length===0){setNotice('Choose at least one interest to shape your island route.');return;}
+  const ranked=islands.map(island=>{const hay=(island.kind+' '+island.description+' '+(island.detail||'')+' '+(island.culture||'')+' '+(island.signature||'')).toLowerCase();const score=selectedInterests.reduce((n,p)=>n+(((interestTerms[p]||[]).some(term=>hay.includes(term.toLowerCase())))?1:0),0);return {island,score}}).sort((a,b)=>b.score-a.score);
+  const picks=ranked.map(x=>x.island).slice(0,Math.min(days,8));
+  const next=picks.map((island,i)=>{const curated=island.guide?.itinerary||[];const activities=island.explore?.length?island.explore:island.highlights;const entry=curated[i%Math.max(curated.length,1)];const activity=entry?(entry.title+(entry.description?' — '+entry.description:'')):activities[i%activities.length];return {day:i+1,island,activity};});
+  setPlan(next);localStorage.setItem('graceon-trip-plan-v1',JSON.stringify(next));setNotice(next.length<days?'Route limited to eight distinct islands for this demo; no destination is repeated. Save islands to My Journey to keep building it.':'Your sample itinerary is ready. Save islands to My Journey to keep building it.');
  };
  const addPost=()=>{
   if(!postText.trim())return;
