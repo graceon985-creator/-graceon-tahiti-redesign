@@ -42,7 +42,7 @@ export default function TravelFeatures({savedIslands,journeyIslands,onToggleJour
   const cleanImage=postImage.trim();
   if(!cleanText){setNotice('Write a short story or recommendation before publishing.');return;}
   if(cleanText.length>500){setNotice('Keep your post under 500 characters.');return;}
-  if(cleanImage.length>2200000){setNotice('Image data is too large. Choose a smaller image or use a public image URL.');return;}if(cleanImage&&!cleanImage.startsWith('data:image/')&&!/^https?:\/\//i.test(cleanImage)){setNotice('Use a public image link beginning with http or https.');return;}if(/^http:\/\//i.test(cleanImage)){setNotice('For image links, prefer HTTPS when available.');}
+  if(cleanImage.length>2200000){setNotice('Image data is too large. Choose a smaller image or use a public image URL.');return;}if(cleanImage&&!cleanImage.startsWith('data:image/')&&!/^https?:\/\//i.test(cleanImage)){setNotice('Use a public image link beginning with http or https.');return;}
   const next:Post={id:Date.now().toString(),author:profile.name.trim()||'Island traveller',text:cleanText,image:cleanImage,place:postPlace,createdAt:new Date().toISOString(),reports:0};
   const updated=[next,...posts];setPosts(updated);const persisted=write('graceon-community-posts-v1',updated);setPostText('');setPostImage('');setNotice(persisted?'Post added to this browser’s demo community.':'Post shown temporarily, but browser storage is full or unavailable.');
  };
