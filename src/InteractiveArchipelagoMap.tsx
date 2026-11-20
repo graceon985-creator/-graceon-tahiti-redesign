@@ -11,8 +11,8 @@ type Activity = {title:string;category:string;location:string;description:string
 type Props = {islands:Island[];activities:Record<string,Activity[]>;focusRequest?:{islandName:string;title:string;nonce:number}|null};
 type Pin = {island:string;title:string;category:string;location:string;description:string;officialUrl:string;mapQuery:string;lat:number;lng:number;precision:string};
 
-// Verified against OpenStreetMap/Mapcarta place records; valley/village markers identify
-// the named geographic area, not a precise trailhead or access point.
+// Map references are approximate; valley/village markers identify the named geographic
+// area, not a precise trailhead or access point. Confirm pins with local partners before launch.
 const verifiedPins:Record<string,{lat:number;lng:number;precision:string}> = {
   'Papeete Market & Waterfront':{lat:-17.52946,lng:-149.55213,precision:'Marketplace location'},
   'Faarumai Waterfalls':{lat:-17.53865,lng:-149.40065,precision:'Waterfall location'},
@@ -82,7 +82,7 @@ export default function InteractiveArchipelagoMap({islands,activities,focusReque
       <select id="archipelago-island-select" value={selected} onChange={event=>{setSelected(event.target.value);setFilter('All');setFocusedTitle(null)}}>
         {islands.filter(island=>islandCoordinates[island.name]).map(island=><option key={island.name} value={island.name}>{island.name}</option>)}
       </select>
-      <span><MapPin size={14}/> {pins.length} VERIFIED PLACE PINS · {selectedActivities.length-pins.length} PENDING</span>
+      <span><MapPin size={14}/> {pins.length} MAP REFERENCES · {selectedActivities.length-pins.length} PENDING</span>
     </div>
     <div className="archipelago-map-layout">
       <div className="archipelago-map-frame">
@@ -104,7 +104,7 @@ export default function InteractiveArchipelagoMap({islands,activities,focusReque
         <span className="detail-label">ISLAND GUIDE</span>
         <h3>{activeIsland?.name ?? selected}</h3>
         <p>{activeIsland?.description ?? 'Explore this island in French Polynesia.'}</p>
-        <div className="map-activity-count">{pins.length} VERIFIED MAP PINS · {selectedActivities.length} FEATURED PLACES</div>
+        <div className="map-activity-count">{pins.length} MAPPED REFERENCES · {selectedActivities.length} FEATURED PLACES</div>
         {focusedPlaceIsUnpinned&&<div className="map-focus-notice">“{focusRequest?.title}” is saved in your passport, but its exact map pin is still being checked. Showing the island area instead.</div>}
         <div className="map-category-filters">{categories.map(category=><button key={category} className={filter===category?'active':''} onClick={()=>setFilter(category)}>{category}</button>)}</div>
         <div className="map-activity-list">{visibleActivities.map((activity,index)=>{
