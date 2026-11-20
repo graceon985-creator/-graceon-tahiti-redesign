@@ -25,7 +25,7 @@ function readCommunityPosts():Post[]{
   if(typeof post.author!=='string'||typeof post.place!=='string'||!islands.some(island=>island.name===post.place))return [];
   if(typeof post.createdAt!=='string'||!Number.isFinite(Date.parse(post.createdAt)))return [];
   const image=typeof post.image==='string'?post.image:'';
-  if(image.length>2200000||(image&&!image.startsWith('data:image/')&&!/^https?:\\/\\//i.test(image)))return [];
+  if(image.length>2200000||(image&&!image.startsWith('data:image/')&&!/^https?:\/\//i.test(image)))return [];
   const reports=typeof post.reports==='number'&&Number.isFinite(post.reports)?Math.max(0,Math.floor(post.reports)):0;
   return [{id:post.id,author:post.author.slice(0,80),text:post.text.trim(),image,place:post.place,createdAt:post.createdAt,reports}];
  }).slice(0,100);
