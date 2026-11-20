@@ -23,7 +23,7 @@ function detectLocale():Locale{const candidates=[...(navigator.languages||[]),na
 function answerFor(text:string,journey:string[],locale:Locale){
  const c=copy[locale],q=text.toLowerCase();
  if(/(my journey|my route|selected islands|plan.*route|plan.*journey|رحلتي|مساري|المسار|itinéraire|viaje|reise|viaggio|roteiro|行程|旅程|маршрут)/i.test(q)){
-  return journey.length?c.route+':\\n'+journey.map((n,i)=>(i+1)+'. '+n).join('\\n')+'\\n\\n'+c.reply:c.empty;
+  return journey.length?c.route+':\n'+journey.map((n,i)=>(i+1)+'. '+n).join('\n')+'\n\n'+c.reply:c.empty;
  }
  const interestMap=[
   {terms:['hike','hiking','nature','mountain','waterfall','مشي','طبيعة','جبال'],en:'Nature & hiking',ar:'الطبيعة والمشي',islands:['Tahiti','Moorea','Huahine','Raiatea']},
@@ -32,11 +32,11 @@ function answerFor(text:string,journey:string[],locale:Locale){
   {terms:['marine','reef','dive','diving','الحياة البحرية','شعاب','غوص'],en:'Marine life',ar:'الحياة البحرية',islands:['Rangiroa','Fakarava','Bora Bora']}
  ];
  const interest=interestMap.find(item=>item.terms.some(term=>q.includes(term)));
- if(interest){const label=locale==='ar'?interest.ar:interest.en;return (locale==='ar'?'بناءً على اهتمامك بـ '+label+'، بنصحك تبدأ بهاي الجزر:\\n':'For '+label+', consider starting with:\\n')+interest.islands.map((name,i)=>(i+1)+'. '+name).join('\\n')+'\\n\\n'+c.reply;}
+ if(interest){const label=locale==='ar'?interest.ar:interest.en;return (locale==='ar'?'بناءً على اهتمامك بـ '+label+'، بنصحك تبدأ بهاي الجزر:\n':'For '+label+', consider starting with:\n')+interest.islands.map((name,i)=>(i+1)+'. '+name).join('\n')+'\n\n'+c.reply;}
  const islandDetails:Record<string,string>={'Tahiti':'Papenoo valley, volcanic landscapes, black-sand coast and Papeete markets.','Moorea':'Twin bays, valley viewpoints, lagoon activities and island trails.','Bora Bora':'Mount Otemanu views, Matira Beach, lagoon scenery and island history.','Huahine':'Heritage sites around Maeva, quiet coastlines and village life.','Raiatea':'Taputapuātea, Faaroa River and the rare tiare apetahi habitat.','Taha’a':'Vanilla farms, pearl farms, bays and calm motu.','Rangiroa':'Wide atoll horizons, reef passes and lagoon landscapes.','Fakarava':'Protected biosphere landscapes, motu, reef and local crafts.'};
  const island=Object.keys(islandDetails).find(name=>q.includes(name.toLowerCase()));
- if(island)return island+'\\n\\n'+islandDetails[island]+'\\n\\n'+c.reply;
- return c.reply+'\\n\\n'+c.map;
+ if(island)return island+'\n\n'+islandDetails[island]+'\n\n'+c.reply;
+ return c.reply+'\n\n'+c.map;
 }
 export default function GraceonAssistant({journeyIslands}:Props){
  const [open,setOpen]=useState(false);useEffect(()=>{const openAssistant=()=>setOpen(true);window.addEventListener('graceon-open-assistant',openAssistant);return()=>window.removeEventListener('graceon-open-assistant',openAssistant)},[]);const [message,setMessage]=useState('');const [messages,setMessages]=useState<Message[]>([]);
