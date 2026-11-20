@@ -62,7 +62,7 @@ export default function TravelFeatures({savedIslands,journeyIslands,onToggleJour
  const [selectedInterests,setSelectedInterests]=useState<string[]>(['Nature & hiking','Culture & heritage']);
  const [plan,setPlan]=useState<{day:number;island:Island;activity:string}[]>(readTripPlan);
  const [posts,setPosts]=useState<Post[]>(readCommunityPosts);
- const [reported,setReported]=useState<string[]>(()=>{const value=read('graceon-community-reports-v1',[]);return Array.isArray(value)?value.filter((id):id is string=>typeof id==='string'&&id.length<=80):[]});
+ const [reported,setReported]=useState<string[]>(()=>{const value=read('graceon-community-reports-v1',[]);return Array.isArray(value)?Array.from(new Set(value.filter((id):id is string=>typeof id==='string'&&id.trim().length>0&&id.length<=80))).slice(-100):[]});
  const [postText,setPostText]=useState('');
  const [postPlace,setPostPlace]=useState('Tahiti');
  const [postImage,setPostImage]=useState('');
