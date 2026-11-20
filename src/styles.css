@@ -1693,3 +1693,46 @@
  .hero-reference-caption small{font-size:6px!important}
 }
 @media(prefers-reduced-motion:reduce){.hero-reference-image img{animation:none!important}.hero-reference-cta svg,.hero-reference-choice .choice-line{transition:none!important}}
+
+/* Secondary editorial art direction: island atlas and events are immersive, quiet, high contrast */
+.island-orbit-section{background:#071b1d!important;color:#f1eee7!important;padding:110px 7.5% 45px!important}
+.island-orbit-section:before{opacity:.14!important;background-image:radial-gradient(rgba(232,208,171,.7) .65px,transparent .65px)!important;background-size:26px 26px!important;mask-image:linear-gradient(90deg,transparent,#000 15%,#000 88%,transparent)!important}
+.island-orbit-top h2{font-size:clamp(56px,8vw,118px)!important;letter-spacing:-.07em!important;line-height:.88!important;color:#f3efe7!important}
+.island-orbit-top h2 em{color:#cfa879!important}
+.island-orbit-top p{font-size:13px!important;max-width:410px!important;color:rgba(241,238,231,.65)!important;line-height:1.8!important}
+.island-orbit-kicker{color:#cfa879!important;letter-spacing:.22em!important}
+.island-map-open{border:1px solid rgba(207,170,119,.6)!important;background:transparent!important;color:#f3efe7!important;padding:14px 18px!important;font-size:9px!important;letter-spacing:.13em!important;transition:background .25s,color .25s!important}
+.island-map-open:hover{background:#cfa879!important;color:#071b1d!important}
+.island-orbit-stage{max-width:1500px!important}
+.island-orbit-watermark{color:rgba(245,241,230,.035)!important;font-size:clamp(100px,16vw,230px)!important}
+.island-orbit-bubble{border:1px solid rgba(241,238,231,.42)!important;box-shadow:0 12px 45px rgba(0,0,0,.22)!important}
+.island-orbit-bubble:hover,.island-orbit-bubble:focus-visible{border-color:#cfa879!important;box-shadow:0 20px 80px rgba(0,0,0,.5),0 0 0 5px rgba(207,168,121,.12)!important}
+.island-bubble-shade{background:linear-gradient(180deg,rgba(0,0,0,.02) 18%,rgba(0,0,0,.82) 100%)!important}
+.island-bubble-name{font-size:clamp(22px,2.4vw,34px)!important;letter-spacing:-.035em!important}
+.island-bubble-kind{color:rgba(244,241,230,.75)!important;letter-spacing:.14em!important}
+.island-route-path{stroke:#cfa879!important;opacity:.48!important}
+.island-orbit-bottom{border-color:rgba(241,238,231,.16)!important;color:rgba(241,238,231,.5)!important}
+.island-orbit-bottom a{color:#cfa879!important}
+.island-orbit-bottom a:hover{color:#fff!important}
+.events-section.culture-celebration-section{background:#0b1919!important;color:#f1eee7!important;padding:115px 8.5%!important}
+.events-heading h2{font-size:clamp(54px,7vw,100px)!important;letter-spacing:-.065em!important;line-height:.9!important;color:#f3efe7!important}
+.events-heading h2 em{color:#cfa879!important}
+.events-heading>p{max-width:420px!important;color:rgba(241,238,231,.64)!important;font-size:13px!important;line-height:1.8!important}
+.events-section .section-kicker,.event-category{color:#cfa879!important;letter-spacing:.15em!important}
+.event-filters{border-color:rgba(255,255,255,.16)!important}
+.event-filter{border-color:rgba(255,255,255,.18)!important;background:transparent!important;color:rgba(255,255,255,.65)!important}
+.event-filter.active,.event-filter:hover{background:#cfa879!important;color:#0b1919!important;border-color:#cfa879!important}
+.event-feature{background:#142424!important;border-color:rgba(255,255,255,.08)!important}
+.event-feature-copy h3,.event-timeline-copy h3{color:#f3efe7!important;font-size:clamp(26px,3.5vw,48px)!important;line-height:1.04!important;letter-spacing:-.04em!important}
+.event-feature-copy p,.event-timeline-copy p{color:rgba(241,238,231,.64)!important;line-height:1.8!important}
+.event-feature-date,.event-feature-place,.event-timeline-meta strong,.event-timeline-location{color:rgba(241,238,231,.8)!important}
+.event-feature-links a,.event-timeline-meta a{color:#cfa879!important;border-color:rgba(207,168,121,.5)!important}
+.event-card{border-color:rgba(255,255,255,.12)!important;background:rgba(255,255,255,.025)!important}
+.event-status{border-color:rgba(207,168,121,.38)!important}
+.events-note{color:rgba(241,238,231,.5)!important}
+@media(max-width:760px){
+ .island-orbit-section{padding:75px 5% 30px!important}
+ .island-orbit-top h2{font-size:58px!important}
+ .events-section.culture-celebration-section{padding:76px 5%!important}
+ .events-heading h2{font-size:62px!important}
+}
