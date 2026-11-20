@@ -158,7 +158,7 @@ export const events: IslandEvent[] = [
   island:'Tahiti & the islands', location:'Celebrated across French Polynesia',
   dateLabel:'From 20 November · annual seasonal celebration', dateStatus:'seasonal', category:'Culture & heritage',
   summary:'The Polynesian season of abundance begins with the rising of the Pleiades. Community celebrations and local programs vary by island and year; check local announcements for specific activities.',
-  officialUrl:'https://www.tahititourisme.com/campaign/the-season-of-abundance/',
+  officialUrl:'https://www.tahititourisme.com/event/matarii-festival/',
   mapQuery:'Papeete Tahiti French Polynesia'
  },
  {
