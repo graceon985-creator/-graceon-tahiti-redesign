@@ -33,7 +33,6 @@ function answerFor(text:string,journey:string[],locale:Locale){
  ];
  const matches=interestMap.filter(item=>item.terms.some(term=>q.includes(term)));
  if(matches.length){
-  const labels=matches.map(item=>locale==='ar'?item.ar:item.en);
   const suggested=[...new Set(matches.flatMap(item=>item.islands))];
   const intro:Record<Locale,string>={en:'Suggested islands based on your interests:',fr:'Îles suggérées selon vos centres d’intérêt :',ar:'جزر مقترحة بناءً على اهتماماتك:',es:'Islas sugeridas según tus intereses:',de:'Passende Inseln für deine Interessen:',it:'Isole suggerite in base ai tuoi interessi:',pt:'Ilhas sugeridas de acordo com seus interesses:',zh:'根据你的兴趣推荐这些岛屿：',ja:'興味に合わせたおすすめの島：',ko:'관심사에 맞는 추천 섬:',ru:'Острова, подходящие вашим интересам:',nl:'Eilanden passend bij je interesses:'}[locale];
   return intro+'\n'+suggested.map((name,i)=>(i+1)+'. '+name).join('\n')+'\n\n'+c.reply;
