@@ -76,6 +76,7 @@ export default function TravelFeatures({savedIslands,journeyIslands,onToggleJour
   const cleanText=postText.trim();
   const cleanImage=postImage.trim();
   if(!cleanText){setNotice('Write a short story or recommendation before publishing.');return;}
+  if(posts.length>=100){setNotice('The local demo feed is full (100 posts). Clear this browser’s community storage before adding more.');return;}
   if(cleanText.length>500){setNotice('Keep your post under 500 characters.');return;}
   if(!isSafeCommunityImage(cleanImage)){setNotice('Use a secure https image link or upload a JPG, PNG, WebP or GIF under 1.5 MB.');return;}
   const next:Post={id:Date.now().toString(),author:profile.name.trim()||'Island traveller',text:cleanText,image:cleanImage,place:postPlace,createdAt:new Date().toISOString(),reports:0};
