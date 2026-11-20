@@ -37,11 +37,16 @@ const interestTerms:Record<string,string[]>={'Lagoon & beaches':['lagoon','beach
 function readTripPlan():{day:number;island:Island;activity:string}[]{
  const stored=read('graceon-trip-plan-v1',[]);
  if(!Array.isArray(stored))return [];
+ const usedDays=new Set<number>();
  return stored.flatMap((item)=>{
-  if(!item||typeof item!=='object'||!Number.isInteger(item.day)||item.day<1||typeof item.activity!=='string')return [];
+  if(!item||typeof item!=='object'||!Number.isInteger(item.day)||item.day<1||item.day>10||typeof item.activity!=='string')return [];
+  const activity=item.activity.trim().slice(0,500);
+  if(!activity||usedDays.has(item.day))return [];
   const islandName=typeof item.island==='string'?item.island:item.island?.name;
   const island=islands.find(candidate=>candidate.name===islandName);
-  return island?[{day:item.day,island,activity:item.activity.slice(0,500)}]:[];
+  if(!island)return [];
+  usedDays.add(item.day);
+  return [{day:item.day,island,activity}];
  }).sort((a,b)=>a.day-b.day);
 }
 
