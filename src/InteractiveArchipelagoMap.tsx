@@ -56,7 +56,8 @@ function MapActivityPinFocus({pin}:{pin:Pin|null}) {
 
 
 export default function InteractiveArchipelagoMap({islands,activities,focusRequest,language='EN'}:Props) {
-  const fr=language==='FR';
+  const islandDescriptionsFR:Record<string,string>={Tahiti:'Papeete animée, montagnes volcaniques, plages de sable noir et vallées verdoyantes.',Moorea:'Deux baies spectaculaires, des montagnes verdoyantes, des champs d’ananas et un lagon lumineux.', 'Bora Bora':'Un lagon turquoise, des motu bordés de palmiers et le mont Otemanu.',Huahine:'Deux îles reliées, des villages paisibles, des sites anciens et un lagon luxuriant.',Raiatea:'Une île verdoyante au riche patrimoine culturel, avec la rivière Faaroa et un lagon partagé avec Taha’a.', 'Taha’a':'Plantations de vanille, petits motu, jardins de corail et lagon paisible.',Rangiroa:'Un vaste atoll aux horizons océaniques, aux villages lagonaires et aux passes riches en vie marine.',Fakarava:'Une réserve de biosphère de l’UNESCO, avec un vaste lagon, des villages isolés et des récifs fragiles.'};
+const fr=language==='FR';
   const categoryLabel=(value:string)=>fr?({'All':'Tout','LANDSCAPE':'PAYSAGE','GREEN HEART':'CŒUR VERT','CULTURAL HERITAGE':'PATRIMOINE CULTUREL','VIEWPOINT & WALK':'BELVÉDÈRE ET RANDONNÉE','BEACH & LAGOON':'PLAGE ET LAGON','THE TWIN BAYS':'LES DEUX BAIES','OCEAN EXPERIENCES':'EXPÉRIENCES OCÉANIQUES','LOCAL AGRICULTURE':'AGRICULTURE LOCALE','FOOD & LOCAL LIFE':'GASTRONOMIE ET VIE LOCALE','CULTURE & HISTORY':'CULTURE ET HISTOIRE','LAGOON':'LAGON','COAST':'CÔTE','NATURE':'NATURE','HISTORY':'HISTOIRE','LOCAL LIFE':'VIE LOCALE','HERITAGE':'PATRIMOINE'} as Record<string,string>)[value]||value:value;
   const [selected,setSelected] = useState('Tahiti');
   const [filter,setFilter] = useState('All');
@@ -105,7 +106,7 @@ export default function InteractiveArchipelagoMap({islands,activities,focusReque
       <aside className="archipelago-map-sidebar">
         <span className="detail-label">{fr?"GUIDE DE L’ÎLE":"ISLAND GUIDE"}</span>
         <h3>{activeIsland?.name ?? selected}</h3>
-        <p>{activeIsland?.description ?? (fr?'Explorez cette île de la Polynésie française.':'Explore this island in French Polynesia.')}</p>
+        <p>{(fr&&activeIsland?islandDescriptionsFR[activeIsland.name]:activeIsland?.description) ?? (fr?'Explorez cette île de la Polynésie française.':'Explore this island in French Polynesia.')}</p>
         <div className="map-activity-count">{pins.length} {fr?"LIEUX CARTOGRAPHIÉS":"MAPPED REFERENCES"} · {selectedActivities.length} {fr?"LIEUX À DÉCOUVRIR":"FEATURED PLACES"}</div>
         {focusedPlaceIsUnpinned&&<div className="map-focus-notice">“{focusRequest?.title}” {fr?"est enregistré dans votre passeport, mais son emplacement précis est encore en cours de vérification. La zone de l’île est affichée.":"is saved in your passport, but its exact map pin is still being checked. Showing the island area instead."}</div>}
         <div className="map-category-filters">{categories.map(category=><button key={category} className={filter===category?'active':''} onClick={()=>setFilter(category)}>{categoryLabel(category)}</button>)}</div>
