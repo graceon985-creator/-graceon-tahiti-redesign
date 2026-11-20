@@ -58,7 +58,7 @@ const destinationGalleryPhotos:Record<string,{src:string;caption:string;category
 {src:"https://tahititourisme.pf/app/uploads/tahiti/2021/10/thumbs/coucher-du-soleil-romantique-derriere-le-mont-otemanu-a-bora-bora-tahiti-tourisme-640x360.jpg",caption:"Sunset behind Mount Otemanu",category:"SCENIC",credit:"Tahiti Tourisme"},
 {src:"https://tahititourisme.pf/app/uploads/tahiti/2021/10/thumbs/vue-sur-le-mont-otemanu-depuis-un-vieux-canon-a-bora-bora-tahiti-tourisme-frederic-cristol-640x360.jpg",caption:"Mount Otemanu from a historic viewpoint",category:"HISTORY",credit:"Frédéric Cristol · Tahiti Tourisme"}],
 'Huahine':[
-{src:"https://tahititourisme.pf/app/uploads/tahiti/2021/10/thumbs/huahine-ile-sauvage-tahiti-tourisme-640x360.jpg",caption:"Huahine, the untamed island",category:"LANDSCAPE",credit:"Tahiti Tourisme"},
+{src:"https://tahititourisme.pf/app/uploads/tahiti/2021/10/thumbs/montagne-huahine-tahiti-tourisme-640x360.jpg",caption:"Huahine’s mountain landscape",category:"LANDSCAPE",credit:"Tahiti Tourisme"},
 {src:"https://tahititourisme.pf/app/uploads/tahiti/2021/10/thumbs/ponton-huahine-tahiti-tourisme-teriitua-maoni-640x360.jpg",caption:"The shoreline at Huahine",category:"COAST",credit:"Teriitua Maoni · Tahiti Tourisme"},
 {src:"https://tahititourisme.pf/app/uploads/tahiti/2021/10/thumbs/marae-huahine-tahiti-tourisme-640x360.jpg",caption:"A marae in Huahine",category:"HERITAGE",credit:"Tahiti Tourisme"}],
 'Raiatea':[
