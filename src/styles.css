@@ -1614,3 +1614,9 @@
  .hero.hero-full-image .hero-feature-copy{left:7%!important;right:7%!important;bottom:16%!important;max-width:none!important;text-align:left!important}
  .hero.hero-full-image .hero-feature-copy small{font-size:7px!important}
 }
+
+/* Ensure the selected destination label remains visible above the photo gallery. */
+.hero.hero-full-image .hero-feature-copy{display:block!important}
+@media(max-width:760px){
+ .hero.hero-full-image .hero-feature-copy{left:auto!important;right:7%!important;top:20%!important;bottom:auto!important;max-width:190px!important;text-align:right!important}
+}
