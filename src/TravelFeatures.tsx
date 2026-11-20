@@ -18,20 +18,23 @@ function readProfile():{name:string}{
 function readCommunityPosts():Post[]{
  const stored=read('graceon-community-posts-v1',[]);
  if(!Array.isArray(stored))return [];
+ const seenIds=new Set<string>();
  return stored.flatMap((item):Post[]=>{
   if(!item||typeof item!=='object'||Array.isArray(item))return [];
   const post=item as Record<string,unknown>;
-  if(typeof post.id!=='string'||!post.id.trim()||post.id.length>80)return [];
+  const id=typeof post.id==='string'?post.id.trim():'';
+  if(!id||id.length>80||seenIds.has(id))return [];
   if(typeof post.text!=='string'||!post.text.trim()||post.text.length>500)return [];
   if(typeof post.author!=='string'||typeof post.place!=='string'||!islands.some(island=>island.name===post.place))return [];
   if(typeof post.createdAt!=='string'||!Number.isFinite(Date.parse(post.createdAt)))return [];
   const image=typeof post.image==='string'?post.image:'';
   if(!isSafeCommunityImage(image))return [];
   const reports=typeof post.reports==='number'&&Number.isFinite(post.reports)?Math.max(0,Math.floor(post.reports)):0;
-  return [{id:post.id,author:post.author.slice(0,80),text:post.text.trim(),image,place:post.place,createdAt:post.createdAt,reports}];
+  seenIds.add(id);
+  return [{id,author:post.author.trim().slice(0,80)||'Island traveller',text:post.text.trim(),image,place:post.place,createdAt:post.createdAt,reports}];
  }).slice(0,100);
 }
-const interests=['Lagoon & beaches','Nature & hiking','Marine life','Culture & heritage','Food & local life','Quiet & slow travel'];
+ const interests=['Lagoon & beaches','Nature & hiking','Marine life','Culture & heritage','Food & local life','Quiet & slow travel'];
 const interestTerms:Record<string,string[]>={'Lagoon & beaches':['lagoon','beach','motu','water'],'Nature & hiking':['nature','mountain','valley','trail','waterfall'],'Marine life':['marine','reef','ocean','diving','lagoon'],'Culture & heritage':['culture','heritage','marae','village','history'],'Food & local life':['food','market','vanilla','village','local'],'Quiet & slow travel':['quiet','slow','remote','peaceful','village']};
 
 function readTripPlan():{day:number;island:Island;activity:string}[]{
