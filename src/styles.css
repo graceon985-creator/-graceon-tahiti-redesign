@@ -1547,3 +1547,6 @@
 .destination-page .destination-guide-faq details summary{cursor:pointer}
 @media(max-width:700px){.destination-page .destination-body{padding-left:20px;padding-right:20px}.destination-page .destination-photo-gallery{margin:36px 0 42px;padding:24px 0}.destination-page .destination-photo-grid{gap:12px}.destination-page .destination-guide-experience-grid{gap:12px}.destination-page .destination-guide-experience-card{min-width:0}.destination-page .destination-guide-itinerary{overflow-x:auto}.destination-page .destination-guide-days{min-width:0}.destination-page .destination-guide-extra-grid{gap:12px}}
 @media(prefers-reduced-motion:reduce){.destination-page .destination-photo-gallery figure img,.destination-page .destination-guide-experience-card{transition:none!important}}
+
+/* Event status clarity — completed editions stay visually distinct from upcoming dates. */
+.event-status.past{border-color:#c9b7a6;color:#80634e;background:#f1e9df}
