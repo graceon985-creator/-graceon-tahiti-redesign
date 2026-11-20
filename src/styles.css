@@ -1370,7 +1370,7 @@
 .destination-photo-grid figure:nth-child(2){z-index:2!important}
 .destination-photo-grid figure:nth-child(3){z-index:3!important}
 .destination-photo-grid figure img{width:100%!important;height:100%!important;object-fit:cover!important;transform:scale(1.12);will-change:transform;filter:saturate(.94)!important}
-.destination-photo-grid figure figcaption{left:clamp(24px,6vw,88px)!important;right:clamp(24px,6vw,88px)!important;bottom:clamp(26px,7vh,84px)!important;opacity:1!important}
+.destination-photo-grid figure figcaption{left:clamp(24px,6vw,88px)!important;right:clamp(24px,6vw,88px)!important;bottom:clamp(26px,7vh,84px)!important;opacity:1}
 .destination-photo-grid figure figcaption strong{font-size:clamp(34px,6vw,82px)!important;line-height:.98!important;max-width:900px!important}
 .destination-photo-grid figure figcaption span{font-size:10px!important;letter-spacing:.2em!important}
 .destination-photo-grid figure:after{background:linear-gradient(transparent 25%,rgba(7,18,22,.82))!important}
