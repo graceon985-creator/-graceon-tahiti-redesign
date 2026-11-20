@@ -8,6 +8,7 @@ type Post = {id:string;author:string;text:string;image:string;place:string;creat
 type Props = {savedIslands:string[];journeyIslands:string[];onToggleJourneyIsland:(name:string)=>void};
 const STORAGE='graceon-travel-features-v1';
 const read=(key:string,fallback:any)=>{try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback}catch{return fallback}};
+const write=(key:string,value:unknown)=>{try{localStorage.setItem(key,JSON.stringify(value));return true}catch{return false}};
 const interests=['Lagoon & beaches','Nature & hiking','Marine life','Culture & heritage','Food & local life','Quiet & slow travel'];
 const interestTerms:Record<string,string[]>={'Lagoon & beaches':['lagoon','beach','motu','water'],'Nature & hiking':['nature','mountain','valley','trail','waterfall'],'Marine life':['marine','reef','ocean','diving','lagoon'],'Culture & heritage':['culture','heritage','marae','village','history'],'Food & local life':['food','market','vanilla','village','local'],'Quiet & slow travel':['quiet','slow','remote','peaceful','village']};
 
@@ -33,7 +34,7 @@ export default function TravelFeatures({savedIslands,journeyIslands,onToggleJour
   const ranked=islands.map(island=>{const hay=(island.kind+' '+island.description+' '+(island.detail||'')+' '+(island.culture||'')+' '+(island.signature||'')).toLowerCase();const score=selectedInterests.reduce((n,p)=>n+(((interestTerms[p]||[]).some(term=>hay.includes(term.toLowerCase())))?1:0),0);return {island,score}}).sort((a,b)=>b.score-a.score);
   const picks=ranked.map(x=>x.island).slice(0,Math.min(days,8));
   const next=Array.from({length:days},(_,day)=>{const islandIndex=Math.floor(day*picks.length/days);const island=picks[islandIndex];const visitDay=picks.slice(0,islandIndex).filter(x=>x.name===island.name).length;const curated=island.guide?.itinerary||[];const activities=island.explore?.length?island.explore:island.highlights;const entry=curated[visitDay%Math.max(curated.length,1)];const activity=entry?(entry.title+(entry.description?' — '+entry.description:'')):activities[visitDay%activities.length];return {day:day+1,island,activity};});
-  setPlan(next);localStorage.setItem('graceon-trip-plan-v1',JSON.stringify(next));setNotice(days>8?'Your '+days+'-day draft includes stays across up to eight islands, with extra days allocated as longer stays. Save islands to My Journey to keep building it.':'Your sample itinerary is ready. Save islands to My Journey to keep building it.');
+  setPlan(next);const persisted=write('graceon-trip-plan-v1',next);setNotice(!persisted?'Itinerary created, but this browser could not save it. Keep this tab open to avoid losing it.':days>8?'Your '+days+'-day draft includes stays across up to eight islands, with extra days allocated as longer stays. Save islands to My Journey to keep building it.':'Your sample itinerary is ready. Save islands to My Journey to keep building it.');
  };
  const addPost=()=>{
   const cleanText=postText.trim();
@@ -42,16 +43,16 @@ export default function TravelFeatures({savedIslands,journeyIslands,onToggleJour
   if(cleanText.length>500){setNotice('Keep your post under 500 characters.');return;}
   if(cleanImage&&!cleanImage.startsWith('data:image/')&&!/^https?:\/\//i.test(cleanImage)){setNotice('Use a public image link beginning with http or https.');return;}
   const next:Post={id:Date.now().toString(),author:profile.name.trim()||'Island traveller',text:cleanText,image:cleanImage,place:postPlace,createdAt:new Date().toISOString(),reports:0};
-  const updated=[next,...posts];setPosts(updated);localStorage.setItem('graceon-community-posts-v1',JSON.stringify(updated));setPostText('');setPostImage('');setNotice('Post added to this browser’s demo community.');
+  const updated=[next,...posts];setPosts(updated);const persisted=write('graceon-community-posts-v1',updated);setPostText('');setPostImage('');setNotice(persisted?'Post added to this browser’s demo community.':'Post shown temporarily, but browser storage is full or unavailable.');
  };
  const reportPost=(id:string)=>{
   if(reported.includes(id)){setNotice('This post is already hidden in your demo view.');return;}
-  const next=[...reported,id];setReported(next);localStorage.setItem('graceon-community-reports-v1',JSON.stringify(next));setNotice('Thanks. This post is now hidden in this browser’s demo view.');
+  const next=[...reported,id];setReported(next);const persisted=write('graceon-community-reports-v1',next);setNotice(persisted?'Thanks. This post is now hidden in this browser’s demo view.':'Post hidden for this session, but this browser could not save the report.');
  };
  const saveProfile=()=>{
   const cleanName=profile.name.trim();const cleanEmail=profile.email.trim();
   if(cleanEmail&&! /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)){setNotice('Please enter a valid email address or leave it blank.');return;}
-  const cleanProfile={name:cleanName,email:cleanEmail};setProfile(cleanProfile);localStorage.setItem('graceon-profile-v1',JSON.stringify(cleanProfile));setProfileEditing(false);setNotice('Your local travel profile is saved on this device.');
+  const cleanProfile={name:cleanName,email:cleanEmail};setProfile(cleanProfile);const persisted=write('graceon-profile-v1',cleanProfile);setProfileEditing(false);setNotice(persisted?'Your local travel profile is saved on this device.':'Profile updated for this session, but browser storage is full or unavailable.');
  };
  const addPlanIslands=()=>{
   if(!plan.length){setNotice('Create an itinerary first, then save its islands to My Journey.');return;}
