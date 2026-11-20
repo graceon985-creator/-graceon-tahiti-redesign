@@ -235,7 +235,7 @@ export default function App(){
         {heroScene>=0&&<div className="hero-feature-copy"><span>{active==='FR'?'DÉCOUVRIR LES ÎLES':'DISCOVER THE ISLANDS'}</span><h2>{heroScenes[heroScene].name}</h2><p>{heroScenes[heroScene].label}</p><small>© {heroScenes[heroScene].credit}</small></div>}
       </SpotlightCard>
       <div className="hero-thumbnails" role="group" aria-label={active==='FR'?'Choisir une destination ou le film':'Choose a destination or the film'}>
-        <button type="button" className={heroScene<0?'hero-thumb active':'hero-thumb'} aria-pressed={heroScene<0} onClick={()=>setHeroScene(-1)}><img src={heroScenes[0].small} alt="" loading="lazy"/><span>FILM · MOOREA</span></button>
+        <button type="button" className={heroScene<0?'hero-thumb active':'hero-thumb'} aria-pressed={heroScene<0} onClick={()=>setHeroScene(-1)}><img src="https://img.youtube.com/vi/pglydl2hxmg/hqdefault.jpg" alt="" loading="lazy"/><span>FILM · MOOREA</span></button>
         {heroScenes.map((scene,index)=><button type="button" key={scene.name} className={heroScene===index?'hero-thumb active':'hero-thumb'} aria-pressed={heroScene===index} aria-label={active==='FR'?'Afficher '+scene.name:'Show '+scene.name} onClick={()=>setHeroScene(index)}><img src={scene.small} alt="" loading="lazy" decoding="async"/><span>{scene.name}</span></button>)}
       </div>
     </div>
