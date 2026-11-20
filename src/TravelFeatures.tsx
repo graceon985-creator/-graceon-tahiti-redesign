@@ -1,12 +1,12 @@
 import {useMemo,useState} from 'react';
-import {ArrowRight,BookmarkPlus,CalendarDays,Compass,Flag,Heart,MapPin,Plus,ShieldAlert,Sparkles,Trash2,UserRound,Plane,Ship,Phone,Info} from 'lucide-react';
+import {ArrowRight,BookmarkPlus,Flag,Heart,MapPin,Plus,ShieldAlert,Sparkles,UserRound,Plane,Ship,Phone,Info} from 'lucide-react';
 import {islands} from './data';
 import './TravelFeatures.css';
 
 type Island = typeof islands[number];
 type Post = {id:string;author:string;text:string;image:string;place:string;createdAt:string;reports:number};
 type Props = {savedIslands:string[];journeyIslands:string[];onToggleJourneyIsland:(name:string)=>void};
-const STORAGE='graceon-travel-features-v1';
+
 const read=(key:string,fallback:any)=>{try{const v=localStorage.getItem(key);return v?JSON.parse(v):fallback}catch{return fallback}};
 const write=(key:string,value:unknown)=>{try{localStorage.setItem(key,JSON.stringify(value));return true}catch{return false}};
 const interests=['Lagoon & beaches','Nature & hiking','Marine life','Culture & heritage','Food & local life','Quiet & slow travel'];
@@ -33,7 +33,8 @@ export default function TravelFeatures({savedIslands,journeyIslands,onToggleJour
   if(selectedInterests.length===0){setNotice('Choose at least one interest to shape your island route.');return;}
   const ranked=islands.map(island=>{const hay=(island.kind+' '+island.description+' '+(island.detail||'')+' '+(island.culture||'')+' '+(island.signature||'')).toLowerCase();const score=selectedInterests.reduce((n,p)=>n+(((interestTerms[p]||[]).some(term=>hay.includes(term.toLowerCase())))?1:0),0);return {island,score}}).sort((a,b)=>b.score-a.score);
   const picks=ranked.map(x=>x.island).slice(0,Math.min(days,8));
-  const next=Array.from({length:days},(_,day)=>{const islandIndex=Math.floor(day*picks.length/days);const island=picks[islandIndex];const visitDay=picks.slice(0,islandIndex).filter(x=>x.name===island.name).length;const curated=island.guide?.itinerary||[];const activities=island.explore?.length?island.explore:island.highlights;const entry=curated[visitDay%Math.max(curated.length,1)];const activity=entry?(entry.title+(entry.description?' — '+entry.description:'')):activities[visitDay%activities.length];return {day:day+1,island,activity};});
+  const next:{day:number;island:Island;activity:string}[]=[];
+  for(let day=0;day<days;day++){const islandIndex=Math.floor(day*picks.length/days);const island=picks[islandIndex];const visitDay=next.filter(x=>x.island.name===island.name).length;const curated=island.guide?.itinerary||[];const activities=island.explore?.length?island.explore:island.highlights;const entry=curated[visitDay%Math.max(curated.length,1)];const activity=entry?(entry.title+(entry.description?' — '+entry.description:'')):activities[visitDay%activities.length];next.push({day:day+1,island,activity});}
   setPlan(next);const persisted=write('graceon-trip-plan-v1',next);setNotice(!persisted?'Itinerary created, but this browser could not save it. Keep this tab open to avoid losing it.':days>8?'Your '+days+'-day draft includes stays across up to eight islands, with extra days allocated as longer stays. Save islands to My Journey to keep building it.':'Your sample itinerary is ready. Save islands to My Journey to keep building it.');
  };
  const addPost=()=>{
