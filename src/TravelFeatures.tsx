@@ -47,7 +47,11 @@ export default function TravelFeatures({savedIslands,journeyIslands,onToggleJour
  const reportPost=(id:string)=>{
   const next=[...reported,id];setReported(next);localStorage.setItem('graceon-community-reports-v1',JSON.stringify(next));setNotice('Thanks. This post is now hidden in this browser’s demo view.');
  };
- const saveProfile=()=>{localStorage.setItem('graceon-profile-v1',JSON.stringify(profile));setProfileEditing(false);setNotice('Your local travel profile is saved on this device.');};
+ const saveProfile=()=>{
+  const cleanName=profile.name.trim();const cleanEmail=profile.email.trim();
+  if(cleanEmail&&! /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)){setNotice('Please enter a valid email address or leave it blank.');return;}
+  const cleanProfile={name:cleanName,email:cleanEmail};setProfile(cleanProfile);localStorage.setItem('graceon-profile-v1',JSON.stringify(cleanProfile));setProfileEditing(false);setNotice('Your local travel profile is saved on this device.');
+ };
  const addPlanIslands=()=>{plan.forEach(item=>{if(!journeyIslands.includes(item.island.name))onToggleJourneyIsland(item.island.name)});setNotice('The itinerary destinations were added to My Journey.');};
  const allJourney=[...new Set([...journeyIslands,...savedIslands])];
  return <div className="travel-features">
