@@ -1450,3 +1450,26 @@
  .experience-preview-card{backdrop-filter:blur(3px)}
  .destination-photo-grid figure{border-radius:0!important}
 }
+
+
+/* GRACEON secondary-section pass 02 — destination visual journal, desktop and mobile. */
+.destination-photo-gallery{margin:clamp(48px,8vw,112px) 0;padding:0 clamp(0px,2vw,22px);}
+.destination-photo-gallery-heading{max-width:760px;margin:0 auto clamp(32px,5vw,72px);}
+.destination-photo-grid{padding-bottom:12vh;gap:0;grid-template-columns:1fr;}
+.destination-photo-grid figure{height:clamp(560px,82svh,980px);min-height:0;margin:0 0 18vh;top:7svh;position:sticky;overflow:hidden;isolation:isolate;background:#153a3b;}
+.destination-photo-grid figure img{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.015);}
+.destination-photo-grid figure:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(8,25,29,.68),rgba(8,25,29,.18) 72%),linear-gradient(0deg,rgba(8,25,29,.82),transparent 65%);pointer-events:none;}
+.destination-photo-grid figure figcaption{left:clamp(22px,7vw,110px);right:clamp(22px,7vw,110px);bottom:clamp(30px,7vh,86px);max-width:920px;z-index:2;}
+.destination-photo-grid figure figcaption span{display:block;margin-bottom:20px;}
+.destination-photo-grid figure figcaption strong{font-size:clamp(34px,5.4vw,82px);line-height:1.02;letter-spacing:-.045em;}
+.destination-photo-grid figure figcaption p{font-size:clamp(13px,1.1vw,16px);line-height:1.85;margin-top:20px;}
+.destination-photo-grid figure:nth-child(1){z-index:1}.destination-photo-grid figure:nth-child(2){z-index:2}.destination-photo-grid figure:nth-child(3){z-index:3}
+@media(max-width:720px){
+ .destination-photo-gallery{padding:0;margin:64px 0 30px;}
+ .destination-photo-gallery-heading{padding:0 6%;margin-bottom:28px;}
+ .destination-photo-grid{display:block;padding:0 0 8vh;}
+ .destination-photo-grid figure{position:sticky;top:5svh;height:83svh;min-height:0;margin:0 0 13svh;}
+ .destination-photo-grid figure figcaption{left:7%;right:7%;bottom:8%;}
+ .destination-photo-grid figure figcaption strong{font-size:clamp(34px,10vw,56px);line-height:1.02;}
+ .destination-photo-grid figure figcaption p{font-size:12px;line-height:1.75;max-width:94%;margin-top:16px;}
+}
