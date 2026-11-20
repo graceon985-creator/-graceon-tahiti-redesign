@@ -1349,7 +1349,7 @@
 .destination-photo-gallery-heading h3{font:400 clamp(44px,7vw,96px)/.95 Georgia,serif;letter-spacing:-.045em;max-width:900px;margin:18px 0 20px;color:#f4efe5}
 .destination-photo-gallery-heading p{font-size:13px;line-height:1.8;color:#b7c4bd;max-width:560px}
 .destination-photo-grid{display:grid!important;grid-template-columns:1fr!important;grid-auto-rows:auto!important;gap:0!important;padding:0 clamp(16px,4vw,58px) 6vh!important}
-.destination-photo-grid figure{position:relative!important;top:auto!important;height:min(86vh,960px)!important;min-height:540px!important;margin:0 0 9vh!important;overflow:hidden!important;border-radius:2px!important;box-shadow:none!important;clip-path:inset(0)!important;transform:none!important}
+.destination-photo-grid figure{position:relative!important;top:auto!important;height:min(86vh,960px)!important;min-height:540px!important;margin:0 0 9vh!important;overflow:hidden!important;border-radius:2px!important;box-shadow:none!important;clip-path:inset(0);transform:none}
 .destination-photo-grid figure:nth-child(1),.destination-photo-grid figure:nth-child(2),.destination-photo-grid figure:nth-child(3){z-index:auto!important}
 .destination-photo-grid figure img{transform:scale(1.08);will-change:transform;filter:saturate(.92);transition:filter .5s ease!important}
 .destination-photo-grid figure figcaption{left:clamp(22px,6vw,88px)!important;right:clamp(22px,6vw,88px)!important;bottom:clamp(24px,7vh,80px)!important;opacity:1!important}
@@ -1369,7 +1369,7 @@
 .destination-photo-grid figure:nth-child(1){z-index:1!important}
 .destination-photo-grid figure:nth-child(2){z-index:2!important}
 .destination-photo-grid figure:nth-child(3){z-index:3!important}
-.destination-photo-grid figure img{width:100%!important;height:100%!important;object-fit:cover!important;transform:scale(1.12)!important;will-change:transform;filter:saturate(.94)!important}
+.destination-photo-grid figure img{width:100%!important;height:100%!important;object-fit:cover!important;transform:scale(1.12);will-change:transform;filter:saturate(.94)!important}
 .destination-photo-grid figure figcaption{left:clamp(24px,6vw,88px)!important;right:clamp(24px,6vw,88px)!important;bottom:clamp(26px,7vh,84px)!important;opacity:1!important}
 .destination-photo-grid figure figcaption strong{font-size:clamp(34px,6vw,82px)!important;line-height:.98!important;max-width:900px!important}
 .destination-photo-grid figure figcaption span{font-size:10px!important;letter-spacing:.2em!important}
@@ -1386,7 +1386,7 @@
 @media(max-width:720px){.destination-photo-grid figure figcaption p{max-width:100%!important;font-size:14px!important;line-height:1.5!important}}
 
 /* Keep GSAP's chapter reveal and image parallax free from CSS !important overrides */
-.destination-photo-grid figure{clip-path:unset!important;transform:translateY(0)!important}
-.destination-photo-grid figure img{transform:translateY(0) scale(1)!important}
+.destination-photo-grid figure{clip-path:unset;transform:translateY(0)}
+.destination-photo-grid figure img{transform:translateY(0) scale(1)}
 .destination-photo-grid figure{will-change:clip-path,transform,opacity}
 .destination-photo-grid figure img{will-change:transform}
