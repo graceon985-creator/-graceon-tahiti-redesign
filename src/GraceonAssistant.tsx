@@ -44,11 +44,11 @@ function answerFor(text:string,journey:string[],locale:Locale){
  return c.reply+'\n\n'+c.map;
 }
 export default function GraceonAssistant({journeyIslands}:Props){
- const [open,setOpen]=useState(false);useEffect(()=>{const openAssistant=()=>setOpen(true);window.addEventListener('graceon-open-assistant',openAssistant);return()=>window.removeEventListener('graceon-open-assistant',openAssistant)},[]);const [message,setMessage]=useState('');const [messages,setMessages]=useState<Message[]>([]);const bodyRef=useRef<HTMLDivElement|null>(null);const inputRef=useRef<HTMLInputElement|null>(null);const launcherRef=useRef<HTMLButtonElement|null>(null);
+ const [open,setOpen]=useState(false);useEffect(()=>{const openAssistant=()=>setOpen(true);window.addEventListener('graceon-open-assistant',openAssistant);return()=>window.removeEventListener('graceon-open-assistant',openAssistant)},[]);const [message,setMessage]=useState('');const [messages,setMessages]=useState<Message[]>([]);const bodyRef=useRef<HTMLDivElement|null>(null);const inputRef=useRef<HTMLInputElement|null>(null);const launcherRef=useRef<HTMLButtonElement|null>(null);const wasOpenRef=useRef(false);
  const [locale,setLocale]=useState<Locale>(()=>detectLocale());
  useEffect(()=>{const update=()=>setLocale(detectLocale());window.addEventListener('languagechange',update);return()=>window.removeEventListener('languagechange',update)},[]);
  const c=copy[locale];const rtl=locale==='ar';
- useEffect(()=>{if(open)inputRef.current?.focus();else launcherRef.current?.focus()},[open]);
+ useEffect(()=>{if(open)inputRef.current?.focus();else if(wasOpenRef.current)launcherRef.current?.focus();wasOpenRef.current=open},[open]);
  useEffect(()=>{if(!open)return;const closeOnEscape=(event:KeyboardEvent)=>{if(event.key==='Escape')setOpen(false)};window.addEventListener('keydown',closeOnEscape);return()=>window.removeEventListener('keydown',closeOnEscape)},[open]);
  useEffect(()=>{const body=bodyRef.current;if(body)body.scrollTo({top:body.scrollHeight,behavior:'smooth'})},[messages,open]);
  const send=(value:string)=>{const clean=value.trim();if(!clean)return;setMessages(old=>[...old,{role:'user',text:clean},{role:'assistant',text:answerFor(clean,journeyIslands,locale)}]);setMessage('')};
