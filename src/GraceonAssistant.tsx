@@ -26,16 +26,16 @@ function answerFor(text:string,journey:string[],locale:Locale){
   return journey.length?c.route+':\n'+journey.map((n,i)=>(i+1)+'. '+n).join('\n')+'\n\n'+c.reply:c.empty;
  }
  const interestMap=[
-  {terms:['hike','hiking','nature','mountain','waterfall','مشي','طبيعة','جبال'],en:'Nature & hiking',ar:'الطبيعة والمشي',islands:['Tahiti','Moorea','Huahine','Raiatea']},
-  {terms:['lagoon','beach','snorkel','swim','شاطئ','بحر','بحيرة'],en:'Lagoon & beaches',ar:'الشواطئ والبحيرات',islands:['Moorea','Bora Bora','Taha’a','Rangiroa']},
-  {terms:['culture','history','heritage','marae','ثقافة','تاريخ','تراث'],en:'Culture & heritage',ar:'الثقافة والتراث',islands:['Tahiti','Huahine','Raiatea']},
-  {terms:['marine','reef','dive','diving','الحياة البحرية','شعاب','غوص'],en:'Marine life',ar:'الحياة البحرية',islands:['Rangiroa','Fakarava','Bora Bora']}
+  {terms:['hike','hiking','nature','mountain','waterfall','مشي','طبيعة','جبال','randonnée','nature','montagne','cascades','senderismo','naturaleza','montaña','wandern','natur','berg','escursioni','natura','montagna','caminhada','natureza','montanha','徒步','自然','登山','ハイキング','自然','등산','자연','поход','природа','гора','wandelen','natuur','berg'],en:'Nature & hiking',ar:'الطبيعة والمشي',islands:['Tahiti','Moorea','Huahine','Raiatea']},
+  {terms:['lagoon','beach','snorkel','swim','شاطئ','بحر','بحيرة','plage','lagon','nager','playa','laguna','nadar','strand','lagune','schwimmen','spiaggia','nuotare','praia','nadar','海滩','泻湖','海','ビーチ','ラグーン','바다','해변','лагуна','пляж','strand','lagune'],en:'Lagoon & beaches',ar:'الشواطئ والبحيرات',islands:['Moorea','Bora Bora','Taha’a','Rangiroa']},
+  {terms:['culture','history','heritage','marae','ثقافة','تاريخ','تراث','culture','histoire','patrimoine','historia','cultura','historia','kultur','geschichte','patrimonio','storia','cultura','história','文化','历史','文化','歴史','문화','역사','культура','история','cultuur','geschiedenis'],en:'Culture & heritage',ar:'الثقافة والتراث',islands:['Tahiti','Huahine','Raiatea']},
+  {terms:['marine','reef','dive','diving','الحياة البحرية','شعاب','غوص','vie marine','récif','plongée','vida marina','arrecife','buceo','meeresleben','riff','tauchen','vita marina','barriera','immersioni','vida marinha','recife','mergulho','海洋生物','珊瑚礁','潜水','海洋生物','サンゴ礁','다이빙','산호초','морская жизнь','риф','дайвинг','zeeleven','rif','duiken'],en:'Marine life',ar:'الحياة البحرية',islands:['Rangiroa','Fakarava','Bora Bora']}
  ];
  const matches=interestMap.filter(item=>item.terms.some(term=>q.includes(term)));
  if(matches.length){
   const labels=matches.map(item=>locale==='ar'?item.ar:item.en);
   const suggested=[...new Set(matches.flatMap(item=>item.islands))];
-  const intro=locale==='ar'?'بناءً على اهتماماتك ('+labels.join('، ')+')، هاي جزر مناسبة كبداية:':'Based on your interests ('+labels.join(', ')+'), these islands are good starting points:';
+  const intro:Record<Locale,string>={en:'Suggested islands based on your interests:',fr:'Îles suggérées selon vos centres d’intérêt :',ar:'جزر مقترحة بناءً على اهتماماتك:',es:'Islas sugeridas según tus intereses:',de:'Passende Inseln für deine Interessen:',it:'Isole suggerite in base ai tuoi interessi:',pt:'Ilhas sugeridas de acordo com seus interesses:',zh:'根据你的兴趣推荐这些岛屿：',ja:'興味に合わせたおすすめの島：',ko:'관심사에 맞는 추천 섬:',ru:'Острова, подходящие вашим интересам:',nl:'Eilanden passend bij je interesses:'}[locale];
   return intro+'\n'+suggested.map((name,i)=>(i+1)+'. '+name).join('\n')+'\n\n'+c.reply;
  }
  const islandDetails:Record<string,string>={'Tahiti':'Papenoo valley, volcanic landscapes, black-sand coast and Papeete markets.','Moorea':'Twin bays, valley viewpoints, lagoon activities and island trails.','Bora Bora':'Mount Otemanu views, Matira Beach, lagoon scenery and island history.','Huahine':'Heritage sites around Maeva, quiet coastlines and village life.','Raiatea':'Taputapuātea, Faaroa River and the rare tiare apetahi habitat.','Taha’a':'Vanilla farms, pearl farms, bays and calm motu.','Rangiroa':'Wide atoll horizons, reef passes and lagoon landscapes.','Fakarava':'Protected biosphere landscapes, motu, reef and local crafts.'};
