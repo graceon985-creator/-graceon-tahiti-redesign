@@ -1576,3 +1576,5 @@
 .experience-route-board-grid svg{grid-column:3;grid-row:1/3;color:#d6a887}
 @media(max-width:760px){.experience-route-board{padding:28px 18px 32px}.experience-route-board-head{align-items:start;flex-direction:column}.experience-route-board-head>small{text-align:left}.experience-route-board-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.experience-route-board-grid button{padding:13px 9px;grid-template-columns:24px 1fr 16px}.route-board-name{font-size:12px}.route-board-kind{font-size:7px}.experience-flight-word{top:53%;font-size:clamp(82px,23vw,160px)}.experience-flight-track{top:59%}}
 @media(prefers-reduced-motion:reduce){.experience-flight-plane{transform:none!important}.experience-flight-word{opacity:.12!important}.experience-route-board-grid button{transition:none!important}}
+
+.destination-photo-credit{display:block;margin-top:10px;color:#b9a89e;font-size:9px;letter-spacing:.07em;text-transform:uppercase;opacity:.82}
