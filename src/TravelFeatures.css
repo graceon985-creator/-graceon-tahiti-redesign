@@ -109,3 +109,8 @@
 .tf-stay-quicklinks{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:4px}
 .tf-stay-quicklinks a.tf-stay-guide{border-top:0!important;padding-top:0!important;text-decoration:none;font-size:8px;letter-spacing:.11em;}
 .tf-stay-quicklinks a.tf-stay-directory{color:#a77956!important;border-bottom:1px solid #cbb89f;padding-bottom:5px}
+
+/* Iteration 16 — accessible focus states and itinerary layout polish */
+.travel-features button:focus-visible,.travel-features a:focus-visible,.travel-features select:focus-visible,.travel-features input:focus-visible,.travel-features textarea:focus-visible{outline:2px solid #b97d58;outline-offset:3px}
+.tf-plan-top{gap:16px;flex-wrap:wrap}.tf-plan-days article{min-width:0}.tf-plan-days article>div{min-width:0}.tf-plan-days article p{overflow-wrap:anywhere}
+@media(max-width:700px){.tf-plan-top{align-items:flex-start}.tf-plan-top .tf-button{width:100%;justify-content:center}.tf-plan-days article{grid-template-columns:56px 82px minmax(0,1fr);gap:10px}.tf-plan-days article img{width:82px;height:82px;object-fit:cover}.tf-plan-days article h4{font-size:16px}.tf-plan-days article p{font-size:11px;line-height:1.55}.tf-community-grid{grid-template-columns:minmax(0,1fr)}}
