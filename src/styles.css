@@ -1473,3 +1473,50 @@
  .destination-photo-grid figure figcaption strong{font-size:clamp(34px,10vw,56px);line-height:1.02;}
  .destination-photo-grid figure figcaption p{font-size:12px;line-height:1.75;max-width:94%;margin-top:16px;}
 }
+
+/* GRACEON secondary pass 02 — selectors verified against current App markup. */
+.destination-hero{isolation:isolate}
+.destination-title{max-width:min(920px,86vw)}
+.destination-title h1{font-size:clamp(72px,12vw,168px);line-height:.84;letter-spacing:-.065em;text-shadow:0 8px 34px rgba(0,15,22,.38)}
+.destination-title>span{color:#e9b68e;letter-spacing:.24em}
+.destination-body{position:relative}
+.destination-intro{max-width:760px}
+.destination-intro h2{letter-spacing:-.055em;text-wrap:balance}
+.destination-signature{position:relative;padding:28px 0;border-top:1px solid #c8bca9;border-bottom:1px solid #c8bca9}
+.destination-signature h3{font-size:clamp(24px,3vw,36px);line-height:1.25}
+.destination-photo-gallery{padding-top:clamp(72px,10vw,130px);padding-bottom:clamp(76px,11vw,140px)}
+.destination-photo-gallery-heading{max-width:980px;margin:0 auto clamp(32px,5vw,70px);padding-inline:6%}
+.destination-photo-gallery-heading h3{font-size:clamp(42px,6vw,78px);line-height:.95;letter-spacing:-.055em;text-wrap:balance}
+.destination-photo-gallery-heading p{max-width:520px;font-size:13px;line-height:1.85}
+.destination-photo-grid figure{position:relative;min-height:min(78vh,760px);overflow:hidden;background:#102f36}
+.destination-photo-grid figure img{transform-origin:center;will-change:transform;filter:saturate(.9) contrast(1.03);transition:filter .8s}
+.destination-photo-grid figure:hover img{filter:saturate(1.06) contrast(1.05)}
+.destination-photo-grid figure figcaption{max-width:760px;left:clamp(22px,6vw,88px);right:clamp(22px,6vw,88px);bottom:clamp(28px,6vw,78px)}
+.destination-photo-grid figure figcaption strong{font-size:clamp(32px,5vw,72px);line-height:.98;letter-spacing:-.04em;text-wrap:balance}
+.destination-photo-grid figure figcaption p{font-size:clamp(12px,1vw,14px);line-height:1.85;max-width:500px}
+.destination-guide-heading{max-width:1100px}
+.destination-guide-heading h2{font-size:clamp(42px,6.4vw,88px);letter-spacing:-.05em;text-wrap:balance}
+.destination-guide-experience-grid article{transition:transform .3s,border-color .3s}
+.destination-guide-experience-grid article:hover{transform:translateY(-4px)}
+.destination-guide-days article{border-top:1px solid rgba(20,60,64,.18)}
+.destination-guide-faq article{transition:background .25s}
+.destination-guide-faq article:hover{background:rgba(21,63,63,.035)}
+.experience-section.experience-immersive{min-height:clamp(700px,100svh,900px);height:clamp(700px,100svh,900px)}
+.experience-immersive-copy h2{text-wrap:balance}
+.experience-preview-card{border-radius:2px}
+.experience-preview-card img{border-radius:2px;opacity:.88}
+.experience-preview-card:hover img{opacity:1}
+.experience-progress button{height:3px;transition:height .25s,background .25s}
+.experience-progress button.active{height:5px}
+.activity-card{border-radius:2px;overflow:hidden;transition:transform .35s,box-shadow .35s}
+.activity-card:hover{transform:translateY(-5px);box-shadow:0 18px 42px rgba(26,39,35,.11)}
+.activity-card-image{height:clamp(210px,24vw,320px)}
+.activity-card-copy h3{text-wrap:balance}
+@media(max-width:760px){
+ .destination-title h1{font-size:clamp(58px,17vw,100px)}
+ .destination-photo-grid figure{min-height:68svh}
+ .destination-photo-grid figure figcaption{left:22px;right:22px;bottom:28px}
+ .destination-photo-grid figure figcaption strong{font-size:clamp(32px,10vw,50px)}
+ .experience-section.experience-immersive{height:790px;min-height:790px}
+ .activity-card-image{height:250px}
+}
