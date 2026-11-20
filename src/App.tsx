@@ -44,7 +44,7 @@ const destinationPhotoStoriesFR:Record<string,string[]>={
 'Rangiroa':['Rangiroa est un vaste atoll corallien dont le lagon est bordé de motu ; l’horizon y semble infini.','La passe de Tiputa est connue pour ses dauphins et ses courants ; observez-les à distance et dans le respect de la faune.','Découvrez le Lagon Bleu, les récifs et le vignoble singulier de Rangiroa.'],
 'Fakarava':['L’atoll de Fakarava fait partie d’une réserve de biosphère de l’UNESCO ; ses passes et ses récifs sont au cœur de son identité.','Les passes nord et sud relient l’océan au lagon et abritent une vie marine remarquable ; les courants nécessitent une grande prudence.','Au-delà du lagon, découvrez les motu de sable rose, les fermes perlières et l’artisanat local tout en préservant cet environnement fragile.']
 };
-const destinationGalleryPhotos:Record<string,{src:string;caption:string;category:string}[]>={
+const destinationGalleryPhotos:Record<string,{src:string;caption:string;category:string;credit?:string}[]>={
 'Tahiti':[
 {src:"https://tahititourisme.pf/app/uploads/tahiti/2021/10/thumbs/vue-aerienne-de-la-maroto-a-papenoo-tahiti-iles-de-la-societe-stephane-mailion-photography-1920x960.jpg",caption:"Papenoo’s green valley",category:"THE INTERIOR"},
 {src:"https://images.unsplash.com/photo-1504609813442-a8924e83f76e?auto=format&fit=crop&w=1600&q=88",caption:"Along the island coast",category:"COASTLINE"},
