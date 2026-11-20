@@ -53,7 +53,12 @@ export default function TravelFeatures({savedIslands,journeyIslands,onToggleJour
   if(cleanEmail&&! /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)){setNotice('Please enter a valid email address or leave it blank.');return;}
   const cleanProfile={name:cleanName,email:cleanEmail};setProfile(cleanProfile);localStorage.setItem('graceon-profile-v1',JSON.stringify(cleanProfile));setProfileEditing(false);setNotice('Your local travel profile is saved on this device.');
  };
- const addPlanIslands=()=>{plan.forEach(item=>{if(!journeyIslands.includes(item.island.name))onToggleJourneyIsland(item.island.name)});setNotice('The itinerary destinations were added to My Journey.');};
+ const addPlanIslands=()=>{
+  if(!plan.length){setNotice('Create an itinerary first, then save its islands to My Journey.');return;}
+  const additions=[...new Set(plan.map(item=>item.island.name))].filter(name=>!journeyIslands.includes(name));
+  additions.forEach(name=>onToggleJourneyIsland(name));
+  setNotice(additions.length?additions.length+' new island'+(additions.length===1?'':'s')+' added to My Journey. Already-added islands were skipped.':'All itinerary islands are already in My Journey.');
+ };
  const allJourney=[...new Set([...journeyIslands,...savedIslands])];
  return <div className="travel-features">
   <section id="stays" className="tf-section tf-stays">
