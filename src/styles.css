@@ -1341,3 +1341,22 @@
 .destination-photo-grid figure figcaption span{display:block;font-size:10px;letter-spacing:.16em;margin-bottom:12px;text-shadow:0 1px 14px rgba(0,0,0,.5)}
 .destination-photo-grid figure:after{content:"";position:absolute;inset:35% 0 0;background:linear-gradient(transparent,rgba(6,26,31,.72));pointer-events:none}
 @media(max-width:720px){.destination-photo-grid figure{top:5vh;height:70vh;min-height:430px;margin-bottom:16vh}.destination-photo-grid{grid-template-columns:1fr;grid-auto-rows:auto}.destination-photo-grid figure figcaption strong{font-size:clamp(28px,9vw,46px)}}
+
+
+/* Reference-inspired destination storytelling: full-height scroll chapters, not overlapping sticky cards */
+.destination-photo-gallery{margin:clamp(48px,7vw,110px) 0 0;background:#101f22;color:#f3eee4;padding:clamp(30px,5vw,70px) 0 8vh}
+.destination-photo-gallery-heading{position:relative;max-width:1300px;margin:0 auto 5vh;padding:0 clamp(24px,7vw,100px)}
+.destination-photo-gallery-heading h3{font:400 clamp(44px,7vw,96px)/.95 Georgia,serif;letter-spacing:-.045em;max-width:900px;margin:18px 0 20px;color:#f4efe5}
+.destination-photo-gallery-heading p{font-size:13px;line-height:1.8;color:#b7c4bd;max-width:560px}
+.destination-photo-grid{display:grid!important;grid-template-columns:1fr!important;grid-auto-rows:auto!important;gap:0!important;padding:0 clamp(16px,4vw,58px) 6vh!important}
+.destination-photo-grid figure{position:relative!important;top:auto!important;height:min(86vh,960px)!important;min-height:540px!important;margin:0 0 9vh!important;overflow:hidden!important;border-radius:2px!important;box-shadow:none!important;clip-path:inset(0)!important;transform:none!important}
+.destination-photo-grid figure:nth-child(1),.destination-photo-grid figure:nth-child(2),.destination-photo-grid figure:nth-child(3){z-index:auto!important}
+.destination-photo-grid figure img{transform:scale(1.08);will-change:transform;filter:saturate(.92);transition:filter .5s ease!important}
+.destination-photo-grid figure figcaption{left:clamp(22px,6vw,88px)!important;right:clamp(22px,6vw,88px)!important;bottom:clamp(24px,7vh,80px)!important;opacity:1!important}
+.destination-photo-grid figure figcaption strong{font-size:clamp(34px,6vw,82px)!important;line-height:.98!important;max-width:900px!important}
+.destination-photo-grid figure figcaption span{font-size:10px!important;letter-spacing:.2em!important}
+.destination-photo-grid figure:after{background:linear-gradient(transparent 35%,rgba(7,18,22,.8))!important}
+.destination-guide-place{will-change:transform,opacity}
+.destination-guide-experience-card{will-change:transform,opacity;min-height:clamp(360px,60vh,680px)!important}
+.destination-guide-days article,.destination-guide-extra-grid article,.destination-guide-faq article{will-change:transform,opacity}
+@media(max-width:720px){.destination-photo-gallery-heading{padding:0 22px}.destination-photo-grid{padding:0 12px 4vh!important}.destination-photo-grid figure{height:72vh!important;min-height:460px!important;margin-bottom:7vh!important}.destination-photo-grid figure figcaption strong{font-size:clamp(32px,10vw,54px)!important}}
