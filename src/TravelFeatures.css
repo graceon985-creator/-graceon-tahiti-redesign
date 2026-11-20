@@ -135,3 +135,23 @@
 .tf-plan-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
 .tf-plan-actions .tf-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
 @media(max-width:700px){.tf-plan-top{align-items:flex-start;flex-direction:column}.tf-plan-actions{width:100%;justify-content:flex-start}.tf-plan-actions .tf-button{flex:1;min-width:0}}
+
+/* Island food discovery — live search links, not a verified venue inventory */
+.tf-food{background:#e8e5db}
+.tf-food-controls{max-width:1400px;margin:0 auto 28px;display:flex;align-items:end;justify-content:space-between;gap:20px}
+.tf-food-controls label{display:grid;gap:8px;color:#a36f4d;font-size:10px;letter-spacing:.16em;font-weight:700}
+.tf-food-controls select{min-width:240px;background:#fffdf8;color:#173b3b;border:1px solid #d7d3c9;padding:13px 15px;font:inherit;font-size:13px;letter-spacing:0}
+.tf-food-note{display:flex;align-items:center;gap:8px;color:#637671;font-size:11px;line-height:1.5}
+.tf-food-grid{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tf-food-card{display:flex;align-items:center;gap:15px;justify-content:space-between;min-height:105px;padding:22px;background:#fffdf8;color:#153e43;text-decoration:none;border:1px solid #dfdbd1;transition:background .25s,border-color .25s,transform .25s}
+.tf-food-card:hover,.tf-food-card:focus-visible{background:#f5eee2;border-color:#bd8b68;transform:translateY(-2px)}
+.tf-food-card:focus-visible{outline:2px solid #173f45;outline-offset:3px}
+.tf-food-card>span:nth-child(2){flex:1;min-width:0}
+.tf-food-card strong{display:block;font:24px/1.15 Georgia,serif}
+.tf-food-card small{display:block;margin-top:8px;color:#78847e;font-size:10px;letter-spacing:.08em}
+.tf-food-card-icon{width:42px;height:42px;flex:none;display:grid;place-items:center;border:1px solid #d8c5ae;border-radius:50%;color:#a36f4d}
+.tf-food-footer{max-width:1400px;margin:22px auto 0;display:flex;justify-content:space-between;gap:20px;color:#6b7c77;font-size:11px;line-height:1.6}
+.tf-food-footer a{color:#173e43;display:inline-flex;gap:6px;align-items:center;text-decoration:none;font-weight:700}
+@media(max-width:800px){.tf-food-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tf-food-controls{align-items:start;flex-direction:column}.tf-food-note{max-width:100%}.tf-food-footer{flex-direction:column}}
+@media(max-width:520px){.tf-food-grid{grid-template-columns:1fr}.tf-food-card{min-height:86px;padding:17px}.tf-food-card strong{font-size:21px}.tf-food-controls select{min-width:0;width:100%}}
+@media(prefers-reduced-motion:reduce){.tf-food-card{transition:none}.tf-food-card:hover,.tf-food-card:focus-visible{transform:none}}
