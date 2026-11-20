@@ -130,3 +130,8 @@
 @media(max-width:900px){.tf-journey-grid{grid-template-columns:minmax(220px,.75fr) minmax(0,1.25fr);gap:16px}.tf-saved-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.tf-section{padding:68px 6%}.tf-heading{display:block;margin-bottom:30px}.tf-heading>p{margin-top:18px}.tf-journey-grid{grid-template-columns:1fr}.tf-profile-card{min-height:0}.tf-journey-content{padding:18px}.tf-saved-grid{grid-template-columns:1fr}.tf-saved-card{min-height:230px}.tf-tabs{gap:16px}.tf-tabs button{font-size:10px}}
 @media(prefers-reduced-motion:reduce){.tf-tabs button,.tf-saved-card button,.tf-post button,.tf-stay-links a,.tf-stay-quicklinks a{transition:none}}
+
+/* Iteration 20 — itinerary action group */
+.tf-plan-actions{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.tf-plan-actions .tf-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap}
+@media(max-width:700px){.tf-plan-top{align-items:flex-start;flex-direction:column}.tf-plan-actions{width:100%;justify-content:flex-start}.tf-plan-actions .tf-button{flex:1;min-width:0}}
