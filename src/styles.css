@@ -1582,3 +1582,35 @@
 .destination-photo-credit{display:block;margin-top:10px;color:#b9a89e;font-size:9px;letter-spacing:.07em;text-transform:uppercase;opacity:.82}
 
 @media(max-width:700px){.experience-pearl{width:clamp(130px,36vw,190px);right:7%;top:31%;opacity:.86}.experience-showcase-main{width:78%;top:19%}.experience-flight-word{font-size:clamp(52px,14vw,100px)}}
+
+
+/* Interactive island gallery — film plus eight destination frames. */
+.hero.hero-full-image .hero-thumbnails{
+ position:absolute!important;z-index:18!important;left:7.8%!important;right:18%!important;bottom:3.2%!important;
+ width:min(720px,64vw)!important;height:76px!important;display:flex!important;grid-template-columns:none!important;
+ gap:9px!important;padding:3px 2px 9px!important;margin:0!important;overflow-x:auto!important;overflow-y:hidden!important;
+ scrollbar-width:thin;scrollbar-color:rgba(239,189,152,.7) rgba(255,255,255,.12);scroll-snap-type:x proximity;
+ background:transparent!important;
+}
+.hero.hero-full-image .hero-thumbnails .hero-thumb{
+ position:relative!important;display:block!important;flex:0 0 92px!important;width:92px!important;height:62px!important;
+ min-width:0!important;padding:0!important;border:1px solid rgba(255,255,255,.38)!important;border-radius:2px!important;
+ opacity:.76!important;background:#1b3032!important;overflow:hidden!important;scroll-snap-align:start;
+}
+.hero.hero-full-image .hero-thumbnails .hero-thumb.active{opacity:1!important;border:1px solid #efbd98!important;box-shadow:0 0 0 1px rgba(239,189,152,.28)!important}
+.hero.hero-full-image .hero-thumbnails .hero-thumb img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important;transition:transform .35s ease!important}
+.hero.hero-full-image .hero-thumbnails .hero-thumb span{position:absolute!important;inset:auto 0 0!important;padding:15px 6px 5px!important;color:#fff!important;
+ background:linear-gradient(transparent,rgba(5,22,25,.88))!important;font-size:7px!important;letter-spacing:.1em!important;text-align:left!important}
+.hero.hero-full-image .hero-thumbnails .hero-thumb:hover img{transform:scale(1.06)!important}
+.hero.hero-full-image .hero-copy{bottom:17%!important}
+.hero.hero-full-image .hero-feature-copy{left:auto!important;right:22%!important;bottom:17%!important;max-width:300px!important;text-align:right!important}
+.hero.hero-full-image .hero-feature-copy h2{font-size:clamp(30px,4vw,54px)!important}
+.hero.hero-full-image .hero-feature-copy small{display:block!important;margin-top:10px!important;font-size:8px!important;letter-spacing:.06em!important;opacity:.8!important}
+@media(max-width:760px){
+ .hero.hero-full-image .hero-copy{bottom:16%!important}
+ .hero.hero-full-image .hero-thumbnails{left:6%!important;right:6%!important;bottom:2%!important;width:auto!important;height:64px!important;gap:6px!important;padding:2px 1px 7px!important}
+ .hero.hero-full-image .hero-thumbnails .hero-thumb{flex-basis:76px!important;width:76px!important;height:52px!important}
+ .hero.hero-full-image .hero-thumbnails .hero-thumb span{font-size:6px!important;padding:12px 4px 4px!important}
+ .hero.hero-full-image .hero-feature-copy{left:7%!important;right:7%!important;bottom:16%!important;max-width:none!important;text-align:left!important}
+ .hero.hero-full-image .hero-feature-copy small{font-size:7px!important}
+}
