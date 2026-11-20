@@ -138,7 +138,7 @@ export const experiences = [
 
 export type IslandEvent = {
  id:string; title:string; island:string; location:string; dateLabel:string;
- dateStatus:'confirmed'|'seasonal'; category:string; summary:string;
+ dateStatus:'confirmed'|'seasonal'|'past'; category:string; summary:string;
  officialUrl:string; mapQuery:string; image:string;
 };
 
@@ -192,7 +192,7 @@ export const events: IslandEvent[] = [
   id:'hawaiki-nui-vaa', title:'Hawaiki Nui Va’a',
   image:'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1600&q=92',
   island:'Huahine · Raiatea · Taha’a · Bora Bora', location:'Society Islands',
-  dateLabel:'Annual race · 2026 edition: 28–30 October (past)', dateStatus:'seasonal', category:'Sport & va’a',
+  dateLabel:'2026 edition concluded · 28–30 October; next dates pending', dateStatus:'past', category:'Sport & va’a',
   summary:'A major outrigger-canoe race crossing several Society Islands. The next edition dates should be confirmed with the organizers before travel.',
   officialUrl:'https://www.tahititourisme.com/discover/festivals-and-events/',
   mapQuery:'Society Islands French Polynesia'
