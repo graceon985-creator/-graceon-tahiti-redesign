@@ -114,3 +114,19 @@
 .travel-features button:focus-visible,.travel-features a:focus-visible,.travel-features select:focus-visible,.travel-features input:focus-visible,.travel-features textarea:focus-visible{outline:2px solid #b97d58;outline-offset:3px}
 .tf-plan-top{gap:16px;flex-wrap:wrap}.tf-plan-days article{min-width:0}.tf-plan-days article>div{min-width:0}.tf-plan-days article p{overflow-wrap:anywhere}
 @media(max-width:700px){.tf-plan-top{align-items:flex-start}.tf-plan-top .tf-button{width:100%;justify-content:center}.tf-plan-days article{grid-template-columns:56px 82px minmax(0,1fr);gap:10px}.tf-plan-days article img{width:82px;height:82px;object-fit:cover}.tf-plan-days article h4{font-size:16px}.tf-plan-days article p{font-size:11px;line-height:1.55}.tf-community-grid{grid-template-columns:minmax(0,1fr)}}
+
+/* Iteration 18 — secondary feature usability pass */
+.tf-journey-content,.tf-compose,.tf-feed,.tf-guide-panel{min-width:0}
+.tf-tabs button{transition:color .2s,border-color .2s}
+.tf-tabs button:hover{color:#bd8b68}
+.tf-saved-card>div{z-index:1}
+.tf-saved-card button,.tf-post button,.tf-stay-links a,.tf-stay-quicklinks a{transition:color .2s,opacity .2s,transform .2s}
+.tf-saved-card button:hover,.tf-post button:hover{opacity:.9;transform:translateX(2px)}
+.tf-button:disabled{opacity:.48;cursor:not-allowed;filter:grayscale(.2)}
+.tf-compose textarea{max-width:100%;resize:vertical}
+.tf-compose textarea:focus-visible,.tf-compose select:focus-visible,.tf-profile-fields input:focus-visible{outline:2px solid #d5a17b;outline-offset:3px}
+.tf-empty{padding:18px 0;color:#667875;line-height:1.7}
+.tf-itinerary-row>div{overflow-wrap:anywhere}
+@media(max-width:900px){.tf-journey-grid{grid-template-columns:minmax(220px,.75fr) minmax(0,1.25fr);gap:16px}.tf-saved-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.tf-section{padding:68px 6%}.tf-heading{display:block;margin-bottom:30px}.tf-heading>p{margin-top:18px}.tf-journey-grid{grid-template-columns:1fr}.tf-profile-card{min-height:0}.tf-journey-content{padding:18px}.tf-saved-grid{grid-template-columns:1fr}.tf-saved-card{min-height:230px}.tf-tabs{gap:16px}.tf-tabs button{font-size:10px}}
+@media(prefers-reduced-motion:reduce){.tf-tabs button,.tf-saved-card button,.tf-post button,.tf-stay-links a,.tf-stay-quicklinks a{transition:none}}
