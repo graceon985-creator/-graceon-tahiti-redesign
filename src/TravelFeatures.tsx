@@ -92,7 +92,7 @@ export default function TravelFeatures({savedIslands,journeyIslands,onToggleJour
  };
  const reportPost=(id:string)=>{
   if(reported.includes(id)){setNotice('This post is already hidden in your demo view.');return;}
-  const next=[...reported,id];setReported(next);const persisted=write('graceon-community-reports-v1',next);setNotice(persisted?'Thanks. This post is now hidden in this browser’s demo view.':'Post hidden for this session, but this browser could not save the report.');
+  const next=[...reported,id].slice(-100);setReported(next);const persisted=write('graceon-community-reports-v1',next);setNotice(persisted?'Thanks. This post is now hidden in this browser’s demo view.':'Post hidden for this session, but this browser could not save the report.');
  };
  const saveProfile=()=>{
   const cleanProfile={name:profile.name.trim()};setProfile(cleanProfile);const persisted=write('graceon-profile-v1',cleanProfile);setProfileEditing(false);setNotice(persisted?'Your local travel profile is saved on this device.':'Profile updated for this session, but browser storage is full or unavailable.');
