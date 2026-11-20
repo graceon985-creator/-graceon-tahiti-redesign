@@ -61,7 +61,7 @@ export default function TravelFeatures({savedIslands,journeyIslands,onToggleJour
  const [activeTab,setActiveTab]=useState<'all'|'saved'|'plan'>('all');
  const [notice,setNotice]=useState('');
  const visiblePosts=useMemo(()=>posts.filter(p=>!reported.includes(p.id)),[posts,reported]);
- const journeyCount=journeyIslands.length+savedIslands.length;
+ const journeyCount=new Set([...journeyIslands,...savedIslands]).size;
  const toggleInterest=(item:string)=>setSelectedInterests(old=>old.includes(item)?old.filter(x=>x!==item):[...old,item]);
  const makePlan=()=>{
   if(selectedInterests.length===0){setNotice('Choose at least one interest to shape your island route.');return;}
