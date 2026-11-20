@@ -1412,3 +1412,41 @@
 .destination-guide-experience-card>div{padding:0!important;min-width:0;}
 .destination-guide-experience-card h3{font:24px/1.15 Georgia,serif;color:#183b40;margin:0 0 10px;}
 .destination-guide-experience-card p{font-size:13px;line-height:1.7;color:#536a68;margin:0;}
+
+/* GRACEON secondary-section pass 01 — cinematic hierarchy and interaction polish.
+   Homepage opening and island-selection/orbit are intentionally untouched. */
+.experience-showcase{isolation:isolate;min-height:min(790px,92svh);border-radius:3px;overflow:hidden;background:#0c262b;box-shadow:0 24px 80px rgba(16,38,39,.14)}
+.experience-showcase-image{transform:scale(1.025);transition:transform 1.1s cubic-bezier(.2,.7,.2,1),filter .8s}
+.experience-showcase:hover .experience-showcase-image{transform:scale(1.055);filter:saturate(1.08)}
+.experience-showcase-shade{background:linear-gradient(90deg,rgba(5,21,25,.84) 0%,rgba(5,21,25,.48) 48%,rgba(5,21,25,.06) 100%),linear-gradient(0deg,rgba(5,21,25,.76),transparent 48%)}
+.experience-showcase-main{max-width:660px}
+.experience-showcase-number{display:inline-flex;align-items:center;gap:14px;letter-spacing:.18em;color:#d6b18d}
+.experience-showcase-number:after{content:"";width:46px;height:1px;background:rgba(214,177,141,.7)}
+.experience-showcase-main h2{max-width:620px;text-wrap:balance;letter-spacing:-.055em}
+.experience-showcase-category{letter-spacing:.22em}
+.experience-showcase-main p{max-width:420px;color:rgba(255,255,255,.82);line-height:1.8}
+.experience-preview-card{border:1px solid rgba(255,255,255,.35);background:rgba(8,28,32,.25);backdrop-filter:blur(5px);transition:transform .35s,border-color .35s,background .35s}
+.experience-preview-card:hover{transform:translateY(-7px);border-color:#e4c19c;background:rgba(8,28,32,.45)}
+.experience-preview-card img{filter:saturate(.88);transition:filter .4s,transform .7s}
+.experience-preview-card:hover img{filter:saturate(1.1);transform:scale(1.04)}
+.experience-progress i{overflow:hidden}
+.experience-progress i b{display:block;height:100%;transition:width .45s cubic-bezier(.2,.7,.2,1)}
+.events-section.culture-celebration-section .events-heading{margin-bottom:clamp(26px,4vw,54px)}
+.events-section.culture-celebration-section .event-card{transition:transform .35s ease,border-color .35s}
+.events-section.culture-celebration-section .event-card:hover{transform:translateY(-4px)}
+.events-section.culture-celebration-section .event-card-image img{transition:transform .65s cubic-bezier(.2,.7,.2,1),filter .5s}
+.events-section.culture-celebration-section .event-card:hover .event-card-image img{transform:scale(1.04);filter:saturate(1.08)}
+.destination-photo-gallery-heading{position:relative;padding-bottom:20px}
+.destination-photo-gallery-heading:after{content:"";display:block;width:64px;height:1px;background:#bd805b;margin-top:26px}
+.destination-photo-grid figure{border-radius:0!important;box-shadow:none!important}
+.destination-photo-grid figure:after{background:linear-gradient(90deg,rgba(6,24,27,.58),transparent 78%),linear-gradient(0deg,rgba(6,24,27,.8),transparent 58%)!important}
+.destination-photo-grid figure figcaption span{font-size:9px!important;color:#e3bb98!important;letter-spacing:.23em!important}
+.destination-photo-grid figure figcaption strong{max-width:800px!important;font-weight:400!important}
+.destination-photo-grid figure figcaption p{max-width:460px!important}
+@media(max-width:760px){
+ .experience-showcase{min-height:86svh;border-radius:0}
+ .experience-showcase-main{max-width:90%}
+ .experience-showcase-main h2{font-size:clamp(38px,11vw,58px)}
+ .experience-preview-card{backdrop-filter:blur(3px)}
+ .destination-photo-grid figure{border-radius:0!important}
+}
