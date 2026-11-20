@@ -119,10 +119,10 @@ export default function App(){
  const preferenceMap:Record<string,string[]>={'Lagoon & beaches':['Moorea','Bora Bora','Taha’a','Rangiroa'],'Nature & hiking':['Tahiti','Moorea','Huahine','Raiatea'],'Marine life':['Rangiroa','Fakarava','Bora Bora','Taha’a'],'Culture & heritage':['Tahiti','Huahine','Raiatea'],'Quiet & slow travel':['Huahine','Taha’a','Fakarava']}; const tripMatches=tripPrefs.length?islands.map(island=>({...island,score:tripPrefs.reduce((n,p)=>n+(preferenceMap[p]?.includes(island.name)?1:0),0)})).filter(i=>i.score>0).sort((a,b)=>b.score-a.score):[];
  return <div ref={root} className="site">
   <div className="announcement"><span>THE ISLANDS OF TAHITI</span><span>FRENCH POLYNESIA · SOUTH PACIFIC</span><span>35°S / 149°W</span></div>
-  <header className={navVisible?"nav nav-visible":"nav"}><a className="brand" href="#"><span className="brand-mark">T</span><span>TAHITI<small>ISLANDS OF</small></span></a><nav className={menu?'nav-links open':'nav-links'}><a href="#islands" onClick={()=>setMenu(false)}>{active==="FR"?"Les îles":"The islands"}</a><a href="#passport" onClick={()=>setMenu(false)}>{active==="FR"?"Passeport de Tahiti":"Tahiti Passport"}</a><a href="#activities" onClick={()=>setMenu(false)}>{active==="FR"?"Activités":"Activities"}</a><a href="#events" onClick={()=>setMenu(false)}>{active==="FR"?"Événements":"Events"}</a><a href="#stays" onClick={()=>setMenu(false)}>{active==="FR"?"Hébergements":"Stays"}</a><a href="#travel-essentials" onClick={()=>setMenu(false)}>Travel Essentials</a><a href="#my-journey" onClick={()=>setMenu(false)}>My Journey</a><a href="#community" onClick={()=>setMenu(false)}>Community</a><a href="#ai-guide" onClick={()=>setMenu(false)}>AI Guide</a></nav><div className="nav-actions"><button className="lang" onClick={()=>setActive(active==='EN'?'FR':'EN')}><Globe2 size={15}/>{active}</button><a className="plan-link" href="#plan">{active==="FR"?"Planifier votre voyage":"Plan your journey"} <ArrowRight size={15}/></a><button className="menu-btn" onClick={()=>setMenu(!menu)} aria-label="Toggle menu">{menu?<X/>:<Menu/>}</button></div></header>
+  <header className={navVisible?"nav nav-visible":"nav"}><a className="brand" href="#"><span className="brand-mark">T</span><span>TAHITI<small>ISLANDS OF</small></span></a><nav className={menu?'nav-links open':'nav-links'}><a href="#islands" onClick={()=>setMenu(false)}>{active==="FR"?"Les îles":"The islands"}</a><a href="#passport" onClick={()=>setMenu(false)}>{active==="FR"?"Passeport de Tahiti":"Tahiti Passport"}</a><a href="#activities" onClick={()=>setMenu(false)}>{active==="FR"?"Activités":"Activities"}</a><a href="#events" onClick={()=>setMenu(false)}>{active==="FR"?"Événements":"Events"}</a><a href="#stays" onClick={()=>setMenu(false)}>{active==="FR"?"Hébergements":"Stays"}</a><a href="#travel-essentials" onClick={()=>setMenu(false)}>{active==="FR"?"Informations pratiques":"Travel Essentials"}</a><a href="#my-journey" onClick={()=>setMenu(false)}>{active==="FR"?"Mon voyage":"My Journey"}</a><a href="#community" onClick={()=>setMenu(false)}>{active==="FR"?"Communauté":"Community"}</a><a href="#ai-guide" onClick={()=>setMenu(false)}>{active==="FR"?"Guide IA":"AI Guide"}</a></nav><div className="nav-actions"><button className="lang" onClick={()=>setActive(active==='EN'?'FR':'EN')}><Globe2 size={15}/>{active}</button><a className="plan-link" href="#plan">{active==="FR"?"Planifier votre voyage":"Plan your journey"} <ArrowRight size={15}/></a><button className="menu-btn" onClick={()=>setMenu(!menu)} aria-label="Toggle menu">{menu?<X/>:<Menu/>}</button></div></header>
   <main>
    <section className="hero hero-full-image">
-    <div className="hero-gallery hero-gallery-upgraded" aria-label="Changing island gallery">
+    <div className="hero-gallery hero-gallery-upgraded" aria-label={active==="FR"?"Galerie des îles":"Changing island gallery"}>
       <div className="hero-feature">
         <div className="hero-film-frame">
           <iframe className="hero-feature-video" src="https://www.youtube-nocookie.com/embed/pglydl2hxmg?autoplay=1&mute=1&loop=1&playlist=pglydl2hxmg&controls=0&modestbranding=1&playsinline=1&rel=0" title="Feel What We Feel Here in The Islands of Tahiti" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen/>
@@ -132,7 +132,7 @@ export default function App(){
       </div>
     </div>
     <div className="hero-copy">
-      <p className="eyebrow"><span className="eyebrow-line"/> THE ISLANDS OF TAHITI</p>
+      <p className="eyebrow"><span className="eyebrow-line"/> {active==="FR"?"LES ÎLES DE TAHITI":"THE ISLANDS OF TAHITI"}</p>
       <h1>{active==="FR"?<>Le cœur<br/>de la <em>Polynésie.</em></>:<>The heart<br/>of <em>Polynesia.</em></>}</h1>
       <p className="hero-intro">{active==="FR"?"Huit îles. Un océan. Mille façons de découvrir la Polynésie.":"Eight islands. One ocean. A thousand ways to discover Polynesia."}</p>
       <button type="button" className="hero-map-button" onClick={()=>setMapOpen(true)}><MapPin size={16}/>{active==="FR"?"Explorer la carte":"Explore the map"}<ArrowRight size={15}/></button>
@@ -151,14 +151,14 @@ export default function App(){
         <div className="experience-showcase-shade"/>
         <div className="experience-showcase-nav">
           <span className="experience-brand-mark"><Compass size={27} strokeWidth={1.25}/></span>
-          <nav><a href="#activities">EXPERIENCES</a><a href="#about">ABOUT</a><a href="#contact">CONTACT</a></nav>
+          <nav><a href="#activities">{active==="FR"?"EXPÉRIENCES":"EXPERIENCES"}</a><a href="#about">{active==="FR"?"À PROPOS":"ABOUT"}</a><a href="#contact">{active==="FR"?"CONTACT":"CONTACT"}</a></nav>
         </div>
         <div className="experience-showcase-main">
           <span className="experience-showcase-number">0{activeExperienceSlide+1}</span>
-          <h2>{['Into the blue','Follow the green','Feel the rhythm'][activeExperienceSlide]}</h2>
-          <span className="experience-showcase-category">{['OCEAN & LAGOON','NATURE & TRAILS','CULTURE & ISLAND LIFE'][activeExperienceSlide]}</span>
-          <p>{['Explore coral gardens, paddle calm lagoons or discover the islands from the water.','Follow forest paths, find hidden waterfalls and discover the islands beyond the shore.','Discover the colour, traditions and everyday rhythm of the islands.'][activeExperienceSlide]}</p>
-          <button type="button" className="experience-explore" onClick={()=>setActiveExperienceSlide((activeExperienceSlide+1)%3)}><span>EXPLORE</span><ArrowRight size={18}/></button>
+          <h2>{(active==='FR'?['Dans le bleu','Suivre le vert','Au rythme des îles']:['Into the blue','Follow the green','Feel the rhythm'])[activeExperienceSlide]}</h2>
+          <span className="experience-showcase-category">{(active==='FR'?['OCÉAN ET LAGON','NATURE ET SENTIERS','CULTURE ET VIE INSULAIRE']:['OCEAN & LAGOON','NATURE & TRAILS','CULTURE & ISLAND LIFE'])[activeExperienceSlide]}</span>
+          <p>{(active==='FR'?['Explorez les jardins de corail, pagayez sur les lagons paisibles et découvrez les îles depuis l’eau.','Suivez les sentiers forestiers, découvrez les cascades et explorez l’intérieur des îles.','Découvrez les couleurs, les traditions et le rythme quotidien de la vie insulaire.']:['Explore coral gardens, paddle calm lagoons or discover the islands from the water.','Follow forest paths, find hidden waterfalls and discover the islands beyond the shore.','Discover the colour, traditions and everyday rhythm of the islands.'])[activeExperienceSlide]}</p>
+          <button type="button" className="experience-explore" onClick={()=>setActiveExperienceSlide((activeExperienceSlide+1)%3)}><span>{active==="FR"?"EXPLORER":"EXPLORE"}</span><ArrowRight size={18}/></button>
         </div>
         <div className="experience-preview-cards">
           {[1,2].map(offset=>{const index=(activeExperienceSlide+offset)%3;return <button type="button" key={index} className="experience-preview-card" onClick={()=>setActiveExperienceSlide(index)}>
@@ -168,7 +168,7 @@ export default function App(){
           </button>})}
         </div>
         <div className="experience-showcase-footer">
-          <span>SCROLL TO EXPLORE ↓</span>
+          <span>{active==="FR"?"FAITES DÉFILER POUR EXPLORER ↓":"SCROLL TO EXPLORE ↓"}</span>
           <div className="experience-progress"><span>0{activeExperienceSlide+1}</span><i><b style={{width:`${(activeExperienceSlide+1)*33.333}%`}}/></i><span>0{(activeExperienceSlide+1)%3+1}</span></div>
           <span>01 / 02 / 03</span>
         </div>
@@ -199,7 +199,7 @@ export default function App(){
     <p className="events-note">{active==='FR'?"Vérifiez toujours les dates, l'accès et les réservations auprès de l'organisateur avant votre voyage. Les informations proviennent de Tahiti Tourisme.":"Always confirm dates, access and reservations with the event organizer before travelling. Event information is sourced from Tahiti Tourisme."}</p>
     
    </section>
-   {mapOpen&&<div className="map-paper-backdrop" role="presentation" onMouseDown={e=>{if(e.target===e.currentTarget)setMapOpen(false)}}><section className="map-paper-sheet" role="dialog" aria-modal="true" aria-label="Tahiti archipelago map"><div className="map-paper-top"><div><span className="section-kicker">GRACEON FIELD GUIDE · 01</span><h2>Explore the <em>archipelago.</em></h2></div><button type="button" onClick={()=>setMapOpen(false)}><X size={16}/> CLOSE</button></div><InteractiveArchipelagoMap islands={islands} activities={islandActivities} focusRequest={mapFocus}/></section></div>}
+   {mapOpen&&<div className="map-paper-backdrop" role="presentation" onMouseDown={e=>{if(e.target===e.currentTarget)setMapOpen(false)}}><section className="map-paper-sheet" role="dialog" aria-modal="true" aria-label={active==="FR"?"Carte de l’archipel de Tahiti":"Tahiti archipelago map"}><div className="map-paper-top"><div><span className="section-kicker">GRACEON · {active==="FR"?"GUIDE DES ÎLES":"FIELD GUIDE"} · 01</span><h2>{active==="FR"?"Explorez l’": "Explore the "}<em>{active==="FR"?"archipel.":"archipelago."}</em></h2></div><button type="button" onClick={()=>setMapOpen(false)}><X size={16}/> {active==="FR"?"FERMER":"CLOSE"}</button></div><InteractiveArchipelagoMap islands={islands} activities={islandActivities} focusRequest={mapFocus}/></section></div>}
 
    <TahitiPassport islands={islands} verifiedCheckins={verifiedCheckins} journeyIslands={journeyIslands} savedPlaces={savedPlaces} activities={islandActivities} language={active} onExplore={setSelectedIsland} onViewMap={focusSavedPlace}/>
 
