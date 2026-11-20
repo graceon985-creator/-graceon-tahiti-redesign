@@ -1,5 +1,5 @@
 import {useMemo,useState} from 'react';
-import {ArrowRight,BookmarkPlus,Flag,Heart,MapPin,Plus,ShieldAlert,Sparkles,UserRound,Plane,Ship,Phone,Info} from 'lucide-react';
+import {ArrowRight,BookmarkPlus,Download,Flag,Heart,MapPin,Plus,ShieldAlert,Sparkles,UserRound,Plane,Ship,Phone,Info} from 'lucide-react';
 import {islands} from './data';
 import './TravelFeatures.css';
 
@@ -55,7 +55,7 @@ export default function TravelFeatures({savedIslands,journeyIslands,onToggleJour
   if(cleanEmail&&! /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleanEmail)){setNotice('Please enter a valid email address or leave it blank.');return;}
   const cleanProfile={name:cleanName,email:cleanEmail};setProfile(cleanProfile);const persisted=write('graceon-profile-v1',cleanProfile);setProfileEditing(false);setNotice(persisted?'Your local travel profile is saved on this device.':'Profile updated for this session, but browser storage is full or unavailable.');
  };
- const addPlanIslands=()=>{
+ const downloadPlan=()=>{if(!plan.length){setNotice('Create an itinerary before downloading it.');return;}const lines=['TAHITI ISLANDS — SAMPLE ITINERARY','',...plan.flatMap(item=>['DAY '+String(item.day).padStart(2,'0')+' — '+item.island.name,item.activity,''])];const blob=new Blob([lines.join('\\n')],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const link=document.createElement('a');link.href=url;link.download='graceon-tahiti-itinerary.txt';document.body.appendChild(link);link.click();link.remove();URL.revokeObjectURL(url);setNotice('Your sample itinerary has been downloaded. Confirm island transfers and activity availability with local providers.');};\n const addPlanIslands=()=>{
   if(!plan.length){setNotice('Create an itinerary first, then save its islands to My Journey.');return;}
   const additions=[...new Set(plan.map(item=>item.island.name))].filter(name=>!journeyIslands.includes(name));
   additions.forEach(name=>onToggleJourneyIsland(name));
@@ -107,7 +107,7 @@ export default function TravelFeatures({savedIslands,journeyIslands,onToggleJour
    <div className="tf-guide-panel"><div className="tf-guide-intro"><span className="tf-guide-orbit"><Sparkles/></span><span className="tf-label">GRACEON · TRAVEL PLANNER</span><h3>A journey shaped<br/>around <em>you.</em></h3><p>Choose your travel interests and trip length. GRACEON will create a suggested route using the destination information in this guide.</p><div className="tf-guide-disclaimer">Personalized demo recommendations · not live generative AI. Confirm transport, opening hours and availability with local operators.</div></div>
     <div className="tf-guide-builder"><label className="tf-days-label">HOW MANY DAYS? <strong>{days} DAYS</strong></label><input className="tf-range" type="range" min="2" max="10" value={days} onChange={e=>setDays(Number(e.target.value))}/><div className="tf-interest-heading"><span>WHAT DO YOU LOVE?</span><small>SELECT ALL THAT APPLY</small></div><div className="tf-interest-grid">{interests.map(item=><button key={item} className={selectedInterests.includes(item)?'selected':''} onClick={()=>toggleInterest(item)}>{selectedInterests.includes(item)?'✓':'+'} {item}</button>)}</div><button className="tf-button tf-generate" onClick={makePlan}><Sparkles size={16}/> Create my itinerary <ArrowRight size={15}/></button></div>
    </div>
-   {plan.length>0&&<div className="tf-plan-result"><div className="tf-plan-top"><div><span className="tf-kicker">YOUR SUGGESTED ROUTE</span><h3>{plan.length} days across the islands</h3></div><button className="tf-button" onClick={addPlanIslands}><BookmarkPlus size={15}/> Save to My Journey</button></div><div className="tf-plan-days">{plan.map(item=><article key={item.day}><span>DAY {String(item.day).padStart(2,'0')}</span><img src={item.island.image} alt=""/><div><h4>{item.island.name}</h4><p>{item.activity}</p></div></article>)}</div></div>}
+   {plan.length>0&&<div className="tf-plan-result"><div className="tf-plan-top"><div><span className="tf-kicker">YOUR SUGGESTED ROUTE</span><h3>{plan.length} days across the islands</h3></div><div className="tf-plan-actions"><button className="tf-button" onClick={downloadPlan}><Download size={15}/> Download itinerary</button><button className="tf-button" onClick={addPlanIslands}><BookmarkPlus size={15}/> Save to My Journey</button></div></div><div className="tf-plan-days">{plan.map(item=><article key={item.day}><span>DAY {String(item.day).padStart(2,'0')}</span><img src={item.island.image} alt=""/><div><h4>{item.island.name}</h4><p>{item.activity}</p></div></article>)}</div></div>}
   </section>
   {notice&&<div className="tf-toast" role="status"><span>{notice}</span><button onClick={()=>setNotice('')}>×</button></div>}
  </div>;
