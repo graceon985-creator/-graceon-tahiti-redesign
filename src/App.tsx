@@ -225,27 +225,25 @@ export default function App(){
   <div className="announcement"><span>THE ISLANDS OF TAHITI</span><span>FRENCH POLYNESIA · SOUTH PACIFIC</span><span>35°S / 149°W</span></div>
   <header className={navVisible?"nav nav-visible":"nav"}><a className="brand" href="#"><span className="brand-mark">T</span><span>TAHITI<small>ISLANDS OF</small></span></a><nav className={menu?'nav-links open':'nav-links'}><a href="#islands" onClick={()=>setMenu(false)}>{active==="FR"?"Les îles":"The islands"}</a><a href="#passport" onClick={()=>setMenu(false)}>{active==="FR"?"Passeport de Tahiti":"Tahiti Passport"}</a><a href="#activities" onClick={()=>setMenu(false)}>{active==="FR"?"Activités":"Activities"}</a><a href="#events" onClick={()=>setMenu(false)}>{active==="FR"?"Événements":"Events"}</a><a href="#stays" onClick={()=>setMenu(false)}>{active==="FR"?"Hébergements":"Stays"}</a><a href="#travel-essentials" onClick={()=>setMenu(false)}>{active==="FR"?"Informations pratiques":"Travel Essentials"}</a><a href="#my-journey" onClick={()=>setMenu(false)}>{active==="FR"?"Mon voyage":"My Journey"}</a><a href="#community" onClick={()=>setMenu(false)}>{active==="FR"?"Communauté":"Community"}</a><a href="#ai-guide" onClick={()=>setMenu(false)}>{active==="FR"?"Guide IA":"AI Guide"}</a></nav><div className="nav-actions"><button className="lang" onClick={()=>setActive(active==='EN'?'FR':'EN')}><Globe2 size={15}/>{active}</button><a className="plan-link" href="#plan">{active==="FR"?"Planifier votre voyage":"Plan your journey"} <ArrowRight size={15}/></a><button className="menu-btn" onClick={()=>setMenu(!menu)} aria-label={active==="FR"?"Ouvrir ou fermer le menu":"Toggle menu"}>{menu?<X/>:<Menu/>}</button></div></header>
   <main>
-   <section className="hero hero-full-image">
-    <div className="hero-gallery hero-gallery-upgraded" aria-label={active==="FR"?"Galerie des îles":"Changing island gallery"}>
-      <SpotlightCard className="hero-feature" spotlightColor="rgba(219, 184, 143, 0.2)">
-        {heroScene<0?<div className="hero-film-frame">
-          <iframe className="hero-feature-video" src="https://www.youtube-nocookie.com/embed/pglydl2hxmg?autoplay=1&mute=1&loop=1&playlist=pglydl2hxmg&controls=0&modestbranding=1&playsinline=1&rel=0" title="Feel What We Feel Here in The Islands of Tahiti" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen/>
-        </div>:<img className="hero-feature-image" src={heroScenes[heroScene].image} alt={heroScenes[heroScene].name+' — '+heroScenes[heroScene].label} fetchPriority="high"/>}
-        <div className="hero-feature-shade"/>
-        {heroScene>=0&&<div className="hero-feature-copy"><span>{active==='FR'?'DÉCOUVRIR LES ÎLES':'DISCOVER THE ISLANDS'}</span><h2>{heroScenes[heroScene].name}</h2><p>{heroScenes[heroScene].label}</p><small>© {heroScenes[heroScene].credit}</small></div>}
-      </SpotlightCard>
-      <div className="hero-thumbnails" role="group" aria-label={active==='FR'?'Choisir une destination ou le film':'Choose a destination or the film'}>
-        <button type="button" className={heroScene<0?'hero-thumb active':'hero-thumb'} aria-pressed={heroScene<0} onClick={()=>setHeroScene(-1)}><img src="https://img.youtube.com/vi/pglydl2hxmg/hqdefault.jpg" alt="" loading="lazy"/><span>FILM · MOOREA</span></button>
-        {heroScenes.map((scene,index)=><button type="button" key={scene.name} className={heroScene===index?'hero-thumb active':'hero-thumb'} aria-pressed={heroScene===index} aria-label={active==='FR'?'Afficher '+scene.name:'Show '+scene.name} onClick={()=>setHeroScene(index)}><img src={scene.small} alt="" loading="lazy" decoding="async"/><span>{scene.name}</span></button>)}
+   <section className="hero hero-full-image hero-reference-redesign" aria-label={active==="FR"?"Découvrir les îles de Tahiti":"Discover the Islands of Tahiti"}>
+    <div className="hero-reference-image" aria-hidden="true">
+      {heroScene<0?<iframe src="https://www.youtube-nocookie.com/embed/pglydl2hxmg?autoplay=1&mute=1&loop=1&playlist=pglydl2hxmg&controls=0&modestbranding=1&playsinline=1&rel=0" title="The Islands of Tahiti film" allow="autoplay; encrypted-media; picture-in-picture"/>:<img key={heroScene} src={heroScenes[heroScene].image} alt="" fetchPriority="high"/>}
+    </div>
+    <div className="hero-reference-vignette"/>
+    <div className="hero-reference-topline"><span>{active==="FR"?"POLYNÉSIE FRANÇAISE · PACIFIQUE SUD":"FRENCH POLYNESIA · SOUTH PACIFIC"}</span><span>17° 32′ S&nbsp;&nbsp; 149° 34′ W</span></div>
+    <div className="hero-reference-content">
+      <div className="hero-reference-kicker"><i/> {active==="FR"?"UN VOYAGE AU CŒUR DU PACIFIQUE":"A JOURNEY INTO THE PACIFIC"}</div>
+      <h1>{active==="FR"?<>Les îles<br/><em>au-delà</em> du rêve.</>:<>Islands<br/><em>of the</em> extraordinary.</>}</h1>
+      <p>{active==="FR"?"Des vallées volcaniques aux atolls silencieux, huit îles à découvrir autrement.":"From volcanic valleys to quiet atolls—eight islands, a world apart."}</p>
+      <button type="button" className="hero-reference-cta" onClick={()=>document.getElementById('islands')?.scrollIntoView({behavior:'smooth'})}>{active==="FR"?"EXPLORER LES ÎLES":"EXPLORE THE ISLANDS"} <ArrowRight size={16}/></button>
+    </div>
+    <div className="hero-reference-bottom">
+      <div className="hero-reference-selector" role="group" aria-label={active==="FR"?"Sélection des îles":"Island selector"}>
+        {heroScenes.map((scene,index)=><button type="button" key={scene.name} className={heroScene===index?"hero-reference-choice active":"hero-reference-choice"} aria-pressed={heroScene===index} onClick={()=>setHeroScene(index)}><span className="choice-number">0{index+1}</span><span className="choice-name">{scene.name}</span><span className="choice-line"/></button>)}
       </div>
+      <div className="hero-reference-scroll"><span>{active==="FR"?"DÉFILER POUR EXPLORER":"SCROLL TO EXPLORE"}</span><span className="scroll-line"/></div>
     </div>
-    <div className="hero-copy">
-      <p className="eyebrow"><span className="eyebrow-line"/> {active==="FR"?"LES ÎLES DE TAHITI":"THE ISLANDS OF TAHITI"}</p>
-      <h1>{active==="FR"?<>Le cœur<br/>de la <em>Polynésie.</em></>:<>The heart<br/>of <em>Polynesia.</em></>}</h1>
-      <p className="hero-intro">{active==="FR"?"Huit îles. Un océan. Mille façons de découvrir la Polynésie.":"Eight islands. One ocean. A thousand ways to discover Polynesia."}</p>
-      <button type="button" className="hero-map-button" onClick={()=>setMapOpen(true)}><MapPin size={16}/>{active==="FR"?"Explorer la carte":"Explore the map"}<ArrowRight size={15}/></button>
-
-    </div>
+    {heroScene>=0&&<div className="hero-reference-caption"><span>{heroScenes[heroScene].label}</span><small>© {heroScenes[heroScene].credit}</small></div>}
    </section>
    <IslandOrbit islands={islands} language={active} query={query} onQueryChange={setQuery} onExplore={setSelectedIsland} onOpenMap={()=>setMapOpen(true)}/>
 
