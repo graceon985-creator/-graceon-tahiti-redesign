@@ -54,7 +54,7 @@ const destinationGalleryPhotos:Record<string,{src:string;caption:string;category
 {src:"https://tahititourisme.pf/app/uploads/tahiti/2021/10/thumbs/lagon-de-moorea-tahiti-tourisme-holger-leue-640x360.jpg",caption:"Moorea’s lagoon and motu",category:"LAGOON",credit:"Holger Leue · Tahiti Tourisme"},
 {src:"https://tahititourisme.pf/app/uploads/tahiti/2021/10/thumbs/4x4-champ-ananas-moorea-tahiti-tourisme-640x360.jpg",caption:"Pineapple fields in the island interior",category:"INTERIOR",credit:"Tahiti Tourisme"}],
 'Bora Bora':[
-{src:"https://tahititourisme.pf/app/uploads/tahiti/2021/10/thumbs/vue-aerienne-lagon-bora-bora-tahititourisme-stephane-mailion-photography-640x360.jpg",caption:"Aerial view of Bora Bora’s lagoon",category:"THE LAGOON",credit:"Stéphane Mailion Photography · Tahiti Tourisme"},
+{src:"https://tahititourisme.pf/app/uploads/tahiti/2023/05/thumbs/vue-aerienne-lagon-bora-bora-tahititourisme-stephane-mailion-photography-1-bur-1920x960.jpg",caption:"Aerial view of Bora Bora’s lagoon",category:"THE LAGOON",credit:"Stéphane Mailion Photography · Tahiti Tourisme"},
 {src:"https://tahititourisme.pf/app/uploads/tahiti/2021/10/thumbs/coucher-du-soleil-romantique-derriere-le-mont-otemanu-a-bora-bora-tahiti-tourisme-640x360.jpg",caption:"Sunset behind Mount Otemanu",category:"SCENIC",credit:"Tahiti Tourisme"},
 {src:"https://tahititourisme.pf/app/uploads/tahiti/2021/10/thumbs/vue-sur-le-mont-otemanu-depuis-un-vieux-canon-a-bora-bora-tahiti-tourisme-frederic-cristol-640x360.jpg",caption:"Mount Otemanu from a historic viewpoint",category:"HISTORY",credit:"Frédéric Cristol · Tahiti Tourisme"}],
 'Huahine':[
