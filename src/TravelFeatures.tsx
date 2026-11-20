@@ -45,6 +45,7 @@ export default function TravelFeatures({savedIslands,journeyIslands,onToggleJour
   const updated=[next,...posts];setPosts(updated);localStorage.setItem('graceon-community-posts-v1',JSON.stringify(updated));setPostText('');setPostImage('');setNotice('Post added to this browser’s demo community.');
  };
  const reportPost=(id:string)=>{
+  if(reported.includes(id)){setNotice('This post is already hidden in your demo view.');return;}
   const next=[...reported,id];setReported(next);localStorage.setItem('graceon-community-reports-v1',JSON.stringify(next));setNotice('Thanks. This post is now hidden in this browser’s demo view.');
  };
  const saveProfile=()=>{
