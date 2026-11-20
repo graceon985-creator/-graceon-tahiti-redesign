@@ -32,3 +32,9 @@
 .map-activity-list article.is-focused{background:rgba(189,118,86,.08);margin:0 -10px;padding:15px 10px}
 .map-activity-links button{display:flex;align-items:center;gap:5px;border:0;padding:0;background:none;color:#a86e53;font-size:7px;letter-spacing:.09em;cursor:pointer}
 .map-pin-pending{font-size:7px;letter-spacing:.07em;color:#8b8d80}
+
+/* Keyboard visibility and comfortable touch targets for map controls. */
+.archipelago-map-controls select{min-height:44px}
+.map-category-filters button{min-height:44px;padding:10px 12px}
+.map-activity-links button,.map-activity-links a{min-height:44px;padding:8px 0}
+.archipelago-map-section button:focus-visible,.archipelago-map-section a:focus-visible,.archipelago-map-section select:focus-visible{outline:3px solid #bd7656;outline-offset:3px;border-radius:2px}
