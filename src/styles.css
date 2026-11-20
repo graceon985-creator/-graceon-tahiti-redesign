@@ -1405,3 +1405,10 @@
 .destination-photo-grid figure figcaption strong{font:clamp(38px,6vw,84px)/.96 'Playfair Display',Georgia,serif;max-width:700px;font-weight:400;letter-spacing:-.035em;color:#fff;}
 .destination-photo-grid figure figcaption p{font-size:clamp(14px,1.4vw,18px);line-height:1.65;max-width:540px;color:rgba(255,255,255,.92);margin:0;}
 @media(max-width:760px){.destination-photo-gallery-heading{padding:0 6%;}.destination-photo-grid figure{height:88svh;min-height:520px;}.destination-photo-grid figure figcaption{left:7%;right:7%;bottom:9%;max-width:none;padding:0;}.destination-photo-grid figure figcaption strong{font-size:clamp(38px,10vw,58px);}.destination-photo-grid figure figcaption p{font-size:14px;line-height:1.6;}}
+
+/* Island experience notes are text-led to avoid recycling the same photos across sections */
+.destination-guide-experience-card{display:flex;gap:20px;align-items:flex-start;padding:22px!important;min-height:150px;background:rgba(255,255,255,.62);border:1px solid #d4ccbf;}
+.destination-guide-experience-index{flex:0 0 34px;font:12px/1.4 Georgia,serif;color:#b77c58;letter-spacing:.1em;padding-top:2px;}
+.destination-guide-experience-card>div{padding:0!important;min-width:0;}
+.destination-guide-experience-card h3{font:24px/1.15 Georgia,serif;color:#183b40;margin:0 0 10px;}
+.destination-guide-experience-card p{font-size:13px;line-height:1.7;color:#536a68;margin:0;}
