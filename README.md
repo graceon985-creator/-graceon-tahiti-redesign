@@ -42,3 +42,11 @@ Project-specific agent skills live in `.github/skills/` and are automatically av
 - `accessibility-check` — accessibility-specific audits and fixes.
 
 Always-on repo guidance: `.github/copilot-instructions.md`.
+
+
+## Prototype feature boundaries
+- **GRACEON Guide:** multilingual, rule-based demo replies; it is not connected to a live generative AI model.
+- **Community:** posts, profile details, and hidden/reported posts are stored in the visitor's browser only. They are not shared with other visitors, backed by a server, or moderated. Treat this as a UI prototype, not a live community.
+- **My Journey, passport, notes, and saved items:** browser-local demo data; it does not sync across devices or accounts.
+- **Check-ins:** browser-side prototype only; geolocation can be used to support the demo, but check-ins are not server-verified.
+- **Maps, accommodation, and activity links:** verify current conditions, availability, prices, schedules, access and operator details directly with official/local providers before travel.
