@@ -218,13 +218,13 @@ export default function App(){
   <main>
    <section className="hero hero-full-image">
     <div className="hero-gallery hero-gallery-upgraded" aria-label={active==="FR"?"Galerie des îles":"Changing island gallery"}>
-      <div className="hero-feature">
+      <SpotlightCard className="hero-feature" spotlightColor="rgba(219, 184, 143, 0.2)">
         <div className="hero-film-frame">
           <iframe className="hero-feature-video" src="https://www.youtube-nocookie.com/embed/pglydl2hxmg?autoplay=1&mute=1&loop=1&playlist=pglydl2hxmg&controls=0&modestbranding=1&playsinline=1&rel=0" title="Feel What We Feel Here in The Islands of Tahiti" allow="autoplay; encrypted-media; picture-in-picture" allowFullScreen/>
         </div>
         <div className="hero-feature-shade"/>
         
-      </div>
+      </SpotlightCard>
     </div>
     <div className="hero-copy">
       <p className="eyebrow"><span className="eyebrow-line"/> {active==="FR"?"LES ÎLES DE TAHITI":"THE ISLANDS OF TAHITI"}</p>
