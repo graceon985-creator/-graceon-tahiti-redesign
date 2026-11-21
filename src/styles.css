@@ -1834,3 +1834,13 @@
 @keyframes celebrationImageDrift{from{transform:scale(1)}to{transform:scale(1.09)}}
 @media(prefers-reduced-motion:reduce){.culture-celebration-section .event-gallery{animation:none;overflow-x:auto;width:100%;scroll-snap-type:x mandatory}.culture-celebration-section .event-spotlight{scroll-snap-align:start}.culture-celebration-section .event-card-image img,.culture-celebration-section .event-feature-visual>img{animation:none}}
 @media(max-width:760px){.event-registration-link{max-width:none}.event-registration-link strong{font-size:19px}.culture-celebration-section .event-gallery{animation-duration:65s}}
+
+
+/* The second celebration strip uses the same continuous motion instead of becoming a still duplicate. */
+.celebration-replacement{overflow:hidden}
+.celebration-replacement-rail{display:flex;flex-wrap:nowrap;width:max-content;max-width:none;gap:16px;overflow:visible;padding:8px 0 24px;scroll-snap-type:none;animation:celebrationMarquee 58s linear infinite;will-change:transform}
+.celebration-replacement-rail:hover,.celebration-replacement-rail:focus-within{animation-play-state:paused}
+.celebration-replacement-card{flex:0 0 min(390px,80vw);width:min(390px,80vw)}
+.celebration-replacement-rail .celebration-replacement-card[aria-hidden="true"]{pointer-events:none}
+.celebration-replacement-image img{animation:celebrationImageDrift 18s ease-in-out infinite alternate}
+@media(prefers-reduced-motion:reduce){.celebration-replacement-rail{animation:none;overflow-x:auto;width:100%;scroll-snap-type:x mandatory}.celebration-replacement-card{scroll-snap-align:start}.celebration-replacement-image img{animation:none}}
