@@ -38,7 +38,7 @@ export default function IslandDirectory({language='EN'}:{language?:'EN'|'FR'}){
    .filter(p=>p.name.toLowerCase().includes(q.toLowerCase())&&(tab!=='food'||cuisine==='All'||cuisineFor(p.name)===cuisine))
    .sort((a,b)=>sort==='name'?a.name.localeCompare(b.name):a.kind.localeCompare(b.kind)),[current,tab,q,sort,cuisine]);
  const photo=islandPhotos[island]||islandPhotos.Tahiti;
- const maps=(name:string)=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(name+' '+island+' French Polynesia);
+ const maps=(name:string)=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(name+' '+island+' French Polynesia');
  return <section id="restaurants" className="island-directory"><span id="stays" className="directory-anchor"/>
  <header><small>GRACEON · ISLAND GUIDE</small><h2>{tab==='food'?(fr?'Saveurs des îles.':'Taste the islands.'):(fr?'Où séjourner.':'Places to stay.')}</h2>
  <p>{fr?'Choisissez une île et explorez les prestataires.':'Choose an island to browse listings. Photos are island scenery, not venue-specific.'}</p>
