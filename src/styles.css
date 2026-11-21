@@ -1814,3 +1814,23 @@
 .dir-quick-map{display:flex;align-items:center;gap:8px;color:#bac7bf;margin:0 15px;font-size:10px;letter-spacing:.12em}
 .dir-quick-map:hover{color:#cfa879}
 @media(max-width:560px){.dir-tools{display:grid;grid-template-columns:1fr;gap:12px}.dir-tools label{display:flex;flex-direction:column;gap:6px}.dir-tools select{margin-left:0;width:100%;min-height:42px}.dir-tools .dir-search{width:100%}.dir-result-count{margin-top:12px!important}.dir-clear-filters{width:100%}.dir-quick-map{padding:8px 0}}
+
+
+/* Celebration rail: a continuous moving ribbon, with concise previews and clear organizer links. */
+.culture-celebration-section .event-gallery{display:flex;flex-wrap:nowrap;gap:22px;width:max-content;max-width:none;overflow:visible;padding:5px 2px 22px;scroll-snap-type:none;animation:celebrationMarquee 52s linear infinite;will-change:transform}
+.culture-celebration-section .event-gallery:hover,.culture-celebration-section .event-gallery:focus-within{animation-play-state:paused}
+.culture-celebration-section .event-spotlight{flex:0 0 min(370px,82vw);width:min(370px,82vw)}
+.culture-celebration-section .event-card{width:100%;min-height:390px}
+.culture-celebration-section .event-card-image{height:176px;overflow:hidden}
+.culture-celebration-section .event-card-image img,.culture-celebration-section .event-feature-visual>img{animation:celebrationImageDrift 18s ease-in-out infinite alternate}
+.culture-celebration-section .event-timeline-copy p,.culture-celebration-section .event-feature-copy>p{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;line-height:1.55}
+.culture-celebration-section .event-feature-copy>p{-webkit-line-clamp:3}
+.event-spotlight-duplicate{pointer-events:none;flex:0 0 auto}
+.event-registration-link{display:flex!important;flex-direction:column;align-items:flex-start!important;gap:8px!important;padding:18px 20px;border:1px solid #b98b68;background:#e8dfd0;color:#183d3d!important;text-decoration:none;max-width:470px}
+.event-registration-link span{font-size:9px;letter-spacing:.14em;color:#a66c50}
+.event-registration-link strong{font:22px/1.25 'Playfair Display',Georgia,serif;font-weight:400;letter-spacing:0}
+.event-registration-aside{display:inline-flex;align-items:center;gap:9px;margin-top:12px;padding:12px 14px;background:#173f3e;color:#f4eee2;text-decoration:none;font-size:9px;letter-spacing:.1em}
+@keyframes celebrationMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes celebrationImageDrift{from{transform:scale(1)}to{transform:scale(1.09)}}
+@media(prefers-reduced-motion:reduce){.culture-celebration-section .event-gallery{animation:none;overflow-x:auto;width:100%;scroll-snap-type:x mandatory}.culture-celebration-section .event-spotlight{scroll-snap-align:start}.culture-celebration-section .event-card-image img,.culture-celebration-section .event-feature-visual>img{animation:none}}
+@media(max-width:760px){.event-registration-link{max-width:none}.event-registration-link strong{font-size:19px}.culture-celebration-section .event-gallery{animation-duration:65s}}
