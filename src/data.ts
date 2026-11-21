@@ -153,15 +153,6 @@ export const events: IslandEvent[] = [
   mapQuery:'Salle Omnisport Afareaitu Moorea French Polynesia'
  },
  {
-  id:'tuamotu-gambier-fair-2026', title:'11th Tuamotu Gambier Exhibition',
-  image:'https://api.cloudly.space/resize/cropratio/640/640/75/aHR0cHM6Ly9zdGF0aWMuYXBpZGFlLXRvdXJpc21lLmNvbS9maWxlc3RvcmUvb2JqZXRzLXRvdXJpc3RpcXVlcy9pbWFnZXMvNDUvMjAwLzQzNTY3MTQ5LmpwZw%3D%3D/image.webp', imageCredit:'Tahiti Tourisme · official event poster',
-  island:'Tahiti', location:"Place To'ata, Papeete",
-  dateLabel:'19–29 November 2026 · 8:00 am–6:00 pm', dateStatus:'confirmed', category:'Arts & crafts',
-  summary:"Discover Pa'umotu crafts from around sixty artisans, including shell and fibre work, coral-limestone sculptures, woven baskets and black porcelain inspired by Takaroa and Takapoto. Traditional and creative porcelain competitions are part of the programme. Free entry.",
-  officialUrl:'https://tahititourisme.pf/en-pf/events-tickets/all-the-events/11th-tuamotu-gambier-exhibition-toata-square-papeete-en-en-pf-6265685/',
-  mapQuery:"Place To'ata Papeete French Polynesia"
- },
- {
   id:'matarii-2026', title:"Matari'i i ni'a – Season of Abundance",
   image:'https://www.tahititourisme.com/app/uploads/iris-images/27213/p2-12-tahiti-tere-na-uta-2017-4-a-tahiti-tourisme-dimitri-nguyen-verdenet-380x380-f50_50.webp', imageCredit:'Tahiti Tourisme · Dimitri Nguyen Verdenet',
   island:'Tahiti & the islands', location:'Celebrated across French Polynesia',
@@ -198,23 +189,7 @@ export const events: IslandEvent[] = [
   mapQuery:'Rangiroa Avatoru French Polynesia'
  },
  {
-  id:'hura-tapairu-2026', title:'Hura Tapairu 2026',
-  image:'https://www.tahititourisme.com/app/uploads/iris-images/27008/huratapairu2022-te-vahine-tapairu-a-tftn-380x380-f50_50.webp', imageCredit:'Tahiti Tourisme · Hura Tapairu archive image',
-  island:'Tahiti', location:'Grand Théâtre de la Maison de la Culture, Papeete',
-  dateLabel:'25–28 November & 2–5 December 2026 · 6:00 pm', dateStatus:'confirmed', category:'Culture & dance',
-  summary:'A dance competition created to welcome smaller traditional groups, with performances scheduled across two four-day runs. Official listing shows opening at 6:00 pm each evening; ticket prices are not published in the listing.',
-  officialUrl:'https://tahititourisme.pf/en-pf/events-tickets/all-the-events/hura-tapairu-2026-papeete-en-en-pf-6284875/',
-  mapQuery:'Grand Theatre Maison de la Culture Papeete French Polynesia'
- },
- {
-  id:'hura-tapairu-manihini-2026', title:'Hura Tapairu Manihini (International)',
-  image:'https://www.tahititourisme.com/app/uploads/iris-images/27008/huratapairu2022-te-vahine-tapairu-a-tftn-380x380-f50_50.webp', imageCredit:'Tahiti Tourisme · Hura Tapairu archive image',
-  island:'Tahiti', location:'Grand Théâtre de la Maison de la Culture, Papeete',
-  dateLabel:'25 & 27 November 2026 · 6:00 pm', dateStatus:'confirmed', category:'Culture & dance',
-  summary:'International showcase performances associated with Hura Tapairu. Official listing confirms two evenings at the Grand Théâtre; admission is paid, with prices not published.',
-  officialUrl:'https://tahititourisme.pf/en-pf/events-tickets/all-the-events/hura-tapairu-manihini-international-papeete-en-en-pf-6284885/',
-  mapQuery:'Grand Theatre Maison de la Culture Papeete French Polynesia'
- }
+  id:'hawaiki-nui-vaa', title:'Hawaiki Nui Va’a',
   image:'https://www.tahititourisme.com/app/uploads/iris-images/26204/hawaiki-nui-vaa-a-comite-organisateur-hawaiki-nui-vaa-380x380-f50_50.webp', imageCredit:'Tahiti Tourisme · Comité organisateur Hawaiki Nui Va’a',
   island:'Huahine · Raiatea · Taha’a · Bora Bora', location:'Society Islands',
   dateLabel:'2026 edition concluded · 28–30 October; next dates pending', dateStatus:'past', category:'Sport & va’a',
