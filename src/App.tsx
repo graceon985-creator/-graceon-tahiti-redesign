@@ -274,39 +274,10 @@ export default function App(){
 
 <IslandDirectory language={active}/>
 <section id="activities" className="activities-section activities-cinematic">
-      <div className="experience-showcase">
-        <div className="experience-showcase-image" style={{backgroundImage:`url(${[
-          'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=2200&q=90',
-          'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1800&q=90',
-          'https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=1800&q=90'
-        ][activeExperienceSlide]})`}}/>
-        <div className="experience-showcase-shade"/>
-        <div className="experience-pearl" aria-hidden="true"><span/><i/></div>
-        <div className="experience-flight-editorial" aria-hidden="true"><span className="experience-flight-word">{active==="FR"?"LES ÎLES":"THE ISLANDS"}</span><span className="experience-flight-track"/><span className="experience-flight-plane"><Plane size={42} strokeWidth={1.15}/></span></div>
-        <div className="experience-showcase-nav">
-          <span className="experience-brand-mark"><Compass size={27} strokeWidth={1.25}/></span>
-          <nav><a href="#activities">{active==="FR"?"EXPÉRIENCES":"EXPERIENCES"}</a><a href="#islands">{active==="FR"?"À PROPOS":"ABOUT"}</a><a href="#contact">{active==="FR"?"CONTACT":"CONTACT"}</a></nav>
-        </div>
-        <div className="experience-showcase-main">
-          <span className="experience-showcase-number">0{activeExperienceSlide+1}</span>
-          <h2>{(active==='FR'?['Dans le bleu','Suivre le vert','Au rythme des îles']:['Into the blue','Follow the green','Feel the rhythm'])[activeExperienceSlide]}</h2>
-          <span className="experience-showcase-category">{(active==='FR'?['OCÉAN ET LAGON','NATURE ET SENTIERS','CULTURE ET VIE INSULAIRE']:['OCEAN & LAGOON','NATURE & TRAILS','CULTURE & ISLAND LIFE'])[activeExperienceSlide]}</span>
-          <p>{(active==='FR'?['Explorez les jardins de corail, pagayez sur les lagons paisibles et découvrez les îles depuis l’eau.','Suivez les sentiers forestiers, découvrez les cascades et explorez l’intérieur des îles.','Découvrez les couleurs, les traditions et le rythme quotidien de la vie insulaire.']:['Explore coral gardens, paddle calm lagoons or discover the islands from the water.','Follow forest paths, find hidden waterfalls and discover the islands beyond the shore.','Discover the colour, traditions and everyday rhythm of the islands.'])[activeExperienceSlide]}</p>
-          <button type="button" className="experience-explore" onClick={()=>setActiveExperienceSlide((activeExperienceSlide+1)%3)}><span>{active==="FR"?"EXPLORER":"EXPLORE"}</span><ArrowRight size={18}/></button>
-        </div>
-        <div className="experience-preview-cards">
-          {[1,2].map(offset=>{const index=(activeExperienceSlide+offset)%3;return <button type="button" key={index} className="experience-preview-card" onClick={()=>setActiveExperienceSlide(index)}>
-            <span className="experience-preview-number">0{index+1}</span>
-            <span className="experience-preview-title">{(active==='FR'?['Dans le bleu','Suivre le vert','Au rythme des îles']:['Into the blue','Follow the green','Feel the rhythm'])[index]}</span>
-            <img src={['https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=88','https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=800&q=88','https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800&q=88'][index]} alt="" loading="lazy" decoding="async"/>
-          </button>})}
-        </div>
-        <div className="experience-showcase-footer">
-          <span>{active==="FR"?"FAITES DÉFILER POUR EXPLORER ↓":"SCROLL TO EXPLORE ↓"}</span>
-          <div className="experience-progress"><span>0{activeExperienceSlide+1}</span><i><b style={{width:`${(activeExperienceSlide+1)*33.333}%`}}/></i><span>0{(activeExperienceSlide+1)%3+1}</span></div>
-          <span>01 / 02 / 03</span>
-        </div>
-        <div className="experience-slide-controls">{[0,1,2].map(index=><button type="button" aria-label={active==="FR"?'Afficher l’expérience '+(index+1):'Show experience '+(index+1)} className={activeExperienceSlide===index?'active':''} onClick={()=>setActiveExperienceSlide(index)}/>)}</div>
+      <div className="celebration-replacement">
+        <div className="celebration-replacement-head"><span className="section-kicker">{active==="FR"?"CÉLÉBRATIONS DES ÎLES":"ISLAND CELEBRATIONS"}</span><h2>{active==="FR"?<>Les îles en<br/><em>célébration.</em></>:<>The islands in<br/><em>celebration.</em></>}</h2><p>{active==="FR"?"Festivals culturels, traditions et grands rendez-vous : explorez les célébrations de chaque île.":"Cultural festivals, living traditions and island gatherings. Select any celebration to open its story, dates and background."}</p></div>
+        <div className="celebration-replacement-rail">{events.map((event,index)=><button type="button" key={event.id} className="celebration-replacement-card" onClick={()=>setSelectedEvent(event.id)}><div className="celebration-replacement-image"><img src={event.image} alt="" loading="lazy"/><span>0{index+1}</span></div><div className="celebration-replacement-copy"><small>{event.island} · {event.category}</small><h3>{active==="FR"&&frenchEvents[event.id]?frenchEvents[event.id].title:event.title}</h3><p>{active==="FR"&&frenchEvents[event.id]?frenchEvents[event.id].date:event.dateLabel}</p><span className="celebration-replacement-open">{active==="FR"?"DÉCOUVRIR":"DISCOVER"} <ArrowRight size={14}/></span></div></button>)}</div>
+        <div className="celebration-replacement-foot"><span>{active==="FR"?"FAITES DÉFILER POUR EXPLORER":"SCROLL TO EXPLORE"}</span><span>{events.length} {active==="FR"?"CÉLÉBRATIONS":"CELEBRATIONS"}</span></div>
       </div>
       <div className="experience-route-board">
        <div className="experience-route-board-head"><div><span>{active==="FR"?"CARNET DE ROUTE · 08 DESTINATIONS":"ISLAND HOP BOARD · 08 DESTINATIONS"}</span><strong>{active==="FR"?"Choisissez votre prochaine île":"Choose your next island"}</strong></div><small>{active==="FR"?"PARCOURS DE DÉCOUVERTE · PAS UN HORAIRE DE VOL":"DISCOVERY ROUTES · NOT A FLIGHT SCHEDULE"}</small></div>
