@@ -31,32 +31,32 @@ export default function IslandDirectory({language='EN'}:{language?:'EN'|'FR'}){
  const [island,setIsland]=useState('');
  const [selected,setSelected]=useState<Place|null>(null);
  const [q,setQ]=useState('');
- const [sort,setSort]=useState('name');
+ const [sort,setSort]=useState('az');
  const [cuisine,setCuisine]=useState('All');
  const current=data.find(d=>d.island===island);
  const places=useMemo(()=>((tab==='food'?current?.food:current?.stays)||[])
    .filter(p=>p.name.toLowerCase().includes(q.toLowerCase())&&(tab!=='food'||cuisine==='All'||cuisineFor(p.name)===cuisine))
-   .sort((a,b)=>sort==='name'?a.name.localeCompare(b.name):a.kind.localeCompare(b.kind)),[current,tab,q,sort,cuisine]);
+   .sort((a,b)=>sort==='za'?b.name.localeCompare(a.name):a.name.localeCompare(b.name)),[current,tab,q,sort,cuisine]);
  const photo=islandPhotos[island]||islandPhotos.Tahiti;
  const maps=(name:string)=>'https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(name+' '+island+' French Polynesia');
  return <section id="restaurants" className="island-directory"><span id="stays" className="directory-anchor"/>
  <header><small>GRACEON · ISLAND GUIDE</small><h2>{tab==='food'?(fr?'Saveurs des îles.':'Taste the islands.'):(fr?'Où séjourner.':'Places to stay.')}</h2>
- <p>{fr?'Choisissez une île et explorez les prestataires.':'Choose an island to browse listings. Photos are island scenery, not venue-specific.'}</p>
+ <p>{fr?'Choisissez une île pour parcourir une sélection indicative. Les noms ne sont pas vérifiés en temps réel et les photos montrent l’île, pas les établissements.':'Choose an island to browse a preliminary provider sample. Names are not live-verified; photos show island scenery, not individual venues.'}</p>
  <div className="directory-tabs"><button className={tab==='food'?'selected':''} onClick={()=>{setTab('food');setIsland('');setSelected(null);setQ('');setCuisine('All')}}><Utensils/> Restaurants</button>
  <button className={tab==='stay'?'selected':''} onClick={()=>{setTab('stay');setIsland('');setSelected(null);setQ('');setCuisine('All')}}><Hotel/> {fr?'Hôtels':'Hotels'}</button></div></header>
  {!island&&<div className="directory-island-grid">{islands.map((name,i)=><button key={name} onClick={()=>setIsland(name)}><small>0{i+1}</small><strong>{name}</strong><span className="dir-island-count">{data.find(d=>d.island===name)?.[tab==='food'?'food':'stays'].length||0} listings</span><ArrowRight/></button>)}</div>}
  {current&&!selected&&<div className="directory-subpage"><button className="dir-back" onClick={()=>{setIsland('');setQ('');setCuisine('All')}}><ArrowLeft/> {fr?'Toutes les îles':'ALL ISLANDS'}</button><h3>{island}</h3>
  <div className="dir-tools"><label className="dir-search"><Search/><input value={q} onChange={e=>setQ(e.target.value)} placeholder={fr?'Rechercher':'Search listings'}/></label>
  {tab==='food'&&<label>{fr?'Cuisine':'Cuisine'}<select value={cuisine} onChange={e=>setCuisine(e.target.value)}>{cuisines.map(c=><option key={c} value={c}>{c==='All'?(fr?'Toutes':'All cuisines'):c}</option>)}</select></label>}
- <label>{fr?'Trier':'Sort'}<select value={sort} onChange={e=>setSort(e.target.value)}><option value="name">Name A–Z</option><option value="kind">Type</option></select></label></div>{tab==='food'&&<p className="dir-cuisine-note">{fr?'Les filtres de cuisine sont estimés à partir des noms, non vérifiés.':'Cuisine filters are name-based estimates, not verified venue tags.'}</p>}
- <div className="dir-cards">{places.map(p=><article key={p.name} className="dir-real-card"><div className="dir-photo" style={{backgroundImage:'linear-gradient(120deg,#092528bb,transparent),url('+photo+')',backgroundSize:'cover',backgroundPosition:'center'}}><span>{tab==='food'?'DINING · ISLAND SCENERY':'ACCOMMODATION · ISLAND SCENERY'}</span></div><small><MapPin/> {island} · {tab==='food'?cuisineFor(p.name):'Stay'}</small><h4>{p.name}</h4><button onClick={()=>setSelected(p)}>{fr?'DÉTAILS':'VIEW DETAILS'} <ArrowRight/></button><a className="dir-quick-map" href={maps(p.name)} target="_blank" rel="noreferrer">Map <ExternalLink/></a></article>)}</div>
+ <label>{fr?'Trier':'Sort'}<select value={sort} onChange={e=>setSort(e.target.value)}><option value="az">{fr?'Nom A–Z':'Name A–Z'}</option><option value="za">{fr?'Nom Z–A':'Name Z–A'}</option></select></label></div>{tab==='food'&&<p className="dir-cuisine-note">{fr?'Les filtres de cuisine sont estimés à partir des noms, non vérifiés.':'Cuisine filters are name-based estimates, not verified venue tags.'}</p>}
+ <div className="dir-cards">{places.map(p=><article key={p.name} className="dir-real-card"><div className="dir-photo" style={{backgroundImage:'linear-gradient(120deg,#092528bb,transparent),url('+photo+')',backgroundSize:'cover',backgroundPosition:'center'}}><span>{tab==='food'?'DINING · ISLAND SCENERY':'ACCOMMODATION · ISLAND SCENERY'}</span></div><small><MapPin/> {island} · {tab==='food'?cuisineFor(p.name):'Stay'}</small><h4>{p.name}</h4><button onClick={()=>setSelected(p)} aria-label={(fr?'Détails de ':'Details for ')+p.name}>{fr?'DÉTAILS':'VIEW DETAILS'} <ArrowRight/></button><a className="dir-quick-map" href={maps(p.name)} target="_blank" rel="noreferrer" aria-label={(fr?'Voir sur la carte : ':'Map location for ')+p.name}>{fr?'Carte':'Map'} <ExternalLink/></a></article>)}</div>
  {!places.length&&<p className="dir-empty">{fr?'Aucun prestataire dans cette liste. Consultez le guide officiel.':'No providers in this list. Check the official directory.'}</p>}
- <p className="dir-truth-note">{fr?'Les prix, disponibilités et notes ne sont pas affichés sans source vérifiée.':'Prices, ratings, and availability are omitted unless verified. Provider names are a preliminary list.'}</p>
- <a className="dir-official" href={tab==='food'?current.foodDirectory:current.stayDirectory} target="_blank" rel="noreferrer">{fr?'OUVRIR LE GUIDE OFFICIEL':'OPEN OFFICIAL TAHITI TOURISME GUIDE'} <ExternalLink/></a></div>}
+ <p className="dir-truth-note">{fr?'Les prix, disponibilités et notes sont omis sans source vérifiée. Cette sélection est indicative : confirmez chaque prestataire dans le répertoire officiel.':'Prices, ratings and availability are omitted unless verified. Provider names are a preliminary sample—confirm each listing on the official directory.'}</p>
+ <a className="dir-official" href={tab==='food'?current.foodDirectory:current.stayDirectory} target="_blank" rel="noreferrer">{fr?'OUVRIR LE GUIDE OFFICIEL':'OPEN OFFICIAL TAHITI TOURISME DIRECTORY'} <ExternalLink/></a></div>}
  {selected&&current&&<div className="directory-subpage dir-detail"><button className="dir-back" onClick={()=>setSelected(null)}><ArrowLeft/> {fr?'Retour':'BACK'}</button>
  <div className="dir-detail-image" style={{backgroundImage:'linear-gradient(120deg,#092528bb,transparent),url('+photo+')',backgroundSize:'cover',backgroundPosition:'center'}}><span>{tab==='food'?'DINING · ISLAND SCENERY':'ISLAND STAYS'}</span></div><small className="dir-detail-meta"><MapPin/> {island}</small><h3>{selected.name}</h3><p className="dir-detail-kind">{tab==='food'?(fr?'Catégorie estimée':'Cuisine category estimate')+': '+cuisineFor(selected.name):(fr?'Type':'Category')+': Accommodation'}</p>
  <p>{fr?'Consultez le guide officiel pour les informations actualisées.':'Visit the official directory for current provider details, contact information, and reservations.'}</p>
- <a className="dir-provider" href={tab==='food'?current.foodDirectory:current.stayDirectory} target="_blank" rel="noreferrer">OFFICIAL LISTING <ExternalLink/></a>
+ <a className="dir-provider" href={tab==='food'?current.foodDirectory:current.stayDirectory} target="_blank" rel="noreferrer">{fr?'ANNUAIRE OFFICIEL':'OFFICIAL DIRECTORY'} <ExternalLink/></a>
  <a className="dir-provider secondary" href={maps(selected.name)} target="_blank" rel="noreferrer">OPEN MAP <ExternalLink/></a></div>}
  </section>;
 }
