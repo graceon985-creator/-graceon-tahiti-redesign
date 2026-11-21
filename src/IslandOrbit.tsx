@@ -6,14 +6,14 @@ type Island={name:string;kind:string;tag:string;image:string;description:string}
 type Props={islands:Island[];language?:'EN'|'FR';query:string;onQueryChange:(value:string)=>void;onExplore:(name:string)=>void;onOpenMap:()=>void};
 const islandKindFR:Record<string,string>={Tahiti:'Culture · Sommets · Vie urbaine',Moorea:'Lagons · Vallées · Belvédères','Bora Bora':'Lagons · Motu · Reliefs',Huahine:'Patrimoine · Nature · Lagons',Raiatea:'Patrimoine · Randonnées · Rivière','Taha’a':'Vanille · Motu · Lagons',Rangiroa:'Atoll · Plongée · Océan',Fakarava:'Réserve · Atoll · Biodiversité'};
 const positions=[
- {left:'5%',top:'31%',size:'clamp(145px,18vw,235px)',delay:'-.4s'},
- {left:'23%',top:'5%',size:'clamp(105px,13vw,170px)',delay:'-2.2s'},
- {left:'42%',top:'0%',size:'clamp(165px,20vw,260px)',delay:'-1.1s'},
- {left:'67%',top:'5%',size:'clamp(112px,14vw,180px)',delay:'-3.1s'},
- {left:'82%',top:'31%',size:'clamp(112px,14vw,185px)',delay:'-2.7s'},
- {left:'67%',top:'59%',size:'clamp(145px,18vw,230px)',delay:'-1.8s'},
- {left:'42%',top:'68%',size:'clamp(110px,13vw,175px)',delay:'-3.5s'},
- {left:'23%',top:'59%',size:'clamp(138px,16vw,215px)',delay:'-.8s'}
+ {left:'14%',top:'50%',size:'clamp(145px,18vw,235px)',delay:'-.4s'},
+ {left:'25%',top:'25%',size:'clamp(105px,13vw,170px)',delay:'-2.2s'},
+ {left:'50%',top:'15%',size:'clamp(165px,20vw,260px)',delay:'-1.1s'},
+ {left:'75%',top:'25%',size:'clamp(112px,14vw,180px)',delay:'-3.1s'},
+ {left:'86%',top:'50%',size:'clamp(112px,14vw,185px)',delay:'-2.7s'},
+ {left:'75%',top:'75%',size:'clamp(145px,18vw,230px)',delay:'-1.8s'},
+ {left:'50%',top:'85%',size:'clamp(110px,13vw,175px)',delay:'-3.5s'},
+ {left:'25%',top:'75%',size:'clamp(138px,16vw,215px)',delay:'-.8s'}
 ];
 export default function IslandOrbit({islands,language='EN',query,onQueryChange,onExplore,onOpenMap}:Props){
  const filtered=useMemo(()=>islands.filter(i=>(i.name+' '+i.kind+' '+(islandKindFR[i.name]||'')+' '+i.tag+' '+i.description).toLowerCase().includes(query.toLowerCase())),[islands,query]);
