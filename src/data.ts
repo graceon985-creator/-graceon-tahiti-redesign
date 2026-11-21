@@ -189,7 +189,23 @@ export const events: IslandEvent[] = [
   mapQuery:'Rangiroa Avatoru French Polynesia'
  },
  {
-  id:'hawaiki-nui-vaa', title:'Hawaiki Nui Va’a',
+  id:'hura-tapairu-2026', title:'Hura Tapairu 2026',
+  image:'https://www.tahititourisme.com/app/uploads/iris-images/27008/huratapairu2022-te-vahine-tapairu-a-tftn-380x380-f50_50.webp', imageCredit:'Tahiti Tourisme · Hura Tapairu archive image',
+  island:'Tahiti', location:'Grand Théâtre de la Maison de la Culture, Papeete',
+  dateLabel:'25–28 November & 2–5 December 2026 · 6:00 pm', dateStatus:'confirmed', category:'Culture & dance',
+  summary:'A dance competition created to welcome smaller traditional groups, with performances scheduled across two four-day runs. Official listing shows opening at 6:00 pm each evening; ticket prices are not published in the listing.',
+  officialUrl:'https://tahititourisme.pf/en-pf/events-tickets/all-the-events/hura-tapairu-2026-papeete-en-en-pf-6284875/',
+  mapQuery:'Grand Theatre Maison de la Culture Papeete French Polynesia'
+ },
+ {
+  id:'hura-tapairu-manihini-2026', title:'Hura Tapairu Manihini (International)',
+  image:'https://www.tahititourisme.com/app/uploads/iris-images/27008/huratapairu2022-te-vahine-tapairu-a-tftn-380x380-f50_50.webp', imageCredit:'Tahiti Tourisme · Hura Tapairu archive image',
+  island:'Tahiti', location:'Grand Théâtre de la Maison de la Culture, Papeete',
+  dateLabel:'25 & 27 November 2026 · 6:00 pm', dateStatus:'confirmed', category:'Culture & dance',
+  summary:'International showcase performances associated with Hura Tapairu. Official listing confirms two evenings at the Grand Théâtre; admission is paid, with prices not published.',
+  officialUrl:'https://tahititourisme.pf/en-pf/events-tickets/all-the-events/hura-tapairu-manihini-international-papeete-en-en-pf-6284885/',
+  mapQuery:'Grand Theatre Maison de la Culture Papeete French Polynesia'
+ }
   image:'https://www.tahititourisme.com/app/uploads/iris-images/26204/hawaiki-nui-vaa-a-comite-organisateur-hawaiki-nui-vaa-380x380-f50_50.webp', imageCredit:'Tahiti Tourisme · Comité organisateur Hawaiki Nui Va’a',
   island:'Huahine · Raiatea · Taha’a · Bora Bora', location:'Society Islands',
   dateLabel:'2026 edition concluded · 28–30 October; next dates pending', dateStatus:'past', category:'Sport & va’a',
