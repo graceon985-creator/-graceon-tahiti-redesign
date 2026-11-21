@@ -13,6 +13,7 @@ import IslandCheckIn from './IslandCheckIn';
 import InteractiveArchipelagoMap from './InteractiveArchipelagoMap';
 import IslandOrbit from './IslandOrbit';
 import TravelFeatures from './TravelFeatures';
+import IslandDirectory from './IslandDirectory';
 gsap.registerPlugin(ScrollTrigger);
 type LocalVisit = {verifiedAt:string;accuracy:number};
 const frenchEvents:Record<string,{title:string;location:string;date:string;summary:string;category:string}> = {
@@ -271,6 +272,7 @@ export default function App(){
     
    </section>
 
+<IslandDirectory language={active}/>
 <section id="activities" className="activities-section activities-cinematic">
       <div className="experience-showcase">
         <div className="experience-showcase-image" style={{backgroundImage:`url(${[
