@@ -1777,3 +1777,28 @@
 /* Celebration replacement carousel */
 .celebration-replacement{padding:48px 6% 65px;background:#071b1d;color:#f1eee7}.celebration-replacement-head{max-width:1100px;margin:0 auto 34px}.celebration-replacement-head h2{font:400 clamp(48px,7vw,100px)/.92 'Playfair Display',Georgia,serif;letter-spacing:-.06em;margin:18px 0}.celebration-replacement-head h2 em{color:#cfa879}.celebration-replacement-head p{max-width:520px;color:#b9c7bf;font-size:13px;line-height:1.8}.celebration-replacement-rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:8px 0 24px;scrollbar-width:thin}.celebration-replacement-card{flex:0 0 min(390px,80vw);scroll-snap-align:start;text-align:left;padding:0;background:#0c2527;color:#f1eee7;border:1px solid #ffffff25;cursor:pointer;transition:transform .3s,border-color .3s}.celebration-replacement-card:hover{transform:translateY(-4px);border-color:#cfa879}.celebration-replacement-image{height:230px;position:relative;overflow:hidden}.celebration-replacement-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.celebration-replacement-card:hover img{transform:scale(1.04)}.celebration-replacement-image span{position:absolute;top:16px;left:16px;color:#fff;font-size:10px;letter-spacing:.14em}.celebration-replacement-copy{padding:22px}.celebration-replacement-copy small{font-size:9px;letter-spacing:.12em;color:#cfa879}.celebration-replacement-copy h3{font:400 26px/1.2 'Playfair Display',Georgia,serif;margin:13px 0}.celebration-replacement-copy p{font-size:11px;color:#b9c7bf}.celebration-replacement-open{display:flex;align-items:center;gap:10px;color:#cfa879;font-size:9px;letter-spacing:.14em;margin-top:22px}.celebration-replacement-foot{display:flex;justify-content:space-between;max-width:1200px;margin:8px auto 0;color:#9aaba3;font-size:9px;letter-spacing:.16em}
 @media(max-width:600px){.celebration-replacement{padding:45px 5%}.celebration-replacement-image{height:185px}.celebration-replacement-card{flex-basis:84vw}.celebration-replacement-copy h3{font-size:23px}}
+
+/* Real-provider directory refresh */
+.island-directory .dir-real-card{position:relative;display:flex;flex-direction:column;min-height:310px;padding-bottom:16px;background:#0b2426;border:1px solid #ffffff22;transition:transform .28s,border-color .28s}
+.island-directory .dir-real-card:hover{transform:translateY(-3px);border-color:#cfa879}
+.island-directory .dir-photo{height:150px;position:relative;display:flex;align-items:flex-end;padding:14px;background:linear-gradient(135deg,#0e3639,#173b42 45%,#92724e);overflow:hidden}
+.island-directory .dir-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(130deg,#0b2224a8,transparent 60%),radial-gradient(circle at 75% 20%,#c4a87850,transparent 42%)}
+.island-directory .dir-photo span{position:relative;z-index:1;font-size:9px;letter-spacing:.16em;color:#e2c18c}
+.island-directory .dir-real-card small{margin:14px 16px 0;color:#bfa16f;font-size:10px;letter-spacing:.1em}
+.island-directory .dir-real-card h4{margin:12px 16px;font-size:22px;line-height:1.2;min-height:52px}
+.island-directory .dir-real-card button{margin:8px 16px 0;align-self:flex-start}
+.island-directory .dir-quick-map{display:inline-flex;align-items:center;gap:8px;color:#9eaaa4;text-decoration:none;font-size:10px;margin:0 16px}
+.island-directory .dir-quick-map svg{width:13px}
+.island-directory .dir-search{display:flex;align-items:center;gap:8px;border:1px solid #ffffff30;padding:8px 12px;color:#cfa879}
+.island-directory .dir-search svg{width:15px}
+.island-directory .dir-search input{background:transparent;border:0;color:#f4f2e8;outline:none;min-width:180px}
+.island-directory .dir-island-count{font-size:10px;color:#b8c6bf;letter-spacing:.05em}
+.island-directory .dir-empty{border:1px solid #ffffff22;padding:26px;color:#becac2;line-height:1.7}
+.island-directory .dir-truth-note{margin:24px 0;color:#aebbb4;font-size:11px;line-height:1.8}
+.island-directory .dir-official{display:inline-flex;align-items:center;gap:12px;margin:14px 0;padding:15px 18px;border:1px solid #cfa879;color:#cfa879;text-decoration:none;font-size:10px;letter-spacing:.1em}
+.island-directory .dir-detail-image{height:280px;display:flex;align-items:flex-end;padding:22px;background:linear-gradient(135deg,#0b3033,#17444a 50%,#8b704b);position:relative}
+.island-directory .dir-detail-image:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 18%,#c6a56a55,transparent 50%)}
+.island-directory .dir-detail-image span{position:relative;z-index:1;color:#ddc28c;font-size:10px;letter-spacing:.16em}
+.island-directory .dir-detail-meta{color:#cfa879;display:flex;align-items:center;gap:8px;margin:20px 0}
+.island-directory .dir-provider.secondary{margin:14px 0 0;background:transparent}
+@media(max-width:600px){.island-directory .dir-detail-image{height:200px}.island-directory .dir-search input{min-width:120px}}
