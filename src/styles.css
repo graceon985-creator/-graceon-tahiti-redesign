@@ -1802,3 +1802,15 @@
 .island-directory .dir-detail-meta{color:#cfa879;display:flex;align-items:center;gap:8px;margin:20px 0}
 .island-directory .dir-provider.secondary{margin:14px 0 0;background:transparent}
 @media(max-width:600px){.island-directory .dir-detail-image{height:200px}.island-directory .dir-search input{min-width:120px}}
+
+/* Directory interaction and responsive refinements */
+.island-directory .directory-island-grid button{background-repeat:no-repeat!important;transition:transform .35s,border-color .35s,background-size .5s;position:relative;overflow:hidden;background-size:cover!important}
+.island-directory .directory-island-grid button:hover{transform:translateY(-4px);border-color:#cfa879;background-size:cover!important}
+.island-directory .directory-island-grid button:focus-visible,.island-directory button:focus-visible,.island-directory a:focus-visible,.island-directory select:focus-visible,.island-directory input:focus-visible{outline:2px solid #cfa879;outline-offset:3px}
+.dir-result-count{color:#cfa879!important;font-size:11px;letter-spacing:.1em;margin:4px 0 18px!important}
+.dir-clear-filters{background:none;color:#cfa879;border:1px solid #cfa879;padding:9px 13px;margin:0 0 20px;cursor:pointer;font-size:10px;letter-spacing:.12em}
+.dir-clear-filters:hover{background:#cfa879;color:#071b1d}
+.dir-empty{border:1px dashed #ffffff35;padding:25px;text-align:center}
+.dir-quick-map{display:flex;align-items:center;gap:8px;color:#bac7bf;margin:0 15px;font-size:10px;letter-spacing:.12em}
+.dir-quick-map:hover{color:#cfa879}
+@media(max-width:560px){.dir-tools{display:grid;grid-template-columns:1fr;gap:12px}.dir-tools label{display:flex;flex-direction:column;gap:6px}.dir-tools select{margin-left:0;width:100%;min-height:42px}.dir-tools .dir-search{width:100%}.dir-result-count{margin-top:12px!important}.dir-clear-filters{width:100%}.dir-quick-map{padding:8px 0}}
