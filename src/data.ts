@@ -1,4 +1,13 @@
  {
+  id:'tuamotu-gambier-fair-2026', title:'11th Tuamotu Gambier Exhibition',
+  image:'https://api.cloudly.space/resize/cropratio/640/640/75/aHR0cHM6Ly9zdGF0aWMuYXBpZGFlLXRvdXJpc21lLmNvbS9maWxlc3RvcmUvb2JqZXRzLXRvdXJpc3RpcXVlcy9pbWFnZXMvNDUvMjAwLzQzNTY3MTQ5LmpwZw%3D%3D/image.webp', imageCredit:'Tahiti Tourisme · official event poster',
+  island:'Tahiti', location:"Place To'ata, Papeete",
+  dateLabel:'19–29 November 2026 · 8:00 am–6:00 pm', dateStatus:'confirmed', category:'Arts & crafts',
+  summary:"Discover Pa'umotu crafts from around sixty artisans, including shell and fibre work, coral-limestone sculptures, woven baskets and black porcelain inspired by Takaroa and Takapoto. Traditional and creative porcelain competitions are part of the programme. Free entry.",
+  officialUrl:'https://tahititourisme.pf/en-pf/events-tickets/all-the-events/11th-tuamotu-gambier-exhibition-toata-square-papeete-en-en-pf-6265685/',
+  mapQuery:"Place To'ata Papeete French Polynesia"
+ },
+ {
   id:'matarii-2026', title:"Matari'i i ni'a – Season of Abundance",
   image:'https://www.tahititourisme.com/app/uploads/iris-images/27213/p2-12-tahiti-tere-na-uta-2017-4-a-tahiti-tourisme-dimitri-nguyen-verdenet-380x380-f50_50.webp', imageCredit:'Tahiti Tourisme · Dimitri Nguyen Verdenet',
   island:'Tahiti & the islands', location:'Celebrated across French Polynesia',
